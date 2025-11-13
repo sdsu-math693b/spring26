@@ -1,0 +1,876 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>3) Introduction to PDEs &#8212; Advanced Numerical Methods Computational Partial Differential Equations Spring 26</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/module1-3_intro_to_pdes';</script>
+    <link rel="icon" href="../_static/SDSU-math693b_logo.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4) Introduction to programming in Julia" href="module1-4_intro_to_julia.html" />
+    <link rel="prev" title="2) Community Projects" href="module1-2_community_projects.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/SDSU-math693b_logo.svg" class="logo__image only-light" alt="Advanced Numerical Methods Computational Partial Differential Equations Spring 26 - Home"/>
+    <script>document.write(`<img src="../_static/SDSU-math693b_logo.svg" class="logo__image only-dark" alt="Advanced Numerical Methods Computational Partial Differential Equations Spring 26 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Welcome
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus.html">Syllabus</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../lectures.html">Lectures</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="module1-1_git.html">1) First Class: Reproducibility and Git</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="module1-2_community_projects.html">2) Community Projects</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">3) Introduction to PDEs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module1-4_intro_to_julia.html">4) Introduction to programming in Julia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module1-5_finite_differences.html">5) Finite Differences</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/sdsu-math693b/spring26" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/sdsu-math693b/spring26/issues/new?title=Issue%20on%20page%20%2Flectures/module1-3_intro_to_pdes.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/lectures/module1-3_intro_to_pdes.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>3) Introduction to PDEs</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1. Introduction to PDEs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-are-pdes">What are PDEs?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#commonly-occurring-terms-and-notation">Commonly occurring terms and notation</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-calculus-and-differential-geometry">Vector Calculus and Differential Geometry</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-do-pdes-describe">What do PDEs describe?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classes-of-methods-we-ll-cover">Classes of methods we’ll cover</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples:</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#structural-mechanics-applications">Structural mechanics applications</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#computational-fluid-dynamics-cfd-applications">Computational Fluid Dynamics (CFD) applications</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#atmospheric-flow-simulations-for-numerical-weather-or-climate-predictions">Atmospheric Flow simulations (for numerical weather or climate predictions)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-expensive-is-it">How expensive is it?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-goes-in-what-comes-out">What goes in? What comes out?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#who-works-with-pde-solvers">Who works with PDE solvers?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-skills-should-they-have">What skills should they have?</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-pdes">
+<h1>3) Introduction to PDEs<a class="headerlink" href="#introduction-to-pdes" title="Link to this heading">#</a></h1>
+<p>Last time:</p>
+<ul class="simple">
+<li><p>Introduction to Community Projects</p></li>
+</ul>
+<p>Today:</p>
+<ol class="arabic simple">
+<li><p>Introduction to PDEs</p></li>
+</ol>
+<section id="id1">
+<h2>1. Introduction to PDEs<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<section id="what-are-pdes">
+<h3>What are PDEs?<a class="headerlink" href="#what-are-pdes" title="Link to this heading">#</a></h3>
+<p>Partial Differential Equations (PDEs) are equations involving a multivariate function, e.g, <span class="math notranslate nohighlight">\(u(x_1, x_2, \ldots, x_n) = u(\mathbf{x})\)</span> and one or more of its (partial) derivatives.</p>
+<p>A PDE can be time depedent, i.e, <span class="math notranslate nohighlight">\(u(t, x_1, x_2, \ldots, x_n) = u(t, \mathbf{x})\)</span> or not.</p>
+</section>
+<section id="commonly-occurring-terms-and-notation">
+<h3>Commonly occurring terms and notation<a class="headerlink" href="#commonly-occurring-terms-and-notation" title="Link to this heading">#</a></h3>
+<section id="vector-calculus-and-differential-geometry">
+<h4>Vector Calculus and Differential Geometry<a class="headerlink" href="#vector-calculus-and-differential-geometry" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>A scalar-valued function (or scalar field) of several variables (i.e., multivariate) is a function <span class="math notranslate nohighlight">\(u(\mathbf x ): \mathbb{R}^n \to \mathbb{R}\)</span>.</p></li>
+<li><p>A vector-valued function (or vector field) is a function whose range (or codomain) is in multiple dimensions, regardless of the domain dimensions. That is, it could be a function of one (<span class="math notranslate nohighlight">\(\mathbf u(x)\)</span>) or more variables (<span class="math notranslate nohighlight">\(\mathbf u(\mathbf x)\)</span>) such that <span class="math notranslate nohighlight">\(\mathbf u(x): \mathbb{R} \to \mathbb{R}^n\)</span> or <span class="math notranslate nohighlight">\(\mathbf u(\mathbb{\mathbf x}): \mathbb{R}^n \to \mathbb{R}^n\)</span>.</p></li>
+</ul>
+<ul class="simple">
+<li><p>For a scalar-valued function <span class="math notranslate nohighlight">\(u(\mathbf x): \mathbb{R}^n \to \mathbb{R}\)</span>, the <a class="reference external" href="https://en.wikipedia.org/wiki/Gradient">gradient</a> <span class="math notranslate nohighlight">\(\nabla u(\mathbf x)\)</span></p>
+<ul>
+<li><p>maps vector field to vector field, that is <span class="math notranslate nohighlight">\(\nabla u(\mathbf x): \mathbb{R}^n \to \mathbb{R}^n\)</span></p></li>
+</ul>
+</li>
+<li><p>For a vector-valued function <span class="math notranslate nohighlight">\(\mathbf u(\mathbb{\mathbf x}): \mathbb{R}^n \to \mathbb{R}^n \)</span>, <a class="reference external" href="https://en.wikipedia.org/wiki/Curl_(mathematics)">Curl <span class="math notranslate nohighlight">\(\mathbf u\)</span></a> or <span class="math notranslate nohighlight">\(\nabla\times \mathbf u(\mathbf x)\)</span></p>
+<ul>
+<li><p>maps vector field to vector field, <span class="math notranslate nohighlight">\(\mathbb{R}^n \to \mathbb{R}^n\)</span>, that is, <span class="math notranslate nohighlight">\(\nabla\times  \mathbf u(\mathbf x): \mathbb{R}^n \to \mathbb{R}^n\)</span></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Divergence">Divergence</a> of a vector field <span class="math notranslate nohighlight">\(div \mathbf u(\mathbf x) = \nabla\cdot \mathbf u(\mathbf x)\)</span></p>
+<ul>
+<li><p>maps vector field to scalar field, that is <span class="math notranslate nohighlight">\( \nabla\cdot \mathbf u(\mathbf x):\mathbb{R}^n \to \mathbb{R}\)</span></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Laplace_operator">Laplacian</a> of a twice-differentiable scalar field <span class="math notranslate nohighlight">\(\Delta u := \nabla \cdot \nabla u \equiv  div(\nabla u)=\nabla^2 u\)</span></p>
+<ul>
+<li><p>maps scalar field to scalar field, that is <span class="math notranslate nohighlight">\(\nabla^2 u: \mathbb{R} \to \mathbb{R}\)</span></p></li>
+</ul>
+</li>
+<li><p>time derivatives: <span class="math notranslate nohighlight">\(\frac{\partial u(t, \mathbf x)}{\partial t}\)</span></p></li>
+</ul>
+</section>
+</section>
+<section id="what-do-pdes-describe">
+<h3>What do PDEs describe?<a class="headerlink" href="#what-do-pdes-describe" title="Link to this heading">#</a></h3>
+<p>A plethora of phenomena. For example:</p>
+<ul class="simple">
+<li><p>heat transfer</p></li>
+<li><p>electrostatics, electromagnetics</p></li>
+<li><p>solid mechanics</p></li>
+<li><p>fluid mechanics</p></li>
+<li><p>quantum mechanics</p></li>
+<li><p>population dynamics</p></li>
+</ul>
+</section>
+<section id="classes-of-methods-we-ll-cover">
+<h3>Classes of methods we’ll cover<a class="headerlink" href="#classes-of-methods-we-ll-cover" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>At grid points with rules to approximate derivatives</p>
+<ul>
+<li><p>Finite Difference / collocation</p></li>
+</ul>
+</li>
+<li><p>A weak (integral) over elements with rules to reconstruct from element averages and define fluxes</p>
+<ul>
+<li><p>Finite Volume</p></li>
+</ul>
+</li>
+<li><p>A weak form over elements with solution and “test functions” in the same space</p>
+<ul>
+<li><p>Finite Element / Galerkin</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="examples">
+<h3>Examples:<a class="headerlink" href="#examples" title="Link to this heading">#</a></h3>
+<p>A variable-coefficients (often with discontinuities) Poisson’s problem. This problem can have many important applications ranging from incompressible
+flows to semiconductor modeling to tissue engineering.</p>
+<p>Find <span class="math notranslate nohighlight">\(u\)</span> such that</p>
+<div class="amsmath math notranslate nohighlight" id="equation-4b76b714-6f5e-4dfd-b140-f8ff20e3f588">
+<span class="eqno">(1)<a class="headerlink" href="#equation-4b76b714-6f5e-4dfd-b140-f8ff20e3f588" title="Permalink to this equation">#</a></span>\[\begin{align}
+-\nabla\cdot\big(\kappa(\mathbf x) \nabla u(\mathbf x)\big) &amp;= f(\mathbf x) &amp; \mathbf x &amp;\in \Omega \\
+u(\mathbf x) &amp;= g(\mathbf x) &amp; \mathbf x &amp;\in \Gamma_D \subset \partial\Omega \\
+\kappa(\mathbf x) \nabla u(\mathbf x) \cdot \mathbf{\hat n}(\mathbf x) &amp;= h(\mathbf x) &amp; \mathbf x &amp;\in \Gamma_N \subset\partial\Omega
+\end{align}\]</div>
+<section id="structural-mechanics-applications">
+<h4>Structural mechanics applications<a class="headerlink" href="#structural-mechanics-applications" title="Link to this heading">#</a></h4>
+<p><img alt="Solid Mechanics gif" src="../_images/ratel_schwarz_mesh_compressed.gif" /></p>
+</section>
+<section id="computational-fluid-dynamics-cfd-applications">
+<h4>Computational Fluid Dynamics (CFD) applications<a class="headerlink" href="#computational-fluid-dynamics-cfd-applications" title="Link to this heading">#</a></h4>
+<p><img alt="Turbulent Plate gif" src="../_images/ROPI_OutView.gif" /></p>
+</section>
+<section id="atmospheric-flow-simulations-for-numerical-weather-or-climate-predictions">
+<h4>Atmospheric Flow simulations (for numerical weather or climate predictions)<a class="headerlink" href="#atmospheric-flow-simulations-for-numerical-weather-or-climate-predictions" title="Link to this heading">#</a></h4>
+<p><img alt="Shallow-water equations simulation with a mountain gif" src="../_images/mountain_height_day10_with_bg.gif" /></p>
+<p><img alt="Barotropic instability simulation gif" src="../_images/barotropic_instability_vorticity_day10_with_bg_short.gif" /></p>
+</section>
+</section>
+<section id="how-expensive-is-it">
+<h3>How expensive is it?<a class="headerlink" href="#how-expensive-is-it" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Suppose our domain is <span class="math notranslate nohighlight">\(\Omega = (0, 1)^3\)</span></p></li>
+<li><p>We discretize it by dividing each side into segments of length <span class="math notranslate nohighlight">\(h\)</span> (<span class="math notranslate nohighlight">\(n := 1/h\)</span> of them)</p></li>
+<li><p>We have a total of <span class="math notranslate nohighlight">\(N := n^3\)</span> volume elements</p></li>
+<li><p>Assume:</p>
+<ul>
+<li><p>Method whose error goes as <span class="math notranslate nohighlight">\(10 h^4\)</span></p></li>
+<li><p>Implementation 1 of this method whose runtime scales <span class="math notranslate nohighlight">\(\propto N = n^3\)</span></p></li>
+<li><p>Implementation 2 (less efficient) scales <span class="math notranslate nohighlight">\(\propto N^2 = n^6\)</span></p></li>
+<li><p>We say <span class="math notranslate nohighlight">\(\mathcal{O}(N)\)</span> and <span class="math notranslate nohighlight">\(\mathcal{O}(N^2)\)</span>, respectively</p></li>
+</ul>
+</li>
+<li><p>Error vs <span class="math notranslate nohighlight">\(n\)</span> (or <span class="math notranslate nohighlight">\(h\)</span>) is the <em>convergence</em> of a method</p></li>
+<li><p>Computational cost (e.g. runtime) vs <span class="math notranslate nohighlight">\(n\)</span> is the <em>complexity</em> of the method</p></li>
+<li><p>In practice, the <em>most important plot</em> is error vs computational cost (<em>work-precision</em> diagram). Why?</p></li>
+<li><p>Let’s see it for our two methods</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">Pkg</span>
+<span class="n">Pkg</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s">&quot;Plots&quot;</span><span class="p">)</span><span class="w"> </span><span class="c"># let&#39;s add the package Plots to our environment</span>
+
+<span class="k">using</span><span class="w"> </span><span class="n">Plots</span><span class="w"> </span><span class="c"># once added, you need to import it into your file to e able to use it</span>
+<span class="n">default</span><span class="p">(</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="k">using</span><span class="w"> </span><span class="n">Pkg</span><span class="p">;</span><span class="w"> </span><span class="n">Pkg</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s">&quot;LaTeXStrings&quot;</span><span class="p">)</span><span class="w"> </span><span class="c"># let&#39;s add the package LaTeXStrings to our environment</span>
+<span class="k">using</span><span class="w"> </span><span class="n">LaTeXStrings</span><span class="w"> </span><span class="c"># this way we can have nice math in plot legends/titles</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Green">    Updating</span> registry at `~/.julia/registries/General.toml`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Green">   Resolving</span> package versions...
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Green">  No Changes</span> to `~/.julia/environments/v1.10/Project.toml`
+<span class=" -Color -Color-Bold -Color-Bold-Green">  No Changes</span> to `~/.julia/environments/v1.10/Manifest.toml`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Yellow">┌ Warning: </span>Circular dependency detected.
+<span class=" -Color -Color-Bold -Color-Bold-Yellow">│ </span>Precompilation will be skipped for dependencies in this cycle:
+<span class=" -Color -Color-Bold -Color-Bold-Yellow">│ </span> ┌ Symbolics → SymbolicsForwardDiffExt
+<span class=" -Color -Color-Bold -Color-Bold-Yellow">│ </span> └─ Symbolics → SymbolicsPreallocationToolsExt
+<span class=" -Color -Color-Bold -Color-Bold-Yellow">└ </span>@ Pkg.API.Precompilation ~/julia-1.10.10/share/julia/stdlib/v1.10/Pkg/src/precompilation.jl:583
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Green">   Resolving</span> package versions...
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Green">  No Changes</span> to `~/.julia/environments/v1.10/Project.toml`
+<span class=" -Color -Color-Bold -Color-Bold-Green">  No Changes</span> to `~/.julia/environments/v1.10/Manifest.toml`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Yellow">┌ Warning: </span>Circular dependency detected.
+<span class=" -Color -Color-Bold -Color-Bold-Yellow">│ </span>Precompilation will be skipped for dependencies in this cycle:
+<span class=" -Color -Color-Bold -Color-Bold-Yellow">│ </span> ┌ Symbolics → SymbolicsForwardDiffExt
+<span class=" -Color -Color-Bold -Color-Bold-Yellow">│ </span> └─ Symbolics → SymbolicsPreallocationToolsExt
+<span class=" -Color -Color-Bold -Color-Bold-Yellow">└ </span>@ Pkg.API.Precompilation ~/julia-1.10.10/share/julia/stdlib/v1.10/Pkg/src/precompilation.jl:583
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># An example with a common &quot;good&quot; discretization</span>
+<span class="n">error</span><span class="p">(</span><span class="n">h</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">min</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="o">*</span><span class="n">h</span><span class="o">^</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="k">function</span><span class="w"> </span><span class="n">cost</span><span class="p">(</span><span class="n">h</span><span class="p">)</span><span class="w"> </span><span class="c"># a model for algorithmic cost</span>
+<span class="w">    </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="o">/</span><span class="n">h</span><span class="w"> </span><span class="c"># number of points per dimension</span>
+<span class="w">    </span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="o">^</span><span class="mi">3</span><span class="w"> </span><span class="c"># total number of grid points in 3D</span>
+<span class="w">    </span><span class="n">N</span><span class="w"> </span><span class="c"># the return value</span>
+<span class="k">end</span>
+
+<span class="k">function</span><span class="w"> </span><span class="n">cost2</span><span class="p">(</span><span class="n">h</span><span class="p">)</span><span class="w"> </span><span class="c"># another model for algorithmic cost</span>
+<span class="w">    </span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cost</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+<span class="w">    </span><span class="n">N</span><span class="o">^</span><span class="mi">2</span><span class="w"> </span><span class="c"># it is the square of the previous model cost</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cost2 (generic function with 1 method)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">plot</span><span class="p">([</span><span class="n">cost</span><span class="p">,</span><span class="w"> </span><span class="n">cost2</span><span class="p">],</span><span class="w"> </span><span class="n">error</span><span class="p">,</span><span class="w"> </span><span class="mf">.01</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">xscale</span><span class="o">=</span><span class="ss">:log10</span><span class="p">,</span><span class="w"> </span><span class="n">yscale</span><span class="o">=</span><span class="ss">:log10</span><span class="p">,</span>
+<span class="w">  </span><span class="n">xlabel</span><span class="o">=</span><span class="s">&quot;Cost&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ylabel</span><span class="o">=</span><span class="s">&quot;Error&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="sa">L</span><span class="s">&quot;\mathcal{O}(N)&quot;</span><span class="w"> </span><span class="sa">L</span><span class="s">&quot;\mathcal{O}(N^2)&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><img src="data:image/png;base64,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" /></div></div>
+</div>
+<p>How to interpret this plot:</p>
+<ul class="simple">
+<li><p>To achieve an error of <span class="math notranslate nohighlight">\(10^{-4}\)</span>, method 2 needs much more computational resources</p></li>
+<li><p>This graph lets you read off exactly how expensive the computation will be for a given accuracy (how long you have to wait, your usage)</p></li>
+</ul>
+</section>
+<section id="what-goes-in-what-comes-out">
+<h3>What goes in? What comes out?<a class="headerlink" href="#what-goes-in-what-comes-out" title="Link to this heading">#</a></h3>
+<p>In:</p>
+<ul class="simple">
+<li><p>Equations</p>
+<ul>
+<li><p>Conservation</p></li>
+<li><p>Variational principles</p></li>
+<li><p>Materials</p></li>
+</ul>
+</li>
+<li><p>Geometry</p>
+<ul>
+<li><p>meshing needed?</p></li>
+</ul>
+</li>
+<li><p>Boundary conditions</p>
+<ul>
+<li><p>essential/Dirichlet</p></li>
+<li><p>natural/Neumann</p></li>
+<li><p>mixed</p></li>
+</ul>
+</li>
+<li><p>Initial conditions</p></li>
+</ul>
+<p>Out:</p>
+<ul class="simple">
+<li><p>Discrete solutions</p>
+<ul>
+<li><p>Sampled on a grid</p></li>
+<li><p>Time series</p></li>
+</ul>
+</li>
+<li><p>Quantities of Interest (QoI)</p>
+<ul>
+<li><p>Heat flux</p></li>
+<li><p>Maximum temperature</p></li>
+<li><p>Maximum stress</p></li>
+<li><p>Lift, drag</p></li>
+</ul>
+</li>
+<li><p>Eigensolutions</p>
+<ul>
+<li><p>Resonant frequencies/modes</p></li>
+<li><p>Orbitals</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="who-works-with-pde-solvers">
+<h3>Who works with PDE solvers?<a class="headerlink" href="#who-works-with-pde-solvers" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Numerical analysts</p></li>
+<li><p>Domain scientists and engineers</p></li>
+<li><p>Materials scientists</p></li>
+<li><p>HPC specialists</p></li>
+<li><p>Optimizers</p></li>
+<li><p>Statisticians</p></li>
+</ul>
+</section>
+<section id="what-skills-should-they-have">
+<h3>What skills should they have?<a class="headerlink" href="#what-skills-should-they-have" title="Link to this heading">#</a></h3>
+<p>Breakout groups: pick one role and make a list of essential and nice-to-have skills, plus at least one question. Pick one member to report out.</p>
+<ul class="simple">
+<li><p>…</p></li>
+<li><p>…</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "sdsu-math693b/spring26",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "julia-1.10"
+        },
+        kernelOptions: {
+            name: "julia-1.10",
+            path: "./lectures"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'julia-1.10'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="module1-2_community_projects.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">2) Community Projects</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="module1-4_intro_to_julia.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">4) Introduction to programming in Julia</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1. Introduction to PDEs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-are-pdes">What are PDEs?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#commonly-occurring-terms-and-notation">Commonly occurring terms and notation</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-calculus-and-differential-geometry">Vector Calculus and Differential Geometry</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-do-pdes-describe">What do PDEs describe?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classes-of-methods-we-ll-cover">Classes of methods we’ll cover</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples:</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#structural-mechanics-applications">Structural mechanics applications</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#computational-fluid-dynamics-cfd-applications">Computational Fluid Dynamics (CFD) applications</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#atmospheric-flow-simulations-for-numerical-weather-or-climate-predictions">Atmospheric Flow simulations (for numerical weather or climate predictions)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-expensive-is-it">How expensive is it?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-goes-in-what-comes-out">What goes in? What comes out?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#who-works-with-pde-solvers">Who works with PDE solvers?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-skills-should-they-have">What skills should they have?</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Valeria Barra
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,1068 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>4) Introduction to programming in Julia &#8212; Advanced Numerical Methods Computational Partial Differential Equations Spring 26</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/module1-4_intro_to_julia';</script>
+    <link rel="icon" href="../_static/SDSU-math693b_logo.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5) Finite Differences" href="module1-5_finite_differences.html" />
+    <link rel="prev" title="3) Introduction to PDEs" href="module1-3_intro_to_pdes.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/SDSU-math693b_logo.svg" class="logo__image only-light" alt="Advanced Numerical Methods Computational Partial Differential Equations Spring 26 - Home"/>
+    <script>document.write(`<img src="../_static/SDSU-math693b_logo.svg" class="logo__image only-dark" alt="Advanced Numerical Methods Computational Partial Differential Equations Spring 26 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Welcome
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus.html">Syllabus</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../lectures.html">Lectures</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="module1-1_git.html">1) First Class: Reproducibility and Git</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="module1-2_community_projects.html">2) Community Projects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module1-3_intro_to_pdes.html">3) Introduction to PDEs</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">4) Introduction to programming in Julia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module1-5_finite_differences.html">5) Finite Differences</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/sdsu-math693b/spring26" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/sdsu-math693b/spring26/issues/new?title=Issue%20on%20page%20%2Flectures/module1-4_intro_to_julia.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/lectures/module1-4_intro_to_julia.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>4) Introduction to programming in Julia</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#julia">1. Julia</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numbers">1.1. Numbers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arrays">1.2 Arrays</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">1.3 Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ranges-and-loops">1.4 Ranges and loops</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#errors">2. Errors</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#roundoff-errors-and-floating-point-arithmetic-fpa">2.1 Roundoff errors and Floating Point Arithmetic (FPA)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting">3. Plotting</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-programming-in-julia">
+<h1>4) Introduction to programming in Julia<a class="headerlink" href="#introduction-to-programming-in-julia" title="Link to this heading">#</a></h1>
+<p>Last time:</p>
+<ul class="simple">
+<li><p>Introduction to PDEs</p></li>
+</ul>
+<p>Today:</p>
+<ol class="arabic simple">
+<li><p>Using Julia</p></li>
+<li><p>Errors<br />
+2.1. Plotting</p></li>
+<li><p>Machine Epsilon</p></li>
+</ol>
+<section id="julia">
+<h2>1. Julia<a class="headerlink" href="#julia" title="Link to this heading">#</a></h2>
+<p>To recap from first class, Julia is a relatively new programming language. Think of it as MATLAB done right, open source, and fast. It’s nominally general-purpose, but mostly for numerical/scientific/statistical computing. There are great <a class="reference external" href="https://julialang.org/learning/">learning resources</a>. We’ll introduce concepts and language features as we go.</p>
+<p>It is supported in Jupyter Notebooks.</p>
+<p>From your terminal, start a Julia session with</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span>
+</pre></div>
+</div>
+<p>To add the <code class="docutils literal notranslate"><span class="pre">IJulia</span></code> package to your environment, then type:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="p">]</span><span class="n">add</span><span class="w"> </span><span class="n">IJulia</span>
+</pre></div>
+</div>
+<p>go back to your Julia REPL using backspace and type</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="k">using</span><span class="w"> </span><span class="n">IJulia</span>
+</pre></div>
+</div>
+<p>and then</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">notebook</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>to run the notebook.</p>
+<p>Let’s see it with live demos:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># The last line of a cell is output by default</span>
+<span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span>
+<span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">println</span><span class="p">(</span><span class="s">&quot;</span><span class="si">$x</span><span class="s"> + </span><span class="si">$y</span><span class="s"> = </span><span class="si">$</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="s">&quot;</span><span class="p">)</span><span class="w"> </span><span class="c"># string formatting/interpolation</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3 + 4 = 7
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="mi">4</span><span class="p">;</span><span class="w">  </span><span class="c"># trailing semicolon suppresses output</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Julia has several <em>macros</em>, invoked by the <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> symbol. A useful one is the <code class="docutils literal notranslate"><span class="pre">&#64;show</span></code> macro (which prints one or more expressions, and their results, to <code class="docutils literal notranslate"><span class="pre">stdout</span></code>, and returns the last result):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="nd">@show</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="c"># here the entire expression is shown</span>
+<span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="c"># here only the return (computed) value is shown</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x + y = 7
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12
+</pre></div>
+</div>
+</div>
+</div>
+<section id="numbers">
+<h3>1.1. Numbers<a class="headerlink" href="#numbers" title="Link to this heading">#</a></h3>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Check this very helpful <a class="reference external" href="https://docs.julialang.org/en/v1/manual/integers-and-floating-point-numbers/">Julia documentation page</a>.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mf">3.0</span><span class="p">,</span><span class="w"> </span><span class="mf">3.0f0</span><span class="p">,</span><span class="w"> </span><span class="n">big</span><span class="p">(</span><span class="mf">3.0</span><span class="p">)</span><span class="w"> </span><span class="c"># integers, double precision, single precision, and convert to a maximum precision representation</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3, 3.0, 3.0f0, 3.0)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">typeof</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="w"> </span><span class="n">typeof</span><span class="p">(</span><span class="mf">3.0</span><span class="p">),</span><span class="w"> </span><span class="n">typeof</span><span class="p">(</span><span class="mf">3.0f0</span><span class="p">),</span><span class="w"> </span><span class="n">typeof</span><span class="p">(</span><span class="n">big</span><span class="p">(</span><span class="mf">3.0</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(Int64, Float64, Float32, BigFloat)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># automatic promotion</span>
+<span class="nd">@show</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">3.0</span>
+<span class="nd">@show</span><span class="w"> </span><span class="mf">3.0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">3.0f0</span>
+<span class="nd">@show</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">3.0f0</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3 + 3.0 = 6.0
+3.0 + 3.0f0 = 6.0
+3 + 3.0f0 = 6.0f0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># floating and integer division</span>
+<span class="nd">@show</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span>
+<span class="nd">@show</span><span class="w"> </span><span class="o">-</span><span class="mi">3</span><span class="w"> </span><span class="o">÷</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="c"># type `\div` and press TAB</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4 / 2 = 2.0
+-3 ÷ 2 = -1
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="arrays">
+<h3>1.2 Arrays<a class="headerlink" href="#arrays" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3-element Vector{Int64}:
+ 1
+ 2
+ 3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># promotion rules for arrays are similar to arithmetic</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">3.</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3-element Vector{Float64}:
+ 2.0
+ 4.0
+ 6.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">10.</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="mi">30</span><span class="p">]</span>
+<span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="c"># one-based indexing</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>20.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3.5</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.5
+</pre></div>
+</div>
+</div>
+</div>
+<p>Compare with the Python notation:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">],</span> <span class="p">[</span><span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">60</span><span class="p">]])</span>
+</pre></div>
+</div>
+</section>
+<section id="functions">
+<h3>1.3 Functions<a class="headerlink" href="#functions" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># define a function called &#39;f&#39; that takes three arguments, one of which has a default value</span>
+<span class="k">function</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">;</span><span class="w"> </span><span class="n">z</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="w">    </span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span><span class="o">*</span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">z</span>
+<span class="k">end</span>
+
+<span class="c"># define another function also called &#39;f&#39; that only takes two arguments</span>
+<span class="k">function</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
+<span class="w">    </span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span><span class="o">*</span><span class="n">y</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>f (generic function with 1 method)
+</pre></div>
+</div>
+</div>
+</div>
+<p>What is the difference between a <strong>method</strong> and a <strong>function</strong> in Julia? Check this <a class="reference external" href="https://docs.julialang.org/en/v1/manual/methods/">resource</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># if I invoke f this way, which one will the Julia compiler use?</span>
+<span class="n">f</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># if instead I invoke f this way, which one will the Julia compiler use?</span>
+<span class="n">f</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.605551275463989
+</pre></div>
+</div>
+</div>
+</div>
+<p>There are also compact “assignment form” function definitions:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">g</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="o">^</span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">g</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the assignment form above, the body of the function must be a single expression, although it can be a compound expression.</p>
+<p>We have just seen an example of one of the most powerful features of Julia: <strong>dynamic <a class="reference external" href="https://en.wikipedia.org/wiki/Multiple_dispatch">(multiple) dispatch</a></strong>:</p>
+<ul class="simple">
+<li><p>Functions can have multiple definitions as long each definition restricts the type of the parameters differently. It is the type of the parameters that define which “definition” (or “method” in Julia terminology) will be called.</p></li>
+<li><p>This is the way Julia mimics <a class="reference external" href="https://en.wikipedia.org/wiki/Polymorphism_(computer_science)">polymorphism</a> that some compiled languages (e.g., C++) have.</p></li>
+</ul>
+<p><strong>Anonymous functions</strong> are usually functions so short-lived that they do not need a name. This is done with an arrow notation. Example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="p">((</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="o">^</span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span><span class="o">^</span><span class="mi">2</span><span class="p">))(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5.0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ranges-and-loops">
+<h3>1.4 Ranges and loops<a class="headerlink" href="#ranges-and-loops" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># ranges</span>
+<span class="mi">1</span><span class="o">:</span><span class="mi">50000000</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1:50000000
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">collect</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="c"># creates a vector from a range of values</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5-element Vector{Int64}:
+ 1
+ 2
+ 3
+ 4
+ 5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<span class="c"># example of a for loop</span>
+<span class="k">for</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="mi">50000000</span><span class="w">  </span>
+<span class="w">    </span><span class="n">x</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="o">/</span><span class="n">n</span><span class="o">^</span><span class="mi">2</span>
+<span class="k">end</span>
+<span class="nd">@show</span><span class="w"> </span><span class="n">x</span>
+<span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">pi</span><span class="o">^</span><span class="mi">2</span><span class="o">/</span><span class="mi">6</span><span class="w"> </span><span class="c"># Basel problem (solved by Euler; generalized by Riemann&#39;s zeta function)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x = 1.6449340467988642
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-2.0049362170482254e-8
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># list comprehensions</span>
+<span class="n">sum</span><span class="p">([</span><span class="mi">1</span><span class="o">/</span><span class="n">n</span><span class="o">^</span><span class="mi">2</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="mi">1000</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.6439345666815612
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="errors">
+<h2>2. Errors<a class="headerlink" href="#errors" title="Link to this heading">#</a></h2>
+<p>There are several sources of error in computation:</p>
+<ul class="simple">
+<li><p>roundoff (a consequence of how computers represent numbers)</p></li>
+<li><p>conditioning (a property of the problem we’re solving)</p></li>
+<li><p>stability (a property of the algorithm we’re using)</p></li>
+</ul>
+<section id="roundoff-errors-and-floating-point-arithmetic-fpa">
+<h3>2.1 Roundoff errors and Floating Point Arithmetic (FPA)<a class="headerlink" href="#roundoff-errors-and-floating-point-arithmetic-fpa" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>If <span class="math notranslate nohighlight">\(\circ\)</span> is an operator that rounds a real number <span class="math notranslate nohighlight">\(x \in \mathbb{R}\)</span> to the nearest <em>floating-point number</em> <span class="math notranslate nohighlight">\(\tilde{x}\)</span>:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ \tilde{x} := \circ x,\]</div>
+<ul class="simple">
+<li><p>Then the relative error introduced by this representation is</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ \delta x = \frac{\tilde{x} - x}{x}, \]</div>
+<ul class="simple">
+<li><p>Rearranged:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ \tilde{x} = (1 + \delta x)x. \]</div>
+<ul class="simple">
+<li><p>What is a guaranteed <em>upper bound</em> on <span class="math notranslate nohighlight">\(\delta x\)</span>?</p></li>
+</ul>
+<ul class="simple">
+<li><p>The IEEE (Institute of Electrical and Electronics Engineers) stadard guarantees that</p></li>
+</ul>
+<p><div class="math notranslate nohighlight">
+\[
+|\delta x| &lt; \mu_M = \frac{1}{2} \varepsilon_M
+\]</div>
+,</p>
+<p>where <span class="math notranslate nohighlight">\(\varepsilon_M\)</span> is <em>machine precision</em>.</p>
+<p><strong>Question</strong>: What is <span class="math notranslate nohighlight">\(\varepsilon_M\)</span> for single- and double-precision arithmetic?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">eps</span><span class="p">(</span><span class="kt">Float64</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.220446049250313e-16
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">eps</span><span class="p">(</span><span class="kt">Float32</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.1920929f-7
+</pre></div>
+</div>
+</div>
+</div>
+<p>It’s around <span class="math notranslate nohighlight">\(10^{-7}\)</span> for single-precision, and <span class="math notranslate nohighlight">\(10^{-16}\)</span> for double-precision floating point numbers.</p>
+<ul class="simple">
+<li><p>What does this mean for the number of digits?</p></li>
+<li><p>Why would anyone choose single precision?</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1e-16</span>
+<span class="nd">@show</span><span class="w"> </span><span class="mi">1</span><span class="o">+</span><span class="n">x</span><span class="w"> </span><span class="c"># :-(</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1 + x = 1.0
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="plotting">
+<h2>3. Plotting<a class="headerlink" href="#plotting" title="Link to this heading">#</a></h2>
+<p>There are several plotting libraries in Julia. <a class="reference external" href="https://docs.juliaplots.org/stable/">Plots.jl</a> is a basic package for 1D plots and simple planar maps. <a class="reference external" href="https://docs.makie.org/stable/">Makie.jl</a> is a much more sophisticated package with richer 2D/3D visualizations, dynamic sliders, animations, etc.</p>
+<p>We will use Plots.jl in class.</p>
+<p>Before being able to use it, you have to add it to your environment.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">Pkg</span>
+<span class="n">Pkg</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s">&quot;Plots&quot;</span><span class="p">)</span><span class="w"> </span><span class="c"># adds the Plots.jl package to your environment</span>
+<span class="k">using</span><span class="w"> </span><span class="n">Plots</span><span class="w"> </span><span class="c"># once added, you can use it</span>
+<span class="n">default</span><span class="p">(</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">legendfontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span><span class="w"> </span><span class="n">xtickfontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span><span class="w"> </span><span class="n">ytickfontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span><span class="w"> </span><span class="c"># sets some defaults for embelishments</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Green">   Resolving</span> package versions...
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Green">  No Changes</span> to `~/.julia/environments/v1.10/Project.toml`
+<span class=" -Color -Color-Bold -Color-Bold-Green">  No Changes</span> to `~/.julia/environments/v1.10/Manifest.toml`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Yellow">┌ Warning: </span>Circular dependency detected.
+<span class=" -Color -Color-Bold -Color-Bold-Yellow">│ </span>Precompilation will be skipped for dependencies in this cycle:
+<span class=" -Color -Color-Bold -Color-Bold-Yellow">│ </span> ┌ Symbolics → SymbolicsForwardDiffExt
+<span class=" -Color -Color-Bold -Color-Bold-Yellow">│ </span> └─ Symbolics → SymbolicsPreallocationToolsExt
+<span class=" -Color -Color-Bold -Color-Bold-Yellow">└ </span>@ Pkg.API.Precompilation ~/julia-1.10.10/share/julia/stdlib/v1.10/Pkg/src/precompilation.jl:583
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sin</span><span class="o">.</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;f(x)=sin(x)&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">xlabel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;x&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ylabel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;y&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><img src="data:image/png;base64,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" /></div></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "sdsu-math693b/spring26",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "julia-1.10"
+        },
+        kernelOptions: {
+            name: "julia-1.10",
+            path: "./lectures"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'julia-1.10'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="module1-3_intro_to_pdes.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">3) Introduction to PDEs</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="module1-5_finite_differences.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">5) Finite Differences</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#julia">1. Julia</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numbers">1.1. Numbers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arrays">1.2 Arrays</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">1.3 Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ranges-and-loops">1.4 Ranges and loops</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#errors">2. Errors</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#roundoff-errors-and-floating-point-arithmetic-fpa">2.1 Roundoff errors and Floating Point Arithmetic (FPA)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting">3. Plotting</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Valeria Barra
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
