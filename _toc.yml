@@ -1,0 +1,14 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: index
+chapters:
+- file: syllabus
+- file: lectures
+  sections:
+  - file: lectures/module1-1_git.ipynb
+  - file: lectures/module1-2_community_projects.md
+  - file: lectures/module1-3_intro_to_pdes.ipynb
+  - file: lectures/module1-4_intro_to_julia.ipynb
+  - file: lectures/module1-5_finite_differences.ipynb

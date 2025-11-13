@@ -1,2 +1,13 @@
-# spring26
-MATH 693B Spring 26 class repository
+# COMP526: Computational Methods for Scientists
+
+View the [documentation site](https://github.com/sdsu-math693b/spring26).
+
+## License
+
+* Code: [![BSD-2-Clause][license-badge]][license-link]
+* Words: [![CC-By][cc-badge]][cc-link]
+
+[license-badge]: https://img.shields.io/github/license/sdsu-math693b/spring26
+[license-link]: https://opensource.org/licenses/MIT
+[cc-badge]: https://i.creativecommons.org/l/by/4.0/88x31.png
+[cc-link]: https://creativecommons.org/licenses/by/4.0/
