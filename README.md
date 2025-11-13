@@ -1,4 +1,4 @@
-# COMP526: Computational Methods for Scientists
+# MATh693B: Advanced Numerical Methods: Computational PDEs
 
 View the [documentation site](https://github.com/sdsu-math693b/spring26).
 
