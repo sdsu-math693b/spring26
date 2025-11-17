@@ -3,7 +3,7 @@
 Welcome to **Advanced Numerical Methods: Computational Partial Differential Equations**, MATH-693B
 
 :::{admonition} Logistics
-* Office hours: announced on the course [Canvas page](https://sdsu.instructure.com/courses/xxxxx) or by appointment.
+* Office hours: announced on the course [Canvas page](https://sdsu.instructure.com/courses/197565) or by appointment.
 :::
 
 :::{note}

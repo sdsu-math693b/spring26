@@ -19,10 +19,10 @@ Pronouns: (she/her/hers)
 
 Email: vbarra [at] sdsu [dot] edu
 
-Office location: announced on the course [Canvas page](https://sdsu.instructure.com/courses/xxxx)
+Office location: announced on the course [Canvas page](https://sdsu.instructure.com/courses/197565)
 
 
-**Office Hours**: announced on the course [Canvas page](https://sdsu.instructure.com/courses/xxxx) or by appointment.
+**Office Hours**: announced on the course [Canvas page](https://sdsu.instructure.com/courses/197565) or by appointment.
 
 :::{tip}
 Office hours are an important time for asking questions, solving problems, discussing broader academic and career strategies, and providing feedback so I can make the class serve your needs and those of people with similar experiences and interests.
