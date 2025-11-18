@@ -429,9 +429,13 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-do-pdes-describe">What do PDEs describe?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classes-of-methods-we-ll-cover">Classes of methods we’ll cover</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples:</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#viscous-burgers-equation">Viscous Burgers’ Equation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#inviscid-burgers-equation">Inviscid Burgers’ Equation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-coefficients-poisson-s-equation">Variable-coefficients Poisson’s equation</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#structural-mechanics-applications">Structural mechanics applications</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#computational-fluid-dynamics-cfd-applications">Computational Fluid Dynamics (CFD) applications</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#atmospheric-flow-simulations-for-numerical-weather-or-climate-predictions">Atmospheric Flow simulations (for numerical weather or climate predictions)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-shallow-water-equations-swe">The shallow water equations (SWE)</a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-expensive-is-it">How expensive is it?</a></li>
@@ -546,15 +550,43 @@ document.write(`
 </section>
 <section id="examples">
 <h3>Examples:<a class="headerlink" href="#examples" title="Link to this heading">#</a></h3>
+<section id="viscous-burgers-equation">
+<h4>Viscous Burgers’ Equation<a class="headerlink" href="#viscous-burgers-equation" title="Link to this heading">#</a></h4>
+<p>Viscous Burgers’ equation</p>
+<div class="amsmath math notranslate nohighlight" id="equation-72b81a2f-1b91-4caa-bd4f-d41b262535fa">
+<span class="eqno">(1)<a class="headerlink" href="#equation-72b81a2f-1b91-4caa-bd4f-d41b262535fa" title="Permalink to this equation">#</a></span>\[\begin{align}
+u_t + u u_x &amp;= \nu u_{xx}, &amp;&amp; x\in(0,1),\ t&gt;0, \tag{0.0.1}\\
+\textrm{Boundary Conditions (BCs): } u(0,t) &amp;= u(1,t)=0, &amp;&amp; t&gt; 0, \tag{0.0.2} \\
+\textrm{Initial Condition (IC): }u(x,0) &amp;= \sin 2 \pi x, &amp;&amp; x\in[0,1], \tag{0.0.3}
+\end{align}\]</div>
+<p>It is an example of <em>convection–diffusion</em> equation.</p>
+<p>There has been a large amount of work done on the above equation. There is an <em>exact solution</em> to this problem. For the purposes of this course, it is probably better to try to work with this problem without knowing the exact solution since that is the situation in which a working numerical analysit must function.</p>
+</section>
+<section id="inviscid-burgers-equation">
+<h4>Inviscid Burgers’ Equation<a class="headerlink" href="#inviscid-burgers-equation" title="Link to this heading">#</a></h4>
+<p>Equivalent to the problem above, but without the viscosity term (i.e., for <span class="math notranslate nohighlight">\(\nu = 0\)</span>):</p>
+<div class="amsmath math notranslate nohighlight" id="equation-b85a8c1a-75d5-485d-9334-e4aa2b611f31">
+<span class="eqno">(2)<a class="headerlink" href="#equation-b85a8c1a-75d5-485d-9334-e4aa2b611f31" title="Permalink to this equation">#</a></span>\[\begin{align}
+u_t + u u_x &amp;= 0, &amp;&amp; x\in(0,1),\ t&gt;0, \tag{0.0.4}\\
+\textrm{Boundary Conditions (BCs): } u(0,t) &amp;= u(1,t)=0, &amp;&amp; t&gt; 0, \tag{0.0.5} \\
+\textrm{Initial Condition (IC): }u(x,0) &amp;= \sin 2 \pi x, &amp;&amp; x\in[0,1], \tag{0.0.6}
+\end{align}\]</div>
+<p>We note that the only difference between the inviscid and the viscous Burger’s equation is that the <span class="math notranslate nohighlight">\(v_{xx}\)</span> term is not included in the inviscid form.</p>
+<p>As we shall see later, this difference theoretically changes the whole character of the problem.</p>
+<p>We also note that this problem is <em>well-posed</em> with a <em>boundary condition</em> at both endpoints of the domain, <span class="math notranslate nohighlight">\(x=0\)</span> and <span class="math notranslate nohighlight">\(x=1\)</span>.</p>
+</section>
+<section id="variable-coefficients-poisson-s-equation">
+<h4>Variable-coefficients Poisson’s equation<a class="headerlink" href="#variable-coefficients-poisson-s-equation" title="Link to this heading">#</a></h4>
 <p>A variable-coefficients (often with discontinuities) Poisson’s problem. This problem can have many important applications ranging from incompressible
 flows to semiconductor modeling to tissue engineering.</p>
 <p>Find <span class="math notranslate nohighlight">\(u\)</span> such that</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9cdf0668-4530-4b94-8d86-5e0bcfc79954">
-<span class="eqno">(1)<a class="headerlink" href="#equation-9cdf0668-4530-4b94-8d86-5e0bcfc79954" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4627c62c-1ac6-4992-a747-fefc05794920">
+<span class="eqno">(3)<a class="headerlink" href="#equation-4627c62c-1ac6-4992-a747-fefc05794920" title="Permalink to this equation">#</a></span>\[\begin{align}
 -\nabla\cdot\big(\kappa(\mathbf x) \nabla u(\mathbf x)\big) &amp;= f(\mathbf x) &amp; \mathbf x &amp;\in \Omega \\
 u(\mathbf x) &amp;= g(\mathbf x) &amp; \mathbf x &amp;\in \Gamma_D \subset \partial\Omega \\
 \kappa(\mathbf x) \nabla u(\mathbf x) \cdot \mathbf{\hat n}(\mathbf x) &amp;= h(\mathbf x) &amp; \mathbf x &amp;\in \Gamma_N \subset\partial\Omega
 \end{align}\]</div>
+</section>
 <section id="structural-mechanics-applications">
 <h4>Structural mechanics applications<a class="headerlink" href="#structural-mechanics-applications" title="Link to this heading">#</a></h4>
 <p><img alt="Solid Mechanics gif" src="../_images/ratel_schwarz_mesh_compressed.gif" /></p>
@@ -565,9 +597,12 @@ u(\mathbf x) &amp;= g(\mathbf x) &amp; \mathbf x &amp;\in \Gamma_D \subset \part
 </section>
 <section id="atmospheric-flow-simulations-for-numerical-weather-or-climate-predictions">
 <h4>Atmospheric Flow simulations (for numerical weather or climate predictions)<a class="headerlink" href="#atmospheric-flow-simulations-for-numerical-weather-or-climate-predictions" title="Link to this heading">#</a></h4>
+</section>
+<section id="the-shallow-water-equations-swe">
+<h4>The shallow water equations (SWE)<a class="headerlink" href="#the-shallow-water-equations-swe" title="Link to this heading">#</a></h4>
 <p>The shallow water equations (in vector-invariant form) on a rotating sphere:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-05146954-c740-4ee5-8e62-72267bac8c5e">
-<span class="eqno">(2)<a class="headerlink" href="#equation-05146954-c740-4ee5-8e62-72267bac8c5e" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-25a520ed-0b73-4180-ac91-1496f4a0a7cb">
+<span class="eqno">(4)<a class="headerlink" href="#equation-25a520ed-0b73-4180-ac91-1496f4a0a7cb" title="Permalink to this equation">#</a></span>\[\begin{align}
     \frac{\partial h}{\partial t} + \nabla \cdot (h \boldsymbol{u}) &amp;= 0\\
     \frac{\partial \boldsymbol{u}}{\partial t} + \nabla (\Phi + \tfrac{1}{2}\|\boldsymbol{u}\|^2)  &amp;= (\boldsymbol{u} \times (f + \nabla \times \boldsymbol{u}))\,
 \end{align}\]</div>
@@ -771,8 +806,8 @@ a u_{xx} + 2b u_{xy} + c u_{yy} + d u_x + e u_y + f u = g
 \]</div>
 <p>it is possible to transform the PDE above to one of the three <strong>canonical forms</strong> (the ``<span class="math notranslate nohighlight">\(\dots\)</span>’’ terms below hide (potentially) complicated expressions including <span class="math notranslate nohighlight">\(u\)</span> and its first derivatives).</p>
 <p>This change of variable is formally done by a <a class="reference external" href="https://en.wikipedia.org/wiki/Fourier_transform">Fourier transform</a> (we’ll see this later in the course), such that <span class="math notranslate nohighlight">\(\partial_x\)</span> is replaced by <span class="math notranslate nohighlight">\(\xi\)</span>, <span class="math notranslate nohighlight">\(\partial_y\)</span> by <span class="math notranslate nohighlight">\(\eta\)</span>, and likewise for other variables, so that we convert the constant-coefficient PDE into a polynomial of the same degree, with the terms of the highest degree (a homogeneous polynomial, here a quadratic form) being most significant for the classification.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-79b46cdb-1a28-499e-be3d-012fa109dc3e">
-<span class="eqno">(3)<a class="headerlink" href="#equation-79b46cdb-1a28-499e-be3d-012fa109dc3e" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-73bcafc5-f85b-496e-8d1f-c1a9b61efb52">
+<span class="eqno">(5)<a class="headerlink" href="#equation-73bcafc5-f85b-496e-8d1f-c1a9b61efb52" title="Permalink to this equation">#</a></span>\[\begin{align}
 u_{\xi\xi} - u_{\eta\eta} + \dots = 0,\\
 u_{\xi\xi} + \dots = 0,\\
 u_{\xi\xi} + u_{\eta\eta} + \dots = 0.\\
@@ -923,9 +958,13 @@ u_t = \alpha(u_{xx} + u_{yy})
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-do-pdes-describe">What do PDEs describe?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classes-of-methods-we-ll-cover">Classes of methods we’ll cover</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples:</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#viscous-burgers-equation">Viscous Burgers’ Equation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#inviscid-burgers-equation">Inviscid Burgers’ Equation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-coefficients-poisson-s-equation">Variable-coefficients Poisson’s equation</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#structural-mechanics-applications">Structural mechanics applications</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#computational-fluid-dynamics-cfd-applications">Computational Fluid Dynamics (CFD) applications</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#atmospheric-flow-simulations-for-numerical-weather-or-climate-predictions">Atmospheric Flow simulations (for numerical weather or climate predictions)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-shallow-water-equations-swe">The shallow water equations (SWE)</a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-expensive-is-it">How expensive is it?</a></li>
