@@ -445,9 +445,9 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classification-of-pdes">2. Classification of PDEs</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generalization">Generalization</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Examples</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hyperbolic-equation-the-wave-equation-in-2d"><strong>Hyperbolic equation</strong>: The Wave Equation (in 2D)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generalization">2.1 Generalization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2.2 Examples</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hyperbolic-equation-the-wave-equation-in-1d"><strong>Hyperbolic equation</strong>: The Wave Equation (in 1D)</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#parabolic-equation-the-heat-equation-in-2d"><strong>Parabolic Equation</strong>: The Heat equation (in 2D)</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#elliptic-equation-the-laplace-s-or-poisson-s-equation-in-2d"><strong>Elliptic Equation</strong>: The Laplace’s (or Poisson’s) equation (in 2D)</a></li>
 </ul>
@@ -474,7 +474,9 @@ document.write(`
 <p>Today:</p>
 <ol class="arabic simple">
 <li><p>Introduction to PDEs</p></li>
-<li><p>Classification of PDEs</p></li>
+<li><p>Classification of PDEs<br />
+2.1 Generalization<br />
+2.2 Examples</p></li>
 </ol>
 <section id="id1">
 <h2>1. Introduction to PDEs<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
@@ -553,8 +555,8 @@ document.write(`
 <section id="viscous-burgers-equation">
 <h4>Viscous Burgers’ Equation<a class="headerlink" href="#viscous-burgers-equation" title="Link to this heading">#</a></h4>
 <p>Viscous Burgers’ equation</p>
-<div class="amsmath math notranslate nohighlight" id="equation-72b81a2f-1b91-4caa-bd4f-d41b262535fa">
-<span class="eqno">(1)<a class="headerlink" href="#equation-72b81a2f-1b91-4caa-bd4f-d41b262535fa" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c936b9cc-a9fd-4f8f-a8c9-2897cc7df82a">
+<span class="eqno">(1)<a class="headerlink" href="#equation-c936b9cc-a9fd-4f8f-a8c9-2897cc7df82a" title="Permalink to this equation">#</a></span>\[\begin{align}
 u_t + u u_x &amp;= \nu u_{xx}, &amp;&amp; x\in(0,1),\ t&gt;0, \tag{0.0.1}\\
 \textrm{Boundary Conditions (BCs): } u(0,t) &amp;= u(1,t)=0, &amp;&amp; t&gt; 0, \tag{0.0.2} \\
 \textrm{Initial Condition (IC): }u(x,0) &amp;= \sin 2 \pi x, &amp;&amp; x\in[0,1], \tag{0.0.3}
@@ -565,8 +567,8 @@ u_t + u u_x &amp;= \nu u_{xx}, &amp;&amp; x\in(0,1),\ t&gt;0, \tag{0.0.1}\\
 <section id="inviscid-burgers-equation">
 <h4>Inviscid Burgers’ Equation<a class="headerlink" href="#inviscid-burgers-equation" title="Link to this heading">#</a></h4>
 <p>Equivalent to the problem above, but without the viscosity term (i.e., for <span class="math notranslate nohighlight">\(\nu = 0\)</span>):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b85a8c1a-75d5-485d-9334-e4aa2b611f31">
-<span class="eqno">(2)<a class="headerlink" href="#equation-b85a8c1a-75d5-485d-9334-e4aa2b611f31" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-45aee9ab-b4b5-4243-926d-1f30a1dfe363">
+<span class="eqno">(2)<a class="headerlink" href="#equation-45aee9ab-b4b5-4243-926d-1f30a1dfe363" title="Permalink to this equation">#</a></span>\[\begin{align}
 u_t + u u_x &amp;= 0, &amp;&amp; x\in(0,1),\ t&gt;0, \tag{0.0.4}\\
 \textrm{Boundary Conditions (BCs): } u(0,t) &amp;= u(1,t)=0, &amp;&amp; t&gt; 0, \tag{0.0.5} \\
 \textrm{Initial Condition (IC): }u(x,0) &amp;= \sin 2 \pi x, &amp;&amp; x\in[0,1], \tag{0.0.6}
@@ -580,8 +582,8 @@ u_t + u u_x &amp;= 0, &amp;&amp; x\in(0,1),\ t&gt;0, \tag{0.0.4}\\
 <p>A variable-coefficients (often with discontinuities) Poisson’s problem. This problem can have many important applications ranging from incompressible
 flows to semiconductor modeling to tissue engineering.</p>
 <p>Find <span class="math notranslate nohighlight">\(u\)</span> such that</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4627c62c-1ac6-4992-a747-fefc05794920">
-<span class="eqno">(3)<a class="headerlink" href="#equation-4627c62c-1ac6-4992-a747-fefc05794920" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-399937fd-f570-49b1-9da8-11b09d7a451d">
+<span class="eqno">(3)<a class="headerlink" href="#equation-399937fd-f570-49b1-9da8-11b09d7a451d" title="Permalink to this equation">#</a></span>\[\begin{align}
 -\nabla\cdot\big(\kappa(\mathbf x) \nabla u(\mathbf x)\big) &amp;= f(\mathbf x) &amp; \mathbf x &amp;\in \Omega \\
 u(\mathbf x) &amp;= g(\mathbf x) &amp; \mathbf x &amp;\in \Gamma_D \subset \partial\Omega \\
 \kappa(\mathbf x) \nabla u(\mathbf x) \cdot \mathbf{\hat n}(\mathbf x) &amp;= h(\mathbf x) &amp; \mathbf x &amp;\in \Gamma_N \subset\partial\Omega
@@ -601,8 +603,8 @@ u(\mathbf x) &amp;= g(\mathbf x) &amp; \mathbf x &amp;\in \Gamma_D \subset \part
 <section id="the-shallow-water-equations-swe">
 <h4>The shallow water equations (SWE)<a class="headerlink" href="#the-shallow-water-equations-swe" title="Link to this heading">#</a></h4>
 <p>The shallow water equations (in vector-invariant form) on a rotating sphere:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-25a520ed-0b73-4180-ac91-1496f4a0a7cb">
-<span class="eqno">(4)<a class="headerlink" href="#equation-25a520ed-0b73-4180-ac91-1496f4a0a7cb" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-0e2dcb55-6058-458e-80c0-f3e7c419b5a3">
+<span class="eqno">(4)<a class="headerlink" href="#equation-0e2dcb55-6058-458e-80c0-f3e7c419b5a3" title="Permalink to this equation">#</a></span>\[\begin{align}
     \frac{\partial h}{\partial t} + \nabla \cdot (h \boldsymbol{u}) &amp;= 0\\
     \frac{\partial \boldsymbol{u}}{\partial t} + \nabla (\Phi + \tfrac{1}{2}\|\boldsymbol{u}\|^2)  &amp;= (\boldsymbol{u} \times (f + \nabla \times \boldsymbol{u}))\,
 \end{align}\]</div>
@@ -644,6 +646,9 @@ u(\mathbf x) &amp;= g(\mathbf x) &amp; \mathbf x &amp;\in \Gamma_D \subset \part
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Green">    Updating</span> registry at `~/.julia/registries/General.toml`
+</pre></div>
+</div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Green">   Resolving</span> package versions...
 </pre></div>
 </div>
@@ -784,13 +789,17 @@ u(\mathbf x) &amp;= g(\mathbf x) &amp; \mathbf x &amp;\in \Gamma_D \subset \part
 </section>
 </section>
 <section id="classification-of-pdes">
-<h2>2. Classification of PDEs<a class="headerlink" href="#classification-of-pdes" title="Link to this heading">#</a></h2>
-<p>A <strong>second order PDE</strong> (i.e., a PDE involving second order partial derivatives) in two independent variables <span class="math notranslate nohighlight">\((x,y)\)</span> takes the form</p>
+<h2>2. Classification of <a class="reference external" href="https://en.wikipedia.org/wiki/Partial_differential_equation">PDEs</a><a class="headerlink" href="#classification-of-pdes" title="Link to this heading">#</a></h2>
+<p>A <strong>second-order PDE</strong> (i.e., a PDE involving second order partial derivatives) in two independent variables <span class="math notranslate nohighlight">\((x,y)\)</span> takes the general form</p>
 <div class="math notranslate nohighlight">
 \[
-a u_{xx} + 2b u_{xy} + c u_{yy} + d u_x + e u_y + f u = g
+a u_{xx} + b u_{xy} + c u_{yy} + d u_x + e u_y + f u = g
 \]</div>
 <p>The coefficients <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(b\)</span>, <span class="math notranslate nohighlight">\(c\)</span>, <span class="math notranslate nohighlight">\(d\)</span>, <span class="math notranslate nohighlight">\(e\)</span>, <span class="math notranslate nohighlight">\(f\)</span>, and <span class="math notranslate nohighlight">\(g\)</span> are here (for now) assumed to be functions of the <em>independent variables</em> <span class="math notranslate nohighlight">\((x,y)\)</span> only, so the equation is <em>linear</em> (for the <em>dependent</em> variable, the unknown <span class="math notranslate nohighlight">\(u = u(x,y)\)</span>).</p>
+<div class="admonition-note admonition">
+<p class="admonition-title">Note</p>
+<p>In some textbooks, you can find the convention of the <span class="math notranslate nohighlight">\(xy\)</span> term coefficient being <span class="math notranslate nohighlight">\(2b\)</span> rather than <span class="math notranslate nohighlight">\(b\)</span>.</p>
+</div>
 <div class="admonition-definitions admonition">
 <p class="admonition-title">Definitions</p>
 <ul class="simple">
@@ -799,87 +808,134 @@ a u_{xx} + 2b u_{xy} + c u_{yy} + d u_x + e u_y + f u = g
 <li><p>If the coefficients are such that <span class="math notranslate nohighlight">\(a(x,y)\equiv a, b(x,y)\equiv b, \dots\)</span>, the PDE is said to be with <strong>constant coefficients</strong>. Otherwise, with <strong>non-constant coefficients</strong>.</p></li>
 </ul>
 </div>
-<p>Through a <em>change of variables</em></p>
+<p>Let’s consider a homogeneous, constant coefficients second-order PDE in the general form:</p>
 <div class="math notranslate nohighlight">
 \[
-\xi = \xi(x,y),\quad \eta=\eta(x,y)
+L[u] = a u_{xx} + b u_{xy} + c u_{yy} + d u_x + e u_y + f u = 0
 \]</div>
-<p>it is possible to transform the PDE above to one of the three <strong>canonical forms</strong> (the ``<span class="math notranslate nohighlight">\(\dots\)</span>’’ terms below hide (potentially) complicated expressions including <span class="math notranslate nohighlight">\(u\)</span> and its first derivatives).</p>
-<p>This change of variable is formally done by a <a class="reference external" href="https://en.wikipedia.org/wiki/Fourier_transform">Fourier transform</a> (we’ll see this later in the course), such that <span class="math notranslate nohighlight">\(\partial_x\)</span> is replaced by <span class="math notranslate nohighlight">\(\xi\)</span>, <span class="math notranslate nohighlight">\(\partial_y\)</span> by <span class="math notranslate nohighlight">\(\eta\)</span>, and likewise for other variables, so that we convert the constant-coefficient PDE into a polynomial of the same degree, with the terms of the highest degree (a homogeneous polynomial, here a quadratic form) being most significant for the classification.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-73bcafc5-f85b-496e-8d1f-c1a9b61efb52">
-<span class="eqno">(5)<a class="headerlink" href="#equation-73bcafc5-f85b-496e-8d1f-c1a9b61efb52" title="Permalink to this equation">#</a></span>\[\begin{align}
-u_{\xi\xi} - u_{\eta\eta} + \dots = 0,\\
-u_{\xi\xi} + \dots = 0,\\
-u_{\xi\xi} + u_{\eta\eta} + \dots = 0.\\
+<p>This long expression is reminiscent of the formula for the most general <em>conic section</em>. Indeed, we can see that through a <em>change of variables</em></p>
+<div class="math notranslate nohighlight">
+\[
+X = \frac{\partial }{\partial x},\quad Y= \frac{\partial}{\partial y},
+\]</div>
+<p>This change of variable is formally done by a <a class="reference external" href="https://en.wikipedia.org/wiki/Fourier_transform">Fourier transform</a> (we’ll see this later in the course). Then we get exactly the <a class="reference external" href="https://en.wikipedia.org/wiki/Conic_section">conic section</a> equation:</p>
+<div class="math notranslate nohighlight">
+\[
+a X^2 + b XY + cY^2 + d X + e Y + f = 0.
+\]</div>
+<p>We have converted the constant-coefficient PDE into a polynomial of the same degree, with the terms of the highest degree (a homogeneous polynomial, here a quadratic form) being most significant for the classification.</p>
+<p>Now recall from analytic geometry that it is always possible to make a rotation of axes in the <span class="math notranslate nohighlight">\(X–Y\)</span> space after which the cross-term (<span class="math notranslate nohighlight">\(XY\)</span>) coefficient <span class="math notranslate nohighlight">\(b\)</span> is zero.</p>
+<p>Suppose that this has been done, we reach the <strong>canonical form</strong>:</p>
+<div class="math notranslate nohighlight">
+\[
+a X^2 + cY^2 + d X + e Y + f = 0.
+\]</div>
+<p>Then recall that (if certain “degenerate cases” are ignored) the curve described
+by this equation is an</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\textrm{hyperbola, } &amp; \textrm{if }a\textrm{ and }c\textrm{ have opposite signs}\\
+\textrm{parabola, } &amp;  \textrm{if one of them (}a\textrm{ or }c\textrm{) is } 0 \\
+\textrm{ellipse, } &amp; \textrm{if }a\textrm{ and }c\textrm{ have the same sign}
+\end{align*}\]</div>
+<p>We have three main canonical form classifications:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-7b94682c-9ca0-4368-b174-1fc7c77146ef">
+<span class="eqno">(5)<a class="headerlink" href="#equation-7b94682c-9ca0-4368-b174-1fc7c77146ef" title="Permalink to this equation">#</a></span>\[\begin{align}
+X^2 - Y^2 + \dots = 0,\\
+X^2 + \dots = 0,\\
+X^2 + Y^2 + \dots = 0.\\
 \end{align}\]</div>
-<p>It can be shown that the coefficients for the second order term (<span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(c\)</span>) in the PDE</p>
+<p>Just as one classifies conic sections and quadratic forms into <strong>hyperbolic</strong>, <strong>parabolic</strong>, and <strong>elliptic</strong> based on the discriminant <span class="math notranslate nohighlight">\(b^2 − 4ac\)</span>, the same can be done for a second-order PDE at a given point. Note that in most textbooks, the general form of a PDE is with the <span class="math notranslate nohighlight">\(xy\)</span> term coefficient being <span class="math notranslate nohighlight">\(2b\)</span> rather than <span class="math notranslate nohighlight">\(b\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
-  a u_{xx} + 2b u_{xy} + c u_{yy} + d u_x + e u_y + f u = g
+L[u] = a u_{xx} + 2b u_{xy} + c u_{yy} + d u_x + e u_y + f u = 0
 \]</div>
-<p>determine what canonical form the equation can be reduced.</p>
-<p>Just as one classifies conic sections and quadratic forms into <strong>parabolic</strong>, <strong>hyperbolic</strong>, and <strong>elliptic</strong> based on the discriminant <span class="math notranslate nohighlight">\(b^2 − 4ac\)</span>, the same can be done for a second-order PDE at a given point. However, the discriminant in a PDE is given by <span class="math notranslate nohighlight">\(b^2 − ac\)</span> due to the convention of the <span class="math notranslate nohighlight">\(xy\)</span> term being <span class="math notranslate nohighlight">\(2b\)</span> rather than <span class="math notranslate nohighlight">\(b\)</span>. We obtain:</p>
+<p>therefore the discriminant in this case is  <span class="math notranslate nohighlight">\(b^2 − ac\)</span>. We obtain:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
   \begin{array}{rclcl}
     \textbf{Canonical Form} &amp;&amp; \textbf{Condition} &amp;&amp; \textbf{Type}\\
-    u_{\xi\xi} - u_{\eta\eta} + \cdots = 0, &amp;&amp; b^2-ac &gt;0 &amp;&amp;
+    u_{xx} - u_{yy} + \cdots = 0, &amp;&amp; b^2-ac &gt;0 &amp;&amp;
     \textbf{Hyperbolic}\\
-    u_{\xi\xi} + \cdots = 0, &amp;&amp; b^2-ac = 0 &amp;&amp; \textbf{Parabolic}  \\
-    u_{\xi\xi} + u_{\eta\eta} + \cdots = 0, &amp;&amp;b^2 -ac &lt; 0 &amp;&amp; \textbf{Elliptic}
+    u_{xx} + \cdots = 0, &amp;&amp; b^2-ac = 0 &amp;&amp; \textbf{Parabolic}  \\
+    u_{xx} + u_{yy} + \cdots = 0, &amp;&amp;b^2 -ac &lt; 0 &amp;&amp; \textbf{Elliptic}
     
   \end{array}
 \end{split}\]</div>
+<p>Note that this classification can be extended to <em>nonlinear</em> equations, provided they are
+<em>linear</em> in their <em>dependence on the second derivatives of u</em>. Such an equation is called <em>quasilinear</em>. For example:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} + u^3 = 0
+\]</div>
+<p>is quasilinear and elliptic.</p>
 <section id="generalization">
-<h3>Generalization<a class="headerlink" href="#generalization" title="Link to this heading">#</a></h3>
+<h3>2.1 Generalization<a class="headerlink" href="#generalization" title="Link to this heading">#</a></h3>
 <p>If there are n independent variables <span class="math notranslate nohighlight">\(x_1, x_2 ,\ldots, x_n\)</span>, a general linear partial differential equation of second order has the form</p>
 <div class="math notranslate nohighlight">
 \[
-L u = \sum_{i=1}^{n} \sum_{j=1}^{n} a_{i,j} \frac{\partial^2 u}{\partial x_i \partial x_j} + \textrm{lower-order terms (L.O.T.)} =0
+L [u] = \sum_{i=1}^{n} \sum_{j=1}^{n} a_{i,j} \frac{\partial^2 u}{\partial x_i \partial x_j} + \textrm{lower-order terms (L.O.T.)} =0
 \]</div>
-<p>The classification depends upon the signature of the eigenvalues of the coefficient matrix <span class="math notranslate nohighlight">\(A = (a_{i,j})\)</span>:</p>
+<p>The classification depends upon the signs of the eigenvalues of the coefficient matrix <span class="math notranslate nohighlight">\(A = (a_{i,j})\)</span> that we diagonalize:</p>
 <ul class="simple">
-<li><p>Elliptic: the eigenvalues are all positive or all negative.</p></li>
-<li><p>Parabolic: the eigenvalues are all positive or all negative, except one that is zero.</p></li>
 <li><p>Hyperbolic: there is only one negative eigenvalue and all the rest are positive, or there is only one positive eigenvalue and all the rest are negative.</p></li>
+<li><p>Parabolic: the eigenvalues are all positive or all negative, except one that is zero.</p></li>
+<li><p>Elliptic: the eigenvalues are all positive or all negative.</p></li>
 </ul>
-</section>
-<section id="id2">
-<h3>Examples<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
-<section id="hyperbolic-equation-the-wave-equation-in-2d">
-<h4><strong>Hyperbolic equation</strong>: The Wave Equation (in 2D)<a class="headerlink" href="#hyperbolic-equation-the-wave-equation-in-2d" title="Link to this heading">#</a></h4>
+<p>This is the “secret” to extending the classification to equations in
+more than two variables, such as the wave equation in 2D:</p>
 <div class="math notranslate nohighlight">
 \[
-u_{tt} = c^2 (u_{xx} + u_{yy})
+\frac{\partial^2 u}{\partial t^2}  - \frac{\partial^2 u}{\partial x^2} - \frac{\partial^2 u}{\partial y^2} =0.
 \]</div>
+<p>This example counts as <em>hyperbolic</em>, since it has one coefficient with sign opposite
+to the others.</p>
+</section>
+<section id="id2">
+<h3>2.2 Examples<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<section id="hyperbolic-equation-the-wave-equation-in-1d">
+<h4><strong><a class="reference external" href="https://en.wikipedia.org/wiki/Hyperbolic_partial_differential_equation">Hyperbolic equation</a></strong>: <a class="reference external" href="https://en.wikipedia.org/wiki/Wave_equation">The Wave Equation</a> (in 1D)<a class="headerlink" href="#hyperbolic-equation-the-wave-equation-in-1d" title="Link to this heading">#</a></h4>
+<p>The wave equation in 1D:</p>
+<div class="math notranslate nohighlight">
+\[
+u_{tt} = c^2 u_{xx}
+\]</div>
+<p>In this case, for physical reasons, we just interpret the time variable <span class="math notranslate nohighlight">\(t\)</span> as <span class="math notranslate nohighlight">\(y\)</span> in the classification above.</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(c\)</span> is a fixed non-negative real coefficient representing the propagation speed of the wave</p></li>
 <li><p><span class="math notranslate nohighlight">\(u\)</span> is a scalar field representing the displacement or, more generally, the conserved quantity (e.g. pressure or density)</p></li>
-<li><p><span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> are the independent (spatial) variables and <span class="math notranslate nohighlight">\(t\)</span> is the time coordinate.</p></li>
+<li><p><span class="math notranslate nohighlight">\(x\)</span> is the independent (spatial) variable and <span class="math notranslate nohighlight">\(t\)</span> is the time coordinate.</p></li>
 </ul>
 </section>
 <section id="parabolic-equation-the-heat-equation-in-2d">
-<h4><strong>Parabolic Equation</strong>: The Heat equation (in 2D)<a class="headerlink" href="#parabolic-equation-the-heat-equation-in-2d" title="Link to this heading">#</a></h4>
+<h4><strong><a class="reference external" href="https://en.wikipedia.org/wiki/Parabolic_partial_differential_equation">Parabolic Equation</a></strong>: <a class="reference external" href="https://en.wikipedia.org/wiki/Heat_equation">The Heat equation</a> (in 2D)<a class="headerlink" href="#parabolic-equation-the-heat-equation-in-2d" title="Link to this heading">#</a></h4>
+<p>The heat equation in 2D:</p>
 <div class="math notranslate nohighlight">
 \[
 u_t = \alpha(u_{xx} + u_{yy})
 \]</div>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\alpha\)</span> is a positive coefficient for thermal diffusivity of the medium</p></li>
+<li><p><span class="math notranslate nohighlight">\(u(x, y, t)\)</span> describes the temperature at the point <span class="math notranslate nohighlight">\((x, y)\)</span> and time <span class="math notranslate nohighlight">\(t\)</span></p></li>
 </ul>
+<p>This equation describes the flow of heat in a homogeneous and isotropic medium. The heat equation says, roughly, that temperature at a given time and point rises or falls at a rate proportional to the difference between the temperature at that point and the average temperature near that point.</p>
 </section>
 <section id="elliptic-equation-the-laplace-s-or-poisson-s-equation-in-2d">
-<h4><strong>Elliptic Equation</strong>: The Laplace’s (or Poisson’s) equation (in 2D)<a class="headerlink" href="#elliptic-equation-the-laplace-s-or-poisson-s-equation-in-2d" title="Link to this heading">#</a></h4>
-<p>Laplace’s equation (homogeneous):</p>
+<h4><strong><a class="reference external" href="https://en.wikipedia.org/wiki/Elliptic_partial_differential_equation">Elliptic Equation</a></strong>: The <a class="reference external" href="https://en.wikipedia.org/wiki/Laplace%27s_equation">Laplace’s</a> (or <a class="reference external" href="https://en.wikipedia.org/wiki/Poisson%27s_equation">Poisson’s</a>) equation (in 2D)<a class="headerlink" href="#elliptic-equation-the-laplace-s-or-poisson-s-equation-in-2d" title="Link to this heading">#</a></h4>
+<p>In mathematical modeling, elliptic PDEs are frequently used to model <em>steady states</em>, unlike parabolic PDE and hyperbolic PDE which generally model phenomena that change in time; or they can model phenomena that have a time dependence but that after a <em>transient</em> time, they have reached a <em>steady state</em>.</p>
+<p>Laplace’s equation (homogeneous) in 2D:</p>
 <div class="math notranslate nohighlight">
 \[
-\nabla^2 u \equiv \Delta u = u_{xx} + u_{yy} = 0
+\nabla^2 u \equiv \nabla \cdot \nabla u \equiv \Delta u = u_{xx} + u_{yy} = 0
 \]</div>
-<p>Poisson’s equation (inhomogeneous):</p>
+<p>The general theory of solutions to Laplace’s equation is known as <em>potential theory</em>. The twice continuously differentiable solutions of Laplace’s equation are the <em>harmonic functions</em>.</p>
+<p>We can see that Laplace’s equation is the <em>steady-state heat equation</em>.</p>
+<p>Poisson’s equation (inhomogeneous) in 2D:</p>
 <div class="math notranslate nohighlight">
 \[
-\nabla^2 u \equiv \Delta u = u_{xx} + u_{yy} = f(x,y)
+\nabla^2 u  \equiv \nabla \cdot \nabla u \equiv \Delta u = u_{xx} + u_{yy} = f(x,y)
 \]</div>
+<p>In physics, the solution to Poisson’s equation is the potential field caused by a given electric charge or mass density distribution; with the potential field known, one can then calculate the corresponding electrostatic or gravitational (force) field.</p>
 </section>
 </section>
 </section>
@@ -974,9 +1030,9 @@ u_t = \alpha(u_{xx} + u_{yy})
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classification-of-pdes">2. Classification of PDEs</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generalization">Generalization</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Examples</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hyperbolic-equation-the-wave-equation-in-2d"><strong>Hyperbolic equation</strong>: The Wave Equation (in 2D)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generalization">2.1 Generalization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2.2 Examples</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hyperbolic-equation-the-wave-equation-in-1d"><strong>Hyperbolic equation</strong>: The Wave Equation (in 1D)</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#parabolic-equation-the-heat-equation-in-2d"><strong>Parabolic Equation</strong>: The Heat equation (in 2D)</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#elliptic-equation-the-laplace-s-or-poisson-s-equation-in-2d"><strong>Elliptic Equation</strong>: The Laplace’s (or Poisson’s) equation (in 2D)</a></li>
 </ul>
