@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -555,8 +555,8 @@ document.write(`
 <section id="viscous-burgers-equation">
 <h4>Viscous Burgers’ Equation<a class="headerlink" href="#viscous-burgers-equation" title="Link to this heading">#</a></h4>
 <p>Viscous Burgers’ equation</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c936b9cc-a9fd-4f8f-a8c9-2897cc7df82a">
-<span class="eqno">(1)<a class="headerlink" href="#equation-c936b9cc-a9fd-4f8f-a8c9-2897cc7df82a" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-50f44faf-075f-472e-8a51-1dc64b7cab47">
+<span class="eqno">(1)<a class="headerlink" href="#equation-50f44faf-075f-472e-8a51-1dc64b7cab47" title="Permalink to this equation">#</a></span>\[\begin{align}
 u_t + u u_x &amp;= \nu u_{xx}, &amp;&amp; x\in(0,1),\ t&gt;0, \tag{0.0.1}\\
 \textrm{Boundary Conditions (BCs): } u(0,t) &amp;= u(1,t)=0, &amp;&amp; t&gt; 0, \tag{0.0.2} \\
 \textrm{Initial Condition (IC): }u(x,0) &amp;= \sin 2 \pi x, &amp;&amp; x\in[0,1], \tag{0.0.3}
@@ -567,8 +567,8 @@ u_t + u u_x &amp;= \nu u_{xx}, &amp;&amp; x\in(0,1),\ t&gt;0, \tag{0.0.1}\\
 <section id="inviscid-burgers-equation">
 <h4>Inviscid Burgers’ Equation<a class="headerlink" href="#inviscid-burgers-equation" title="Link to this heading">#</a></h4>
 <p>Equivalent to the problem above, but without the viscosity term (i.e., for <span class="math notranslate nohighlight">\(\nu = 0\)</span>):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-45aee9ab-b4b5-4243-926d-1f30a1dfe363">
-<span class="eqno">(2)<a class="headerlink" href="#equation-45aee9ab-b4b5-4243-926d-1f30a1dfe363" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b4100c43-75dc-47de-a218-ca11b802c555">
+<span class="eqno">(2)<a class="headerlink" href="#equation-b4100c43-75dc-47de-a218-ca11b802c555" title="Permalink to this equation">#</a></span>\[\begin{align}
 u_t + u u_x &amp;= 0, &amp;&amp; x\in(0,1),\ t&gt;0, \tag{0.0.4}\\
 \textrm{Boundary Conditions (BCs): } u(0,t) &amp;= u(1,t)=0, &amp;&amp; t&gt; 0, \tag{0.0.5} \\
 \textrm{Initial Condition (IC): }u(x,0) &amp;= \sin 2 \pi x, &amp;&amp; x\in[0,1], \tag{0.0.6}
@@ -582,8 +582,8 @@ u_t + u u_x &amp;= 0, &amp;&amp; x\in(0,1),\ t&gt;0, \tag{0.0.4}\\
 <p>A variable-coefficients (often with discontinuities) Poisson’s problem. This problem can have many important applications ranging from incompressible
 flows to semiconductor modeling to tissue engineering.</p>
 <p>Find <span class="math notranslate nohighlight">\(u\)</span> such that</p>
-<div class="amsmath math notranslate nohighlight" id="equation-399937fd-f570-49b1-9da8-11b09d7a451d">
-<span class="eqno">(3)<a class="headerlink" href="#equation-399937fd-f570-49b1-9da8-11b09d7a451d" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-0b145e37-3ce0-4b4c-8a96-5848e6871e3a">
+<span class="eqno">(3)<a class="headerlink" href="#equation-0b145e37-3ce0-4b4c-8a96-5848e6871e3a" title="Permalink to this equation">#</a></span>\[\begin{align}
 -\nabla\cdot\big(\kappa(\mathbf x) \nabla u(\mathbf x)\big) &amp;= f(\mathbf x) &amp; \mathbf x &amp;\in \Omega \\
 u(\mathbf x) &amp;= g(\mathbf x) &amp; \mathbf x &amp;\in \Gamma_D \subset \partial\Omega \\
 \kappa(\mathbf x) \nabla u(\mathbf x) \cdot \mathbf{\hat n}(\mathbf x) &amp;= h(\mathbf x) &amp; \mathbf x &amp;\in \Gamma_N \subset\partial\Omega
@@ -603,8 +603,8 @@ u(\mathbf x) &amp;= g(\mathbf x) &amp; \mathbf x &amp;\in \Gamma_D \subset \part
 <section id="the-shallow-water-equations-swe">
 <h4>The shallow water equations (SWE)<a class="headerlink" href="#the-shallow-water-equations-swe" title="Link to this heading">#</a></h4>
 <p>The shallow water equations (in vector-invariant form) on a rotating sphere:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0e2dcb55-6058-458e-80c0-f3e7c419b5a3">
-<span class="eqno">(4)<a class="headerlink" href="#equation-0e2dcb55-6058-458e-80c0-f3e7c419b5a3" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-7549af85-7ee1-43da-8cb1-9149e8e62a58">
+<span class="eqno">(4)<a class="headerlink" href="#equation-7549af85-7ee1-43da-8cb1-9149e8e62a58" title="Permalink to this equation">#</a></span>\[\begin{align}
     \frac{\partial h}{\partial t} + \nabla \cdot (h \boldsymbol{u}) &amp;= 0\\
     \frac{\partial \boldsymbol{u}}{\partial t} + \nabla (\Phi + \tfrac{1}{2}\|\boldsymbol{u}\|^2)  &amp;= (\boldsymbol{u} \times (f + \nabla \times \boldsymbol{u}))\,
 \end{align}\]</div>
@@ -646,9 +646,6 @@ u(\mathbf x) &amp;= g(\mathbf x) &amp; \mathbf x &amp;\in \Gamma_D \subset \part
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Green">    Updating</span> registry at `~/.julia/registries/General.toml`
-</pre></div>
-</div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Green">   Resolving</span> package versions...
 </pre></div>
 </div>
@@ -839,8 +836,8 @@ by this equation is an</p>
 \textrm{ellipse, } &amp; \textrm{if }a\textrm{ and }c\textrm{ have the same sign}
 \end{align*}\]</div>
 <p>We have three main canonical form classifications:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7b94682c-9ca0-4368-b174-1fc7c77146ef">
-<span class="eqno">(5)<a class="headerlink" href="#equation-7b94682c-9ca0-4368-b174-1fc7c77146ef" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-05404590-9914-4643-b1e9-6c8f1f9e2693">
+<span class="eqno">(5)<a class="headerlink" href="#equation-05404590-9914-4643-b1e9-6c8f1f9e2693" title="Permalink to this equation">#</a></span>\[\begin{align}
 X^2 - Y^2 + \dots = 0,\\
 X^2 + \dots = 0,\\
 X^2 + Y^2 + \dots = 0.\\
