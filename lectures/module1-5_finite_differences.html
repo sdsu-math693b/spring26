@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -57,6 +57,8 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/module1-5_finite_differences';</script>
     <link rel="icon" href="../_static/SDSU-math693b_logo.svg"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -417,7 +419,18 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-finite-difference-schemes">1. Introduction to Finite Difference schemes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-finite-difference-schemes">1. Introduction to Finite Difference schemes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">1.1 Introduction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">1.2 Getting Started</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-differentiation">Numerical differentiation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#taylor-series">Taylor series</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#first-order-spatial-derivatives">First-order spatial derivatives</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#first-order-temporal-derivative">First-order temporal derivative</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#second-order-spatial-derivatives">Second-order spatial derivatives</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -443,6 +456,176 @@ document.write(`
 </ol>
 <section id="introduction-to-finite-difference-schemes">
 <h2>1. Introduction to Finite Difference schemes<a class="headerlink" href="#introduction-to-finite-difference-schemes" title="Link to this heading">#</a></h2>
+<section id="introduction">
+<h3>1.1 Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h3>
+<p>This lecture introduces <strong>finite-difference grids</strong>, notation, and the construction of <strong>difference approximations</strong> to PDEs. We also show basic <strong>boundary-condition treatments</strong> and immediately implement a first solver to build numerical intuition.</p>
+<p><img alt="Thomas book Fig 1.2.1 uniform 1D grid" src="../_images/Thomas_Fig_1_2_1.png" /></p>
+</section>
+<section id="getting-started">
+<h3>1.2 Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading">#</a></h3>
+<p>Consider the <strong>initial–boundary value problem (IBVP)</strong> for the heat equation in 1D</p>
+<div class="amsmath math notranslate nohighlight" id="equation-07e7aae4-850f-4df3-b574-7e3beb5a93d8">
+<span class="eqno">(6)<a class="headerlink" href="#equation-07e7aae4-850f-4df3-b574-7e3beb5a93d8" title="Permalink to this equation">#</a></span>\[\begin{align}
+v_t &amp;= \nu v_{xx}, &amp;&amp; x\in(0,1),\ t&gt;0, \tag{1.2.1}\\
+v(x,0) &amp;= f(x), &amp;&amp; x\in[0,1], \tag{1.2.2}\\
+v(0,t) &amp;= a(t),\quad v(1,t)=b(t), &amp;&amp; t\ge 0. \tag{1.2.3}
+\end{align}\]</div>
+<p>where <span class="math notranslate nohighlight">\(f(0)=a(0)\)</span>, and <span class="math notranslate nohighlight">\(f(1)=b(0)\)</span>.</p>
+<p>Of course, this problem can be solved analytically. For purposes of illustration, we shall solve it numerically.</p>
+<div class="admonition-definition admonition">
+<p class="admonition-title">Definition</p>
+<ul class="simple">
+<li><p><strong><a class="reference external" href="https://en.wikipedia.org/wiki/Discretization">Discretization</a></strong>: In applied mathematics, discretization is the process of translating continuous functions, models, variables, and equations into discrete counterparts (that a computer can digest).</p></li>
+</ul>
+</div>
+<ul class="simple">
+<li><p>Of course, some essential information can be “<em>lost in translation</em>”. This would  lead to undesirable outcomes.</p></li>
+<li><p>In this course we will learn that some discretization methods (or schemes) are more suitable than others; and how the choice of the “right” method is often problem-dependent.</p></li>
+<li><p>Most importantly, we will learn how to assess the goodness of numerical discretizations (in terms of accuracy, reliability, robustness, efficiency, and so on)</p></li>
+</ul>
+<p>We begin by discretizing the spatial domain by placing a grid over the domain. For convenience, we will use for now a <em>uniform</em> grid (i.e., with all equally distant grid points), with grid spacing <span class="math notranslate nohighlight">\(\Delta x = 1/M\)</span> (see figure above).</p>
+<p>To refer to points in the grid, we shall call the points <span class="math notranslate nohighlight">\(x_k\)</span>, <span class="math notranslate nohighlight">\(k=0,\ldots,M\)</span>, where</p>
+<div class="math notranslate nohighlight">
+\[
+x_k = k \Delta x, \quad k = 0, \ldots, M .
+\]</div>
+<p>Likewise, we discretize the time domain similarly by placing a uniform grid on the temporal axis with grid spacing <span class="math notranslate nohighlight">\(\Delta t\)</span>.</p>
+<p>The resulting grid in time-space domain is illustrated in the figure below</p>
+<p><img alt="Thomas book Fig 1.2.2 uniform time-space domain" src="../_images/Thomas_Fig_1_2_2.png" /></p>
+<p>Notationally, we define <span class="math notranslate nohighlight">\(u_k^n\)</span> to be a function defined at the point <span class="math notranslate nohighlight">\((k \Delta x, n \Delta t)\)</span>, or the lattice point <span class="math notranslate nohighlight">\((k,n)\)</span>. <span class="math notranslate nohighlight">\(u_k^n\)</span> represents the approximation to the solution of the problem of interest (the heat equation above).</p>
+</section>
+<section id="numerical-differentiation">
+<h3>Numerical differentiation<a class="headerlink" href="#numerical-differentiation" title="Link to this heading">#</a></h3>
+<p>How to define discrete derivatives?</p>
+<p>From calculus, the definition of the derivative of a function at a given point.</p>
+<p>Continuous:
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial f}{\partial x}  \left( x \right)  = \lim_{h \to 0} \frac{f \left( x + h \right) - f \left( x \right)}{h}
+\]</div>
+</p>
+<p>Discrete:
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial f}{\partial x}  \left( x \right)  \approx \cancel{\lim_{h \to 0}} \frac{f \left( x + h \right) - f \left( x \right)}{h}
+\]</div>
+</p>
+</section>
+<section id="taylor-series">
+<h3>Taylor series<a class="headerlink" href="#taylor-series" title="Link to this heading">#</a></h3>
+<p>Classical accuracy analysis assumes that functions are sufficiently smooth, meaning that derivatives exist and Taylor expansions are valid within a neighborhood.  In particular,
+<div class="math notranslate nohighlight">
+\[ f(x+h) = f(x) + f'(x) h + f''(x) \frac{h^2}{2!} + \underbrace{f'''(x) \frac{h^3}{3!} + \dotsb}_{O(h^3)} . \]</div>
+</p>
+<p>The big-<span class="math notranslate nohighlight">\(O\)</span> notation is meant in the limit <span class="math notranslate nohighlight">\(h\to 0\)</span>.  Specifically, a function <span class="math notranslate nohighlight">\(g(h) \in O(h^p)\)</span> (sometimes written <span class="math notranslate nohighlight">\(g(h) = O(h^p)\)</span>) when
+there exists a constant <span class="math notranslate nohighlight">\(C\)</span> such that
+<div class="math notranslate nohighlight">
+\[ g(h) \le C h^p \]</div>
+
+for all sufficiently <em>small</em> <span class="math notranslate nohighlight">\(h\)</span>.</p>
+<section id="first-order-spatial-derivatives">
+<h4>First-order spatial derivatives<a class="headerlink" href="#first-order-spatial-derivatives" title="Link to this heading">#</a></h4>
+<p>To define derivatives on our lattice grid, we use Taylor’s expansion:</p>
+<div class="math notranslate nohighlight">
+\[
+u_{k+1} = u(x_k + \Delta x) \approx u(x_k) + \Delta x \partial_x u \bigg\rvert_k + \frac{1}{2} \Delta x^2 \partial^2_x u \bigg\rvert_k + \frac{1}{6} \Delta x^3 \partial^3_x u \bigg\rvert_k + O(\Delta x^4)
+\]</div>
+<p>Similarly,</p>
+<div class="math notranslate nohighlight">
+\[
+u_{k-1} = u(x_k - \Delta x) \approx u(x_k) - \Delta x \partial_x u \bigg\rvert_k + \frac{1}{2} \Delta x^2 \partial^2_x u \bigg\rvert_k - \frac{1}{6} \Delta x^3 \partial^3_x u \bigg\rvert_k + O(\Delta x^4)
+\]</div>
+<p>We can define the first-order derivative at the point <span class="math notranslate nohighlight">\(x_k\)</span> using the <strong>forward difference</strong>:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial u_k^F}{\partial x} \approx \frac{ u_{k+1} - u_{k}}{\Delta x} + O(\Delta x)
+\]</div>
+<p>this is a <em>first-order</em> approximation.</p>
+<p>Similarly, we can define the first-order derivative at the point <span class="math notranslate nohighlight">\(x_k\)</span> using the <strong>backward difference</strong>:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial u_{k}^B}{\partial x} \approx \frac{ u_{k} - u_{k-1}}{\Delta x} + O(\Delta x)
+\]</div>
+<p>this is a <em>first-order</em> approximation.</p>
+<p>If we use one point to the right of <span class="math notranslate nohighlight">\(x_k\)</span> and one point to the left of <span class="math notranslate nohighlight">\(x_k\)</span> we have a centered difference approximation for the first-order derivative at the point <span class="math notranslate nohighlight">\(x_k\)</span> using the <strong>centered difference</strong>:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial u_{k}^C}{\partial x} \approx \frac{ u_{k+1} - u_{k-1}}{2 \Delta x} + O(\Delta x^2)
+\]</div>
+<p>this is a <em>second-order</em> approximation of the first-order derivative.</p>
+<p>We note that the <strong>centered difference</strong> approximates the first derivative with respect to <span class="math notranslate nohighlight">\(x\)</span> more accurately than either of the <em>one-sided differences</em>. In fact, the size of what is left is <span class="math notranslate nohighlight">\(O( \Delta x^2 )\)</span> versus <span class="math notranslate nohighlight">\(\Delta x\)</span>.</p>
+</section>
+<section id="first-order-temporal-derivative">
+<h4>First-order temporal derivative<a class="headerlink" href="#first-order-temporal-derivative" title="Link to this heading">#</a></h4>
+<p>In the time domain:</p>
+<div class="math notranslate nohighlight">
+\[
+u^{n+1} = u(x^n + \Delta t) \approx u(t^n) + \Delta t \partial_t u {\bigg\rvert}^n + \frac{1}{2} \Delta t^2 \partial^2_t u {\bigg\rvert}^n + \frac{1}{6} \Delta t^3 \partial^3_t u {\bigg\rvert}^n + O(\Delta t^4) 
+\]</div>
+<p>Similarly,</p>
+<div class="math notranslate nohighlight">
+\[
+u^{n-1} = u(x^n - \Delta t) \approx u(t^n) - \Delta t \partial_t u {\bigg\rvert}^n + \frac{1}{2} \Delta t^2 \partial^2_t u {\bigg\rvert}^n - \frac{1}{6} \Delta t^3 \partial^3_t u {\bigg\rvert}^n + O(\Delta t^4)
+\]</div>
+<p>The first-order time derivative at the point <span class="math notranslate nohighlight">\(x^n\)</span> can be defined using the <strong>forward difference</strong>:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial {u^n}^F}{\partial t} \approx \frac{ u^{n+1} - u^{n}}{\Delta t} + O(\Delta t) \tag{1.2.1}
+\]</div>
+<p>this is a <em>first-order</em> approximation.</p>
+<p>Similarly, we can define the first-order time derivative at the point <span class="math notranslate nohighlight">\(x^n\)</span> using the <strong>backward difference</strong>:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial {u^{n}}^B}{\partial x} \approx \frac{ u^{n} - u^{n-1}}{\Delta t} + O(\Delta t)
+\]</div>
+<p>this is a <em>first-order</em> approximation.</p>
+<p>If we use one point forward in time relative to <span class="math notranslate nohighlight">\(x^n\)</span> and one point backward in time relative to <span class="math notranslate nohighlight">\(x^n\)</span>, we have a centered difference approximation for the first-order time derivative at the point <span class="math notranslate nohighlight">\(x^n\)</span> using the <strong>centered difference</strong>:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial {u^{n}}^C}{\partial t} \approx \frac{ u^{n+1} - u^{n-1}}{2 \Delta t} + O(\Delta t^2)
+\]</div>
+<p>this is a <em>second-order</em> approximation of the first-order time derivative.</p>
+<p>We note that the <strong>centered difference</strong> approximates the first derivative with respect to <span class="math notranslate nohighlight">\(t\)</span> more accurately than either of the <em>one-sided differences</em>. In fact, the size of what is left is <span class="math notranslate nohighlight">\(O( \Delta t^2 )\)</span> versus <span class="math notranslate nohighlight">\(\Delta t\)</span>.</p>
+</section>
+<section id="second-order-spatial-derivatives">
+<h4>Second-order spatial derivatives<a class="headerlink" href="#second-order-spatial-derivatives" title="Link to this heading">#</a></h4>
+<p>To define a second-order spatial derivative, let’s repeat the same process. This time, we need to compute the derivative of a derivative. Let’s consider half step sizes. The approximated solution <span class="math notranslate nohighlight">\(x_{k+\frac{1}{2}}^n\)</span> is defined at the mid grid point <span class="math notranslate nohighlight">\( (\left(k+\frac{1}{2} \right) \Delta x)\)</span>. Similarly, <span class="math notranslate nohighlight">\(x_{k-\frac{1}{2}}^n\)</span> is defined at the mid grid point <span class="math notranslate nohighlight">\( (\left(k-\frac{1}{2} \right) \Delta x)\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial^2 u^C_k}{\partial x^2} \approx \frac{\frac{\partial u_{k+\frac{1}{2}}^F}{\partial x} -\frac{ \partial u_{k-\frac{1}{2}}^B}{\partial x} }{\Delta x} \approx \frac{ \frac{u_{k+1} - u_k}{\Delta x} - \frac{u_k - u_{k-1}}{\Delta x} }{ \Delta x}  \approx  \frac{u_{k-1} -2 u_k + u_{k+1}}{\Delta x^2} + O(\Delta x^2) \tag{1.2.2}
+\]</div>
+<p>Now that we have defined the discrete derivatives in each dimention, we can discretize our IVP for the heat equation putting back the explicit dependence of the approximated solution on both independent variables, <span class="math notranslate nohighlight">\(u_k^n\)</span>. Let’s use (1.2.1) and (1.2.2):</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{ u^{n+1}_k - u^{n}_k}{\Delta t}  = \nu  \frac{u_{k-1}^n -2 u_k^n + u_{k+1}^n}{\Delta x^2} \quad \textrm{{(F.T.C.S.)}}
+\]</div>
+<p>This scheme is abbrievated as <strong>F.T.C.S.</strong> = <strong>Forward</strong> in <strong>Time</strong>, <strong>Centered</strong> in <strong>Space</strong>. We can recast this to isolate the approximated solution at the new time step (i.e., what we want to estimate) on the left-hand side:</p>
+<div class="math notranslate nohighlight">
+\[
+ u^{n+1}_k =  u^{n}_k + \nu \frac{\Delta t}{\Delta x^2}\left(u_{k-1}^n -2 u_k^n + u_{k+1}^n \right) \tag{1.2.3}
+\]</div>
+<p>Finally, the Initial Condition (I.C.) and Boundary Conditions (B.C.) can be approximated by:</p>
+<div class="math notranslate nohighlight">
+\[
+u^{0}_k = f(k \Delta x), \quad k = 0, \ldots, M \quad (\textrm{I.C.}) \tag{1.2.4}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+u^{n+1}_0 = a( (n+1) \Delta t), \quad n = 0, \ldots \quad (\textrm{B.C. on the left endpoint}) \tag{1.2.5}
+\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[
+u^{n+1}_M = b( (n+1) \Delta t), \quad n = 0, \ldots (\textrm{B.C. on the right endpoint}) \tag{1.2.6}
+\]</div>
+<p>We can see that eq. (1.2.4) gives <span class="math notranslate nohighlight">\(u_k^0\)</span>, for <span class="math notranslate nohighlight">\(k=0, \ldots M\)</span>; eq. (1.2.3) with <span class="math notranslate nohighlight">\(n=0\)</span> can be used to determine <span class="math notranslate nohighlight">\(u_k^1\)</span>, for <span class="math notranslate nohighlight">\(k=1,\ldots M-1\)</span> (that is, the <em>interior</em> grid points only); and finally, eq. (1.2.5) and (1.2.6) can be used to determine <span class="math notranslate nohighlight">\(u_0^1\)</span> and <span class="math notranslate nohighlight">\(u_M^1\)</span>.</p>
+<p>Thus, eq. (1.2.3), (1.2.5) and (1.2.6) use the information at <span class="math notranslate nohighlight">\(n=0\)</span> to determine <span class="math notranslate nohighlight">\(u\)</span> at the first time step. Once <span class="math notranslate nohighlight">\(u^1_k\)</span>, <span class="math notranslate nohighlight">\(k=0, \ldots M\)</span> is known at all spatial grid points, eq. (1.2.3), (1.2.5) and (1.2.6) can be used to determine <span class="math notranslate nohighlight">\(u\)</span> at <span class="math notranslate nohighlight">\(n=2\)</span>. And, of course, this process can be continued to determine <span class="math notranslate nohighlight">\(u_k^n, k+0, \ldots M\)</span> to any desired time step <span class="math notranslate nohighlight">\(n\)</span>.</p>
+<p>It should be noted that it was not poissible to determine <span class="math notranslate nohighlight">\(u^1_0\)</span> and <span class="math notranslate nohighlight">\(u^1_M\)</span> by using eq. (1.2.3), since one of the subscripts <span class="math notranslate nohighlight">\(k+1\)</span> and <span class="math notranslate nohighlight">\(k-1\)</span> would reach out of bounds (less than <span class="math notranslate nohighlight">\(0\)</span> or greater than <span class="math notranslate nohighlight">\(M\)</span>) for either of the calculations. Hence, it will almost always be necessary to have some special treatment of the boundary, such as eq. (1.2.5) and (1.2.6).</p>
+<ul class="simple">
+<li><p>We call this FTCS scheme an <strong>explicit</strong> scheme, because we are able to solve for the variable at the <span class="math notranslate nohighlight">\((n+1)\)</span>-st time step <em>explicitly</em>.</p></li>
+</ul>
+</section>
+</section>
 </section>
 </section>
 
@@ -501,7 +684,18 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-finite-difference-schemes">1. Introduction to Finite Difference schemes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-finite-difference-schemes">1. Introduction to Finite Difference schemes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">1.1 Introduction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">1.2 Getting Started</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-differentiation">Numerical differentiation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#taylor-series">Taylor series</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#first-order-spatial-derivatives">First-order spatial derivatives</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#first-order-temporal-derivative">First-order temporal derivative</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#second-order-spatial-derivatives">Second-order spatial derivatives</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
