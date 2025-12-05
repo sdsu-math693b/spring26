@@ -452,20 +452,22 @@ document.write(`
 </ul>
 <p>Today:</p>
 <ol class="arabic simple">
-<li><p>Introduction to Finite Difference schemes</p></li>
+<li><p>Introduction to Finite Difference schemes<br />
+1.1 Introduction<br />
+1.2 Getting Started</p></li>
 </ol>
 <section id="introduction-to-finite-difference-schemes">
 <h2>1. Introduction to Finite Difference schemes<a class="headerlink" href="#introduction-to-finite-difference-schemes" title="Link to this heading">#</a></h2>
 <section id="introduction">
 <h3>1.1 Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h3>
-<p>This lecture introduces <strong>finite-difference grids</strong>, notation, and the construction of <strong>difference approximations</strong> to PDEs. We also show basic <strong>boundary-condition treatments</strong> and immediately implement a first solver to build numerical intuition.</p>
+<p>This lecture introduces <strong>finite-difference grids</strong>, notation, and the construction of <strong>difference approximations</strong> to PDEs. We also show basic <strong>boundary-condition treatments</strong> and immediately implement a first solver to build numerical intuition. Some of the material of this section is largely based on the <a class="reference external" href="https://link-springer-com.libproxy.sdsu.edu/book/10.1007/978-1-4899-7278-1">Thomas (1998), <strong>Numerical Partial Differential Equations: Finite Difference Methods</strong></a> book.</p>
 <p><img alt="Thomas book Fig 1.2.1 uniform 1D grid" src="../_images/Thomas_Fig_1_2_1.png" /></p>
 </section>
 <section id="getting-started">
 <h3>1.2 Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading">#</a></h3>
 <p>Consider the <strong>initial–boundary value problem (IBVP)</strong> for the heat equation in 1D</p>
-<div class="amsmath math notranslate nohighlight" id="equation-07e7aae4-850f-4df3-b574-7e3beb5a93d8">
-<span class="eqno">(6)<a class="headerlink" href="#equation-07e7aae4-850f-4df3-b574-7e3beb5a93d8" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-2ed42eb2-2127-47ce-b6df-922243b9ec21">
+<span class="eqno">(6)<a class="headerlink" href="#equation-2ed42eb2-2127-47ce-b6df-922243b9ec21" title="Permalink to this equation">#</a></span>\[\begin{align}
 v_t &amp;= \nu v_{xx}, &amp;&amp; x\in(0,1),\ t&gt;0, \tag{1.2.1}\\
 v(x,0) &amp;= f(x), &amp;&amp; x\in[0,1], \tag{1.2.2}\\
 v(0,t) &amp;= a(t),\quad v(1,t)=b(t), &amp;&amp; t\ge 0. \tag{1.2.3}
@@ -570,7 +572,7 @@ u^{n-1} = u(x^n - \Delta t) \approx u(t^n) - \Delta t \partial_t u {\bigg\rvert}
 <p>The first-order time derivative at the point <span class="math notranslate nohighlight">\(x^n\)</span> can be defined using the <strong>forward difference</strong>:</p>
 <div class="math notranslate nohighlight">
 \[
-\frac{\partial {u^n}^F}{\partial t} \approx \frac{ u^{n+1} - u^{n}}{\Delta t} + O(\Delta t) \tag{1.2.1}
+\frac{\partial {u^n}^F}{\partial t} \approx \frac{ u^{n+1} - u^{n}}{\Delta t} + O(\Delta t) \tag{1.2.4}
 \]</div>
 <p>this is a <em>first-order</em> approximation.</p>
 <p>Similarly, we can define the first-order time derivative at the point <span class="math notranslate nohighlight">\(x^n\)</span> using the <strong>backward difference</strong>:</p>
@@ -592,9 +594,9 @@ u^{n-1} = u(x^n - \Delta t) \approx u(t^n) - \Delta t \partial_t u {\bigg\rvert}
 <p>To define a second-order spatial derivative, let’s repeat the same process. This time, we need to compute the derivative of a derivative. Let’s consider half step sizes. The approximated solution <span class="math notranslate nohighlight">\(x_{k+\frac{1}{2}}^n\)</span> is defined at the mid grid point <span class="math notranslate nohighlight">\( (\left(k+\frac{1}{2} \right) \Delta x)\)</span>. Similarly, <span class="math notranslate nohighlight">\(x_{k-\frac{1}{2}}^n\)</span> is defined at the mid grid point <span class="math notranslate nohighlight">\( (\left(k-\frac{1}{2} \right) \Delta x)\)</span>.</p>
 <div class="math notranslate nohighlight">
 \[
-\frac{\partial^2 u^C_k}{\partial x^2} \approx \frac{\frac{\partial u_{k+\frac{1}{2}}^F}{\partial x} -\frac{ \partial u_{k-\frac{1}{2}}^B}{\partial x} }{\Delta x} \approx \frac{ \frac{u_{k+1} - u_k}{\Delta x} - \frac{u_k - u_{k-1}}{\Delta x} }{ \Delta x}  \approx  \frac{u_{k-1} -2 u_k + u_{k+1}}{\Delta x^2} + O(\Delta x^2) \tag{1.2.2}
+\frac{\partial^2 u^C_k}{\partial x^2} \approx \frac{\frac{\partial u_{k+\frac{1}{2}}^F}{\partial x} -\frac{ \partial u_{k-\frac{1}{2}}^B}{\partial x} }{\Delta x} \approx \frac{ \frac{u_{k+1} - u_k}{\Delta x} - \frac{u_k - u_{k-1}}{\Delta x} }{ \Delta x}  \approx  \frac{u_{k-1} -2 u_k + u_{k+1}}{\Delta x^2} + O(\Delta x^2) \tag{1.2.5}
 \]</div>
-<p>Now that we have defined the discrete derivatives in each dimention, we can discretize our IVP for the heat equation putting back the explicit dependence of the approximated solution on both independent variables, <span class="math notranslate nohighlight">\(u_k^n\)</span>. Let’s use (1.2.1) and (1.2.2):</p>
+<p>Now that we have defined the discrete derivatives in each dimention, we can discretize our IVP for the heat equation putting back the explicit dependence of the approximated solution on both independent variables, <span class="math notranslate nohighlight">\(u_k^n\)</span>. Let’s use (1.2.4) and (1.2.5):</p>
 <div class="math notranslate nohighlight">
 \[
 \frac{ u^{n+1}_k - u^{n}_k}{\Delta t}  = \nu  \frac{u_{k-1}^n -2 u_k^n + u_{k+1}^n}{\Delta x^2} \quad \textrm{{(F.T.C.S.)}}
@@ -602,25 +604,25 @@ u^{n-1} = u(x^n - \Delta t) \approx u(t^n) - \Delta t \partial_t u {\bigg\rvert}
 <p>This scheme is abbrievated as <strong>F.T.C.S.</strong> = <strong>Forward</strong> in <strong>Time</strong>, <strong>Centered</strong> in <strong>Space</strong>. We can recast this to isolate the approximated solution at the new time step (i.e., what we want to estimate) on the left-hand side:</p>
 <div class="math notranslate nohighlight">
 \[
- u^{n+1}_k =  u^{n}_k + \nu \frac{\Delta t}{\Delta x^2}\left(u_{k-1}^n -2 u_k^n + u_{k+1}^n \right) \tag{1.2.3}
+ u^{n+1}_k =  u^{n}_k + \nu \frac{\Delta t}{\Delta x^2}\left(u_{k-1}^n -2 u_k^n + u_{k+1}^n \right) \tag{1.2.6}
 \]</div>
 <p>Finally, the Initial Condition (I.C.) and Boundary Conditions (B.C.) can be approximated by:</p>
 <div class="math notranslate nohighlight">
 \[
-u^{0}_k = f(k \Delta x), \quad k = 0, \ldots, M \quad (\textrm{I.C.}) \tag{1.2.4}
+u^{0}_k = f(k \Delta x), \quad k = 0, \ldots, M \quad (\textrm{I.C.}) \tag{1.2.7}
 \]</div>
 <div class="math notranslate nohighlight">
 \[
-u^{n+1}_0 = a( (n+1) \Delta t), \quad n = 0, \ldots \quad (\textrm{B.C. on the left endpoint}) \tag{1.2.5}
+u^{n+1}_0 = a( (n+1) \Delta t), \quad n = 0, \ldots \quad (\textrm{B.C. on the left endpoint}) \tag{1.2.8}
 \]</div>
 <p>and</p>
 <div class="math notranslate nohighlight">
 \[
-u^{n+1}_M = b( (n+1) \Delta t), \quad n = 0, \ldots (\textrm{B.C. on the right endpoint}) \tag{1.2.6}
+u^{n+1}_M = b( (n+1) \Delta t), \quad n = 0, \ldots (\textrm{B.C. on the right endpoint}) \tag{1.2.9}
 \]</div>
-<p>We can see that eq. (1.2.4) gives <span class="math notranslate nohighlight">\(u_k^0\)</span>, for <span class="math notranslate nohighlight">\(k=0, \ldots M\)</span>; eq. (1.2.3) with <span class="math notranslate nohighlight">\(n=0\)</span> can be used to determine <span class="math notranslate nohighlight">\(u_k^1\)</span>, for <span class="math notranslate nohighlight">\(k=1,\ldots M-1\)</span> (that is, the <em>interior</em> grid points only); and finally, eq. (1.2.5) and (1.2.6) can be used to determine <span class="math notranslate nohighlight">\(u_0^1\)</span> and <span class="math notranslate nohighlight">\(u_M^1\)</span>.</p>
-<p>Thus, eq. (1.2.3), (1.2.5) and (1.2.6) use the information at <span class="math notranslate nohighlight">\(n=0\)</span> to determine <span class="math notranslate nohighlight">\(u\)</span> at the first time step. Once <span class="math notranslate nohighlight">\(u^1_k\)</span>, <span class="math notranslate nohighlight">\(k=0, \ldots M\)</span> is known at all spatial grid points, eq. (1.2.3), (1.2.5) and (1.2.6) can be used to determine <span class="math notranslate nohighlight">\(u\)</span> at <span class="math notranslate nohighlight">\(n=2\)</span>. And, of course, this process can be continued to determine <span class="math notranslate nohighlight">\(u_k^n, k+0, \ldots M\)</span> to any desired time step <span class="math notranslate nohighlight">\(n\)</span>.</p>
-<p>It should be noted that it was not poissible to determine <span class="math notranslate nohighlight">\(u^1_0\)</span> and <span class="math notranslate nohighlight">\(u^1_M\)</span> by using eq. (1.2.3), since one of the subscripts <span class="math notranslate nohighlight">\(k+1\)</span> and <span class="math notranslate nohighlight">\(k-1\)</span> would reach out of bounds (less than <span class="math notranslate nohighlight">\(0\)</span> or greater than <span class="math notranslate nohighlight">\(M\)</span>) for either of the calculations. Hence, it will almost always be necessary to have some special treatment of the boundary, such as eq. (1.2.5) and (1.2.6).</p>
+<p>We can see that eq. (1.2.7) gives <span class="math notranslate nohighlight">\(u_k^0\)</span>, for <span class="math notranslate nohighlight">\(k=0, \ldots M\)</span>; eq. (1.2.6) with <span class="math notranslate nohighlight">\(n=0\)</span> can be used to determine <span class="math notranslate nohighlight">\(u_k^1\)</span>, for <span class="math notranslate nohighlight">\(k=1,\ldots M-1\)</span> (that is, the <em>interior</em> grid points only); and finally, eq. (1.2.8) and (1.2.9) can be used to determine <span class="math notranslate nohighlight">\(u_0^1\)</span> and <span class="math notranslate nohighlight">\(u_M^1\)</span>.</p>
+<p>Thus, eq. (1.2.6), (1.2.8) and (1.2.9) use the information at <span class="math notranslate nohighlight">\(n=0\)</span> to determine <span class="math notranslate nohighlight">\(u\)</span> at the first time step. Once <span class="math notranslate nohighlight">\(u^1_k\)</span>, <span class="math notranslate nohighlight">\(k=0, \ldots M\)</span> is known at all spatial grid points, eq. (1.2.6), (1.2.8) and (1.2.9) can be used to determine <span class="math notranslate nohighlight">\(u\)</span> at <span class="math notranslate nohighlight">\(n=2\)</span>. And, of course, this process can be continued to determine <span class="math notranslate nohighlight">\(u_k^n, k+0, \ldots M\)</span> to any desired time step <span class="math notranslate nohighlight">\(n\)</span>.</p>
+<p>It should be noted that it was not poissible to determine <span class="math notranslate nohighlight">\(u^1_0\)</span> and <span class="math notranslate nohighlight">\(u^1_M\)</span> by using eq. (1.2.6), since one of the subscripts <span class="math notranslate nohighlight">\(k+1\)</span> and <span class="math notranslate nohighlight">\(k-1\)</span> would reach out of bounds (less than <span class="math notranslate nohighlight">\(0\)</span> or greater than <span class="math notranslate nohighlight">\(M\)</span>) for either of the calculations. Hence, it will almost always be necessary to have some special treatment of the boundary, such as eq. (1.2.8) and (1.2.9).</p>
 <ul class="simple">
 <li><p>We call this FTCS scheme an <strong>explicit</strong> scheme, because we are able to solve for the variable at the <span class="math notranslate nohighlight">\((n+1)\)</span>-st time step <em>explicitly</em>.</p></li>
 </ul>
