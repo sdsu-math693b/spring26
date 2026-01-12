@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -458,10 +458,9 @@ document.write(`
 </section>
 <section id="organization-and-course-design">
 <h2>Organization and course design<a class="headerlink" href="#organization-and-course-design" title="Link to this heading">#</a></h2>
-<p>We will start with a brief refresher on approximation of functions in finite arithmetic, and numerical differentiation.</p>
+<p>We will start with a brief refresher on approximation of functions in finite arithmetic, and numerical differentiation. We will give an introduction of numerical analysis concepts.</p>
 <p>We will extend this to finite difference methods for elliptic problems (like heat and pressure equilibrium) and time integration, producing methods that converge with arbitrarily high orders of accuracy.</p>
-<p>We will discover challenges when applying these methods to hyperbolic equations (which describe wave propagation and transport phenomena), especially nonlinear hyperbolic equations, and thus develop finite volume methods which rely on weaker assumptions.</p>
-<p>We will learn about shocks, rarefactions, and Riemann solvers.</p>
+<p>We will discover challenges when applying these methods to hyperbolic equations (which describe wave propagation and transport phenomena), especially nonlinear hyperbolic equations, and thus develop finite volume methods which rely on weaker assumptions. We will learn about shocks, rarefactions, and Riemann solvers.</p>
 <p>Finite volume methods are easy to use in complicated geometries and/or unstructured meshes, but achieving high order accuracy in such settings is unnatural and the methods can be awkward for elliptic and parabolic equations.</p>
 <p>Finite element methods offer a flexible and robust analysis framework as well as modular implementation that allows arbitrary order of accuracy even in complicated domains.</p>
 <p>In the second half of the semester, we will add more project-based learning. You will choose an open-source software library/package with an active community, identify opportunities for contribution, provide your individual contribution to the community, give a presentation to the class about the choice of methods, stakeholders and community functioning, and write a final report. Such contributions can take many different shapes, and need not necessarily involve code (more on this later).</p>
@@ -476,6 +475,7 @@ document.write(`
 <li><p>understand the merits and limitations of the leading numerical methods used to solve PDEs</p></li>
 <li><p>diagnose ill-conditioned problem formulations and unstable algorithms</p></li>
 <li><p>develop effective numerical software, taking into account stability, accuracy, and cost</p></li>
+<li><p>develop different numerical methods: finite differences, finite volume, finite elements, and compatible discretizations</p></li>
 <li><p>communicate about the above using figures, numerical experiments, writing, and presentation</p></li>
 <li><p>search for and understand relevant literature and documentation</p></li>
 <li><p>interpret research papers</p></li>

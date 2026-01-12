@@ -40,13 +40,11 @@ We will discuss foundational principles like will posedness, verification, and v
 
 ## Organization and course design
 
-We will start with a brief refresher on approximation of functions in finite arithmetic, and numerical differentiation. 
+We will start with a brief refresher on approximation of functions in finite arithmetic, and numerical differentiation. We will give an introduction of numerical analysis concepts.
 
 We will extend this to finite difference methods for elliptic problems (like heat and pressure equilibrium) and time integration, producing methods that converge with arbitrarily high orders of accuracy. 
 
-We will discover challenges when applying these methods to hyperbolic equations (which describe wave propagation and transport phenomena), especially nonlinear hyperbolic equations, and thus develop finite volume methods which rely on weaker assumptions. 
-
-We will learn about shocks, rarefactions, and Riemann solvers. 
+We will discover challenges when applying these methods to hyperbolic equations (which describe wave propagation and transport phenomena), especially nonlinear hyperbolic equations, and thus develop finite volume methods which rely on weaker assumptions. We will learn about shocks, rarefactions, and Riemann solvers. 
 
 Finite volume methods are easy to use in complicated geometries and/or unstructured meshes, but achieving high order accuracy in such settings is unnatural and the methods can be awkward for elliptic and parabolic equations. 
 
@@ -64,9 +62,10 @@ Upon completing this course, students will be able to
 4. understand the merits and limitations of the leading numerical methods used to solve PDEs
 5. diagnose ill-conditioned problem formulations and unstable algorithms
 6. develop effective numerical software, taking into account stability, accuracy, and cost
-7. communicate about the above using figures, numerical experiments, writing, and presentation
-8. search for and understand relevant literature and documentation
-9. interpret research papers
+7. develop different numerical methods: finite differences, finite volume, finite elements, and compatible discretizations 
+8. communicate about the above using figures, numerical experiments, writing, and presentation
+9. search for and understand relevant literature and documentation
+10. interpret research papers
 
 ### Expectations
 
