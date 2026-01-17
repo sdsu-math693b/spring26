@@ -24,6 +24,7 @@ Who am I?
   * [Thomas (1998), **Numerical Partial Differential Equations: Finite Difference Methods**](https://link-springer-com.libproxy.sdsu.edu/book/10.1007/978-1-4899-7278-1)
     * available at the [SDSU library](https://csu-sdsu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=alma991007880389702917&context=L&vid=01CALS_SDL:01CALS_SDL&lang=en&search_scope=MyInst_and_CI&adaptor=Local%20Search%20Engine&tab=Everything&query=any,contains,Thomas%20Numerical%20Partial%20Differential%20Equations%20Finite%20Difference%20Methods,AND&sortby=rank&mode=advanced&offset=0)
   * LeVeque (1998), **Finite Difference Methods for Differential Equations**
+  * [Strikwerda, **Finite Difference Schemes and Partial Differential Equations**](https://epubs.siam.org/doi/book/10.1137/1.9780898717938)
   * [Driscoll and Braun, **Fundamentals of Numerical Computation**](https://tobydriscoll.net/fnc-julia/)
     * free, in Julia with demo notebooks and [Julia codes](https://github.com/fncbook/FundamentalsNumericalComputation.jl?tab=readme-ov-file)
   * [Greenbaum and Chartier (2012), **Numerical Methods Design, Analysis, and Computer Implementation of Algorithms**](https://press.princeton.edu/titles/9763.html)

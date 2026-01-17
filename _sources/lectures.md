@@ -84,4 +84,4 @@ You can open these notebooks as normal notebooks (continuous scroll). If you wis
 
 ## Acknowledgements
 
-For most of this course’s materials, I owe huge thanks to my postdoc mentor, [Jed Brown](https://jedbrown.org/), Associate Professor at CU Boulder.
+For most of this course’s materials, I owe huge thanks to my postdoc mentor, [Jed Brown](https://jedbrown.org/), Associate Professor at CU Boulder, and Peter Blomgren, Chair of the Department of Mathematics and Statistics at SDSU.
