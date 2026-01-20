@@ -36,7 +36,7 @@ This course covers discretization of PDEs using finite difference and collocatio
 
 For each method, we will discuss boundary conditions, generalization to high order, robustness, and geometric complexity.
 
-We will discuss foundational principles like will posedness, verification, and validation, as well as efficient methods for solution of the discretized equations and implementation in extensible software. 
+We will discuss foundational principles like well posedness, verification, and validation, as well as efficient methods for solution of the discretized equations and implementation in extensible software. 
 
 ## Organization and course design
 
