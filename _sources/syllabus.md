@@ -83,8 +83,7 @@ This class will have some assignments and projects (midterm and final). The fina
 
 Grading breakdown:
 - Participation (can include engagement in class, attendance, use of office hours, etc) (5%)
-- In-class pop quizzes (5%)
-- Assignment 1 (5%): due date **TBD**, by midnight (AOE)
+- Assignment 1 (5%): due date **Tuesday**, **02/03/26***, by midnight (AOE)
 - Assignment 2 (8%): due date **TBD**, by midnight (AOE)
 - Assignment 3 (8%): due date **TBD**, by midnight (AOE)
 - Assignment 4 (8%): due date **TBD**, by midnight (AOE)
@@ -93,18 +92,15 @@ Grading breakdown:
 
 AOE: Anywhere on Earth time zone. This time zone is 12 hours behind Coordinated Universal Time (UTC) and typically used for online submissions to accommodate people from different time zones. Given that this course is taught in person in the Pacific standard time, I use this not really to facilitate submissions from different time zones, but to allow people not to worry about submitting by midnight sharp. This does _not_ mean that I encourage people working late. I actually advocate for a healthy work/life balance for everyone (students and instructors alike).
 
-- **Midterm Project** (15%): TBD
+- **Midterm Project** (15%): The midterm/final project choice and proposal will need to be discussed with your instructor, before its submission (_not_ via email). Please make sure to use plenty of Office Hours to discuss your midterm/final project Proposal before submitting it. This project is broken down in two deadlines. Please note that Canvas does not allow setting multiple parts with different deadlines for a given assignment. For the **Midterm Project**, I will set the **earliest of the two** deadlines on **Canvas**.
+    * Part 1, **Thursday**, **March 12**, by midnight (AOE): Community project analysis and proposal.
+    * Part 2, **Thursday**, **March 26**, by midnight (AOE): Community project contribution proposal and creation of an Issue.
 
-- **Final Project** (35%): This project is broken down in five deadlines. The final project choice and proposal will need to be discussed with your instructor, before its submission (_not_ via email). Please make sure to use plenty of Office Hours to discuss your final project Proposal before submitting it. 
+- **Final Project** (35%): This project is broken down in three deadlines. Please note that Canvas does not allow setting multiple parts with different deadlines for a given assignment. For the **Final Project**, I will set the **latest of the three** deadlines on **Canvas** (which coincides with our Final Exam).
 
-This project is broken down in five deadlines. Please note that Canvas does not allow setting multiple parts with different deadlines for a given assignment. 
-
-For the **Final Project**, I will set the **earliest of the five** deadlines on **Canvas**.
-    * Part 1, due **TBD** by midnight (AOE): Community Analysis and Proposal
-    * Part 2, due **TBD** by midnight (AOE): Creation of an Issue
-    * Part 3, due **TBD** by midnight (AOE): Creation of a Pull/Merge Request
-    * Part 4, **TBD** and **TBD**: In class oral presentations.
-    * Part 5, due **TBD**, by midnight (AOE): submission of Final Project Report.
+    * Part 1, due **Thursday**, **April 16**, by midnight (AOE): Creation of a Pull/Merge Request. Your PR/MR should be **finalized** no later than **Monday**, **April 27** (ten days before your oral presentation date).
+    * Part 2, **Thursday**, **May 7**, **8-10 a.m.**: In class oral presentations during our **Final Exam**.
+    * Part 3, **Thursday**, **May 7**, by midnight (AOE): submission of Final Project Report.
 
 Assignments will be distributed no later than a week prior to the due date.
 
