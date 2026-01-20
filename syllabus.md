@@ -40,7 +40,7 @@ We will discuss foundational principles like will posedness, verification, and v
 
 ## Organization and course design
 
-We will start with a brief refresher on approximation of functions in finite arithmetic, and numerical differentiation. We will give an introduction of numerical analysis concepts.
+We will start with an introduction on version control software and reproducibility in science. Then we will give a brief refresher on approximation of functions in finite arithmetic, and numerical differentiation. We will give an introduction of some foundational numerical analysis concepts.
 
 We will extend this to finite difference methods for elliptic problems (like heat and pressure equilibrium) and time integration, producing methods that converge with arbitrarily high orders of accuracy. 
 
