@@ -83,7 +83,7 @@ This class will have some assignments and projects (midterm and final). The fina
 
 Grading breakdown:
 - Participation (can include engagement in class, attendance, use of office hours, etc) (5%)
-- Assignment 1 (5%): due date **Tuesday**, **02/03/26***, by midnight (AOE)
+- Assignment 1 (5%): due date **Tuesday**, **02/03/26**, by midnight (AOE)
 - Assignment 2 (8%): due date **TBD**, by midnight (AOE)
 - Assignment 3 (8%): due date **TBD**, by midnight (AOE)
 - Assignment 4 (8%): due date **TBD**, by midnight (AOE)
