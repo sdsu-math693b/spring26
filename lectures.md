@@ -25,7 +25,7 @@ Once installed, launch JupyterLab with:
 ```
 jupyter lab
 ```
-and selcet the Notebook app.
+and select the Notebook app.
 
 You can also only install the classic Jupyter Notebook standalone app via
 
