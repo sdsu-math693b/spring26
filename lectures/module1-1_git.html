@@ -187,8 +187,8 @@
 
 
 <li class="toctree-l2"><a class="reference internal" href="module1-2_community_projects.html">2) Community Projects</a></li>
-<li class="toctree-l2"><a class="reference internal" href="module1-3_intro_to_pdes.html">3) Introduction to PDEs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="module1-4_intro_to_julia.html">4) Introduction to programming in Julia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module1-3_intro_to_julia.html">3) Introduction to programming in Julia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module1-4_intro_to_pdes.html">4) Introduction to PDEs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="module1-5_finite_differences.html">5) Finite Differences</a></li>
 </ul>
 </details></li>
@@ -566,7 +566,7 @@ $ git remote add your_username https://yourusername@github.com/sdsu-math693b/spr
 </pre></div>
 </div>
 <p>What is the difference between using the <code class="docutils literal notranslate"><span class="pre">https</span></code> or the <code class="docutils literal notranslate"><span class="pre">ssh</span></code> protocol? If you use <code class="docutils literal notranslate"><span class="pre">https</span></code> the primary downside for most people is that you must enter your Git password/token every time you push. While it gets added to a cache, it’s not configured to cache permanently (though this can be changed). With SSH keys, it just uses the key file on disk every time so you don’t have to enter your Git password/token at every push. Check this guide to <a class="reference external" href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent">generate SSH keys and add them to the ssh-agent</a>.</p>
-<p>Now you have two remote repositories: <code class="docutils literal notranslate"><span class="pre">origin</span></code>, which is your fork (hosted on your cloud account), and <code class="docutils literal notranslate"><span class="pre">upstream</span></code>, which is the main <code class="docutils literal notranslate"><span class="pre">sdsu-comp605/spring25</span></code> repository.</p>
+<p>Now you have two remote repositories: <code class="docutils literal notranslate"><span class="pre">origin</span></code>, which is your fork (hosted on your cloud account), and <code class="docutils literal notranslate"><span class="pre">upstream</span></code>, which is the main <code class="docutils literal notranslate"><span class="pre">sdsu-math693b/spring26</span></code> repository.</p>
 <p>When part of an organization, people who contribute to an open-source project do not generally fork the repository, but <code class="docutils literal notranslate"><span class="pre">clone</span></code> it directly on their local machine. If you are not sure about the differences <a class="reference external" href="https://www.toolsqa.com/git/difference-between-git-clone-and-git-fork/#:~:text=When%20you%20fork%20a%20repository,with%20the%20help%20of%20Git.">between forking and cloning</a>, check this helpful article.</p>
 <p>Create a branch for your feature; this will hold your contribution:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git checkout -b &lt;branchname&gt;
