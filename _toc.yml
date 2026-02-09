@@ -12,3 +12,4 @@ chapters:
   - file: lectures/module1-3_intro_to_julia.ipynb
   - file: lectures/module1-4_intro_to_pdes.ipynb
   - file: lectures/module1-5_finite_differences.ipynb
+  - file: lectures/module1-6_intro_NA.ipynb
