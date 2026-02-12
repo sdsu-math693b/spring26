@@ -1,0 +1,51 @@
+Traceback (most recent call last):
+  File "/home/vbarra/.local/share/pipx/venvs/jupyter-book/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 154, in wrapped
+    asyncio.get_running_loop()
+RuntimeError: no running event loop
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/vbarra/.local/share/pipx/venvs/jupyter-book/lib/python3.12/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/home/vbarra/.local/share/pipx/venvs/jupyter-book/lib/python3.12/site-packages/nbclient/client.py", line 1319, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vbarra/.local/share/pipx/venvs/jupyter-book/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 158, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/vbarra/.local/share/pipx/venvs/jupyter-book/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/vbarra/.local/share/pipx/venvs/jupyter-book/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/vbarra/.local/share/pipx/venvs/jupyter-book/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+open("../../../img/svd_viz.svg") do f
+   display("image/svg+xml", read(f, String))
+end
+------------------
+
+
+SystemError: opening file "../../../img/svd_viz.svg": No such file or directory
+
+Stacktrace:
+ [1] [0m[1msystemerror[22m[0m[1m([22m[90mp[39m::[0mString, [90merrno[39m::[0mInt32; [90mextrainfo[39m::[0mNothing[0m[1m)[22m
+[90m   @[39m [90mBase[39m [90m./[39m[90m[4merror.jl:176[24m[39m
+ [2] [0m[1msystemerror[22m
+[90m   @[39m [90m./[39m[90m[4merror.jl:175[24m[39m[90m [inlined][39m
+ [3] [0m[1mopen[22m[0m[1m([22m[90mfname[39m::[0mString; [90mlock[39m::[0mBool, [90mread[39m::[0mNothing, [90mwrite[39m::[0mNothing, [90mcreate[39m::[0mNothing, [90mtruncate[39m::[0mNothing, [90mappend[39m::[0mNothing[0m[1m)[22m
+[90m   @[39m [90mBase[39m [90m./[39m[90m[4miostream.jl:293[24m[39m
+ [4] [0m[1mopen[22m
+[90m   @[39m [90m./[39m[90m[4miostream.jl:275[24m[39m[90m [inlined][39m
+ [5] [0m[1mopen[22m[0m[1m([22m[90mf[39m::[0mvar"#5#6", [90margs[39m::[0mString; [90mkwargs[39m::[0m@Kwargs[90m{}[39m[0m[1m)[22m
+[90m   @[39m [90mBase[39m [90m./[39m[90m[4mio.jl:394[24m[39m
+ [6] [0m[1mopen[22m[0m[1m([22m[90mf[39m::[0mFunction, [90margs[39m::[0mString[0m[1m)[22m
+[90m   @[39m [90mBase[39m [90m./[39m[90m[4mio.jl:393[24m[39m
+ [7] top-level scope
+[90m   @[39m [90m[4mIn[23]:1[24m[39m
+
