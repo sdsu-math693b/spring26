@@ -886,16 +886,21 @@ for some <span class="math notranslate nohighlight">\(\tilde x\)</span> that is 
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Dfferentiation matrix for a first order derivative</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="s">&quot;&quot;&quot;First-derivative differentiation matrix on a uniform grid.</span>
+
+<span class="s">- interior: 2nd-order centered</span>
+<span class="s">- boundaries: 1st-order one-sided</span>
+<span class="s">&quot;&quot;&quot;</span>
+<span class="c"># Dfferentiation matrix for a first-derivative</span>
 <span class="k">function</span><span class="w"> </span><span class="n">diff1_mat</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="w">    </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">length</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="w">    </span><span class="n">D</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
 <span class="w">    </span><span class="n">h</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-<span class="w">    </span><span class="n">D</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">h</span><span class="w">  </span><span class="mi">1</span><span class="o">/</span><span class="n">h</span><span class="p">]</span><span class="w"> </span><span class="c"># Use a first-order forward difference at the left boundary</span>
+<span class="w">    </span><span class="n">D</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">h</span><span class="w">  </span><span class="mi">1</span><span class="o">/</span><span class="n">h</span><span class="p">]</span><span class="w">              </span><span class="c"># Use a first-order forward difference at the left boundary</span>
 <span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">2</span><span class="o">:</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span>
 <span class="w">        </span><span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">:</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="n">h</span><span class="w">  </span><span class="mi">0</span><span class="w">  </span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="n">h</span><span class="p">]</span><span class="w"> </span><span class="c"># In the interior points, use a second-order centered difference</span>
 <span class="w">    </span><span class="k">end</span>
-<span class="w">    </span><span class="n">D</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">:</span><span class="n">n</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">h</span><span class="w">  </span><span class="mi">1</span><span class="o">/</span><span class="n">h</span><span class="p">]</span><span class="w"> </span><span class="c"># Use a first-order backward difference at the right boundary</span>
+<span class="w">    </span><span class="n">D</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">:</span><span class="n">n</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">h</span><span class="w">  </span><span class="mi">1</span><span class="o">/</span><span class="n">h</span><span class="p">]</span><span class="w">            </span><span class="c"># Use a first-order backward difference at the right boundary</span>
 <span class="w">    </span><span class="n">D</span>
 <span class="k">end</span>
 <span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">LinRange</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span>
@@ -1013,8 +1018,8 @@ for some <span class="math notranslate nohighlight">\(\tilde x\)</span> that is 
 <section id="second-order-derivative-with-dirichlet-boundary-conditions">
 <h2>6. Second order derivative with Dirichlet boundary conditions<a class="headerlink" href="#second-order-derivative-with-dirichlet-boundary-conditions" title="Link to this heading">#</a></h2>
 <p>Recall the Poisson equation. Recall the <a class="reference external" href="https://sdsu-math693b.github.io/spring26/lectures/module1-3_intro_to_pdes.html">Intro to PDEs lecture note</a>.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-861c897b-700a-46c2-a364-a46625485771">
-<span class="eqno">(8)<a class="headerlink" href="#equation-861c897b-700a-46c2-a364-a46625485771" title="Permalink to this equation">#</a></span>\[\begin{gather} -\frac{d^2 u}{dx^2} = f(x) \quad x \in \Omega = (-1,1) \\
+<div class="amsmath math notranslate nohighlight" id="equation-b1a5ff5e-d8c7-40ff-b73e-2b4927043f88">
+<span class="eqno">(8)<a class="headerlink" href="#equation-b1a5ff5e-d8c7-40ff-b73e-2b4927043f88" title="Permalink to this equation">#</a></span>\[\begin{gather} -\frac{d^2 u}{dx^2} = f(x) \quad x \in \Omega = (-1,1) \\
 u(-1) = a \quad \frac{du}{dx}(1) = b .
 \end{gather}\]</div>
 <ul>
@@ -1332,8 +1337,8 @@ p(x) = c_0 + c_1 x + c_2 x^2 + \dotsb.
 \]</div>
 </p>
 <p>What is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b4609d9e-3683-4823-b375-4875977b706e">
-<span class="eqno">(9)<a class="headerlink" href="#equation-b4609d9e-3683-4823-b375-4875977b706e" title="Permalink to this equation">#</a></span>\[\begin{align} p(0) &amp;= c_0 \\
+<div class="amsmath math notranslate nohighlight" id="equation-64af5d2f-5d1c-4d18-bb9f-34e75a6f9862">
+<span class="eqno">(9)<a class="headerlink" href="#equation-64af5d2f-5d1c-4d18-bb9f-34e75a6f9862" title="Permalink to this equation">#</a></span>\[\begin{align} p(0) &amp;= c_0 \\
 p'(0) &amp;= c_1 \\ 
 p''(0) &amp;= c_2 \cdot 2\\
 p^{(k)}(0) &amp;= c_k \cdot k! .
