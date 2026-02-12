@@ -194,7 +194,6 @@
 <li class="toctree-l2"><a class="reference internal" href="module1-5_finite_differences.html">5) Finite Differences</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">6) Introduction to Numerical Analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="module1-7_fd_solutions.html">7) FD Solutions</a></li>
-
 </ul>
 </details></li>
 </ul>
@@ -512,8 +511,8 @@ document.write(`
 <section id="introduction-to-consistency">
 <h2>2. Introduction to Consistency<a class="headerlink" href="#introduction-to-consistency" title="Link to this heading">#</a></h2>
 <p>Last time, we found one possible approximation to the heat equation:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-27a53784-5639-4d54-abdb-759101ce9a7e">
-<span class="eqno">(7)<a class="headerlink" href="#equation-27a53784-5639-4d54-abdb-759101ce9a7e" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-ba33525b-a83e-461f-9b95-12114222c02c">
+<span class="eqno">(7)<a class="headerlink" href="#equation-ba33525b-a83e-461f-9b95-12114222c02c" title="Permalink to this equation">#</a></span>\[\begin{align}
 v_t &amp;= \nu v_{xx}, &amp;&amp; x\in(0,1),\ t&gt;0, \tag{1.2.1}\\
 v(x,0) &amp;= f(x), &amp;&amp; x\in[0,1], \tag{1.2.2}\\
 v(0,t) &amp;= a(t),\quad v(1,t)=b(t), &amp;&amp; t\ge 0. \tag{1.2.3}
@@ -1248,9 +1247,12 @@ u^{n+1}_k = u^{n-1}_k + \frac{2 \nu \Delta t}{\Delta x^2} \left( u_{k+1}^n -2 u_
 <p>To derive any order approximation Finite Difference (FD) scheme, we can use a method called the Method of Undetermined Coefficients.</p>
 <p>We first start by noting that for the derivatives we have seen so far (first-order time derivative, and first-order and second-order spatial derivatives) we always needed one more grid point than the desired order of accuracy. For instance, to obtain a first-order accurate scheme of a first order derivative, we needed two grid points. And, for a second-order accurate scheme of a second order derivative, we needed three grid points.</p>
 <p>This builds up intuition that, for instance, we could not approximate <span class="math notranslate nohighlight">\(v_{xx}\)</span> to the fourth order of accuracy by using only three grid points: <span class="math notranslate nohighlight">\(x = k \Delta x\)</span>, and <span class="math notranslate nohighlight">\(x = (k \pm 1)\Delta x\)</span>. We shall see that to have a fourth-order approximation of <span class="math notranslate nohighlight">\(v_{xx}\)</span>, we need a <span class="math notranslate nohighlight">\(5\)</span>-point stencil touching the points <span class="math notranslate nohighlight">\(x = k \Delta x\)</span>, <span class="math notranslate nohighlight">\(x = (k \pm 1)\Delta x\)</span>, and <span class="math notranslate nohighlight">\(x = (k \pm 2)\Delta x\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <ul class="simple">
 <li><p>To have a <span class="math notranslate nohighlight">\(k\)</span>-order approximation in 1D, we need <span class="math notranslate nohighlight">\((k+1)\)</span> grid points.</p></li>
 </ul>
+</div>
 <p>Let’s re-derive the second-order approximation of the secon derivative <span class="math notranslate nohighlight">\(u_{xx}\)</span>. We know that we need three coefficients.</p>
 <p>We can write the ansatz</p>
 <div class="math notranslate nohighlight">
