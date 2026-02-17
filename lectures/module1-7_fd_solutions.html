@@ -63,6 +63,7 @@
     <link rel="icon" href="../_static/SDSU-math693b_logo.svg"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="8) Hyperbolic Equations" href="module2-1_hyperbolic_equations.html" />
     <link rel="prev" title="6) Introduction to Numerical Analysis" href="module1-6_intro_NA.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -193,6 +194,7 @@
 <li class="toctree-l2"><a class="reference internal" href="module1-5_finite_differences.html">5) Finite Differences</a></li>
 <li class="toctree-l2"><a class="reference internal" href="module1-6_intro_NA.html">6) Introduction to Numerical Analysis</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">7) FD Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module2-1_hyperbolic_equations.html">8) Hyperbolic Equations</a></li>
 </ul>
 </details></li>
 </ul>
@@ -1009,6 +1011,12 @@ u'(x_n) \approx \frac{2u_{n} - 2u_{n-1}}{2h}
 <ul class="simple">
 <li><p>But I thought we had chosen a second-order centered difference formula for the interior points? Then why do we get a lower order?</p></li>
 </ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>In general, the approximation order of a problem is the <em>lowest</em> order used in any part of the problem.</p></li>
+</ul>
+</div>
 </section>
 <section id="can-we-study-it-as-a-matrix">
 <h3>Can we study it as a matrix?<a class="headerlink" href="#can-we-study-it-as-a-matrix" title="Link to this heading">#</a></h3>
@@ -1085,7 +1093,7 @@ The entries of <span class="math notranslate nohighlight">\(\Sigma\)</span> are 
 <ul class="simple">
 <li><p>the SVD exists for all matrices (including non-square and deficient matrices)</p></li>
 <li><p><span class="math notranslate nohighlight">\(U,V\)</span> have orthogonal columns (while <span class="math notranslate nohighlight">\(X\)</span> can be arbitrarily ill-conditioned).</p></li>
-<li><p>Indeed, if a matrix is symmetric and positive definite (all positive eigenvalues), then <span class="math notranslate nohighlight">\(U=V\)</span> and <span class="math notranslate nohighlight">\(\Sigma = \Lambda\)</span>.</p></li>
+<li><p>Indeed, if a matrix is symmetric and positive definite (all positive eigenvalues), then <span class="math notranslate nohighlight">\(U=X\)</span> and <span class="math notranslate nohighlight">\(\Sigma = \Lambda\)</span>.</p></li>
 <li><p>If we think of orthogonal matrices as reflections/rotations, this says any matrix can be represented by the sequence of operations: reflect/rotate, diagonally scale, and reflect/rotate again.</p></li>
 </ul>
 <div class="cell docutils container">
@@ -1121,8 +1129,8 @@ The entries of <span class="math notranslate nohighlight">\(\Sigma\)</span> are 
 <section id="second-derivative-with-dirichlet-boundary-conditions">
 <h2>6. Second-derivative with Dirichlet boundary conditions<a class="headerlink" href="#second-derivative-with-dirichlet-boundary-conditions" title="Link to this heading">#</a></h2>
 <p>Recall the Poisson equation with homogeneous Dirichelet boundary conditions:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-99cf5fad-5279-47e8-9789-13bfd6398838">
-<span class="eqno">(8)<a class="headerlink" href="#equation-99cf5fad-5279-47e8-9789-13bfd6398838" title="Permalink to this equation">#</a></span>\[\begin{gather} -\frac{d^2 u}{dx^2} = f(x) \quad x \in \Omega = (-1,1) \\
+<div class="amsmath math notranslate nohighlight" id="equation-eba49aea-b33c-4c9e-892f-2d76798545be">
+<span class="eqno">(8)<a class="headerlink" href="#equation-eba49aea-b33c-4c9e-892f-2d76798545be" title="Permalink to this equation">#</a></span>\[\begin{gather} -\frac{d^2 u}{dx^2} = f(x) \quad x \in \Omega = (-1,1) \\
 u(-1) = a, \quad u(1) = b .
 \end{gather}\]</div>
 <ul>
@@ -1503,8 +1511,8 @@ p(x) = c_0 + c_1 x + c_2 x^2 + \dotsb.
 \]</div>
 </p>
 <p>What is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d27308a7-a0f1-4171-8070-3139192d1bf6">
-<span class="eqno">(9)<a class="headerlink" href="#equation-d27308a7-a0f1-4171-8070-3139192d1bf6" title="Permalink to this equation">#</a></span>\[\begin{align} p(0) &amp;= c_0 \\
+<div class="amsmath math notranslate nohighlight" id="equation-a70ef18f-2d0f-41df-95b4-dd98cb822431">
+<span class="eqno">(9)<a class="headerlink" href="#equation-a70ef18f-2d0f-41df-95b4-dd98cb822431" title="Permalink to this equation">#</a></span>\[\begin{align} p(0) &amp;= c_0 \\
 p'(0) &amp;= c_1 \\ 
 p''(0) &amp;= c_2 \cdot 2\\
 p^{(k)}(0) &amp;= c_k \cdot k! .
@@ -1690,6 +1698,15 @@ p(0) = s^0 u
         <p class="prev-next-subtitle">previous</p>
         <p class="prev-next-title">6) Introduction to Numerical Analysis</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="module2-1_hyperbolic_equations.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">8) Hyperbolic Equations</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
