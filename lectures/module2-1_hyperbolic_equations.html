@@ -671,8 +671,8 @@ a shift to the <em>left</em>.</p></li>
 <div class="math notranslate nohighlight">
 \[\begin{split}P = \textstyle \left[\begin{array}{cc}1&amp;1\\1&amp;-1\end{array}\right]\end{split}\]</div>
 <p>Hence, the solution is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-854fd9b7-4ef1-4716-8375-a1381366220b">
-<span class="eqno">(11)<a class="headerlink" href="#equation-854fd9b7-4ef1-4716-8375-a1381366220b" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-3e2c2f3c-c6cd-4360-95bf-a6fd26f0a69f">
+<span class="eqno">(11)<a class="headerlink" href="#equation-3e2c2f3c-c6cd-4360-95bf-a6fd26f0a69f" title="Permalink to this equation">#</a></span>\[\begin{align}
 u(t,x) &amp;= \frac{1}{2}\bigg[ u_0(x-3t) + u_0(x-t) \bigg], \\
 v(t,x) &amp;= \frac{1}{2}\bigg[ u_0(x-3t) - u_0(x-t) \bigg].
 \end{align}\]</div>
@@ -882,38 +882,38 @@ u_t + a u_x =0, \quad 0\le x \le1, \ t\ge 0,
 <p>For the 1D one-way wave equation or transport equation</p>
 <div class="math notranslate nohighlight">
 \[
-u_t+au_x=0
+v_t+av_x=0
 \]</div>
 <p>we can write down a number of finite difference approximations at <span class="math notranslate nohighlight">\((t_n,x_m)\)</span>, e.g.,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-94c291c3-688c-4e90-a529-3966a170b347">
-<span class="eqno">(12)<a class="headerlink" href="#equation-94c291c3-688c-4e90-a529-3966a170b347" title="Permalink to this equation">#</a></span>\[\begin{align}
-    \displaystyle \frac{v_{k}^{n+1} - v_{k}^{n}}{\Delta t} + a \frac{
-      v_{k+1}^{n} - v_{k}^{n} }{\Delta x} = 0 &amp;&amp; \hbox{FTFS}\\ 
-    \displaystyle \frac{v_{k}^{n+1} - v_{k}^{n}}{\Delta t} + a \frac{
-      v_{k}^{n} - v_{k-1}^{n} }{\Delta x} = 0 &amp;&amp; \hbox{FTBS}\\
-    \displaystyle \frac{v_{k}^{n+1} - v_{k}^{n}}{\Delta t} + a \frac{
-      v_{k+1}^{n} - v_{k-1}^{n} }{ 2 \Delta x} = 0 &amp;&amp; \hbox{FTCS}\\
-    \displaystyle \frac{v_{k}^{n+1} - v_{k}^{n-1}}{2 \Delta t} + a \frac{
-      v_{k+1}^{n} - v_{k-1}^{n} }{ 2 \Delta x} = 0 &amp;&amp; \hbox{CTCS}, \textrm{(leapfrog)}\\
+<div class="amsmath math notranslate nohighlight" id="equation-23aa7d5e-e249-47b2-a59a-0bc537944b88">
+<span class="eqno">(12)<a class="headerlink" href="#equation-23aa7d5e-e249-47b2-a59a-0bc537944b88" title="Permalink to this equation">#</a></span>\[\begin{align}
+    \displaystyle \frac{u_{k}^{n+1} - u_{k}^{n}}{\Delta t} + a \frac{
+      u_{k+1}^{n} - u_{k}^{n} }{\Delta x} = 0 &amp;&amp; \hbox{FTFS}\\ 
+    \displaystyle \frac{u_{k}^{n+1} - u_{k}^{n}}{\Delta t} + a \frac{
+      u_{k}^{n} - u_{k-1}^{n} }{\Delta x} = 0 &amp;&amp; \hbox{FTBS}\\
+    \displaystyle \frac{u_{k}^{n+1} - u_{k}^{n}}{\Delta t} + a \frac{
+      u_{k+1}^{n} - u_{k-1}^{n} }{ 2 \Delta x} = 0 &amp;&amp; \hbox{FTCS}\\
+    \displaystyle \frac{u_{k}^{n+1} - u_{k}^{n-1}}{2 \Delta t} + a \frac{
+      u_{k+1}^{n} - u_{k-1}^{n} }{ 2 \Delta x} = 0 &amp;&amp; \hbox{CTCS}, \textrm{(leapfrog)}\\
 \end{align}\]</div>
-<p>The schemes presented so far can all be written expressing <span class="math notranslate nohighlight">\(v_k^{n+1}\)</span> as linear combinations of <span class="math notranslate nohighlight">\(v_{\mu}^{\nu}\)</span> at previous time-levels <span class="math notranslate nohighlight">\(\nu \in \{n-1,\,n\}\)</span>.</p>
+<p>The schemes presented so far can all be written expressing <span class="math notranslate nohighlight">\(u_k^{n+1}\)</span> as linear combinations of <span class="math notranslate nohighlight">\(u_{\mu}^{\nu}\)</span> at previous time-levels <span class="math notranslate nohighlight">\(\nu \in \{n-1,\,n\}\)</span>.</p>
 <p>The FTFS scheme can be written as</p>
 <div class="math notranslate nohighlight">
 \[
-  v_k^{n+1} = (1+a r) v_{k}^{n} - a r v_{k+1}^{n}
+  u_k^{n+1} = (1+a r) u_{k}^{n} - a r u_{k+1}^{n}
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(r = \Delta t/\Delta x\)</span> is the ratio of the time- and space grid sizes.</p>
 <p>This scheme is a <strong>one-step scheme</strong> since it only involves information from one previous time-level.</p>
 <p>The leapfrog scheme (CTCS) is a <strong>two-step</strong> (<strong>multi-step</strong>) scheme.</p>
-<p>For <span class="math notranslate nohighlight">\(n\)</span>-step schemes, we need to allow for initialization of the first <span class="math notranslate nohighlight">\(n\)</span> time-levels. Before we can apply an <span class="math notranslate nohighlight">\(n\)</span>-step scheme we must define <span class="math notranslate nohighlight">\(v_k^0\)</span>, <span class="math notranslate nohighlight">\(\dots\)</span>, <span class="math notranslate nohighlight">\(v_k^{n-1}\)</span>, <span class="math notranslate nohighlight">\(\forall k\)</span>.</p>
+<p>For <span class="math notranslate nohighlight">\(n\)</span>-step schemes, we need to allow for initialization of the first <span class="math notranslate nohighlight">\(n\)</span> time-levels. Before we can apply an <span class="math notranslate nohighlight">\(n\)</span>-step scheme we must define <span class="math notranslate nohighlight">\(u_k^0\)</span>, <span class="math notranslate nohighlight">\(\dots\)</span>, <span class="math notranslate nohighlight">\(u_k^{n-1}\)</span>, <span class="math notranslate nohighlight">\(\forall k\)</span>.</p>
 <section id="example-using-leapfrog">
 <h4>5.2 Example using Leapfrog<a class="headerlink" href="#example-using-leapfrog" title="Link to this heading">#</a></h4>
 <div class="math notranslate nohighlight">
-\[u_t+u_x=0\]</div>
+\[v_t+v_x=0\]</div>
 <p>with initial condition</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-  u_0(x) = \left\{ \begin{array}{ll}
+  v_0(x) = \left\{ \begin{array}{ll}
       1-|x| &amp; , \hbox{ if}\ |x|\le1 \\
       0 &amp; , \hbox{ otherwise}
     \end{array}\right.
@@ -921,7 +921,7 @@ u_t+au_x=0
 <p>and boundary condition</p>
 <div class="math notranslate nohighlight">
 \[
-  u(t,-2) = 0.
+  v(t,-2) = 0.
 \]</div>
 <p>Let’s try with different <span class="math notranslate nohighlight">\(r = \Delta t/\Delta x\)</span>.</p>
 <div class="cell docutils container">
@@ -1073,11 +1073,11 @@ u_t+au_x=0
 <div class="math notranslate nohighlight">
 \[\begin{split}
  \begin{array}{rll}
-      \displaystyle \frac{v_{k}^{n+1} - v_{k}^{n-1}}{2\Delta t} + a \frac{
-        v_{k+1}^{n} - v_{k-1}^{n} }{ 2\Delta x} = 0 &amp;&amp; \hbox{
+      \displaystyle \frac{u_{k}^{n+1} - u_{k}^{n-1}}{2\Delta t} + a \frac{
+        u_{k+1}^{n} - u_{k-1}^{n} }{ 2\Delta x} = 0 &amp;&amp; \hbox{
         Leapfrog}\\
-      \displaystyle \frac{ v_k^{n+1} - \frac{1}{2}(v_{k+1}^n+v_{k-1}^n)}
-      {\Delta t} + a \frac{v_{k+1}^n-v_{k-1}^n}{2\Delta x} = 0 &amp;&amp; \hbox{
+      \displaystyle \frac{u_k^{n+1} - \frac{1}{2}(u_{k+1}^n + u_{k-1}^n)}
+      {\Delta t} + a \frac{u_{k+1}^n- u_{k-1}^n}{2\Delta x} = 0 &amp;&amp; \hbox{
         Lax-Friedrichs}
     \end{array}
 \end{split}\]</div>
@@ -1087,11 +1087,11 @@ u_t+au_x=0
 <h4>Example 8.2:<a class="headerlink" href="#example-8-2" title="Link to this heading">#</a></h4>
 <p>Same example as above:</p>
 <div class="math notranslate nohighlight">
-\[u_t+u_x=0\]</div>
+\[v_t+v_x=0\]</div>
 <p>with initial condition</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-  u_0(x) = \left\{ \begin{array}{ll}
+  v_0(x) = \left\{ \begin{array}{ll}
       1-|x| &amp; , \hbox{ if}\ |x|\le1 \\
       0 &amp; , \hbox{ otherwise}
     \end{array}\right.
@@ -1099,7 +1099,7 @@ u_t+au_x=0
 <p>and boundary condition</p>
 <div class="math notranslate nohighlight">
 \[
-  u(t,-2) = 0.
+  v(t,-2) = 0.
 \]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1205,7 +1205,7 @@ u_t+au_x=0
 <section id="stability-of-hyperbolic-pdes">
 <h2>6. Stability of hyperbolic PDEs<a class="headerlink" href="#stability-of-hyperbolic-pdes" title="Link to this heading">#</a></h2>
 <p>We now turn our attention to the key stability criterion for hyperbolic PDEs.</p>
-<p>In the example above, we saw some numerical evidence of the leapfrog scheme (applied to <span class="math notranslate nohighlight">\(u_t+au_x=0\)</span>, <span class="math notranslate nohighlight">\(a=1\)</span>) breaking down when <span class="math notranslate nohighlight">\( r&gt;1\)</span>.</p>
+<p>In the example above, we saw some numerical evidence of the leapfrog scheme (applied to <span class="math notranslate nohighlight">\(v_t+av_x=0\)</span>, <span class="math notranslate nohighlight">\(a=1\)</span>) breaking down when <span class="math notranslate nohighlight">\( r&gt;1\)</span>.</p>
 <p>The condition <span class="math notranslate nohighlight">\(|a r|&lt;1\)</span> is <strong>necessary</strong> for stability of many <em>explicit</em> FDS.</p>
 <ul class="simple">
 <li><p>Consistency implies that the solution of the PDE, <em>if it is smooth</em>, is an approximate solution of the finite difference scheme (FDS).</p></li>
@@ -1228,16 +1228,16 @@ u_{k}^{n+1} = u_{k}^{n} - \underbrace{\frac{\Delta t}{\Delta x}}_{r} u_{k+1}^n -
 <p>Let the initial condition be given by:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-  u_0(x) = \left\{ \begin{array}{ll}
+  v_0(x) = \left\{ \begin{array}{ll}
       1 &amp; \hbox{if}\ -1\le x \le 0,\\
       0 &amp; \hbox{elsewhere}
     \end{array}\right.
 \end{split}\]</div>
-<p>Hence the exact solution is <span class="math notranslate nohighlight">\(u(t,x) = u_0(x-t)\)</span>, i.e., a “hump” of height and width one, traveling to the right with unitary speed.</p>
+<p>Hence the exact solution is <span class="math notranslate nohighlight">\(v(t,x) = v_0(x-t)\)</span>, i.e., a “hump” of height and width one, traveling to the right with unitary speed.</p>
 <p>The IC for the FDS is discretized as:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-  v_k^0 = \left\{ \begin{array}{ll}
+  u_k^0 = \left\{ \begin{array}{ll}
       1 &amp; \hbox{if}\ -1\le k \Delta x \le 0,\\
       0 &amp; \hbox{elsewhere}
     \end{array}\right.
@@ -1247,8 +1247,8 @@ u_{k}^{n+1} = u_{k}^{n} - \underbrace{\frac{\Delta t}{\Delta x}}_{r} u_{k+1}^n -
 <p>The figure above illustrates how the exact solution propagates; it is one in the pink band/region, and zero outside the band.</p>
 <p>The IC of the FD scheme says that the values are zeros everywhere, except at the four points: <span class="math notranslate nohighlight">\(u_0^0\)</span>, <span class="math notranslate nohighlight">\(u_{-1}^0\)</span>, <span class="math notranslate nohighlight">\(u_{-2}^0\)</span>, and <span class="math notranslate nohighlight">\(u_{-3}^0\)</span>, where it is <span class="math notranslate nohighlight">\(1\)</span>.</p>
 <p><img alt="Representation of how the FTFS scheme propagates" src="../_images/fds_soln.svg" /></p>
-<p>The figure above illustrates how the FD scheme solution propagates. In particular we have that <span class="math notranslate nohighlight">\(v_k^n\equiv0\)</span>, <span class="math notranslate nohighlight">\(\forall k&gt;0,\ n\ge0\)</span>. Hence, <span class="math notranslate nohighlight">\(v_k^n \not\rightarrow u(t^n,x_k)\)</span> for <span class="math notranslate nohighlight">\((t^n,x_k)\)</span> in the part of the band strictly in the right half plane - <span class="math notranslate nohighlight">\(u\)</span> is one there, but <span class="math notranslate nohighlight">\(v_k^n\)</span> is zero, no matter how much we refine the grid.</p>
-<p>If a scheme is <em>convergent</em>, then as <span class="math notranslate nohighlight">\(v_k^n\)</span> converges to <span class="math notranslate nohighlight">\(u(t,x)\)</span>, then  <span class="math notranslate nohighlight">\(v_k^n\)</span> is bounded in some sense; this is the essence of <em>stability</em>.</p>
+<p>The figure above illustrates how the FD scheme solution propagates. In particular we have that <span class="math notranslate nohighlight">\(u_k^n\equiv0\)</span>, <span class="math notranslate nohighlight">\(\forall k&gt;0,\ n\ge0\)</span>. Hence, <span class="math notranslate nohighlight">\(u_k^n \not\rightarrow v(t^n,x_k)\)</span> for <span class="math notranslate nohighlight">\((t^n,x_k)\)</span> in the part of the band strictly in the right half plane - <span class="math notranslate nohighlight">\(v\)</span> is one there, but <span class="math notranslate nohighlight">\(u_k^n\)</span> is zero, no matter how much we refine the grid.</p>
+<p>If a scheme is <em>convergent</em>, then as <span class="math notranslate nohighlight">\(u_k^n\)</span> converges to <span class="math notranslate nohighlight">\(v(t,x)\)</span>, then  <span class="math notranslate nohighlight">\(u_k^n\)</span> is bounded in some sense; this is the essence of <em>stability</em>.</p>
 <ul class="simple">
 <li><p>For almost all schemes there are restrictions on the way <span class="math notranslate nohighlight">\(\Delta x\)</span> and <span class="math notranslate nohighlight">\(\Delta t\)</span> can be chosen so that the particular scheme is stable.</p></li>
 </ul>
@@ -1262,7 +1262,7 @@ u_{k}^{n+1} = u_{k}^{n} - \underbrace{\frac{\Delta t}{\Delta x}}_{r} u_{k+1}^n -
 </ul>
 <div class="math notranslate nohighlight">
 \[
-v_k^{n+1} = \sum^{\hbox{\tiny finite}}_{n'\le n} v_{k'}^{n'}
+u_k^{n+1} = \sum^{\hbox{\tiny finite}}_{n'\le n} u_{k'}^{n'}
 \]</div>
 <ul class="simple">
 <li><p>Implicit schemes, where the sum may contain terms with <span class="math notranslate nohighlight">\(n'=n+1\)</span> on the RHS, will be discussed in the future.</p></li>
@@ -1276,19 +1276,19 @@ v_k^{n+1} = \sum^{\hbox{\tiny finite}}_{n'\le n} v_{k'}^{n'}
 <p>For an explicit scheme for the hyperbolic equation</p>
 <div class="math notranslate nohighlight">
 \[
-u_t + a u_x = 0
+v_t + a v_x = 0
 \]</div>
 <p>of the form</p>
 <div class="math notranslate nohighlight">
 \[
- v_k^{n+1} = \alpha v_{k+1}^n + \beta v_k^n + \gamma v_{k-1}^n
+ u_k^{n+1} = \alpha u_{k+1}^n + \beta u_k^n + \gamma u_{k-1}^n
 \]</div>
 <p>with <span class="math notranslate nohighlight">\(r = \Delta t/\Delta x\)</span> held constant, a <em>necessary</em> condition for <em>stability</em> is the <strong>Courant-Friedrichs-Lewy (CFL)condition</strong>,</p>
 <div class="math notranslate nohighlight">
 \[
     |a r|\le 1.
 \]</div>
-<p>For systems of equations for which <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> is a vector and <span class="math notranslate nohighlight">\(\alpha\)</span>, <span class="math notranslate nohighlight">\(\beta\)</span>, and <span class="math notranslate nohighlight">\(\gamma\)</span> are matrices, we must have
+<p>For systems of equations for which <span class="math notranslate nohighlight">\(\mathbf{u}\)</span> is a vector and <span class="math notranslate nohighlight">\(\alpha\)</span>, <span class="math notranslate nohighlight">\(\beta\)</span>, and <span class="math notranslate nohighlight">\(\gamma\)</span> are matrices, we must have
 <span class="math notranslate nohighlight">\(|a_i r|\le1\)</span> for all eigenvalues <span class="math notranslate nohighlight">\(a_i\)</span> of the matrix <span class="math notranslate nohighlight">\(A\)</span>.</p>
 </div>
 <p><img alt="Representation of the region of dependence and CFL condition" src="../_images/CFL.svg" /></p>
