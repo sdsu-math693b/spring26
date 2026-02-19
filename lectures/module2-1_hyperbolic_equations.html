@@ -651,8 +651,8 @@ This picture shows a volume with low pressure near the rear of the aircraft at h
 <div class="math notranslate nohighlight">
 \[\begin{split}P = \textstyle \left[\begin{array}{cc}1&amp;1\\1&amp;-1\end{array}\right]\end{split}\]</div>
 <p>Hence, the solution is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e2ee1ca8-cc89-4968-b1d7-0743ab0f6d64">
-<span class="eqno">(11)<a class="headerlink" href="#equation-e2ee1ca8-cc89-4968-b1d7-0743ab0f6d64" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-e778bf31-7206-4745-be2b-e709da572544">
+<span class="eqno">(11)<a class="headerlink" href="#equation-e778bf31-7206-4745-be2b-e709da572544" title="Permalink to this equation">#</a></span>\[\begin{align}
 u(t,x) &amp;= \frac{1}{2}\bigg[ u_0(x-3t) + u_0(x-t) \bigg], \\
 v(t,x) &amp;= \frac{1}{2}\bigg[ u_0(x-3t) - u_0(x-t) \bigg].
 \end{align}\]</div>
@@ -809,8 +809,8 @@ u_t + a u_x =0, \quad 0\le x \le1, \ t\ge 0,
 u_t+au_x=0
 \]</div>
 <p>we can write down a number of finite difference approximations at <span class="math notranslate nohighlight">\((t_n,x_m)\)</span>, e.g.,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fde22100-302b-4987-a470-379357f3ecc9">
-<span class="eqno">(12)<a class="headerlink" href="#equation-fde22100-302b-4987-a470-379357f3ecc9" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-34bf5ea8-ebc8-4555-a14c-58c41fc77a04">
+<span class="eqno">(12)<a class="headerlink" href="#equation-34bf5ea8-ebc8-4555-a14c-58c41fc77a04" title="Permalink to this equation">#</a></span>\[\begin{align}
     \displaystyle \frac{v_{k}^{n+1} - v_{k}^{n}}{\Delta t} + a \frac{
       v_{k+1}^{n} - v_{k}^{n} }{\Delta x} = 0 &amp;&amp; \hbox{FTFS}\\ 
     \displaystyle \frac{v_{k}^{n+1} - v_{k}^{n}}{\Delta t} + a \frac{
@@ -1262,7 +1262,8 @@ r^{-1} \ge |a|.
 <p class="admonition-title">Definition</p>
 <p>The difference scheme <span class="math notranslate nohighlight">\(\mathbf{u}^{n+1} = Q \mathbf{u}^{n} , n \geq 0\)</span> is said to be <strong>stable</strong> with respect to the norm <span class="math notranslate nohighlight">\(\| \cdot \|\)</span> if there exists positive constants <span class="math notranslate nohighlight">\(\Delta x_0\)</span> and <span class="math notranslate nohighlight">\(\Delta t_0\)</span>, and non-negative constants <span class="math notranslate nohighlight">\(K\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> such that</p>
 <div class="math notranslate nohighlight">
-\[\| \mathbf{u}^{n+1}  \| \leq K e^{\beta t} \| \mathbf{u}^0 \|,
+\[
+\| \mathbf{u}^{n+1}  \| \leq K e^{\beta t} \| \mathbf{u}^0 \|,
 \]</div>
 <p>for <span class="math notranslate nohighlight">\(0 \leq t = (n+1) \Delta t\)</span>, <span class="math notranslate nohighlight">\(0 &lt; \Delta x \leq \Delta x_0\)</span> and <span class="math notranslate nohighlight">\(0 &lt; \Delta t \leq \Delta t_0\)</span>.</p>
 </div>
@@ -1270,10 +1271,11 @@ r^{-1} \ge |a|.
 <ul class="simple">
 <li><p>With this defintion, the solution is allowed to grow with time, but not with the number of <em>time steps</em>.</p></li>
 </ul>
-<p>Another common definition that is used is one that does <em>not</em> allow for exponential growth, as in:
-$$</p>
-<p>| \mathbf{u}^{n+1}  | \leq K  | \mathbf{u}^0 |.
-$$</p>
+<p>Another common definition that is used is one that does <em>not</em> allow for exponential growth, as in:</p>
+<div class="math notranslate nohighlight">
+\[
+\| \mathbf{u}^{n+1}  \| \leq K  \| \mathbf{u}^0 \|.
+\]</div>
 <p>This latter definition of stability implies that the solutions to the difference equation must be <em>bounded</em>.</p>
 <div class="admonition-proposition admonition">
 <p class="admonition-title">Proposition</p>
