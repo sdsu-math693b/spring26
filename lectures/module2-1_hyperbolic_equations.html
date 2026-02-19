@@ -671,8 +671,8 @@ a shift to the <em>left</em>.</p></li>
 <div class="math notranslate nohighlight">
 \[\begin{split}P = \textstyle \left[\begin{array}{cc}1&amp;1\\1&amp;-1\end{array}\right]\end{split}\]</div>
 <p>Hence, the solution is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-49f1df7e-05e5-4ad4-840b-7adf7b379b1a">
-<span class="eqno">(11)<a class="headerlink" href="#equation-49f1df7e-05e5-4ad4-840b-7adf7b379b1a" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-ce441a3a-2f87-492d-b7d2-63a51dfbef46">
+<span class="eqno">(11)<a class="headerlink" href="#equation-ce441a3a-2f87-492d-b7d2-63a51dfbef46" title="Permalink to this equation">#</a></span>\[\begin{align}
 u(t,x) &amp;= \frac{1}{2}\bigg[ u_0(x-3t) + u_0(x-t) \bigg], \\
 v(t,x) &amp;= \frac{1}{2}\bigg[ u_0(x-3t) - u_0(x-t) \bigg].
 \end{align}\]</div>
@@ -885,8 +885,8 @@ u_t + a u_x =0, \quad 0\le x \le1, \ t\ge 0,
 v_t+av_x=0
 \]</div>
 <p>we can write down a number of finite difference approximations at <span class="math notranslate nohighlight">\((t_n,x_m)\)</span>, e.g.,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9cf143cd-99c0-4c5c-8ff4-025d0c23b9e8">
-<span class="eqno">(12)<a class="headerlink" href="#equation-9cf143cd-99c0-4c5c-8ff4-025d0c23b9e8" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-2b716d8f-ba53-44b5-a846-008be0351300">
+<span class="eqno">(12)<a class="headerlink" href="#equation-2b716d8f-ba53-44b5-a846-008be0351300" title="Permalink to this equation">#</a></span>\[\begin{align}
     \displaystyle \frac{u_{k}^{n+1} - u_{k}^{n}}{\Delta t} + a \frac{
       u_{k+1}^{n} - u_{k}^{n} }{\Delta x} = 0 &amp;&amp; \hbox{FTFS}\\ 
     \displaystyle \frac{u_{k}^{n+1} - u_{k}^{n}}{\Delta t} + a \frac{
@@ -1262,7 +1262,7 @@ u_{k}^{n+1} = u_{k}^{n} - \underbrace{\frac{\Delta t}{\Delta x}}_{r} u_{k+1}^n -
 </ul>
 <div class="math notranslate nohighlight">
 \[
-u_k^{n+1} = \sum^{\hbox{\tiny finite}}_{n'\le n} u_{k'}^{n'}
+u_k^{n+1} = \sum^{\textrm{finite}}_{n'\le n} u_{k'}^{n'}
 \]</div>
 <ul class="simple">
 <li><p>Implicit schemes, where the sum may contain terms with <span class="math notranslate nohighlight">\(n'=n+1\)</span> on the RHS, will be discussed in the future.</p></li>
