@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   version="1.1"
+   id="svg1464"
+   width="220"
+   height="388"
+   viewBox="0 0 220 388"
+   sodipodi:docname="IBVP_aneg_spec.eps"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1468">
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath1482">
+      <path
+         d="M 0,0 H 1650 V 2910 H 0 Z m 1642,324 v 72 h -172.2 l 144,-36 -144,-36 z"
+         clip-rule="evenodd"
+         id="path1480" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath1496">
+      <path
+         d="M 0,0 H 1650 V 2910 H 0 Z m 229,2889 h -72 v -172.2 l 36,144 36,-144 z"
+         clip-rule="evenodd"
+         id="path1494" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath1512">
+      <path
+         d="M 0,0 H 1650 V 2910 H 0 Z m 195.398,1100.4 -20.398,-30 84,-55.8 -49.801,54.6 69.602,-24.6 z"
+         clip-rule="evenodd"
+         id="path1510" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath1526">
+      <path
+         d="M 0,0 H 1650 V 2910 H 0 Z m 195.398,740.398 -20.398,-30 84,-55.796 -49.801,54.597 69.602,-24.597 z"
+         clip-rule="evenodd"
+         id="path1524" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath1540">
+      <path
+         d="M 0,0 H 1650 V 2910 H 0 Z m 195.398,1460.4 -20.398,-30 84,-55.8 -49.801,54.6 69.602,-24.6 z"
+         clip-rule="evenodd"
+         id="path1538" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath1554">
+      <path
+         d="M 0,0 H 1650 V 2910 H 0 Z m 195.398,1820.4 -20.398,-30 84,-55.8 -49.801,54.6 69.602,-24.6 z"
+         clip-rule="evenodd"
+         id="path1552" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath1568">
+      <path
+         d="M 0,0 H 1650 V 2910 H 0 Z m 195.398,2180.4 -20.398,-30 84,-55.8 -49.801,54.6 69.602,-24.6 z"
+         clip-rule="evenodd"
+         id="path1566" />
+    </clipPath>
+  </defs>
+  <sodipodi:namedview
+     id="namedview1466"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false" />
+  <g
+     id="g1472"
+     inkscape:groupmode="layer"
+     inkscape:label="Page 1"
+     transform="matrix(1.3333333,0,0,-1.3333333,0,388)">
+    <g
+       id="g1474"
+       transform="scale(0.1)">
+      <g
+         id="g1476">
+        <g
+           id="g1478"
+           clip-path="url(#clipPath1482)">
+          <path
+             d="M 13,360 H 1633"
+             style="fill:none;stroke:#000000;stroke-width:9;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+             id="path1484" />
+        </g>
+      </g>
+      <path
+         d="m 1469.8,324 144,36 -144,36 z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none"
+         id="path1486" />
+      <path
+         d="m 1469.8,324 144,36 -144,36 z"
+         style="fill:none;stroke:#000000;stroke-width:9;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+         id="path1488" />
+      <g
+         id="g1490">
+        <g
+           id="g1492"
+           clip-path="url(#clipPath1496)">
+          <path
+             d="M 193,180 V 2880"
+             style="fill:none;stroke:#000000;stroke-width:9;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+             id="path1498" />
+        </g>
+      </g>
+      <path
+         d="m 229,2716.8 -36,144 -36,-144 z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none"
+         id="path1500" />
+      <path
+         d="m 229,2716.8 -36,144 -36,-144 z"
+         style="fill:none;stroke:#000000;stroke-width:9;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+         id="path1502" />
+      <path
+         d="M 1273,270 V 2880"
+         style="fill:none;stroke:#000000;stroke-width:4.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+         id="path1504" />
+      <g
+         id="g1506">
+        <g
+           id="g1508"
+           clip-path="url(#clipPath1512)">
+          <path
+             d="M 1273,360 193,1080"
+             style="fill:none;stroke:#000000;stroke-width:4.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+             id="path1514" />
+        </g>
+      </g>
+      <path
+         d="M 278.801,1044.6 209.199,1069.2 259,1014.6 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none"
+         id="path1516" />
+      <path
+         d="M 278.801,1044.6 209.199,1069.2 259,1014.6 Z"
+         style="fill:none;stroke:#000000;stroke-width:9;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+         id="path1518" />
+      <g
+         id="g1520">
+        <g
+           id="g1522"
+           clip-path="url(#clipPath1526)">
+          <path
+             d="M 733,360 193,720"
+             style="fill:none;stroke:#000000;stroke-width:4.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+             id="path1528" />
+        </g>
+      </g>
+      <path
+         d="M 278.801,684.602 209.199,709.199 259,654.602 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none"
+         id="path1530" />
+      <path
+         d="M 278.801,684.602 209.199,709.199 259,654.602 Z"
+         style="fill:none;stroke:#000000;stroke-width:9;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+         id="path1532" />
+      <g
+         id="g1534">
+        <g
+           id="g1536"
+           clip-path="url(#clipPath1540)">
+          <path
+             d="M 1273,720 193,1440"
+             style="fill:none;stroke:#000000;stroke-width:4.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+             id="path1542" />
+        </g>
+      </g>
+      <path
+         d="M 278.801,1404.6 209.199,1429.2 259,1374.6 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none"
+         id="path1544" />
+      <path
+         d="M 278.801,1404.6 209.199,1429.2 259,1374.6 Z"
+         style="fill:none;stroke:#000000;stroke-width:9;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+         id="path1546" />
+      <g
+         id="g1548">
+        <g
+           id="g1550"
+           clip-path="url(#clipPath1554)">
+          <path
+             d="M 1273,1080 193,1800"
+             style="fill:none;stroke:#000000;stroke-width:4.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+             id="path1556" />
+        </g>
+      </g>
+      <path
+         d="M 278.801,1764.6 209.199,1789.2 259,1734.6 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none"
+         id="path1558" />
+      <path
+         d="M 278.801,1764.6 209.199,1789.2 259,1734.6 Z"
+         style="fill:none;stroke:#000000;stroke-width:9;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+         id="path1560" />
+      <g
+         id="g1562">
+        <g
+           id="g1564"
+           clip-path="url(#clipPath1568)">
+          <path
+             d="M 1273,1440 193,2160"
+             style="fill:none;stroke:#000000;stroke-width:4.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+             id="path1570" />
+        </g>
+      </g>
+      <path
+         d="M 278.801,2124.6 209.199,2149.2 259,2094.6 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none"
+         id="path1572" />
+      <path
+         d="M 278.801,2124.6 209.199,2149.2 259,2094.6 Z"
+         style="fill:none;stroke:#000000;stroke-width:9;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+         id="path1574" />
+      <path
+         d="M 193,315 H 1273"
+         style="fill:none;stroke:#ff0000;stroke-width:27;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+         id="path1576" />
+      <path
+         d="M 1318,405 V 2880"
+         style="fill:none;stroke:#ff0000;stroke-width:27;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+         id="path1578" />
+      <g
+         id="g1580"
+         transform="scale(10)">
+        <text
+           xml:space="preserve"
+           transform="matrix(1,0,0,-1,19.3,0)"
+           style="font-variant:normal;font-weight:bold;font-size:14.4px;font-family:Helvetica;-inkscape-font-specification:Helvetica-Bold;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+           id="text1584"><tspan
+             x="0 108"
+             y="0"
+             sodipodi:role="line"
+             id="tspan1582">01</tspan></text>
+      </g>
+    </g>
+  </g>
+</svg>

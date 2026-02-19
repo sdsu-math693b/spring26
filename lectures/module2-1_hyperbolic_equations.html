@@ -651,8 +651,8 @@ This picture shows a volume with low pressure near the rear of the aircraft at h
 <div class="math notranslate nohighlight">
 \[\begin{split}P = \textstyle \left[\begin{array}{cc}1&amp;1\\1&amp;-1\end{array}\right]\end{split}\]</div>
 <p>Hence, the solution is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-32f4dd30-7178-40c6-b0c9-f7f9e0110509">
-<span class="eqno">(11)<a class="headerlink" href="#equation-32f4dd30-7178-40c6-b0c9-f7f9e0110509" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-67d1ec5b-0da6-4890-9d53-20c72143dd32">
+<span class="eqno">(11)<a class="headerlink" href="#equation-67d1ec5b-0da6-4890-9d53-20c72143dd32" title="Permalink to this equation">#</a></span>\[\begin{align}
 u(t,x) &amp;= \frac{1}{2}\bigg[ u_0(x-3t) + u_0(x-t) \bigg], \\
 v(t,x) &amp;= \frac{1}{2}\bigg[ u_0(x-3t) - u_0(x-t) \bigg].
 \end{align}\]</div>
@@ -758,10 +758,6 @@ and <span class="math notranslate nohighlight">\(P^{-1}(t,x)\)</span> are bounde
 u_t + a u_x =0, \quad 0\le x \le1, \ t\ge 0,
 \]</div>
 <p>We saw that if <span class="math notranslate nohighlight">\(a\)</span> is positive then the information propagates to the <em>right</em> and if <span class="math notranslate nohighlight">\(a\)</span> is negative it propagates to the <em>left</em>.</p>
-<!-- <div style="display: flex; gap: 20px;">
-  <img src="../img/IBVp_apos.svg" width="45%">
-  <img src="../img/IBVp_aneg.svg" width="45%">
-</div> -->
 <div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
 <div class="sd-row sd-g-2 sd-g-xs-2 sd-g-sm-2 sd-g-md-2 sd-g-lg-2 docutils">
 <div class="sd-col sd-d-flex-row sd-col-12 sd-col-xs-12 sd-col-sm-6 sd-col-md-6 sd-col-lg-4 docutils">
@@ -781,10 +777,24 @@ u_t + a u_x =0, \quad 0\le x \le1, \ t\ge 0,
 </div>
 </div>
 <p>When <span class="math notranslate nohighlight">\(a&gt;0\)</span>, in addition to the initial value <span class="math notranslate nohighlight">\(u(0,x)\)</span> <span class="math notranslate nohighlight">\(0\le x \le 1\)</span>, we must also specify the boundary value <span class="math notranslate nohighlight">\(u(t,0)\)</span> for all <span class="math notranslate nohighlight">\(t&gt;0\)</span>, and when <span class="math notranslate nohighlight">\(a&lt;0\)</span> we must specify <span class="math notranslate nohighlight">\(u(t,1)\)</span> for <span class="math notranslate nohighlight">\(t&gt;0\)</span>.</p>
-<!-- <div style="display: flex; gap: 20px;">
-  <img src="../img/IBVp_apos_spec.svg" width="45%">
-  <img src="../img/IBVp_aneg_spec.svg" width="45%">
-</div> -->
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-g-2 sd-g-xs-2 sd-g-sm-2 sd-g-md-2 sd-g-lg-2 docutils">
+<div class="sd-col sd-d-flex-row sd-col-12 sd-col-xs-12 sd-col-sm-6 sd-col-md-6 sd-col-lg-4 docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<p class="sd-card-text"><img alt="IBVP a positive with specified BCs" src="../_images/IBVp_apos_spec.svg" /></p>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row sd-col-12 sd-col-xs-12 sd-col-sm-6 sd-col-md-6 sd-col-lg-4 docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<p class="sd-card-text"><img alt="IBVP a negative with specified BCs" src="../_images/IBVp_aneg_spec.svg" /></p>
+</div>
+</div>
+</div>
+</div>
+</div>
 <p>The problem of determining a solution when both initial and boundary data are present is known as an <strong>Initial-Boundary Value Problem (IBVP)</strong>.</p>
 <p>Consider the hyperbolic system (assume <span class="math notranslate nohighlight">\(a&gt;0\)</span>, <span class="math notranslate nohighlight">\(b&gt;0\)</span>)</p>
 <div class="math notranslate nohighlight">
@@ -801,14 +811,42 @@ u_t + a u_x =0, \quad 0\le x \le1, \ t\ge 0,
   \left[\begin{array}{c}w\\z\end{array}\right]_x = 0
 \end{split}\]</div>
 <p>If <span class="math notranslate nohighlight">\(b&lt;a\)</span>, then both characteristic speeds are positive, but when <span class="math notranslate nohighlight">\(b&gt;a\)</span>, we get one positive and one negative speed.</p>
-<div style="display: flex; gap: 20px;">
-  <img src="../img/IBVP_2same.svg" width="45%">
-  <img src="../img/IBVP_2diff.svg" width="45%">
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-g-2 sd-g-xs-2 sd-g-sm-2 sd-g-md-2 sd-g-lg-2 docutils">
+<div class="sd-col sd-d-flex-row sd-col-auto sd-col-xs-auto sd-col-sm-auto sd-col-md-auto sd-col-lg-auto docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<p class="sd-card-text"><img alt="IBVP with b&lt;a" src="../_images/IBVP_2same.svg" /></p>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row sd-col-auto sd-col-xs-auto sd-col-sm-auto sd-col-md-auto sd-col-lg-auto docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<p class="sd-card-text"><img alt="IBVP with b&gt;a" src="../_images/IBVP_2diff.svg" /></p>
+</div>
+</div>
+</div>
+</div>
 </div>
 <p>In the above figure, in the left panel <span class="math notranslate nohighlight">\(b&lt;a\)</span>, so both characteristics propagate to the <em>right</em>. In the right panel <span class="math notranslate nohighlight">\(b&gt;a\)</span>, so the characteristics propagate in opposite directions.</p>
-<div style="display: flex; gap: 20px;">
-  <img src="../img/IBVP_2same_spec.svg" width="45%">
-  <img src="../img/IBVP_2diff_spec.svg" width="45%">
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-g-2 sd-g-xs-2 sd-g-sm-2 sd-g-md-2 sd-g-lg-2 docutils">
+<div class="sd-col sd-d-flex-row sd-col-auto sd-col-xs-auto sd-col-sm-auto sd-col-md-auto sd-col-lg-auto docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<p class="sd-card-text"><img alt="IBVP specified BCs with b&lt;a" src="../_images/IBVP_2same_spec.svg" /></p>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row sd-col-auto sd-col-xs-auto sd-col-sm-auto sd-col-md-auto sd-col-lg-auto docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<p class="sd-card-text"><img alt="IBVP specified BCs with b&gt;a" src="../_images/IBVP_2diff_spec.svg" /></p>
+</div>
+</div>
+</div>
+</div>
 </div>
 <p>In order for the IBVPs to be <strong>well-posed</strong> we must</p>
 <ul class="simple">
@@ -827,8 +865,8 @@ u_t + a u_x =0, \quad 0\le x \le1, \ t\ge 0,
 u_t+au_x=0
 \]</div>
 <p>we can write down a number of finite difference approximations at <span class="math notranslate nohighlight">\((t_n,x_m)\)</span>, e.g.,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1dd35af5-f198-4a40-b0e6-0bb2bf47210b">
-<span class="eqno">(12)<a class="headerlink" href="#equation-1dd35af5-f198-4a40-b0e6-0bb2bf47210b" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f5139559-04a5-430b-92d5-8310c9e562c0">
+<span class="eqno">(12)<a class="headerlink" href="#equation-f5139559-04a5-430b-92d5-8310c9e562c0" title="Permalink to this equation">#</a></span>\[\begin{align}
     \displaystyle \frac{v_{k}^{n+1} - v_{k}^{n}}{\Delta t} + a \frac{
       v_{k+1}^{n} - v_{k}^{n} }{\Delta x} = 0 &amp;&amp; \hbox{FTFS}\\ 
     \displaystyle \frac{v_{k}^{n+1} - v_{k}^{n}}{\Delta t} + a \frac{
