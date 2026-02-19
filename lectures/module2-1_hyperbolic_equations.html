@@ -559,12 +559,32 @@ a shift to the <em>left</em>.</p></li>
   u_t + a u_x =0,
 \]</div>
 <p>appears to only make sense if <span class="math notranslate nohighlight">\(u\)</span> is differentiable.</p>
-<p><img alt="Condensation near an aircraft shows evidence of a transonic expansion fan" src="../_images/transonic_expansion_fan.jpg" />
-This picture shows a volume with low pressure near the rear of the aircraft at high subsonic airspeeds. [Source: <a class="reference external" href="http://en.wikipedia.org/wiki/Transonic_speed">Transonic speed regime Wiki page</a>].</p>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-g-1 sd-g-xs-1 sd-g-sm-1 sd-g-md-1 sd-g-lg-1 docutils">
+<div class="sd-col sd-d-flex-row sd-col-auto sd-col-xs-auto sd-col-sm-auto sd-col-md-auto sd-col-lg-auto docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<p class="sd-card-text"><img alt="Condensation near an aircraft shows evidence of a transonic expansion fan" src="../_images/transonic_expansion_fan.jpg" /></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>This picture shows a volume with low pressure near the rear of the aircraft at high subsonic airspeeds. [Source: <a class="reference external" href="http://en.wikipedia.org/wiki/Transonic_speed">Transonic speed regime Wiki page</a>].</p>
 <p>Hyperbolic equations feature solutions that are discontinuous (worse than non-differentiable); e.g., the <strong>sonic boom</strong> produced by an aircraft exceeding the speed of sound (Mach-1, or <span class="math notranslate nohighlight">\(\approx\)</span> 750 miles per hour at sea level) is an example of this phenomena.</p>
 <p>The discontinuity creates a <strong>shock wave</strong>.</p>
-<p><img alt="Merging Shockwaves" src="../_images/nasa_merging_shockwaves.jpg" />
-[Source: <a class="reference external" href="https://phys.org/news/2019-03-nasa-captures-unprecedented-images-supersonic.html">Phys.org</a>]</p>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-g-1 sd-g-xs-1 sd-g-sm-1 sd-g-md-1 sd-g-lg-1 docutils">
+<div class="sd-col sd-d-flex-row sd-col-auto sd-col-xs-auto sd-col-sm-auto sd-col-md-auto sd-col-lg-auto docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<p class="sd-card-text"><img alt="Merging Shockwaves" src="../_images/nasa_merging_shockwaves.jpg" /></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>[Source: <a class="reference external" href="https://phys.org/news/2019-03-nasa-captures-unprecedented-images-supersonic.html">Phys.org</a>]</p>
 <ul class="simple">
 <li><p>Devising numerical schemes which allow for discontinuous solutions requires “a bit” of ingenuity.</p></li>
 </ul>
@@ -651,8 +671,8 @@ This picture shows a volume with low pressure near the rear of the aircraft at h
 <div class="math notranslate nohighlight">
 \[\begin{split}P = \textstyle \left[\begin{array}{cc}1&amp;1\\1&amp;-1\end{array}\right]\end{split}\]</div>
 <p>Hence, the solution is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f5c71ce1-0615-4a92-8a51-a5404b551962">
-<span class="eqno">(11)<a class="headerlink" href="#equation-f5c71ce1-0615-4a92-8a51-a5404b551962" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-854fd9b7-4ef1-4716-8375-a1381366220b">
+<span class="eqno">(11)<a class="headerlink" href="#equation-854fd9b7-4ef1-4716-8375-a1381366220b" title="Permalink to this equation">#</a></span>\[\begin{align}
 u(t,x) &amp;= \frac{1}{2}\bigg[ u_0(x-3t) + u_0(x-t) \bigg], \\
 v(t,x) &amp;= \frac{1}{2}\bigg[ u_0(x-3t) - u_0(x-t) \bigg].
 \end{align}\]</div>
@@ -865,8 +885,8 @@ u_t + a u_x =0, \quad 0\le x \le1, \ t\ge 0,
 u_t+au_x=0
 \]</div>
 <p>we can write down a number of finite difference approximations at <span class="math notranslate nohighlight">\((t_n,x_m)\)</span>, e.g.,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-27c9d09b-84af-4ae3-b9bb-06f8ee4e07fd">
-<span class="eqno">(12)<a class="headerlink" href="#equation-27c9d09b-84af-4ae3-b9bb-06f8ee4e07fd" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-94c291c3-688c-4e90-a529-3966a170b347">
+<span class="eqno">(12)<a class="headerlink" href="#equation-94c291c3-688c-4e90-a529-3966a170b347" title="Permalink to this equation">#</a></span>\[\begin{align}
     \displaystyle \frac{v_{k}^{n+1} - v_{k}^{n}}{\Delta t} + a \frac{
       v_{k+1}^{n} - v_{k}^{n} }{\Delta x} = 0 &amp;&amp; \hbox{FTFS}\\ 
     \displaystyle \frac{v_{k}^{n+1} - v_{k}^{n}}{\Delta t} + a \frac{
