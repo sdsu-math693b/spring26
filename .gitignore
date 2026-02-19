@@ -2,5 +2,6 @@
 _build/
 re
 lectures/.ipynb_checkpoints/
+lectures/*.gif
 sys
 grading-spring26/*
