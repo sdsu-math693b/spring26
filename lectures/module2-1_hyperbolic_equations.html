@@ -651,8 +651,8 @@ This picture shows a volume with low pressure near the rear of the aircraft at h
 <div class="math notranslate nohighlight">
 \[\begin{split}P = \textstyle \left[\begin{array}{cc}1&amp;1\\1&amp;-1\end{array}\right]\end{split}\]</div>
 <p>Hence, the solution is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f3e235dd-5df2-44c7-8535-eb88d7d72752">
-<span class="eqno">(11)<a class="headerlink" href="#equation-f3e235dd-5df2-44c7-8535-eb88d7d72752" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b00b5f0e-f13e-4a66-bbfb-f5dc4a682549">
+<span class="eqno">(11)<a class="headerlink" href="#equation-b00b5f0e-f13e-4a66-bbfb-f5dc4a682549" title="Permalink to this equation">#</a></span>\[\begin{align}
 u(t,x) &amp;= \frac{1}{2}\bigg[ u_0(x-3t) + u_0(x-t) \bigg], \\
 v(t,x) &amp;= \frac{1}{2}\bigg[ u_0(x-3t) - u_0(x-t) \bigg].
 \end{align}\]</div>
@@ -758,10 +758,10 @@ and <span class="math notranslate nohighlight">\(P^{-1}(t,x)\)</span> are bounde
 u_t + a u_x =0, \quad 0\le x \le1, \ t\ge 0,
 \]</div>
 <p>We saw that if <span class="math notranslate nohighlight">\(a\)</span> is positive then the information propagates to the <em>right</em> and if <span class="math notranslate nohighlight">\(a\)</span> is negative it propagates to the <em>left</em>.</p>
-<div style="display: flex; gap: 20px;">
+<!-- <div style="display: flex; gap: 20px;">
   <img src="../img/IBVp_apos.svg" width="45%">
   <img src="../img/IBVp_aneg.svg" width="45%">
-</div>
+</div> -->
 <p>When <span class="math notranslate nohighlight">\(a&gt;0\)</span>, in addition to the initial value <span class="math notranslate nohighlight">\(u(0,x)\)</span> <span class="math notranslate nohighlight">\(0\le x \le 1\)</span>, we must also specify the boundary value <span class="math notranslate nohighlight">\(u(t,0)\)</span> for all <span class="math notranslate nohighlight">\(t&gt;0\)</span>, and when <span class="math notranslate nohighlight">\(a&lt;0\)</span> we must specify <span class="math notranslate nohighlight">\(u(t,1)\)</span> for <span class="math notranslate nohighlight">\(t&gt;0\)</span>.</p>
 <!-- <div style="display: flex; gap: 20px;">
   <img src="../img/IBVp_apos_spec.svg" width="45%">
@@ -809,8 +809,8 @@ u_t + a u_x =0, \quad 0\le x \le1, \ t\ge 0,
 u_t+au_x=0
 \]</div>
 <p>we can write down a number of finite difference approximations at <span class="math notranslate nohighlight">\((t_n,x_m)\)</span>, e.g.,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3e2156c5-8ad2-4e4f-9b12-6fa1da80704f">
-<span class="eqno">(12)<a class="headerlink" href="#equation-3e2156c5-8ad2-4e4f-9b12-6fa1da80704f" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-040c62c4-cd66-469f-8b37-8094772f2d3d">
+<span class="eqno">(12)<a class="headerlink" href="#equation-040c62c4-cd66-469f-8b37-8094772f2d3d" title="Permalink to this equation">#</a></span>\[\begin{align}
     \displaystyle \frac{v_{k}^{n+1} - v_{k}^{n}}{\Delta t} + a \frac{
       v_{k+1}^{n} - v_{k}^{n} }{\Delta x} = 0 &amp;&amp; \hbox{FTFS}\\ 
     \displaystyle \frac{v_{k}^{n+1} - v_{k}^{n}}{\Delta t} + a \frac{

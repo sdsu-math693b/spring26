@@ -63,7 +63,8 @@
     <link rel="icon" href="../_static/SDSU-math693b_logo.svg"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="4) Introduction to programming in Julia" href="module1-4_intro_to_julia.html" />
+    <link rel="next" title="6) Introduction to Numerical Analysis" href="module1-6_intro_NA.html" />
+    <link rel="prev" title="4) Introduction to PDEs" href="module1-4_intro_to_pdes.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -188,9 +189,12 @@
 
 
 <li class="toctree-l2"><a class="reference internal" href="module1-2_community_projects.html">2) Community Projects</a></li>
-<li class="toctree-l2"><a class="reference internal" href="module1-3_intro_to_pdes.html">3) Introduction to PDEs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="module1-4_intro_to_julia.html">4) Introduction to programming in Julia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module1-3_intro_to_julia.html">3) Introduction to programming in Julia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module1-4_intro_to_pdes.html">4) Introduction to PDEs</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">5) Finite Differences</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module1-6_intro_NA.html">6) Introduction to Numerical Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module1-7_fd_solutions.html">7) FD Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module2-1_hyperbolic_equations.html">8) Hyperbolic Equations</a></li>
 </ul>
 </details></li>
 </ul>
@@ -466,8 +470,8 @@ document.write(`
 <section id="getting-started">
 <h3>1.2 Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading">#</a></h3>
 <p>Consider the <strong>initial–boundary value problem (IBVP)</strong> for the heat equation in 1D</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a80abcd0-3be7-4f09-89d2-98e3146ae4d7">
-<span class="eqno">(6)<a class="headerlink" href="#equation-a80abcd0-3be7-4f09-89d2-98e3146ae4d7" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-6f80a83e-7560-4be9-b3f1-c0b82eb039d6">
+<span class="eqno">(6)<a class="headerlink" href="#equation-6f80a83e-7560-4be9-b3f1-c0b82eb039d6" title="Permalink to this equation">#</a></span>\[\begin{align}
 v_t &amp;= \nu v_{xx}, &amp;&amp; x\in(0,1),\ t&gt;0, \tag{1.2.1}\\
 v(x,0) &amp;= f(x), &amp;&amp; x\in[0,1], \tag{1.2.2}\\
 v(0,t) &amp;= a(t),\quad v(1,t)=b(t), &amp;&amp; t\ge 0. \tag{1.2.3}
@@ -662,13 +666,22 @@ u^{n+1}_M = b( (n+1) \Delta t), \quad n = 0, \ldots (\textrm{B.C. on the right e
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="module1-4_intro_to_julia.html"
+       href="module1-4_intro_to_pdes.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">4) Introduction to programming in Julia</p>
+        <p class="prev-next-title">4) Introduction to PDEs</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="module1-6_intro_NA.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">6) Introduction to Numerical Analysis</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>

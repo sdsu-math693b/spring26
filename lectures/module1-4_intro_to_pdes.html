@@ -192,6 +192,9 @@
 <li class="toctree-l2"><a class="reference internal" href="module1-3_intro_to_julia.html">3) Introduction to programming in Julia</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">4) Introduction to PDEs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="module1-5_finite_differences.html">5) Finite Differences</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module1-6_intro_NA.html">6) Introduction to Numerical Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module1-7_fd_solutions.html">7) FD Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module2-1_hyperbolic_equations.html">8) Hyperbolic Equations</a></li>
 </ul>
 </details></li>
 </ul>
@@ -555,8 +558,8 @@ document.write(`
 <section id="viscous-burgers-equation">
 <h4>Viscous Burgers’ Equation<a class="headerlink" href="#viscous-burgers-equation" title="Link to this heading">#</a></h4>
 <p>Viscous Burgers’ equation</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1f098f4f-7a9c-4a51-9f4f-174ceeb7ef28">
-<span class="eqno">(1)<a class="headerlink" href="#equation-1f098f4f-7a9c-4a51-9f4f-174ceeb7ef28" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-ae783983-a1a1-4049-b095-6de74a5a08d3">
+<span class="eqno">(1)<a class="headerlink" href="#equation-ae783983-a1a1-4049-b095-6de74a5a08d3" title="Permalink to this equation">#</a></span>\[\begin{align}
 u_t + u u_x &amp;= \nu u_{xx}, &amp;&amp; x\in(0,1),\ t&gt;0, \tag{0.0.1}\\
 \textrm{Boundary Conditions (BCs): } u(0,t) &amp;= u(1,t)=0, &amp;&amp; t&gt; 0, \tag{0.0.2} \\
 \textrm{Initial Condition (IC): }u(x,0) &amp;= \sin 2 \pi x, &amp;&amp; x\in[0,1], \tag{0.0.3}
@@ -567,8 +570,8 @@ u_t + u u_x &amp;= \nu u_{xx}, &amp;&amp; x\in(0,1),\ t&gt;0, \tag{0.0.1}\\
 <section id="inviscid-burgers-equation">
 <h4>Inviscid Burgers’ Equation<a class="headerlink" href="#inviscid-burgers-equation" title="Link to this heading">#</a></h4>
 <p>Equivalent to the problem above, but without the viscosity term (i.e., for <span class="math notranslate nohighlight">\(\nu = 0\)</span>):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e00e0fd9-103d-47d6-b2a1-4836ae720606">
-<span class="eqno">(2)<a class="headerlink" href="#equation-e00e0fd9-103d-47d6-b2a1-4836ae720606" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-1c3fabab-6c68-4eb6-bc2b-663ac3ce1813">
+<span class="eqno">(2)<a class="headerlink" href="#equation-1c3fabab-6c68-4eb6-bc2b-663ac3ce1813" title="Permalink to this equation">#</a></span>\[\begin{align}
 u_t + u u_x &amp;= 0, &amp;&amp; x\in(0,1),\ t&gt;0, \tag{0.0.4}\\
 \textrm{Boundary Conditions (BCs): } u(0,t) &amp;= u(1,t)=0, &amp;&amp; t&gt; 0, \tag{0.0.5} \\
 \textrm{Initial Condition (IC): }u(x,0) &amp;= \sin 2 \pi x, &amp;&amp; x\in[0,1], \tag{0.0.6}
@@ -582,8 +585,8 @@ u_t + u u_x &amp;= 0, &amp;&amp; x\in(0,1),\ t&gt;0, \tag{0.0.4}\\
 <p>A variable-coefficients (often with discontinuities) Poisson’s problem. This problem can have many important applications ranging from incompressible
 flows to semiconductor modeling to tissue engineering.</p>
 <p>Find <span class="math notranslate nohighlight">\(u\)</span> such that</p>
-<div class="amsmath math notranslate nohighlight" id="equation-62392738-acde-43b8-9491-cd108751e7f4">
-<span class="eqno">(3)<a class="headerlink" href="#equation-62392738-acde-43b8-9491-cd108751e7f4" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-9cba36ef-98e0-4034-93dc-c01146b01f19">
+<span class="eqno">(3)<a class="headerlink" href="#equation-9cba36ef-98e0-4034-93dc-c01146b01f19" title="Permalink to this equation">#</a></span>\[\begin{align}
 -\nabla\cdot\big(\kappa(\mathbf x) \nabla u(\mathbf x)\big) &amp;= f(\mathbf x) &amp; \mathbf x &amp;\in \Omega \\
 u(\mathbf x) &amp;= g(\mathbf x) &amp; \mathbf x &amp;\in \Gamma_D \subset \partial\Omega \\
 \kappa(\mathbf x) \nabla u(\mathbf x) \cdot \mathbf{\hat n}(\mathbf x) &amp;= h(\mathbf x) &amp; \mathbf x &amp;\in \Gamma_N \subset\partial\Omega
@@ -603,8 +606,8 @@ u(\mathbf x) &amp;= g(\mathbf x) &amp; \mathbf x &amp;\in \Gamma_D \subset \part
 <section id="the-shallow-water-equations-swe">
 <h4>The shallow water equations (SWE)<a class="headerlink" href="#the-shallow-water-equations-swe" title="Link to this heading">#</a></h4>
 <p>The shallow water equations (in vector-invariant form) on a rotating sphere:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-baeea612-3474-468a-bc44-660e59c209a1">
-<span class="eqno">(4)<a class="headerlink" href="#equation-baeea612-3474-468a-bc44-660e59c209a1" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c873f7a2-f774-432a-bd41-39bb1e3877bc">
+<span class="eqno">(4)<a class="headerlink" href="#equation-c873f7a2-f774-432a-bd41-39bb1e3877bc" title="Permalink to this equation">#</a></span>\[\begin{align}
     \frac{\partial h}{\partial t} + \nabla \cdot (h \boldsymbol{u}) &amp;= 0\\
     \frac{\partial \boldsymbol{u}}{\partial t} + \nabla (\Phi + \tfrac{1}{2}\|\boldsymbol{u}\|^2)  &amp;= (\boldsymbol{u} \times (f + \nabla \times \boldsymbol{u}))\,
 \end{align}\]</div>
@@ -836,8 +839,8 @@ by this equation is an</p>
 \textrm{ellipse, } &amp; \textrm{if }a\textrm{ and }c\textrm{ have the same sign}
 \end{align*}\]</div>
 <p>We have three main canonical form classifications:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-27186313-963f-4b88-87e0-46a3b04a9338">
-<span class="eqno">(5)<a class="headerlink" href="#equation-27186313-963f-4b88-87e0-46a3b04a9338" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-bd77f7e0-4ec6-456e-b5da-c907ae4bbe84">
+<span class="eqno">(5)<a class="headerlink" href="#equation-bd77f7e0-4ec6-456e-b5da-c907ae4bbe84" title="Permalink to this equation">#</a></span>\[\begin{align}
 X^2 - Y^2 + \dots = 0,\\
 X^2 + \dots = 0,\\
 X^2 + Y^2 + \dots = 0.\\
