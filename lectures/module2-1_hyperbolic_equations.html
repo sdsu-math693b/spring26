@@ -649,8 +649,8 @@ This picture shows a volume with low pressure near the rear of the aircraft at h
 <div class="math notranslate nohighlight">
 \[\begin{split}P = \textstyle \left[\begin{array}{cc}1&amp;1\\1&amp;-1\end{array}\right]\end{split}\]</div>
 <p>Hence, the solution is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b59d4ec5-26f1-48bb-99a7-4449963885ba">
-<span class="eqno">(11)<a class="headerlink" href="#equation-b59d4ec5-26f1-48bb-99a7-4449963885ba" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-0134ac3b-14b4-4c63-bcff-4a89d912a922">
+<span class="eqno">(11)<a class="headerlink" href="#equation-0134ac3b-14b4-4c63-bcff-4a89d912a922" title="Permalink to this equation">#</a></span>\[\begin{align}
 u(t,x) &amp;= \frac{1}{2}\bigg[ u_0(x-3t) + u_0(x-t) \bigg], \\
 v(t,x) &amp;= \frac{1}{2}\bigg[ u_0(x-3t) - u_0(x-t) \bigg].
 \end{align}\]</div>
@@ -807,8 +807,8 @@ u_t + a u_x =0, \quad 0\le x \le1, \ t\ge 0,
 u_t+au_x=0
 \]</div>
 <p>we can write down a number of finite difference approximations at <span class="math notranslate nohighlight">\((t_n,x_m)\)</span>, e.g.,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-100f9b02-486f-48b0-b0cb-4d4682793ccd">
-<span class="eqno">(12)<a class="headerlink" href="#equation-100f9b02-486f-48b0-b0cb-4d4682793ccd" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d2299631-0761-4b2f-9b2c-04628af91bdf">
+<span class="eqno">(12)<a class="headerlink" href="#equation-d2299631-0761-4b2f-9b2c-04628af91bdf" title="Permalink to this equation">#</a></span>\[\begin{align}
     \displaystyle \frac{v_{k}^{n+1} - v_{k}^{n}}{\Delta t} + a \frac{
       v_{k+1}^{n} - v_{k}^{n} }{\Delta x} = 0 &amp;&amp; \hbox{FTFS}\\ 
     \displaystyle \frac{v_{k}^{n+1} - v_{k}^{n}}{\Delta t} + a \frac{
@@ -816,7 +816,7 @@ u_t+au_x=0
     \displaystyle \frac{v_{k}^{n+1} - v_{k}^{n}}{\Delta t} + a \frac{
       v_{k+1}^{n} - v_{k-1}^{n} }{ 2 \Delta x} = 0 &amp;&amp; \hbox{FTCS}\\
     \displaystyle \frac{v_{k}^{n+1} - v_{k}^{n-1}}{2 \Delta t} + a \frac{
-      v_{k+1}^{n} - v_{k-1}^{n} }{ 2 \Delta x} = 0 &amp;&amp; \hbox{CTCS, \textrm{(leapfrog)}}\\
+      v_{k+1}^{n} - v_{k-1}^{n} }{ 2 \Delta x} = 0 &amp;&amp; \hbox{CTCS}, \textrm{(leapfrog)}\\
 \end{align}\]</div>
 <p>The schemes presented so far can all be written expressing <span class="math notranslate nohighlight">\(v_k^{n+1}\)</span> as linear combinations of <span class="math notranslate nohighlight">\(v_{\mu}^{\nu}\)</span> at previous time-levels <span class="math notranslate nohighlight">\(\nu \in \{n-1,\,n\}\)</span>.</p>
 <p>The FTFS scheme can be written as</p>
