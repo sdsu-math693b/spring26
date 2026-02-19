@@ -671,8 +671,8 @@ a shift to the <em>left</em>.</p></li>
 <div class="math notranslate nohighlight">
 \[\begin{split}P = \textstyle \left[\begin{array}{cc}1&amp;1\\1&amp;-1\end{array}\right]\end{split}\]</div>
 <p>Hence, the solution is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3e2c2f3c-c6cd-4360-95bf-a6fd26f0a69f">
-<span class="eqno">(11)<a class="headerlink" href="#equation-3e2c2f3c-c6cd-4360-95bf-a6fd26f0a69f" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-49f1df7e-05e5-4ad4-840b-7adf7b379b1a">
+<span class="eqno">(11)<a class="headerlink" href="#equation-49f1df7e-05e5-4ad4-840b-7adf7b379b1a" title="Permalink to this equation">#</a></span>\[\begin{align}
 u(t,x) &amp;= \frac{1}{2}\bigg[ u_0(x-3t) + u_0(x-t) \bigg], \\
 v(t,x) &amp;= \frac{1}{2}\bigg[ u_0(x-3t) - u_0(x-t) \bigg].
 \end{align}\]</div>
@@ -885,8 +885,8 @@ u_t + a u_x =0, \quad 0\le x \le1, \ t\ge 0,
 v_t+av_x=0
 \]</div>
 <p>we can write down a number of finite difference approximations at <span class="math notranslate nohighlight">\((t_n,x_m)\)</span>, e.g.,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-23aa7d5e-e249-47b2-a59a-0bc537944b88">
-<span class="eqno">(12)<a class="headerlink" href="#equation-23aa7d5e-e249-47b2-a59a-0bc537944b88" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-9cf143cd-99c0-4c5c-8ff4-025d0c23b9e8">
+<span class="eqno">(12)<a class="headerlink" href="#equation-9cf143cd-99c0-4c5c-8ff4-025d0c23b9e8" title="Permalink to this equation">#</a></span>\[\begin{align}
     \displaystyle \frac{u_{k}^{n+1} - u_{k}^{n}}{\Delta t} + a \frac{
       u_{k+1}^{n} - u_{k}^{n} }{\Delta x} = 0 &amp;&amp; \hbox{FTFS}\\ 
     \displaystyle \frac{u_{k}^{n+1} - u_{k}^{n}}{\Delta t} + a \frac{
@@ -1170,8 +1170,8 @@ v_t+av_x=0
 <li><p>From the example above we can see that as <span class="math notranslate nohighlight">\(\Delta x \to 0\)</span>, the approximate solution gets better and better.</p></li>
 <li><p>Consistency alone is necessary, but not sufficient for a Finite Difference Scheme (FDS) to be convergent (Recall Lax Equivalence theorem).</p></li>
 </ul>
-<div class="admonition-definition admonition">
-<p class="admonition-title">Definition</p>
+<div class="admonition-definition-from-strikwerda admonition">
+<p class="admonition-title">Definition (from Strikwerda)</p>
 <p>A finite difference scheme <span class="math notranslate nohighlight">\(P_{k,h} v_{m}^{n}=0\)</span> for a first-order equation is <strong>stable</strong> in a stability region <span class="math notranslate nohighlight">\(\Lambda\)</span> if there is an integer <span class="math notranslate nohighlight">\(S\)</span> such that for any positive time <span class="math notranslate nohighlight">\(T\)</span>, there is a constant <span class="math notranslate nohighlight">\(C_T\)</span> such that</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1322,8 +1322,8 @@ r^{-1} \ge |a|.
 <ul class="simple">
 <li><p>A <em>stronger</em> definition of <strong>stability</strong> is that</p></li>
 </ul>
-<div class="admonition-definition admonition">
-<p class="admonition-title">Definition</p>
+<div class="admonition-definition-from-thomas admonition">
+<p class="admonition-title">Definition (from Thomas)</p>
 <p>The difference scheme <span class="math notranslate nohighlight">\(\mathbf{u}^{n+1} = Q \mathbf{u}^{n} , n \geq 0\)</span> is said to be <strong>stable</strong> with respect to the norm <span class="math notranslate nohighlight">\(\| \cdot \|\)</span> if there exists positive constants <span class="math notranslate nohighlight">\(\Delta x_0\)</span> and <span class="math notranslate nohighlight">\(\Delta t_0\)</span>, and non-negative constants <span class="math notranslate nohighlight">\(K\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> such that</p>
 <div class="math notranslate nohighlight">
 \[
