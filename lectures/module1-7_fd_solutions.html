@@ -1121,8 +1121,8 @@ The entries of <span class="math notranslate nohighlight">\(\Sigma\)</span> are 
 <section id="second-derivative-with-dirichlet-boundary-conditions">
 <h2>6. Second-derivative with Dirichlet boundary conditions<a class="headerlink" href="#second-derivative-with-dirichlet-boundary-conditions" title="Link to this heading">#</a></h2>
 <p>Recall the Poisson equation with non-homogeneous Dirichelet boundary conditions:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-97b1a986-7d50-49cf-b33a-e755a2bb5b3d">
-<span class="eqno">(8)<a class="headerlink" href="#equation-97b1a986-7d50-49cf-b33a-e755a2bb5b3d" title="Permalink to this equation">#</a></span>\[\begin{gather} -\frac{d^2 u}{dx^2} = f(x) \quad x \in \Omega = (-1,1) \\
+<div class="amsmath math notranslate nohighlight" id="equation-3c2eb0b5-03e4-4aba-9f40-4aa21fbfc5f7">
+<span class="eqno">(8)<a class="headerlink" href="#equation-3c2eb0b5-03e4-4aba-9f40-4aa21fbfc5f7" title="Permalink to this equation">#</a></span>\[\begin{gather} -\frac{d^2 u}{dx^2} = f(x) \quad x \in \Omega = (-1,1) \\
 u(-1) = a, \quad u(1) = b .
 \end{gather}\]</div>
 <ul>
@@ -1503,8 +1503,8 @@ p(x) = c_0 + c_1 x + c_2 x^2 + \dotsb.
 \]</div>
 </p>
 <p>What is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-13894229-a725-49ea-a860-98afbf2a1aa8">
-<span class="eqno">(9)<a class="headerlink" href="#equation-13894229-a725-49ea-a860-98afbf2a1aa8" title="Permalink to this equation">#</a></span>\[\begin{align} p(0) &amp;= c_0 \\
+<div class="amsmath math notranslate nohighlight" id="equation-fb3b7455-2f38-4866-86fa-259c5bae92be">
+<span class="eqno">(9)<a class="headerlink" href="#equation-fb3b7455-2f38-4866-86fa-259c5bae92be" title="Permalink to this equation">#</a></span>\[\begin{align} p(0) &amp;= c_0 \\
 p'(0) &amp;= c_1 \\ 
 p''(0) &amp;= c_2 \cdot 2\\
 p^{(k)}(0) &amp;= c_k \cdot k! .
@@ -1812,6 +1812,7 @@ Then <div class="math notranslate nohighlight">
 <li><p>Because the boundary conditions are built with the same number of points (<code class="docutils literal notranslate"><span class="pre">spoints</span></code>), so they are also high-order accurate. Hence, the global system retains the high-order accuracy.</p></li>
 </ul>
 </li>
+<li><p>What’s going on for small values of <span class="math notranslate nohighlight">\(h\)</span>?</p></li>
 </ul>
 </section>
 </section>
@@ -1850,8 +1851,8 @@ which is symmetric and decouples the degrees of freedom associated with the boun
 <section id="symmetry-in-boundary-conditions-neumann">
 <h3>Symmetry in boundary conditions: Neumann<a class="headerlink" href="#symmetry-in-boundary-conditions-neumann" title="Link to this heading">#</a></h3>
 <p>Let’s revisit the Poisson equation, now with mixed Dirichelet and Neumann boundary conditions:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9105b589-8330-4d56-b95a-4516cda24944">
-<span class="eqno">(10)<a class="headerlink" href="#equation-9105b589-8330-4d56-b95a-4516cda24944" title="Permalink to this equation">#</a></span>\[\begin{gather} -\frac{d^2 u}{dx^2} = f(x) \quad x \in \Omega = (-1,1) \\
+<div class="amsmath math notranslate nohighlight" id="equation-0d48f2f2-3c00-40de-9242-85070ea07bde">
+<span class="eqno">(10)<a class="headerlink" href="#equation-0d48f2f2-3c00-40de-9242-85070ea07bde" title="Permalink to this equation">#</a></span>\[\begin{gather} -\frac{d^2 u}{dx^2} = f(x) \quad x \in \Omega = (-1,1) \\
 u(-1) = a, \quad \frac{d u}{d x}(1) = b .
 \end{gather}\]</div>
 <p>Consider a FD discretization of the Neumann boundary condition on the right boundary:

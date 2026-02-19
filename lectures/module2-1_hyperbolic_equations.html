@@ -651,8 +651,8 @@ This picture shows a volume with low pressure near the rear of the aircraft at h
 <div class="math notranslate nohighlight">
 \[\begin{split}P = \textstyle \left[\begin{array}{cc}1&amp;1\\1&amp;-1\end{array}\right]\end{split}\]</div>
 <p>Hence, the solution is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e778bf31-7206-4745-be2b-e709da572544">
-<span class="eqno">(11)<a class="headerlink" href="#equation-e778bf31-7206-4745-be2b-e709da572544" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f3e235dd-5df2-44c7-8535-eb88d7d72752">
+<span class="eqno">(11)<a class="headerlink" href="#equation-f3e235dd-5df2-44c7-8535-eb88d7d72752" title="Permalink to this equation">#</a></span>\[\begin{align}
 u(t,x) &amp;= \frac{1}{2}\bigg[ u_0(x-3t) + u_0(x-t) \bigg], \\
 v(t,x) &amp;= \frac{1}{2}\bigg[ u_0(x-3t) - u_0(x-t) \bigg].
 \end{align}\]</div>
@@ -763,10 +763,10 @@ u_t + a u_x =0, \quad 0\le x \le1, \ t\ge 0,
   <img src="../img/IBVp_aneg.svg" width="45%">
 </div>
 <p>When <span class="math notranslate nohighlight">\(a&gt;0\)</span>, in addition to the initial value <span class="math notranslate nohighlight">\(u(0,x)\)</span> <span class="math notranslate nohighlight">\(0\le x \le 1\)</span>, we must also specify the boundary value <span class="math notranslate nohighlight">\(u(t,0)\)</span> for all <span class="math notranslate nohighlight">\(t&gt;0\)</span>, and when <span class="math notranslate nohighlight">\(a&lt;0\)</span> we must specify <span class="math notranslate nohighlight">\(u(t,1)\)</span> for <span class="math notranslate nohighlight">\(t&gt;0\)</span>.</p>
-<div style="display: flex; gap: 20px;">
+<!-- <div style="display: flex; gap: 20px;">
   <img src="../img/IBVp_apos_spec.svg" width="45%">
   <img src="../img/IBVp_aneg_spec.svg" width="45%">
-</div>
+</div> -->
 <p>The problem of determining a solution when both initial and boundary data are present is known as an <strong>Initial-Boundary Value Problem (IBVP)</strong>.</p>
 <p>Consider the hyperbolic system (assume <span class="math notranslate nohighlight">\(a&gt;0\)</span>, <span class="math notranslate nohighlight">\(b&gt;0\)</span>)</p>
 <div class="math notranslate nohighlight">
@@ -809,8 +809,8 @@ u_t + a u_x =0, \quad 0\le x \le1, \ t\ge 0,
 u_t+au_x=0
 \]</div>
 <p>we can write down a number of finite difference approximations at <span class="math notranslate nohighlight">\((t_n,x_m)\)</span>, e.g.,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-34bf5ea8-ebc8-4555-a14c-58c41fc77a04">
-<span class="eqno">(12)<a class="headerlink" href="#equation-34bf5ea8-ebc8-4555-a14c-58c41fc77a04" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-3e2156c5-8ad2-4e4f-9b12-6fa1da80704f">
+<span class="eqno">(12)<a class="headerlink" href="#equation-3e2156c5-8ad2-4e4f-9b12-6fa1da80704f" title="Permalink to this equation">#</a></span>\[\begin{align}
     \displaystyle \frac{v_{k}^{n+1} - v_{k}^{n}}{\Delta t} + a \frac{
       v_{k+1}^{n} - v_{k}^{n} }{\Delta x} = 0 &amp;&amp; \hbox{FTFS}\\ 
     \displaystyle \frac{v_{k}^{n+1} - v_{k}^{n}}{\Delta t} + a \frac{
