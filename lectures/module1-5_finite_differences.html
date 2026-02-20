@@ -470,8 +470,8 @@ document.write(`
 <section id="getting-started">
 <h3>1.2 Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading">#</a></h3>
 <p>Consider the <strong>initial–boundary value problem (IBVP)</strong> for the heat equation in 1D</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6f80a83e-7560-4be9-b3f1-c0b82eb039d6">
-<span class="eqno">(6)<a class="headerlink" href="#equation-6f80a83e-7560-4be9-b3f1-c0b82eb039d6" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a8365000-2241-4802-8910-56abfd842e05">
+<span class="eqno">(6)<a class="headerlink" href="#equation-a8365000-2241-4802-8910-56abfd842e05" title="Permalink to this equation">#</a></span>\[\begin{align}
 v_t &amp;= \nu v_{xx}, &amp;&amp; x\in(0,1),\ t&gt;0, \tag{1.2.1}\\
 v(x,0) &amp;= f(x), &amp;&amp; x\in[0,1], \tag{1.2.2}\\
 v(0,t) &amp;= a(t),\quad v(1,t)=b(t), &amp;&amp; t\ge 0. \tag{1.2.3}
@@ -534,12 +534,12 @@ for all sufficiently <em>small</em> <span class="math notranslate nohighlight">\
 <p>To define derivatives on our lattice grid, we use Taylor’s expansion:</p>
 <div class="math notranslate nohighlight">
 \[
-u_{k+1} = u(x_k + \Delta x) \approx u(x_k) + \Delta x \partial_x u \bigg\rvert_k + \frac{1}{2} \Delta x^2 \partial^2_x u \bigg\rvert_k + \frac{1}{6} \Delta x^3 \partial^3_x u \bigg\rvert_k + O(\Delta x^4)
+u_{k+1} = u(x_k + \Delta x) \approx u(x_k) + \Delta x \partial_x u \bigg\rvert_{x_k} + \frac{1}{2} \Delta x^2 \partial^2_x u \bigg\rvert_{x_k} + \frac{1}{6} \Delta x^3 \partial^3_x u \bigg\rvert_{x_k} + O(\Delta x^4)
 \]</div>
 <p>Similarly,</p>
 <div class="math notranslate nohighlight">
 \[
-u_{k-1} = u(x_k - \Delta x) \approx u(x_k) - \Delta x \partial_x u \bigg\rvert_k + \frac{1}{2} \Delta x^2 \partial^2_x u \bigg\rvert_k - \frac{1}{6} \Delta x^3 \partial^3_x u \bigg\rvert_k + O(\Delta x^4)
+u_{k-1} = u(x_k - \Delta x) \approx u(x_k) - \Delta x \partial_x u \bigg\rvert_{x_k} + \frac{1}{2} \Delta x^2 \partial^2_x u \bigg\rvert_{x_k} - \frac{1}{6} \Delta x^3 \partial^3_x u \bigg\rvert_{x_k} + O(\Delta x^4)
 \]</div>
 <p>We can define the first-order derivative at the point <span class="math notranslate nohighlight">\(x_k\)</span> using the <strong>forward difference</strong>:</p>
 <div class="math notranslate nohighlight">
