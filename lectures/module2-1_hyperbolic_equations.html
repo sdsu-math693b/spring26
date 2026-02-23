@@ -671,8 +671,8 @@ a shift to the <em>left</em>.</p></li>
 <div class="math notranslate nohighlight">
 \[\begin{split}P = \textstyle \left[\begin{array}{cc}1&amp;1\\1&amp;-1\end{array}\right]\end{split}\]</div>
 <p>Hence, the solution is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-aa41e75d-279e-406f-98b1-e84a1c0c6796">
-<span class="eqno">(11)<a class="headerlink" href="#equation-aa41e75d-279e-406f-98b1-e84a1c0c6796" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-0bbe7b1b-4861-49bc-bae2-445659dc1042">
+<span class="eqno">(11)<a class="headerlink" href="#equation-0bbe7b1b-4861-49bc-bae2-445659dc1042" title="Permalink to this equation">#</a></span>\[\begin{align}
 u(t,x) &amp;= \frac{1}{2}\bigg[ u_0(x-3t) + u_0(x-t) \bigg], \\
 v(t,x) &amp;= \frac{1}{2}\bigg[ u_0(x-3t) - u_0(x-t) \bigg].
 \end{align}\]</div>
@@ -885,8 +885,8 @@ u_t + a u_x =0, \quad 0\le x \le1, \ t\ge 0,
 v_t+av_x=0
 \]</div>
 <p>we can write down a number of finite difference approximations at <span class="math notranslate nohighlight">\((t_n,x_m)\)</span>, e.g.,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-29c44334-da74-4c8c-97bd-76251518a07a">
-<span class="eqno">(12)<a class="headerlink" href="#equation-29c44334-da74-4c8c-97bd-76251518a07a" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f9f68f34-175d-499a-a477-d0284bec1517">
+<span class="eqno">(12)<a class="headerlink" href="#equation-f9f68f34-175d-499a-a477-d0284bec1517" title="Permalink to this equation">#</a></span>\[\begin{align}
     \displaystyle \frac{u_{k}^{n+1} - u_{k}^{n}}{\Delta t} + a \frac{
       u_{k+1}^{n} - u_{k}^{n} }{\Delta x} = 0 &amp;&amp; \hbox{FTFS}\\ 
     \displaystyle \frac{u_{k}^{n+1} - u_{k}^{n}}{\Delta t} + a \frac{
@@ -1293,7 +1293,7 @@ v_t + a v_x = 0
 </div>
 <p><img alt="Representation of the region of dependence and CFL condition" src="../_images/CFL.svg" /></p>
 <p>In the above figure, we see an illustration of the CFL condition, with <span class="math notranslate nohighlight">\( r=1\)</span> held fixed.</p>
-<p>The green triangle shows the <strong>region of dependence</strong>, i.e., what region influences <span class="math notranslate nohighlight">\(v^{n+1}_k\)</span> (actually only the three points at the base of the triangle contribute).</p>
+<p>The green triangle shows the <strong>region of dependence</strong>, i.e., what region influences <span class="math notranslate nohighlight">\(u^{n+1}_k\)</span> (actually only the three points at the base of the triangle contribute).</p>
 <p>The blue arrow corresponds to a characteristic with speed <span class="math notranslate nohighlight">\(a=0.75\)</span>, which carries information <em>inside</em> the region of dependence.</p>
 <p>The red arrow, corresponding to a characteristic speed of <span class="math notranslate nohighlight">\(a=1.5\)</span> carries information from <em>outside</em> the region of dependence; this information <em>cannot</em> be captured by the scheme.</p>
 <p>Courant, Friedrichs and Lewy also proved the following theorem.</p>
