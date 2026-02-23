@@ -572,7 +572,7 @@ a shift to the <em>left</em>.</p></li>
 </div>
 <p>This picture shows a volume with low pressure near the rear of the aircraft at high subsonic airspeeds. [Source: <a class="reference external" href="http://en.wikipedia.org/wiki/Transonic_speed">Transonic speed regime Wiki page</a>].</p>
 <p>Hyperbolic equations feature solutions that are discontinuous (worse than non-differentiable); e.g., the <strong>sonic boom</strong> produced by an aircraft exceeding the speed of sound (Mach-1, or <span class="math notranslate nohighlight">\(\approx\)</span> 750 miles per hour at sea level) is an example of this phenomena.</p>
-<p>The discontinuity creates a <strong>shock wave</strong>.</p>
+<p>The discontinuity in pressure, temperature, and density of the medium, in a propagating disturbance that moves faster than the local speed of sound in the medium, creates a <a class="reference external" href="https://en.wikipedia.org/wiki/Shock_wave"><strong>shock wave</strong></a>.</p>
 <div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
 <div class="sd-row sd-g-1 sd-g-xs-1 sd-g-sm-1 sd-g-md-1 sd-g-lg-1 docutils">
 <div class="sd-col sd-d-flex-row sd-col-auto sd-col-xs-auto sd-col-sm-auto sd-col-md-auto sd-col-lg-auto docutils">
@@ -671,8 +671,8 @@ a shift to the <em>left</em>.</p></li>
 <div class="math notranslate nohighlight">
 \[\begin{split}P = \textstyle \left[\begin{array}{cc}1&amp;1\\1&amp;-1\end{array}\right]\end{split}\]</div>
 <p>Hence, the solution is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-32ad046c-0ce7-4c4f-abac-3b7485a09b79">
-<span class="eqno">(11)<a class="headerlink" href="#equation-32ad046c-0ce7-4c4f-abac-3b7485a09b79" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-aa41e75d-279e-406f-98b1-e84a1c0c6796">
+<span class="eqno">(11)<a class="headerlink" href="#equation-aa41e75d-279e-406f-98b1-e84a1c0c6796" title="Permalink to this equation">#</a></span>\[\begin{align}
 u(t,x) &amp;= \frac{1}{2}\bigg[ u_0(x-3t) + u_0(x-t) \bigg], \\
 v(t,x) &amp;= \frac{1}{2}\bigg[ u_0(x-3t) - u_0(x-t) \bigg].
 \end{align}\]</div>
@@ -885,8 +885,8 @@ u_t + a u_x =0, \quad 0\le x \le1, \ t\ge 0,
 v_t+av_x=0
 \]</div>
 <p>we can write down a number of finite difference approximations at <span class="math notranslate nohighlight">\((t_n,x_m)\)</span>, e.g.,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1708c5e0-7389-41fe-af6e-2fe0736b198d">
-<span class="eqno">(12)<a class="headerlink" href="#equation-1708c5e0-7389-41fe-af6e-2fe0736b198d" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-29c44334-da74-4c8c-97bd-76251518a07a">
+<span class="eqno">(12)<a class="headerlink" href="#equation-29c44334-da74-4c8c-97bd-76251518a07a" title="Permalink to this equation">#</a></span>\[\begin{align}
     \displaystyle \frac{u_{k}^{n+1} - u_{k}^{n}}{\Delta t} + a \frac{
       u_{k+1}^{n} - u_{k}^{n} }{\Delta x} = 0 &amp;&amp; \hbox{FTFS}\\ 
     \displaystyle \frac{u_{k}^{n+1} - u_{k}^{n}}{\Delta t} + a \frac{
