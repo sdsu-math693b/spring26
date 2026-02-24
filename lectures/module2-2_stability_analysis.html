@@ -550,8 +550,8 @@ recovers the function from its Fourier transform.</p>
 <section id="example-9-2">
 <h3>Example 9.2:<a class="headerlink" href="#example-9-2" title="Link to this heading">#</a></h3>
 <p>For the IVP for the heat equation:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5af18c28-f6bd-498f-afc4-a9add376f2ef">
-<span class="eqno">(13)<a class="headerlink" href="#equation-5af18c28-f6bd-498f-afc4-a9add376f2ef" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-101968e5-c08b-4397-adce-cde3c67580c6">
+<span class="eqno">(13)<a class="headerlink" href="#equation-101968e5-c08b-4397-adce-cde3c67580c6" title="Permalink to this equation">#</a></span>\[\begin{align}
 v_t &amp;=  v_{xx}, &amp;&amp; x\in \mathbb{R},\ t&gt;0, \tag{9.1} \\
 v(x,0) &amp;= f(x), &amp;&amp; x\in \mathbb{R}. \tag{9.2}
 \end{align}\]</div>
@@ -870,8 +870,10 @@ S_{+} \mathbf{u} = \{ v_k  \} \textrm{ where } v_k = u_{k+1}, k = 0, \pm 1, \ldo
 S_{-} \mathbf{u} = \{ v_k  \} \textrm{ where } v_k = u_{k-1}, k = 0, \pm 1, \ldots\]</div>
 <div class="admonition-proposition admonition">
 <p class="admonition-title">Proposition</p>
-<p>$$</p>
-<p>$$\mathcal{F}(S_{\pm}\mathbf{u}) = e^{\pm i \xi} \mathcal{F}(\mathbf{u})</p>
+<div class="math notranslate nohighlight">
+\[
+\mathcal{F}(S_{\pm}\mathbf{u}) = e^{\pm i \xi} \mathcal{F}(\mathbf{u})
+\]</div>
 </div>
 </section>
 </section>
@@ -976,8 +978,8 @@ S = \begin{bmatrix} -1 &amp; 2 &amp; -1 \end{bmatrix}
 \]</div>
 <p>In the von Neumann/discrete Fourier analysis, we consider the plane waves <span class="math notranslate nohighlight">\(\phi(\xi, \omega) = e^{i\omega \xi}\)</span>.</p>
 <p>We have sampled <span class="math notranslate nohighlight">\(\phi\)</span> on a discrete grid <span class="math notranslate nohighlight">\(\xi = \mathbb Z\)</span> and applied the stencil</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7bd3a875-1ec8-4bf0-888e-8494c41fad9c">
-<span class="eqno">(14)<a class="headerlink" href="#equation-7bd3a875-1ec8-4bf0-888e-8494c41fad9c" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f05e7b79-83c0-4b63-922f-ad764e4be99f">
+<span class="eqno">(14)<a class="headerlink" href="#equation-f05e7b79-83c0-4b63-922f-ad764e4be99f" title="Permalink to this equation">#</a></span>\[\begin{align}
 S \phi(\xi, \omega) &amp;= S_{-1} \phi(\xi-1, \omega) + S_{0} \phi(\xi, \omega) + S_1 \phi(\xi+1,\omega) \\
 &amp;= \Big( S_{-1} e^{-i\omega} + S_0 + S_{1} e^{i\omega} \Big) \phi(\xi, \omega)
 \end{align}\]</div>
