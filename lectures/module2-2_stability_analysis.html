@@ -550,8 +550,8 @@ recovers the function from its Fourier transform.</p>
 <section id="example-9-2">
 <h3>Example 9.2:<a class="headerlink" href="#example-9-2" title="Link to this heading">#</a></h3>
 <p>For the IVP for the heat equation:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-28ebcfb2-79bd-4087-9348-f632191f56c4">
-<span class="eqno">(13)<a class="headerlink" href="#equation-28ebcfb2-79bd-4087-9348-f632191f56c4" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-5af18c28-f6bd-498f-afc4-a9add376f2ef">
+<span class="eqno">(13)<a class="headerlink" href="#equation-5af18c28-f6bd-498f-afc4-a9add376f2ef" title="Permalink to this equation">#</a></span>\[\begin{align}
 v_t &amp;=  v_{xx}, &amp;&amp; x\in \mathbb{R},\ t&gt;0, \tag{9.1} \\
 v(x,0) &amp;= f(x), &amp;&amp; x\in \mathbb{R}. \tag{9.2}
 \end{align}\]</div>
@@ -756,13 +756,14 @@ v_t = \nu v_{xx}, \quad x\in \mathbb{R},\ t&gt;0, \tag{9.3}
 <p>where <span class="math notranslate nohighlight">\(r = \nu \Delta t/ \Delta x^2\)</span> and <span class="math notranslate nohighlight">\(-\infty &lt; k &lt; \infty\)</span>.</p>
 <p>We begin by taking the discrete Fourier transform of both sides of (9.4). We get:</p>
 <div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}\begin{split}
+\[\begin{split}
 \begin{align*}
 \hat{u}^{n+1}(\xi) &amp;= \frac{1}{\sqrt{2 \pi}} \sum_{k = -\infty}^{\infty} e^{-ik \xi} u_{k}^{n+1} \\
                    &amp;= \frac{1}{\sqrt{2 \pi}} \sum_{k = -\infty}^{\infty} e^{-i k \xi }\{ r u^n_{k-1} + (1-2r) u_k^n + r u^n_{k+1} \} \\
                    &amp;= r \frac{1}{\sqrt{2 \pi}}  \sum_{k = -\infty}^{\infty}  e^{-i k \xi }u^n_{k-1} + (1-2r) \frac{1}{\sqrt{2 \pi}}  \sum_{k = -\infty}^{\infty} e^{-i k \xi }u^n_k + r \frac{1}{\sqrt{2 \pi}}  \sum_{k = -\infty}^{\infty}  e^{-i k \xi }u^n_{k+1}  \\
-                   &amp;= r \frac{1}{\sqrt{2 \pi}}  \sum_{k = -\infty}^{\infty}  e^{-i k \xi }u^n_{k-1} + (1-2r) \hat{u}^n(\xi) + r \frac{1}{\sqrt{2 \pi}}  \sum_{k = -\infty}^{\infty}  e^{-i k \xi }u^n_{k+1} \end{split}\\\end{align*}
-\end{aligned}\end{align} \]</div>
+                   &amp;= r \frac{1}{\sqrt{2 \pi}}  \sum_{k = -\infty}^{\infty}  e^{-i k \xi }u^n_{k-1} + (1-2r) \hat{u}^n(\xi) + r \frac{1}{\sqrt{2 \pi}}  \sum_{k = -\infty}^{\infty}  e^{-i k \xi }u^n_{k+1} 
+\end{align*}
+\end{split}\]</div>
 <p>Recognizing that by making the change of variables <span class="math notranslate nohighlight">\(m = k \pm 1\)</span>, we get,</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -775,13 +776,14 @@ v_t = \nu v_{xx}, \quad x\in \mathbb{R},\ t&gt;0, \tag{9.3}
 \end{split}\]</div>
 <p>Thus, using this expression above, leads us to</p>
 <div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}\begin{split}
+\[\begin{split}
 \begin{align*}
 \hat{u}^{n+1}(\xi) &amp;= r e^{- i \xi}\hat{u}^n(\xi ) + (1-2r) \hat{u}^n(\xi ) + r e^{i \xi}\hat{u}^n(\xi ) \\
 &amp;= \{r e^{- i \xi}  + (1-2r) + r  e^{i \xi} \}\hat{u}^n(\xi )\\
 &amp;= \{ 2r \cos \xi + (1-2r) \}\hat{u}^n(\xi ) \\
-&amp;= \underbrace{\left( 1 -4 r \sin^2{\frac{\xi}{2}} \right)}_{\rho(\xi)} \hat{u}^n(\xi ) \,.\end{split}\\\end{align*}
-\end{aligned}\end{align} \]</div>
+&amp;= \underbrace{\left( 1 -4 r \sin^2{\frac{\xi}{2}} \right)}_{\rho(\xi)} \hat{u}^n(\xi ) \,.
+\end{align*}
+\end{split}\]</div>
 <div class="admonition-definition admonition">
 <p class="admonition-title">Definition</p>
 <p>We call <span class="math notranslate nohighlight">\(\rho(\xi)\)</span> the <strong>symbol</strong>, <strong>growth/amplification factor</strong>, or <strong>recurrence relation</strong> of the difference scheme.</p>
@@ -974,8 +976,8 @@ S = \begin{bmatrix} -1 &amp; 2 &amp; -1 \end{bmatrix}
 \]</div>
 <p>In the von Neumann/discrete Fourier analysis, we consider the plane waves <span class="math notranslate nohighlight">\(\phi(\xi, \omega) = e^{i\omega \xi}\)</span>.</p>
 <p>We have sampled <span class="math notranslate nohighlight">\(\phi\)</span> on a discrete grid <span class="math notranslate nohighlight">\(\xi = \mathbb Z\)</span> and applied the stencil</p>
-<div class="amsmath math notranslate nohighlight" id="equation-45f07c15-dc9f-4927-b02d-dc8872dd4c64">
-<span class="eqno">(14)<a class="headerlink" href="#equation-45f07c15-dc9f-4927-b02d-dc8872dd4c64" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-7bd3a875-1ec8-4bf0-888e-8494c41fad9c">
+<span class="eqno">(14)<a class="headerlink" href="#equation-7bd3a875-1ec8-4bf0-888e-8494c41fad9c" title="Permalink to this equation">#</a></span>\[\begin{align}
 S \phi(\xi, \omega) &amp;= S_{-1} \phi(\xi-1, \omega) + S_{0} \phi(\xi, \omega) + S_1 \phi(\xi+1,\omega) \\
 &amp;= \Big( S_{-1} e^{-i\omega} + S_0 + S_{1} e^{i\omega} \Big) \phi(\xi, \omega)
 \end{align}\]</div>
