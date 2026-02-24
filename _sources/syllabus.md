@@ -93,8 +93,8 @@ Grading breakdown:
 AOE: Anywhere on Earth time zone. This time zone is 12 hours behind Coordinated Universal Time (UTC) and typically used for online submissions to accommodate people from different time zones. Given that this course is taught in person in the Pacific standard time, I use this not really to facilitate submissions from different time zones, but to allow people not to worry about submitting by midnight sharp. This does _not_ mean that I encourage people working late. I actually advocate for a healthy work/life balance for everyone (students and instructors alike).
 
 - **Midterm Project** (15%): The midterm/final project choice and proposal will need to be discussed with your instructor, before its submission (_not_ via email). Please make sure to use plenty of Office Hours to discuss your midterm/final project Proposal before submitting it. This project is broken down in two deadlines. Please note that Canvas does not allow setting multiple parts with different deadlines for a given assignment. For the **Midterm Project**, I will set the **earliest of the two** deadlines on **Canvas**.
-    * Part 1, **Tuesday**, **March 17**, by midnight (AOE): Community project analysis and proposal.
-    * Part 2, **Thursday**, **March 26**, by midnight (AOE): Community project contribution proposal and creation of an Issue.
+    * Part 1, **Tuesday**, **March 20**, by midnight (AOE): Community project analysis and proposal.
+    * Part 2, **Thursday**, **March 27**, by midnight (AOE): Community project contribution proposal and creation of an Issue.
 
 - **Final Project** (35%): This project is broken down in three deadlines. Please note that Canvas does not allow setting multiple parts with different deadlines for a given assignment. For the **Final Project**, I will set the **latest of the three** deadlines on **Canvas**.
 
