@@ -550,8 +550,8 @@ recovers the function from its Fourier transform.</p>
 <section id="example-9-2">
 <h3>Example 9.2:<a class="headerlink" href="#example-9-2" title="Link to this heading">#</a></h3>
 <p>For the IVP for the heat equation:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-08e9f144-cdb7-4559-bae7-89398d7b738f">
-<span class="eqno">(13)<a class="headerlink" href="#equation-08e9f144-cdb7-4559-bae7-89398d7b738f" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f928d902-c4e9-41bf-9cfe-5504a7429a2e">
+<span class="eqno">(13)<a class="headerlink" href="#equation-f928d902-c4e9-41bf-9cfe-5504a7429a2e" title="Permalink to this equation">#</a></span>\[\begin{align}
 v_t &amp;=  v_{xx}, &amp;&amp; x\in \mathbb{R},\ t&gt;0, \tag{9.1} \\
 v(x,0) &amp;= f(x), &amp;&amp; x\in \mathbb{R}. \tag{9.2}
 \end{align}\]</div>
@@ -757,8 +757,8 @@ S = \begin{bmatrix} -1 &amp; 2 &amp; -1 \end{bmatrix}
 \]</div>
 <p>In the Fourier analysis, we consider the plane waves <span class="math notranslate nohighlight">\(\phi(x, \omega) = e^{-i\omega x}\)</span>.</p>
 <p>We sample <span class="math notranslate nohighlight">\(\phi\)</span> on a discrete grid, where <span class="math notranslate nohighlight">\(m \in \mathbb Z\)</span>, and obtain <span class="math notranslate nohighlight">\(\phi_m = e^{-im \xi}\)</span>. We then apply the stencil</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ba78d8c1-ebfa-44f8-aa7d-a17f270859e3">
-<span class="eqno">(14)<a class="headerlink" href="#equation-ba78d8c1-ebfa-44f8-aa7d-a17f270859e3" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d599a868-be71-4380-8c8c-826076ae0426">
+<span class="eqno">(14)<a class="headerlink" href="#equation-d599a868-be71-4380-8c8c-826076ae0426" title="Permalink to this equation">#</a></span>\[\begin{align}
 S \phi(m, \xi) &amp;= s_{-1} \phi_{m-1} + s_{0} \phi_m + s_1 \phi_{m+1} \\
 &amp;= \Big( s_{-1} e^{i\xi} + s_0 + s_{1} e^{-i\xi} \Big) \phi_m
 \end{align}\]</div>
@@ -939,7 +939,6 @@ v_t = \nu v_{xx}, \quad x\in \mathbb{R},\ t&gt;0, \tag{9.3}
 \frac{1}{\sqrt{2 \pi}} \sum_{k = -\infty}^{\infty} e^{-i k \xi} u^n_{k \pm 1} &amp;= \frac{1}{\sqrt{2 \pi}} \sum_{k = -\infty}^{\infty} e^{-i (m \mp 1)\xi}u_m^n \\
 &amp;= e^{\pm i \xi}\frac{1}{\sqrt{2 \pi}}\sum_{k = -\infty}^{\infty} e^{-i m \xi} u_m^n \\
 &amp;= e^{\pm i \xi}\hat{u}^n(\xi ) \, .
- 
 \end{align*}
 \end{split}\]</div>
 <p>Thus, using this expression above, leads us to</p>
