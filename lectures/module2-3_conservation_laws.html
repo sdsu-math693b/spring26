@@ -527,7 +527,7 @@ c \rho v_t - (\kappa v_x)_x - \mathcal{F} = 0.
 <section id="cell-centered-values-and-vertex-edge-face-centered-values">
 <h2>4. Cell-centered values and vertex/edge/face-centered values<a class="headerlink" href="#cell-centered-values-and-vertex-edge-face-centered-values" title="Link to this heading">#</a></h2>
 <p>To apply these ideas, we consider the grid placed on the interval <span class="math notranslate nohighlight">\((0,1)\)</span>, such as in the following figure.</p>
-<p><img alt="Thomas book Fig 1.6.1 uniform 1D staggered grid" src="../../img/staggered_grid.png" /></p>
+<p><img alt="Thomas book Fig 1.6.1 uniform 1D staggered grid" src="../_images/staggered_grid.png" /></p>
 <p>This looks exactly like the grid we have used in our <a class="reference external" href="https://sdsu-math693b.github.io/spring26/lectures/module1-5_finite_differences.html">introduction to Finite Differences</a>, except that here intervals are marked off, centered at the grid points (or grid edges/faces, if in <span class="math notranslate nohighlight">\(2D\)</span> or <span class="math notranslate nohighlight">\(3D\)</span>).</p>
 <ul class="simple">
 <li><p>We identify the endpoints of the subinterval centered about <span class="math notranslate nohighlight">\(x_k\)</span> as <span class="math notranslate nohighlight">\(x_{k \pm 1/2}\)</span>.</p></li>
@@ -611,7 +611,7 @@ c \rho v_t - (\kappa v_x)_x - \mathcal{F} = 0.
 <li><p>The derivations seen so far, which always involved <strong>vertex/edge/face centered grids</strong> are not the only ones possible or suitable for all problems.</p></li>
 <li><p>We might as well consider the approximate function value (or the approximate average value) on the cell, or the center of the cell. This gives rise to what we call <strong>cell centered grids</strong>. See the figure below for an illustration.</p></li>
 </ul>
-<p><img alt="Thomas book Fig 1.6.2 a cell centered grid in 1D" src="../../img/cell_centered_grid.png" /></p>
+<p><img alt="Thomas book Fig 1.6.2 a cell centered grid in 1D" src="../_images/cell_centered_grid.png" /></p>
 <ul class="simple">
 <li><p>We can see here that grid points are marked off at the center of the cells.</p></li>
 <li><p>The main difference between this cell centered grid and the vertex centered grid shown above is at the endpoints.</p></li>
@@ -624,11 +624,11 @@ c \rho v_t - (\kappa v_x)_x - \mathcal{F} = 0.
 </ul>
 </li>
 </ul>
-<p><img alt="Thomas book Fig 1.6.3 a ghost cell" src="../../img/ghost_cell.png" /></p>
+<p><img alt="Thomas book Fig 1.6.3 a ghost cell" src="../_images/ghost_cell.png" /></p>
 <ul class="simple">
 <li><p>Similarly, one could also think of including only a half cell at the end of the interval. See figure below:</p></li>
 </ul>
-<p><img alt="Thomas book Fig 1.6.4 a half ghost cell" src="../../img/half_ghost_cell.png" /></p>
+<p><img alt="Thomas book Fig 1.6.4 a half ghost cell" src="../_images/half_ghost_cell.png" /></p>
 </section>
 </section>
 
