@@ -196,6 +196,7 @@
 <li class="toctree-l2"><a class="reference internal" href="module1-7_fd_solutions.html">7) FD Solutions</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">8) Hyperbolic Equations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="module2-2_stability_analysis.html">9) Fourier and von Neumann stability analyses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module2-3_conservation_laws.html">10) Conservation laws and introduction to Finite Volumes</a></li>
 </ul>
 </details></li>
 </ul>
@@ -673,8 +674,8 @@ a shift to the <em>left</em>.</p></li>
 <div class="math notranslate nohighlight">
 \[\begin{split}P = \textstyle \left[\begin{array}{cc}1&amp;1\\1&amp;-1\end{array}\right]\end{split}\]</div>
 <p>Hence, the solution is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-658497bd-4617-43ba-9737-3b8b22308f1c">
-<span class="eqno">(11)<a class="headerlink" href="#equation-658497bd-4617-43ba-9737-3b8b22308f1c" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-2ad19201-7b44-4565-ae35-cfe8bcb00d04">
+<span class="eqno">(11)<a class="headerlink" href="#equation-2ad19201-7b44-4565-ae35-cfe8bcb00d04" title="Permalink to this equation">#</a></span>\[\begin{align}
 u(t,x) &amp;= \frac{1}{2}\bigg[ u_0(x-3t) + u_0(x-t) \bigg], \\
 v(t,x) &amp;= \frac{1}{2}\bigg[ u_0(x-3t) - u_0(x-t) \bigg].
 \end{align}\]</div>
@@ -887,8 +888,8 @@ u_t + a u_x =0, \quad 0\le x \le1, \ t\ge 0,
 v_t+av_x=0
 \]</div>
 <p>we can write down a number of finite difference approximations at <span class="math notranslate nohighlight">\((t_n,x_m)\)</span>, e.g.,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b34270c9-969f-48f3-80f1-db3a50418887">
-<span class="eqno">(12)<a class="headerlink" href="#equation-b34270c9-969f-48f3-80f1-db3a50418887" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-ceba2740-5b59-49ad-8519-f844d9f632df">
+<span class="eqno">(12)<a class="headerlink" href="#equation-ceba2740-5b59-49ad-8519-f844d9f632df" title="Permalink to this equation">#</a></span>\[\begin{align}
     \displaystyle \frac{u_{k}^{n+1} - u_{k}^{n}}{\Delta t} + a \frac{
       u_{k+1}^{n} - u_{k}^{n} }{\Delta x} = 0 &amp;&amp; \hbox{FTFS}\\ 
     \displaystyle \frac{u_{k}^{n+1} - u_{k}^{n}}{\Delta t} + a \frac{
@@ -1355,10 +1356,20 @@ r^{-1} \ge |a|.
 <p><strong>Remarks</strong>:</p>
 <ul class="simple">
 <li><p>We notet that in the Proposition above the norm <span class="math notranslate nohighlight">\(\| Q^{n+1} \|\)</span> is a matrix norm, which is induced by the norm defined on the space in which we are working.</p></li>
+<li><p>For <span class="math notranslate nohighlight">\(p=2\)</span>, the Euclidean <span class="math notranslate nohighlight">\(\ell_2\)</span> norm of a matrix <span class="math notranslate nohighlight">\(\| A \|\)</span> is the <strong>spectral norm</strong>, that is, it is the largest singular value of <span class="math notranslate nohighlight">\(A\)</span>, which is the square root of the largest eigenvalue of the matrix <span class="math notranslate nohighlight">\(A A^*\)</span> (where <span class="math notranslate nohighlight">\(A^*\)</span> denotes the conjugate gradient). Hence <span class="math notranslate nohighlight">\( \| A \|_2 = \sqrt{ \lambda_{\textrm{max}} (A^* A)} = \sigma_{\textrm{max}} (A) \)</span>.</p></li>
 <li><p>As with convergence, it is difficult to prove stability directly. (We will develop a method to find a necessary condition later in the course).</p></li>
 <li><p>Every time we can find a condition (such as the <span class="math notranslate nohighlight">\( |a r|\le 1\)</span> condition above in the CFL condition), we say that the scheme is <strong>conditionally stable</strong>.</p></li>
 <li><p>In the case where no restrictions on the relationship between <span class="math notranslate nohighlight">\(\Delta t\)</span> and <span class="math notranslate nohighlight">\(\Delta x\)</span> are needed for stability, we say that the scheme is <strong>stable</strong> or <strong>unconditionally stable</strong>.</p></li>
+<li><p>In general, it is not easy to find eigenvalues of a matrix to have a sense of its norm. But <a class="reference external" href="https://en.wikipedia.org/wiki/Gershgorin_circle_theorem"><strong>Gershgorin Circle Theorem</strong></a> helps us as it gives an upper bound (so a worst-case scenario estimate) on the eigenvalues:</p></li>
 </ul>
+<div class="admonition-theorem admonition">
+<p class="admonition-title">Theorem</p>
+<p>Let <span class="math notranslate nohighlight">\(A\)</span> be a <span class="math notranslate nohighlight">\(n \times n\)</span> matrix with entries <span class="math notranslate nohighlight">\((a_{ij})\)</span>. For <span class="math notranslate nohighlight">\(i \in \{ 1, 2, \ldots, n \}\)</span> let <span class="math notranslate nohighlight">\(s_i\)</span> be the sum of the absolute values of the non-diagonal entries in the <span class="math notranslate nohighlight">\(s\)</span>-th row <span class="math notranslate nohighlight">\(\rho_s = \sum_{\substack{j = 1 \\j \neq s}}^n |a_{sj}|\)</span>, then each eigenvalue of <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(\lambda\)</span>, is such that</p>
+<div class="math notranslate nohighlight">
+\[
+| \lambda - a_{ss} | \leq \rho_s \, .
+\]</div>
+</div>
 </section>
 </section>
 
