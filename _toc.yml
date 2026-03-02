@@ -16,3 +16,4 @@ chapters:
   - file: lectures/module1-7_fd_solutions.ipynb
   - file: lectures/module2-1_hyperbolic_equations.ipynb
   - file: lectures/module2-2_stability_analysis.ipynb
+  - file: lectures/module2-3_conservation_laws.ipynb
