@@ -1,0 +1,749 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>10) Conservation laws and introduction to Finite Volumes &#8212; Advanced Numerical Methods Computational Partial Differential Equations Spring 26</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/module2-3_conservation_laws';</script>
+    <link rel="icon" href="../_static/SDSU-math693b_logo.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="9) Fourier and von Neumann stability analyses" href="module2-2_stability_analysis.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/SDSU-math693b_logo.svg" class="logo__image only-light" alt="Advanced Numerical Methods Computational Partial Differential Equations Spring 26 - Home"/>
+    <script>document.write(`<img src="../_static/SDSU-math693b_logo.svg" class="logo__image only-dark" alt="Advanced Numerical Methods Computational Partial Differential Equations Spring 26 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Welcome
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus.html">Syllabus</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../lectures.html">Lectures</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="module1-1_git.html">1) First Class: Reproducibility and Git</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="module1-2_community_projects.html">2) Community Projects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module1-3_intro_to_julia.html">3) Introduction to programming in Julia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module1-4_intro_to_pdes.html">4) Introduction to PDEs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module1-5_finite_differences.html">5) Finite Differences</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module1-6_intro_NA.html">6) Introduction to Numerical Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module1-7_fd_solutions.html">7) FD Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module2-1_hyperbolic_equations.html">8) Hyperbolic Equations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module2-2_stability_analysis.html">9) Fourier and von Neumann stability analyses</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">10) Conservation laws and introduction to Finite Volumes</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/sdsu-math693b/spring26" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/sdsu-math693b/spring26/issues/new?title=Issue%20on%20page%20%2Flectures/module2-3_conservation_laws.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/lectures/module2-3_conservation_laws.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>10) Conservation laws and introduction to Finite Volumes</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#derivation-of-difference-equations">1. Derivation of Difference Equations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#non-homogeneous-equations">2. Non-homogeneous equations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conservation-laws">3. Conservation Laws</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cell-centered-values-and-vertex-edge-face-centered-values">4. Cell-centered values and vertex/edge/face-centered values</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cell-centered-grids">5. Cell-centered grids</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="conservation-laws-and-introduction-to-finite-volumes">
+<h1>10) Conservation laws and introduction to Finite Volumes<a class="headerlink" href="#conservation-laws-and-introduction-to-finite-volumes" title="Link to this heading">#</a></h1>
+<p>Last time:</p>
+<ul class="simple">
+<li><p>Discrete Fourier analysis</p></li>
+<li><p>Von Neumann stability analysis</p></li>
+</ul>
+<p>Today:</p>
+<ol class="arabic simple">
+<li><p>Derivation of Difference Equations</p></li>
+<li><p>Non-homogeneous equations</p></li>
+<li><p>Conservation Laws</p></li>
+<li><p>Cell-centered values and vertex/edge/face-centered values</p></li>
+<li><p>Cell-centered grids</p></li>
+</ol>
+<section id="derivation-of-difference-equations">
+<h2>1. Derivation of Difference Equations<a class="headerlink" href="#derivation-of-difference-equations" title="Link to this heading">#</a></h2>
+<p>Not all schemes we have developed so far are <em>good</em> schemes.</p>
+<p>We have seen that when we try to replace a derivative by a logical difference approximation sometimes things go wrong.</p>
+<ul class="simple">
+<li><p>Many <em>good</em> and <em>bad</em> schemes can be developed by the Taylor’s expansion approach.</p></li>
+<li><p>In this lecture we demonstrate another approach to developing difference schemes. This method might be referred to as the <strong>conservation law approach</strong> in that it developes the difference scheme using a conservation law motivated by the physics of the problem.</p></li>
+<li><p>This method is a basic application of the <strong>Finite Volumes Method (FVM)</strong>.</p></li>
+<li><p>We will see that although schemes developed using conservation approaches have some nice properties, it is possible to develop <em>bad</em> schemes using them.</p></li>
+</ul>
+</section>
+<section id="non-homogeneous-equations">
+<h2>2. Non-homogeneous equations<a class="headerlink" href="#non-homogeneous-equations" title="Link to this heading">#</a></h2>
+<p>Consider the non-homogeneous heat equation (1.2.1)</p>
+<div class="math notranslate nohighlight">
+\[
+v_t = \nu v_{xx} + F(x,t), \qquad x\in(0,1),\ t&gt;0. \tag{10.1}
+\]</div>
+<p>Consider a bounded domain <span class="math notranslate nohighlight">\(D=(0,1)\)</span> filled with a thermally conductive solid (e.g., a uniform rod that has thermal variations only in the <span class="math notranslate nohighlight">\(x\)</span> direction).</p>
+</section>
+<section id="conservation-laws">
+<h2>3. Conservation Laws<a class="headerlink" href="#conservation-laws" title="Link to this heading">#</a></h2>
+<p>Let <span class="math notranslate nohighlight">\(v=v(x,t)\)</span> denote the temperature at the point <span class="math notranslate nohighlight">\(x \in \bar{D}\)</span> (closure) and time <span class="math notranslate nohighlight">\(t\geq 0\)</span>. Ler <span class="math notranslate nohighlight">\(R = (a,b)\)</span> be an arbitrary fixed (in time) subinterval of <span class="math notranslate nohighlight">\(D\)</span> so that the points <span class="math notranslate nohighlight">\(x=a\)</span> and <span class="math notranslate nohighlight">\(x=b\)</span> represent the boundary of <span class="math notranslate nohighlight">\(R\)</span>.</p>
+<p>The total content of <span class="math notranslate nohighlight">\(R\)</span> is given by:</p>
+<div class="math notranslate nohighlight">
+\[
+Q = \int_R c \rho v(x,t) dx ,
+\]</div>
+<p>where the constants <span class="math notranslate nohighlight">\(\rho\)</span> and <span class="math notranslate nohighlight">\(c\)</span> represent the density and specific heat of the solid, respectively. Then the time rate of change of the total heat content of the interval <span class="math notranslate nohighlight">\(R\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{dQ}{dt} = \int_R \frac{\partial}{\partial t} (c \rho v) dx .
+\]</div>
+<ul class="simple">
+<li><p>The rate of change of total heat content in <span class="math notranslate nohighlight">\(R\)</span> <em>must</em> be due to heat supplied in the interval by internal sources and/or heat that flows across the boundary of the region <span class="math notranslate nohighlight">\(R\)</span>.</p></li>
+</ul>
+<p>If we let <span class="math notranslate nohighlight">\(\mathcal{F} = \mathcal{F}(x,t)\)</span> (called the source density) denote the amount of heat per unit volume per unit time generated at the point <span class="math notranslate nohighlight">\(x \in R\)</span> and time <span class="math notranslate nohighlight">\(t&gt;0\)</span>, the rate of change of heat content in <span class="math notranslate nohighlight">\(R\)</span> due to $\mathcal{F} is</p>
+<div class="math notranslate nohighlight">
+\[
+\int_R \mathcal{F}(x,t) dx .
+\]</div>
+<ul class="simple">
+<li><p>The <strong>flux</strong> of heat, <span class="math notranslate nohighlight">\(q\)</span>, across the boundary of <span class="math notranslate nohighlight">\(R\)</span> (the amount of heat flowing across the boundary <span class="math notranslate nohighlight">\(\partial R\)</span> per unit area per unit time) is assumed by Fourier’s law to be proportional to the normal component of the temperature gradient, i.e., in our case, <span class="math notranslate nohighlight">\(q(a) = - \kappa (a,v) \frac{\partial v}{\partial x}(a,t)\)</span> and <span class="math notranslate nohighlight">\(q(b) =  \kappa (b,v) \frac{\partial v}{\partial x}(b,t)\)</span>, where <span class="math notranslate nohighlight">\(\kappa = \kappa (x,v)\)</span> is the thermal conductivity.</p></li>
+</ul>
+<p>If we then balance the time rate of change of total heat content to the sum of heat supplied by external sources and the heat that flows across the boundary of <span class="math notranslate nohighlight">\(R\)</span> we get:</p>
+<div class="math notranslate nohighlight">
+\[
+\int_R  c \rho \frac{\partial v}{\partial t} dx = \int_R \mathcal{F}(x,t) dx + \left( \kappa \frac{\partial v}{\partial x} \right) (b,t) -  \left( \kappa \frac{\partial v}{\partial x} \right) (a,t) . \tag{10.2}
+\]</div>
+<p>If we notice that</p>
+<div class="math notranslate nohighlight">
+\[
+ \left( \kappa \frac{\partial v}{\partial x} \right) (b) -  \left( \kappa \frac{\partial v}{\partial x} \right) (a) = \int_R (\kappa v_x)_x dx ,
+\]</div>
+<p>we can rewrite the above as</p>
+<div class="math notranslate nohighlight">
+\[
+\int_R [c \rho v_t - (\kappa v_x)_x - \mathcal{F} ] dx = 0.
+\]</div>
+<p>Without loss of generality, since the volume <span class="math notranslate nohighlight">\(R\)</span> is arbitrary and the integrand is continuous, we can actually remove the integral sign:</p>
+<div class="math notranslate nohighlight">
+\[
+c \rho v_t - (\kappa v_x)_x - \mathcal{F} = 0.
+\]</div>
+<ul class="simple">
+<li><p>If <span class="math notranslate nohighlight">\(\kappa\)</span> is constant, we recover equation (8.1) with <span class="math notranslate nohighlight">\(\nu = \kappa / c \rho\)</span> and <span class="math notranslate nohighlight">\(F = \mathcal{F}/ c \rho\)</span>.</p></li>
+</ul>
+<p>We will develop numerical methods that are based on this derivation. The hope is that such methods will contain more of “the physics of the problem” than if we naively approximate the resulting PDE by differences (such as in the Finite Differences method).</p>
+</section>
+<section id="cell-centered-values-and-vertex-edge-face-centered-values">
+<h2>4. Cell-centered values and vertex/edge/face-centered values<a class="headerlink" href="#cell-centered-values-and-vertex-edge-face-centered-values" title="Link to this heading">#</a></h2>
+<p>To apply these ideas, we consider the grid placed on the interval <span class="math notranslate nohighlight">\((0,1)\)</span>, such as in the following figure.</p>
+<p><img alt="Thomas book Fig 1.6.1 uniform 1D staggered grid" src="../../img/staggered_grid.png" /></p>
+<p>This looks exactly like the grid we have used in our <a class="reference external" href="https://sdsu-math693b.github.io/spring26/lectures/module1-5_finite_differences.html">introduction to Finite Differences</a>, except that here intervals are marked off, centered at the grid points (or grid edges/faces, if in <span class="math notranslate nohighlight">\(2D\)</span> or <span class="math notranslate nohighlight">\(3D\)</span>).</p>
+<ul class="simple">
+<li><p>We identify the endpoints of the subinterval centered about <span class="math notranslate nohighlight">\(x_k\)</span> as <span class="math notranslate nohighlight">\(x_{k \pm 1/2}\)</span>.</p></li>
+<li><p>We refer to the subinterval <span class="math notranslate nohighlight">\((x_{k - 1/2},x_{k + 1/2})\)</span>, as the <span class="math notranslate nohighlight">\(k\)</span>-th <strong>cell</strong>.</p></li>
+<li><p>This subinterval is referred to as the <strong>control volume</strong> associated with the <span class="math notranslate nohighlight">\(k\)</span>-th grid point.</p></li>
+</ul>
+<p>To derive a difference equation associated with the <span class="math notranslate nohighlight">\(k\)</span>-th grid point, we want to apply (10.2), which we call the <strong>integral form of the conservation law</strong>, to the subinterval <span class="math notranslate nohighlight">\((x_{k - 1/2},x_{k + 1/2})\)</span>.</p>
+<p>Assuming that <span class="math notranslate nohighlight">\(c\)</span>, <span class="math notranslate nohighlight">\(\rho\)</span>, and <span class="math notranslate nohighlight">\(\kappa\)</span> are constant, we can divide (10.2) through by <span class="math notranslate nohighlight">\(c \rho\)</span> and let <span class="math notranslate nohighlight">\(\nu = \kappa/ c \rho\)</span> and <span class="math notranslate nohighlight">\(F = \mathcal{F} / c \rho\)</span>, we obtain:</p>
+<div class="math notranslate nohighlight">
+\[
+\int_{x_{k - 1/2}}^{x_{k + 1/2}} v_t dx = \int_{x_{k - 1/2}}^{x_{k + 1/2}} F dx + \nu \left[ (v_x)_{k + 1/2} - (v_x)_{k - 1/2} \right] \, .
+\]</div>
+<p>Noting that this equation is still dependent on <span class="math notranslate nohighlight">\(t\)</span>, we can integrate in time from <span class="math notranslate nohighlight">\(t_n = n \Delta t\)</span> to <span class="math notranslate nohighlight">\(t_{n+1 } = (n+1)\Delta t\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\int_{t_n}^{t_{n+1}} \int_{x_{k - 1/2}}^{x_{k + 1/2}} v_t dx \,dt &amp;= \int_{x_{k - 1/2}}^{x_{k + 1/2}} \int_{t_n}^{t_{n+1}} v_t dt \, dx\\
+                      &amp;= \int_{x_{k - 1/2}}^{x_{k + 1/2}} \left( v^{n+1} - v^n \right) dx  \\
+                      &amp;=  \int_{t_n}^{t_{n+1}} \int_{x_{k - 1/2}}^{x_{k + 1/2}} F(x,t) dx \, dt + \nu \int_{t_n}^{t_{n+1}} \left[ (v_x)_{k + 1/2} - (v_x)_{k - 1/2} \right] dt \, .
+\end{align*}
+\end{split}\]</div>
+<p>Hence, we have that</p>
+<div class="math notranslate nohighlight">
+\[
+\int_{x_{k - 1/2}}^{x_{k + 1/2}} \left( v^{n+1} - v^n \right) dx = \int_{t_n}^{t_{n+1}} \int_{x_{k - 1/2}}^{x_{k + 1/2}} F(x,t) dx \, dt + \nu \int_{t_n}^{t_{n+1}} \left[ (v_x)_{k + 1/2} - (v_x)_{k - 1/2} \right] dt \, ,
+\tag{10.3}
+\]</div>
+<p>which is equivalent to (10.2) (which was true for <em>all</em> intervals). Hence (10.3) is an <em>exact equation</em>.</p>
+<p>We can now proceed by discretizing (10.3) to obtain a Finite Difference approximation of (10.1). Just as we have derived and used different FD schemes, we can decide to approximate the integrals here in different ways. For instance:</p>
+<ul class="simple">
+<li><p>Approximate the integral associated with the nonhomogeneous term by the <a class="reference external" href="https://en.wikipedia.org/wiki/Riemann_sum"><em>midpoint</em> rule</a> with respect to <span class="math notranslate nohighlight">\(x\)</span> and the <a class="reference external" href="https://en.wikipedia.org/wiki/Riemann_sum"><em>rectangular</em> rule</a> with respect to <span class="math notranslate nohighlight">\(t\)</span> (evaluating at <span class="math notranslate nohighlight">\(t_n\)</span>)</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\int_{t_n}^{t_{n+1}} \int_{x_{k - 1/2}}^{x_{k + 1/2}} F(x,t) dx \, dt  = \Delta x \Delta t F^n_k + O(\Delta x^3 \Delta t) + O(\Delta t^2)
+\]</div>
+<ul class="simple">
+<li><p>Approximate the integral on the left hand side by the <em>midpoint</em> rule with respect to <span class="math notranslate nohighlight">\(x\)</span></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\int_{x_{k - 1/2}}^{x_{k + 1/2}} \left( v^{n+1} - v^n \right) dx = \Delta x \left( v^{n+1}_k - v^n_k \right) + O(\Delta x^3 \Delta t)
+\]</div>
+<ul class="simple">
+<li><p>Approximate the flux term (last term in (10.3)) with the <em>rectangular</em> rule (evaluating at <span class="math notranslate nohighlight">\(t_n\)</span>)</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\int_{t_n}^{t_{n+1}} \left[ (v_x)_{k + 1/2} - (v_x)_{k - 1/2} \right] dt = \Delta t \left[ (v_x)^n_{k + 1/2} - (v_x)^n_{k - 1/2} \right] + O(\Delta x \Delta t^2)
+\]</div>
+<ul class="simple">
+<li><p>We now need to approximate the flux term <span class="math notranslate nohighlight">\(\left[ (v_x)_{k + 1/2} - (v_x)_{k - 1/2} \right]\)</span></p>
+<ul>
+<li><p>We will use Taylor’s expansion again:</p></li>
+</ul>
+</li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+ (v_x)_{k + 1/2} - (v_x)_{k - 1/2} &amp;= \Delta x (v_{xx})^n_k + O(\Delta x^3) \\
+                                   &amp;= \Delta x \left(  \frac{\delta^2 v_k^n}{\Delta x^2} + O(\Delta x^2) \right) + O(\Delta x^3) \\
+                                   &amp;= \frac{1}{\Delta x} \delta^2 v_k^n + O(\Delta x^3)
+\end{align*}
+\end{split}\]</div>
+<p>where we have used the short-hand notation for the centered diff of the second-derivative introduced in <a class="reference external" href="https://sdsu-math693b.github.io/spring26/lectures/module1-6_intro_NA.html#the-leapfrog-scheme">Lecture 6</a>.</p>
+<ul class="simple">
+<li><p>Putting it all together, replacing <span class="math notranslate nohighlight">\(v^n_k\)</span> with <span class="math notranslate nohighlight">\(u^n_k\)</span>, and dropping the <span class="math notranslate nohighlight">\(O\)</span> terms, we finally obtain the difference equation for (10.1):</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+ \Delta x \left( u^{n+1}_k - u^n_k \right) = \Delta x \Delta t F^n_k + \nu \frac{\Delta t}{\Delta x} \delta^2 u_k^n 
+\]</div>
+<ul class="simple">
+<li><p>Of course this is not the only possible scheme we could derive for this equation.</p></li>
+</ul>
+</section>
+<section id="cell-centered-grids">
+<h2>5. Cell-centered grids<a class="headerlink" href="#cell-centered-grids" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>The derivations seen so far, which always involved <strong>vertex/edge/face centered grids</strong> are not the only ones possible or suitable for all problems.</p></li>
+<li><p>We might as well consider the approximate function value (or the approximate average value) on the cell, or the center of the cell. This gives rise to what we call <strong>cell centered grids</strong>. See the figure below for an illustration.</p></li>
+</ul>
+<p><img alt="Thomas book Fig 1.6.2 a cell centered grid in 1D" src="../../img/cell_centered_grid.png" /></p>
+<ul class="simple">
+<li><p>We can see here that grid points are marked off at the center of the cells.</p></li>
+<li><p>The main difference between this cell centered grid and the vertex centered grid shown above is at the endpoints.</p></li>
+<li><p>Hence, as long as the same conservation law approach is used, we get the same difference schemes, no matter if a vertex or cell centered grid is used. But, depending on the treatment of the boundary, we may get different results due to boundary conditions.</p></li>
+<li><p>We note that with a cell centered grid, the <em>endpoint of the interval is not a grid point</em>. It is an endpoint of a computational cell. This makes it very nice for the treatment of Neumann boundary conditions, for which we need to consider the first cell, say, to define the BC at the left endpoint of the domain, <span class="math notranslate nohighlight">\([x_{1/2}, x_{3/2}]\)</span> (as opposed to half an interval <span class="math notranslate nohighlight">\([x_0, x_{1/2}]\)</span> in the case of vertex centered grids).</p></li>
+<li><p>If cell centered grids make our life easier to define Neumann-type BCs, you can imagine that it would make our like a bit harder to define a Dirichlet-type BC. In fact, for the treatment of a Dirichelet boundary condition on a cell centered grid, we need to add a <strong>ghost cell</strong> outside of the domain.</p>
+<ul>
+<li><p>Just as for vertex centered grids, we needed to add <strong>ghost points</strong> outside of the domain for Neumann-type BCs (so you see the symmetry here).</p></li>
+<li><p>When we add a ghost cell to define a Dirichelet BC, we consider the Dirichelet BC to be prescribed at the center of the ghost cell. See figure below:</p></li>
+</ul>
+</li>
+</ul>
+<p><img alt="Thomas book Fig 1.6.3 a ghost cell" src="../../img/ghost_cell.png" /></p>
+<ul class="simple">
+<li><p>Similarly, one could also think of including only a half cell at the end of the interval. See figure below:</p></li>
+</ul>
+<p><img alt="Thomas book Fig 1.6.4 a half ghost cell" src="../../img/half_ghost_cell.png" /></p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "sdsu-math693b/spring26",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./lectures"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="module2-2_stability_analysis.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">9) Fourier and von Neumann stability analyses</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#derivation-of-difference-equations">1. Derivation of Difference Equations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#non-homogeneous-equations">2. Non-homogeneous equations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conservation-laws">3. Conservation Laws</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cell-centered-values-and-vertex-edge-face-centered-values">4. Cell-centered values and vertex/edge/face-centered values</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cell-centered-grids">5. Cell-centered grids</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Valeria Barra
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
