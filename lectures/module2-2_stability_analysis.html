@@ -566,8 +566,8 @@ recovers the function from its Fourier transform.</p>
 <section id="example-9-2">
 <h3>Example 9.2:<a class="headerlink" href="#example-9-2" title="Link to this heading">#</a></h3>
 <p>For the IVP for the heat equation:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c5bac649-cdd6-493d-bbc3-4a9c97419e30">
-<span class="eqno">(13)<a class="headerlink" href="#equation-c5bac649-cdd6-493d-bbc3-4a9c97419e30" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-61d4fd50-d658-46da-b4d6-f4a9bf99042d">
+<span class="eqno">(13)<a class="headerlink" href="#equation-61d4fd50-d658-46da-b4d6-f4a9bf99042d" title="Permalink to this equation">#</a></span>\[\begin{align}
 v_t &amp;=  v_{xx}, &amp;&amp; x\in \mathbb{R},\ t&gt;0, \tag{9.1} \\
 v(x,0) &amp;= f(x), &amp;&amp; x\in \mathbb{R}. \tag{9.2}
 \end{align}\]</div>
@@ -773,8 +773,8 @@ S = \begin{bmatrix} -1 &amp; 2 &amp; -1 \end{bmatrix}
 \]</div>
 <p>In the Fourier analysis, we consider the plane waves <span class="math notranslate nohighlight">\(\phi(x, \omega) = e^{-i\omega x}\)</span>.</p>
 <p>We sample <span class="math notranslate nohighlight">\(\phi\)</span> on a discrete grid, where <span class="math notranslate nohighlight">\(m \in \mathbb Z\)</span>, and obtain <span class="math notranslate nohighlight">\(\phi_m = e^{-im \xi}\)</span>. We then apply the stencil</p>
-<div class="amsmath math notranslate nohighlight" id="equation-807d2025-2ddd-4623-8c37-e252af2599a5">
-<span class="eqno">(14)<a class="headerlink" href="#equation-807d2025-2ddd-4623-8c37-e252af2599a5" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-96c93e6f-d5a1-4331-8dec-932963434092">
+<span class="eqno">(14)<a class="headerlink" href="#equation-96c93e6f-d5a1-4331-8dec-932963434092" title="Permalink to this equation">#</a></span>\[\begin{align}
 S \phi(m, \xi) &amp;= s_{-1} \phi_{m-1} + s_{0} \phi_m + s_1 \phi_{m+1} \\
 &amp;= \Big( s_{-1} e^{i\xi} + s_0 + s_{1} e^{-i\xi} \Big) \phi_m
 \end{align}\]</div>
@@ -793,7 +793,7 @@ S \phi(m, \xi) = \underbrace{(2 - 2 \cos \xi)}_{\hat{\rho}(\xi)}\phi_m
 <span class="n">default</span><span class="p">(</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">default</span><span class="p">(</span><span class="n">legendfontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 
-
+<span class="c"># Check stencil&#39;s symbol against symbol of continuous (second) differentiation</span>
 <span class="n">plot</span><span class="p">([</span><span class="n">ξ</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="n">cos</span><span class="p">(</span><span class="n">ξ</span><span class="p">),</span>
 <span class="w">        </span><span class="n">ξ</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">ξ</span><span class="o">^</span><span class="mi">2</span><span class="p">],</span>
 <span class="w">    </span><span class="n">xlims</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="nb">pi</span><span class="p">,</span><span class="w"> </span><span class="nb">pi</span><span class="p">),</span><span class="w"> </span><span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">),</span><span class="w"> </span>
@@ -1254,8 +1254,8 @@ u_{k}^{n+1} = (1 + R) u_{k}^{n} - R u_{k+1}^{n}, \quad k=0, \pm 1, \ldots \tag{9
 </section>
 <section id="the-cell-peclet-number-related-to-the-reynolds-number">
 <h4>The (cell) <a class="reference external" href="https://en.wikipedia.org/wiki/P%C3%A9clet_number">Péclet number</a> (related to the <a class="reference external" href="https://en.wikipedia.org/wiki/Reynolds_number">Reynolds number</a>)<a class="headerlink" href="#the-cell-peclet-number-related-to-the-reynolds-number" title="Link to this heading">#</a></h4>
-<div class="amsmath math notranslate nohighlight" id="equation-bb0006e5-cf00-4ff1-bd2f-90b59ccb70e8">
-<span class="eqno">(15)<a class="headerlink" href="#equation-bb0006e5-cf00-4ff1-bd2f-90b59ccb70e8" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-92b0ffdc-4828-4a16-be54-dc7b7eb07647">
+<span class="eqno">(15)<a class="headerlink" href="#equation-92b0ffdc-4828-4a16-be54-dc7b7eb07647" title="Permalink to this equation">#</a></span>\[\begin{align}
 \big(wu - \kappa u_x\big)_x &amp;= f, \qquad &amp; \mathrm{Pe}_h &amp;= \frac{\Delta x \lvert w \rvert}{\kappa}
 \end{align}\]</div>
 <ul class="simple">
