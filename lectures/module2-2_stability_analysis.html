@@ -197,6 +197,7 @@
 <li class="toctree-l2"><a class="reference internal" href="module2-1_hyperbolic_equations.html">8) Hyperbolic Equations</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">9) Fourier and von Neumann stability analyses</a></li>
 <li class="toctree-l2"><a class="reference internal" href="module2-3_conservation_laws.html">10) Conservation laws and introduction to Finite Volumes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module2-4_variable_coefficients.html">11) Variable coefficients</a></li>
 </ul>
 </details></li>
 </ul>
@@ -566,8 +567,8 @@ recovers the function from its Fourier transform.</p>
 <section id="example-9-2">
 <h3>Example 9.2:<a class="headerlink" href="#example-9-2" title="Link to this heading">#</a></h3>
 <p>For the IVP for the heat equation:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-61d4fd50-d658-46da-b4d6-f4a9bf99042d">
-<span class="eqno">(13)<a class="headerlink" href="#equation-61d4fd50-d658-46da-b4d6-f4a9bf99042d" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a00e2e96-5f87-4033-ba77-3bd04ba1c671">
+<span class="eqno">(13)<a class="headerlink" href="#equation-a00e2e96-5f87-4033-ba77-3bd04ba1c671" title="Permalink to this equation">#</a></span>\[\begin{align}
 v_t &amp;=  v_{xx}, &amp;&amp; x\in \mathbb{R},\ t&gt;0, \tag{9.1} \\
 v(x,0) &amp;= f(x), &amp;&amp; x\in \mathbb{R}. \tag{9.2}
 \end{align}\]</div>
@@ -773,8 +774,8 @@ S = \begin{bmatrix} -1 &amp; 2 &amp; -1 \end{bmatrix}
 \]</div>
 <p>In the Fourier analysis, we consider the plane waves <span class="math notranslate nohighlight">\(\phi(x, \omega) = e^{-i\omega x}\)</span>.</p>
 <p>We sample <span class="math notranslate nohighlight">\(\phi\)</span> on a discrete grid, where <span class="math notranslate nohighlight">\(m \in \mathbb Z\)</span>, and obtain <span class="math notranslate nohighlight">\(\phi_m = e^{-im \xi}\)</span>. We then apply the stencil</p>
-<div class="amsmath math notranslate nohighlight" id="equation-96c93e6f-d5a1-4331-8dec-932963434092">
-<span class="eqno">(14)<a class="headerlink" href="#equation-96c93e6f-d5a1-4331-8dec-932963434092" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4f321d06-58b6-4d3d-97f0-055ba116529b">
+<span class="eqno">(14)<a class="headerlink" href="#equation-4f321d06-58b6-4d3d-97f0-055ba116529b" title="Permalink to this equation">#</a></span>\[\begin{align}
 S \phi(m, \xi) &amp;= s_{-1} \phi_{m-1} + s_{0} \phi_m + s_1 \phi_{m+1} \\
 &amp;= \Big( s_{-1} e^{i\xi} + s_0 + s_{1} e^{-i\xi} \Big) \phi_m
 \end{align}\]</div>
@@ -1094,7 +1095,7 @@ u_t + a u_x = 0, \quad a &lt; 0 \, .
 </div>
 <ul class="simple">
 <li><p>flux: mass of material transported through unit area in unit time (dimensions: <span class="math notranslate nohighlight">\(ML^{-2}T^{-1}\)</span>)</p></li>
-<li><p><span class="math notranslate nohighlight">\(\to\)</span> <strong>advective</strong> flux <span class="math notranslate nohighlight">\(= wv\)</span> (check dimensions: <span class="math notranslate nohighlight">\( M L^{-3} \cdot L T^{-1}\)</span>)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\to\)</span> <strong>advective</strong> flux <span class="math notranslate nohighlight">\(= wu\)</span> (check dimensions: <span class="math notranslate nohighlight">\( M L^{-3} \cdot L T^{-1}\)</span>)</p></li>
 </ul>
 <ul class="simple">
 <li><p>W.l.o.g. we can consider this problem in 1D, and noticing that the total change in mass in the segment <span class="math notranslate nohighlight">\([x_1, x_2]\)</span> is due to incoming and outgoing flux on the left and right, we have:</p></li>
@@ -1204,7 +1205,7 @@ u_{k}^{n+1} = (1 + R) u_{k}^{n} - R u_{k+1}^{n}, \quad k=0, \pm 1, \ldots \tag{9
 <li><p><strong>Question</strong>: what does that tell you about the flux (rate of spread) as a function of the density (concentration)? In other words, if <span class="math notranslate nohighlight">\(f_{\mathrm{diff}} \propto g(u)\)</span>, what is <span class="math notranslate nohighlight">\(g\)</span>?</p></li>
 </ul>
 <ul class="simple">
-<li><p><strong>Solution</strong>: <span class="math notranslate nohighlight">\(f_{\mathrm{diff}} \propto \nabla u\)</span>, specifically <span class="math notranslate nohighlight">\(f_{\mathrm{diff}} - \kappa\nabla u\)</span> (<a class="reference external" href="https://en.wikipedia.org/wiki/Fick%27s_laws_of_diffusion">Fick’s first law of diffusion</a>)</p></li>
+<li><p><strong>Solution</strong>: <span class="math notranslate nohighlight">\(f_{\mathrm{diff}} \propto  \nabla u\)</span>, specifically <span class="math notranslate nohighlight">\(f_{\mathrm{diff}} =- \kappa\nabla u\)</span> (<a class="reference external" href="https://en.wikipedia.org/wiki/Fick%27s_laws_of_diffusion">Fick’s first law of diffusion</a>)</p></li>
 <li><p><span class="math notranslate nohighlight">\(\kappa\)</span> is the (scalar) diffusivity coefficient, set to 1 for now</p></li>
 <li><p>Using the same continuity argument as earlier and adding a potential <em>source</em> of flux <span class="math notranslate nohighlight">\(f\)</span>, we reach the nonhomegenous advection-diffusion equation</p></li>
 </ul>
@@ -1254,8 +1255,8 @@ u_{k}^{n+1} = (1 + R) u_{k}^{n} - R u_{k+1}^{n}, \quad k=0, \pm 1, \ldots \tag{9
 </section>
 <section id="the-cell-peclet-number-related-to-the-reynolds-number">
 <h4>The (cell) <a class="reference external" href="https://en.wikipedia.org/wiki/P%C3%A9clet_number">Péclet number</a> (related to the <a class="reference external" href="https://en.wikipedia.org/wiki/Reynolds_number">Reynolds number</a>)<a class="headerlink" href="#the-cell-peclet-number-related-to-the-reynolds-number" title="Link to this heading">#</a></h4>
-<div class="amsmath math notranslate nohighlight" id="equation-92b0ffdc-4828-4a16-be54-dc7b7eb07647">
-<span class="eqno">(15)<a class="headerlink" href="#equation-92b0ffdc-4828-4a16-be54-dc7b7eb07647" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-6699d948-8240-4fee-a1e5-2f299d01cba7">
+<span class="eqno">(15)<a class="headerlink" href="#equation-6699d948-8240-4fee-a1e5-2f299d01cba7" title="Permalink to this equation">#</a></span>\[\begin{align}
 \big(wu - \kappa u_x\big)_x &amp;= f, \qquad &amp; \mathrm{Pe}_h &amp;= \frac{\Delta x \lvert w \rvert}{\kappa}
 \end{align}\]</div>
 <ul class="simple">
