@@ -567,8 +567,8 @@ recovers the function from its Fourier transform.</p>
 <section id="example-9-2">
 <h3>Example 9.2:<a class="headerlink" href="#example-9-2" title="Link to this heading">#</a></h3>
 <p>For the IVP for the heat equation:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a00e2e96-5f87-4033-ba77-3bd04ba1c671">
-<span class="eqno">(13)<a class="headerlink" href="#equation-a00e2e96-5f87-4033-ba77-3bd04ba1c671" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-3a04a1eb-bc5b-4661-9dde-47999c2a8c0a">
+<span class="eqno">(13)<a class="headerlink" href="#equation-3a04a1eb-bc5b-4661-9dde-47999c2a8c0a" title="Permalink to this equation">#</a></span>\[\begin{align}
 v_t &amp;=  v_{xx}, &amp;&amp; x\in \mathbb{R},\ t&gt;0, \tag{9.1} \\
 v(x,0) &amp;= f(x), &amp;&amp; x\in \mathbb{R}. \tag{9.2}
 \end{align}\]</div>
@@ -774,8 +774,8 @@ S = \begin{bmatrix} -1 &amp; 2 &amp; -1 \end{bmatrix}
 \]</div>
 <p>In the Fourier analysis, we consider the plane waves <span class="math notranslate nohighlight">\(\phi(x, \omega) = e^{-i\omega x}\)</span>.</p>
 <p>We sample <span class="math notranslate nohighlight">\(\phi\)</span> on a discrete grid, where <span class="math notranslate nohighlight">\(m \in \mathbb Z\)</span>, and obtain <span class="math notranslate nohighlight">\(\phi_m = e^{-im \xi}\)</span>. We then apply the stencil</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4f321d06-58b6-4d3d-97f0-055ba116529b">
-<span class="eqno">(14)<a class="headerlink" href="#equation-4f321d06-58b6-4d3d-97f0-055ba116529b" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-0f50b655-b866-4c72-b83d-d7f0be4f6b51">
+<span class="eqno">(14)<a class="headerlink" href="#equation-0f50b655-b866-4c72-b83d-d7f0be4f6b51" title="Permalink to this equation">#</a></span>\[\begin{align}
 S \phi(m, \xi) &amp;= s_{-1} \phi_{m-1} + s_{0} \phi_m + s_1 \phi_{m+1} \\
 &amp;= \Big( s_{-1} e^{i\xi} + s_0 + s_{1} e^{-i\xi} \Big) \phi_m
 \end{align}\]</div>
@@ -1149,7 +1149,7 @@ u_{k}^{n+1} = (1 + R) u_{k}^{n} - R u_{k+1}^{n}, \quad k=0, \pm 1, \ldots \tag{9
 <p>For stability, we need</p>
 <div class="math notranslate nohighlight">
 \[
-| \rho(\xi)| &lt; 1 \,.
+| \rho(\xi)| \leq 1 \,.
 \]</div>
 <p>In this case, the magnitude of <span class="math notranslate nohighlight">\(\rho\)</span> is:</p>
 <div class="math notranslate nohighlight">
@@ -1255,8 +1255,8 @@ u_{k}^{n+1} = (1 + R) u_{k}^{n} - R u_{k+1}^{n}, \quad k=0, \pm 1, \ldots \tag{9
 </section>
 <section id="the-cell-peclet-number-related-to-the-reynolds-number">
 <h4>The (cell) <a class="reference external" href="https://en.wikipedia.org/wiki/P%C3%A9clet_number">Péclet number</a> (related to the <a class="reference external" href="https://en.wikipedia.org/wiki/Reynolds_number">Reynolds number</a>)<a class="headerlink" href="#the-cell-peclet-number-related-to-the-reynolds-number" title="Link to this heading">#</a></h4>
-<div class="amsmath math notranslate nohighlight" id="equation-6699d948-8240-4fee-a1e5-2f299d01cba7">
-<span class="eqno">(15)<a class="headerlink" href="#equation-6699d948-8240-4fee-a1e5-2f299d01cba7" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-10f443be-264b-4b09-962f-10dc9a6ff9e1">
+<span class="eqno">(15)<a class="headerlink" href="#equation-10f443be-264b-4b09-962f-10dc9a6ff9e1" title="Permalink to this equation">#</a></span>\[\begin{align}
 \big(wu - \kappa u_x\big)_x &amp;= f, \qquad &amp; \mathrm{Pe}_h &amp;= \frac{\Delta x \lvert w \rvert}{\kappa}
 \end{align}\]</div>
 <ul class="simple">
