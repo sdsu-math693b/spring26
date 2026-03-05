@@ -33,6 +33,9 @@ Who am I?
   * LeVeque (2007) **Finite Difference Methods for Ordinary and Partial Differential Equations: Steady-State and Time-Dependent Problems**]
     * online available from [SIAM](https://epubs.siam.org/doi/book/10.1137/1.9780898717839)
   * [Sauer (2012), **Numerical Analysis**](https://www.pearson.com/us/higher-education/program/Sauer-Numerical-Analysis-2nd-Edition/PGM223463.html)
+  * O.C. Zienkiewicz and R.L. Taylor (2000), **The Finite Element Method: Volume 1, Its Basis and Fundamentals**
+  * O.C. Zienkiewicz and R.L. Taylor, **The Finite Element Method: Volume 2, Solid Mechanics**
+   * O.C. Zienkiewicz and R.L. Taylor, **The Finite Element Method: Volume 3, Fluid Dynamics**
   * [Boyd and Vandenberghe (2018), **Introduction to Applied Linear Algebra**](https://web.stanford.edu/~boyd/vmls/)
     * practical introduction to linear algebra for computer scientists; free PDF
   * [3Blue1Brown, **Linear Algebra**](https://www.3blue1brown.com/topics/linear-algebra)
