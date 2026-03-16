@@ -1,0 +1,775 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>12) Stability of multi-step schemes &#8212; Advanced Numerical Methods Computational Partial Differential Equations Spring 26</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/module2-5_stability_of_multistep';</script>
+    <link rel="icon" href="../_static/SDSU-math693b_logo.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="13) Introduction to Finite Element discretizations" href="module3-1_intro_to_fem.html" />
+    <link rel="prev" title="11) Variable coefficients" href="module2-4_variable_coefficients.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/SDSU-math693b_logo.svg" class="logo__image only-light" alt="Advanced Numerical Methods Computational Partial Differential Equations Spring 26 - Home"/>
+    <script>document.write(`<img src="../_static/SDSU-math693b_logo.svg" class="logo__image only-dark" alt="Advanced Numerical Methods Computational Partial Differential Equations Spring 26 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Welcome
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus.html">Syllabus</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../lectures.html">Lectures</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="module1-1_git.html">1) First Class: Reproducibility and Git</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="module1-2_community_projects.html">2) Community Projects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module1-3_intro_to_julia.html">3) Introduction to programming in Julia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module1-4_intro_to_pdes.html">4) Introduction to PDEs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module1-5_finite_differences.html">5) Finite Differences</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module1-6_intro_NA.html">6) Introduction to Numerical Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module1-7_fd_solutions.html">7) FD Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module2-1_hyperbolic_equations.html">8) Hyperbolic Equations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module2-2_stability_analysis.html">9) Fourier and von Neumann stability analyses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module2-3_conservation_laws.html">10) Conservation laws and introduction to Finite Volumes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module2-4_variable_coefficients.html">11) Variable coefficients</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">12) Stability of multi-step schemes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module3-1_intro_to_fem.html">13) Introduction to Finite Element discretizations</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/sdsu-math693b/spring26" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/sdsu-math693b/spring26/issues/new?title=Issue%20on%20page%20%2Flectures/module2-5_stability_of_multistep.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/lectures/module2-5_stability_of_multistep.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>12) Stability of multi-step schemes</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stability-of-multi-step-schemes-introduction">1. Stability of multi-step schemes: Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stability-for-the-leapfrog-scheme">2. Stability for the Leapfrog scheme</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initialization-of-the-leapfrog-scheme">3. Initialization of the Leapfrog scheme</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parasitic-modes-of-the-leapfrog-scheme">4. Parasitic modes of the Leapfrog scheme</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="stability-of-multi-step-schemes">
+<h1>12) Stability of multi-step schemes<a class="headerlink" href="#stability-of-multi-step-schemes" title="Link to this heading">#</a></h1>
+<p>Last time:</p>
+<ul class="simple">
+<li><p>Validation and Verification</p></li>
+<li><p>Non constant coefficients</p></li>
+<li><p>Manufactured solutions for variable coefficients</p></li>
+<li><p>Discretizing in conservative form</p></li>
+<li><p>Sparsity</p></li>
+</ul>
+<p>Today:</p>
+<ol class="arabic simple">
+<li><p>Stability of multi-step schemes: Introduction</p></li>
+<li><p>Stability for the Leapfrog scheme</p></li>
+<li><p>Initialization of the Leapfrog scheme</p></li>
+<li><p>Parasidic modes of the Leapfrog scheme</p></li>
+</ol>
+<section id="stability-of-multi-step-schemes-introduction">
+<h2>1. Stability of multi-step schemes: Introduction<a class="headerlink" href="#stability-of-multi-step-schemes-introduction" title="Link to this heading">#</a></h2>
+<p>In your Assignment 3, you have seen that <strong>Crank-Nicolson</strong> is a second-order scheme in both space and time and <strong>unconditionally stable</strong>.</p>
+<ul class="simple">
+<li><p>We have also had a discussion on <strong>boundary conditions</strong>.</p></li>
+<li><p>For Finite Difference schemes we must both respect <strong>physical boundary conditions</strong> as well as (sometimes) introduce additional <strong>numerical boundary conditions</strong> (see Assignment 2).</p></li>
+<li><p>The implementation of these boundary conditions affect both the <strong>order of accuracy</strong>, and <strong>stability</strong> of the scheme.</p></li>
+<li><p>For <strong>one-step schemes</strong> we have seen the <strong>CFL condition</strong> gives us a <strong>necessary condition</strong> for stability
+<div class="math notranslate nohighlight">
+\[
+| a r | \leq 1
+\]</div>
+</p></li>
+</ul>
+<div class="admonition-theorem-von-neumann-stability admonition">
+<p class="admonition-title">Theorem: Von Neumann Stability</p>
+<p>A one-step finite difference scheme (with constant coefficients) is stable in a stability region <span class="math notranslate nohighlight">\(\Lambda\)</span> <em>if and only if</em> there is a constant <span class="math notranslate nohighlight">\(K\)</span> (independent of <span class="math notranslate nohighlight">\(\theta\)</span>, <span class="math notranslate nohighlight">\(\Delta t\)</span>, and <span class="math notranslate nohighlight">\(\Delta x\)</span>) such that</p>
+<div class="math notranslate nohighlight">
+\[
+    |g(\theta,\Delta t,\Delta x)| \le 1 + K \Delta t,
+\]</div>
+<p>with <span class="math notranslate nohighlight">\((\Delta t,\Delta x)\in\Lambda\)</span>. If <span class="math notranslate nohighlight">\(g(\theta,\Delta t,\Delta x)\)</span> is independent on <span class="math notranslate nohighlight">\(\Delta t\)</span> and <span class="math notranslate nohighlight">\(\Delta x\)</span>, the stability condition can be replaced with the restricted stability condition
+<div class="math notranslate nohighlight">
+\[
+    |g(\theta)| \le 1.
+\]</div>
+</p>
+</div>
+<p>Now, we want to extend this analysis to <strong>multi-step schemes</strong>. Let’s start from the Leapfrog scheme and the same analysis can be applied to other multi-step schemes.</p>
+</section>
+<section id="stability-for-the-leapfrog-scheme">
+<h2>2. Stability for the Leapfrog scheme<a class="headerlink" href="#stability-for-the-leapfrog-scheme" title="Link to this heading">#</a></h2>
+<div class="math notranslate nohighlight">
+\[
+ \begin{array}{rll}
+      \displaystyle \frac{u_{k}^{n+1} - u_{k}^{n-1}}{2\Delta t} + a \frac{
+        u_{k+1}^{n} - u_{k-1}^{n} }{ 2\Delta x} = 0 &amp;&amp; \hbox{
+        Leapfrog (C.T.C.S.)}
+ \end{array}
+\]</div>
+<p>We set <span class="math notranslate nohighlight">\(u_{m}^{n} \leadsto g^{n}e^{i kh\xi}\)</span> (with <span class="math notranslate nohighlight">\(h \equiv \Delta x\)</span>) (from application of the Fourier inversion formula), and eliminate common factors (here, the lowest time level is <span class="math notranslate nohighlight">\(g^{n-1}e^{i kh\xi}\)</span>, so we divide by it):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\frac{u_{k}^{n+1} - u_{k}^{n-1}}{2\Delta t} + a \frac{
+        u_{k+1}^{n} - u_{k-1}^{n} }{ 2\Delta x} &amp;= 0 \\
+\frac{g^{n+1}e^{i kh\xi} - g^{n-1}e^{i kh\xi}}{2 \Delta t} + a \frac{g^{n}e^{i( k+1)h\xi} - g^{n}e^{i(k-1)h\xi}}{2 \Delta x} &amp;= 0
+\end{align*}
+\end{split}\]</div>
+<p>Eliminate the common factor <span class="math notranslate nohighlight">\( g^{n-1}e^{i kh\xi}\)</span>, and use <span class="math notranslate nohighlight">\(\theta = h \xi\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align*}
+\frac{g^2 -1}{2 \Delta t} +a \frac{g \left(e^{i\theta} - e^{-i \theta}  \right)}{2 \Delta x} &amp;= 0
+\end{align*}
+\]</div>
+<p>Define <span class="math notranslate nohighlight">\(R = a \Delta t / \Delta x\)</span>, then:</p>
+<div class="math notranslate nohighlight">
+\[
+G(\theta) = g ^2 - 1 + 2i R\sin(\theta)g =0
+\]</div>
+<ul class="simple">
+<li><p>We started with a <strong>2-step</strong> scheme or 2-level method and we reached a <strong>quadratic polynomial</strong> <span class="math notranslate nohighlight">\(G(\theta)\)</span>, called the <strong>amplification/growth polynomial</strong>. In this case is quadratic, hence, it has two roots or solutions:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+g_{\pm}(\theta) = -i R\sin(\theta) \pm \sqrt{ 1 - (R)^2\sin^2(\theta)}
+\]</div>
+<ul class="simple">
+<li><p>When <span class="math notranslate nohighlight">\(g_{+}\not=g_{-}\)</span>, the solution is given by</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+  \hat{u}^{n}(\xi) = A_{+}(\xi)g_{+}(h\xi)^{n} + A_{-}(\xi) g_{-}(h\xi)^{n},
+\]</div>
+<p>and <span class="math notranslate nohighlight">\(A_{\pm}(\xi)\)</span> are determined by initial conditions.</p>
+<p>Sometimes it is useful to rewrite this in the following form</p>
+<div class="math notranslate nohighlight">
+\[
+    \hat{u}^n(\xi) = A(\xi) g_{+}(h\xi)^n + B(\xi) \left[ \frac{
+        g_{-}(h\xi)^{n} - g_{+}(h\xi)^{n} }{ g_{-}(h\xi) - g_{+}(h\xi) }
+    \right],
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(A(\xi)\)</span> and <span class="math notranslate nohighlight">\(B(\xi)\)</span> are determined by initial conditions.</p>
+<ul class="simple">
+<li><p>When <span class="math notranslate nohighlight">\({g_{+}=g_{-}} = g\)</span>, the solution is given by</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+  \hat{u}^{n}(\xi) = A(\xi)g(h\xi)^{n} + n\cdot B(\xi) g(h\xi)^{n-1},
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(A(\xi)\)</span>, and <span class="math notranslate nohighlight">\(B(\xi)\)</span> are related to <span class="math notranslate nohighlight">\(\hat{u}^{0}(\xi)\)</span>, and <span class="math notranslate nohighlight">\(\hat{u}^{1}(\xi)\)</span> by</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+  \begin{array}{rcl}
+    A(\xi) &amp;=&amp; \hat{u}^{0}(\xi) \nonumber \\
+    B(\xi) &amp;=&amp; \hat{u}^{1}(\xi) - \hat{u}^{0}(\xi)g(h\xi).
+  \end{array}
+\end{split}\]</div>
+<p>Now, with this setup we get:</p>
+<ul class="simple">
+<li><p>with <span class="math notranslate nohighlight">\(|R|\le1\)</span> we have that</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+  |g_{\pm}|^{2} = 1 - R^2\sin^2(\theta) + R^2\sin^2(\theta) = 1,
+\]</div>
+<ul class="simple">
+<li><p>when <span class="math notranslate nohighlight">\(|R|&gt;1\)</span>, we get
+<div class="math notranslate nohighlight">
+\[
+|g_{-}(\pi/2)| = |R| + \sqrt{ R^2 - 1} \ge |R| &gt; 1.
+\]</div>
+</p></li>
+<li><p>Hence, <span class="math notranslate nohighlight">\(|R|\le 1\)</span> is a <strong>necessary condition</strong> for <strong>stability</strong>.</p></li>
+</ul>
+<p>But…  We’re not done yet. We must also look at the case <span class="math notranslate nohighlight">\(g_{+} = g_{-}\)</span>.</p>
+<p>This equality holds only when <span class="math notranslate nohighlight">\(| R|=1\)</span>, and <span class="math notranslate nohighlight">\(\theta=\pm\pi/2\)</span>.</p>
+<p>For these two values we get <span class="math notranslate nohighlight">\(g=\pm i\)</span>, and the solutions</p>
+<div class="math notranslate nohighlight">
+\[
+    \hat{u}^n\left(\pm\pi/2h\right) = A\left(\pm\pi/2h\right) (\mp i)^n +
+    n\cdot B\left(\pm\pi/2h\right) (\mp i)^{n-1}.
+\]</div>
+<p>Since this term grows linearly in <span class="math notranslate nohighlight">\(n\)</span>, the leapfrog scheme is <strong>unstable</strong> for <span class="math notranslate nohighlight">\(|R|=1\)</span>.</p>
+<ul class="simple">
+<li><p>Hence, the leapfrog scheme is <strong>stable</strong> <span class="math notranslate nohighlight">\(\Leftrightarrow\)</span> <span class="math notranslate nohighlight">\(|R|&lt;1\)</span>.</p></li>
+</ul>
+</section>
+<section id="initialization-of-the-leapfrog-scheme">
+<h2>3. Initialization of the Leapfrog scheme<a class="headerlink" href="#initialization-of-the-leapfrog-scheme" title="Link to this heading">#</a></h2>
+<p>The Leapfrog scheme (and other two-step schemes) require that in addition to the initial values <span class="math notranslate nohighlight">\(u_{k}^0\)</span>, the first time level <span class="math notranslate nohighlight">\(u_k^1\)</span> must also be initialized.</p>
+<ul class="simple">
+<li><p>Any consistent one-step scheme, <em>even an unstable one</em>, can be used to initialize <span class="math notranslate nohighlight">\(u_k^1\)</span>.  Since the unstable scheme is applied only once, the error growth is minimal.</p></li>
+<li><p>Furthermore, if the grid parameter <span class="math notranslate nohighlight">\(R\)</span> is constant, then the initialization scheme can be accurate of <em>one order less</em> than that of the two-step scheme, without degrading the overall accuracy of the scheme.</p></li>
+<li><p>Thus, we have found a potential use for the unstable forward-time centred-space (F.T.C.S.) scheme for the one-way wave equation; as an initializer for the leap-frog scheme.</p></li>
+</ul>
+</section>
+<section id="parasitic-modes-of-the-leapfrog-scheme">
+<h2>4. Parasitic modes of the Leapfrog scheme<a class="headerlink" href="#parasitic-modes-of-the-leapfrog-scheme" title="Link to this heading">#</a></h2>
+<p>From the expressions</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{rcl}
+    \hat{u}^{n}(\xi) &amp;=&amp; A_{+}(\xi)g_{+}(h\xi)^{n} + A_{-}(\xi)
+    g_{-}(h\xi)^{n}, \\[1ex]
+    g_{\pm}(\theta) &amp;=&amp; -i R\sin(\theta) \pm \sqrt{ 1 -
+      R^2\sin^2(\theta)},
+\end{array}
+\end{split}\]</div>
+<p>we see that the solution of the leapfrog scheme consists of two parts, associated with <span class="math notranslate nohighlight">\(g_{+}(\theta)\)</span>, and <span class="math notranslate nohighlight">\(g_{-}(\theta)\)</span>.</p>
+<ul class="simple">
+<li><p>We note that <span class="math notranslate nohighlight">\(g_{+}(0)=1\)</span>, and <span class="math notranslate nohighlight">\(g_{-}(0)=-1\)</span>.</p></li>
+</ul>
+<p>Let’s see how these two parts contribute to the solution.</p>
+<p>If we use the forward-time centred-space (F.T.C.S.) scheme to initialize the leapfrog scheme</p>
+<div class="math notranslate nohighlight">
+\[
+  \hat{u}^1(\xi) = (1-i R\sin(\theta))\hat{u}^0(\xi).
+\]</div>
+<p>Based on taking the first step using the F.T.C.S. scheme, and Taylor expanding the square roots in the expressions for <span class="math notranslate nohighlight">\(g_{\pm}(\theta)\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{rcl}
+    g_{+}(\theta) &amp;=&amp; 1-i R\sin(\theta) -
+    \frac{1}{2}R^2 \sin^{2}(\theta) + O({h^4}),\\
+    g_{-}(\theta) &amp;=&amp; -1-i R\sin(\theta) +
+    \frac{1}{2}R^2 \sin^{2}(\theta) + O({h^4}),
+\end{array}
+\end{split}\]</div>
+<p>Using the definition of <span class="math notranslate nohighlight">\(B(\xi)\)</span> above, we have</p>
+<div class="math notranslate nohighlight">
+\[
+B(\xi) = \left[ \frac{1}{2}R^2\sin^2(\theta)+ O({\theta^4})\right]
+  \hat{u}^{0}(\xi).
+\]</div>
+<ul class="simple">
+<li><p>For <span class="math notranslate nohighlight">\(|\theta|\)</span> small, <span class="math notranslate nohighlight">\(|B(\xi)|=O({\theta^2})\)</span>, i.e., small, the scheme behaves like a one-step scheme with amplification factor <span class="math notranslate nohighlight">\(g_{+}(\theta)\)</span>.</p></li>
+<li><p>When <span class="math notranslate nohighlight">\(|\theta|\)</span> is not small, <span class="math notranslate nohighlight">\(B(\xi)\)</span> is not necessarily small, and the effect of the second amplification factor <span class="math notranslate nohighlight">\(g_{-}(\theta)\)</span> is felt.</p></li>
+<li><p>The portion of the solution associated with <span class="math notranslate nohighlight">\(g_{-}(\theta)\)</span> is called the <strong>parasitic mode</strong>. Since <span class="math notranslate nohighlight">\(g_{-}(0)=-1\)</span>, the parasitic mode induces rapid <strong>oscillations</strong> in time.</p></li>
+<li><p>The parasitic mode <strong>travels in the wrong direction</strong>.</p>
+<ul>
+<li><p>When <span class="math notranslate nohighlight">\(a\)</span> is positive, the parasitic mode travels to the left, and when <span class="math notranslate nohighlight">\(a\)</span> is negative it travels to the right.</p></li>
+</ul>
+</li>
+<li><p>In general, when the amplification/growth polynomial has roots with multiplicity <span class="math notranslate nohighlight">\(&gt;1\)</span> things get more complicated.</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "sdsu-math693b/spring26",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./lectures"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="module2-4_variable_coefficients.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">11) Variable coefficients</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="module3-1_intro_to_fem.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">13) Introduction to Finite Element discretizations</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stability-of-multi-step-schemes-introduction">1. Stability of multi-step schemes: Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stability-for-the-leapfrog-scheme">2. Stability for the Leapfrog scheme</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initialization-of-the-leapfrog-scheme">3. Initialization of the Leapfrog scheme</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parasitic-modes-of-the-leapfrog-scheme">4. Parasitic modes of the Leapfrog scheme</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Valeria Barra
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
