@@ -18,3 +18,5 @@ chapters:
   - file: lectures/module2-2_stability_analysis.ipynb
   - file: lectures/module2-3_conservation_laws.ipynb
   - file: lectures/module2-4_variable_coefficients.ipynb
+  - file: lectures/module2-5_stability_of_multistep.ipynb
+  - file: lectures/module3-1_intro_to_fem.ipynb
