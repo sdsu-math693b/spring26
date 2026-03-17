@@ -429,9 +429,10 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stability-of-multi-step-schemes-introduction">1. Stability of multi-step schemes: Introduction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stability-for-the-leapfrog-scheme">2. Stability for the Leapfrog scheme</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initialization-of-the-leapfrog-scheme">3. Initialization of the Leapfrog scheme</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parasitic-modes-of-the-leapfrog-scheme">4. Parasitic modes of the Leapfrog scheme</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-step-schemes">2. Multi-step schemes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stability-for-the-leapfrog-scheme">3. Stability for the Leapfrog scheme</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initialization-of-the-leapfrog-scheme">4. Initialization of the Leapfrog scheme</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parasitic-modes-of-the-leapfrog-scheme">5. Parasitic modes of the Leapfrog scheme</a></li>
 </ul>
             </nav>
         </div>
@@ -456,6 +457,7 @@ document.write(`
 <p>Today:</p>
 <ol class="arabic simple">
 <li><p>Stability of multi-step schemes: Introduction</p></li>
+<li><p>Multi-step schemes</p></li>
 <li><p>Stability for the Leapfrog scheme</p></li>
 <li><p>Initialization of the Leapfrog scheme</p></li>
 <li><p>Parasidic modes of the Leapfrog scheme</p></li>
@@ -490,8 +492,17 @@ document.write(`
 </div>
 <p>Now, we want to extend this analysis to <strong>multi-step schemes</strong>. Let’s start from the Leapfrog scheme and the same analysis can be applied to other multi-step schemes.</p>
 </section>
+<section id="multi-step-schemes">
+<h2>2. Multi-step schemes<a class="headerlink" href="#multi-step-schemes" title="Link to this heading">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Terminology</p>
+<p>A note on terminology of <strong>multi-step schemes</strong>. Some references, w.g., <a class="reference external" href="https://en.wikipedia.org/wiki/Linear_multistep_method">Wikipedia</a> define a <strong>multi-step</strong> scheme or method to be one that uses information from the previous <span class="math notranslate nohighlight">\(s\)</span> steps to calculate the next value (i.e., not including the next value in the definition).</p>
+<p>Some numerical PDEs textbooks, like the reference textbooks for this course, e.g., Thomas and Strikwerda, include the new time step in the number of levels of the scheme. Hence, for the <strong>Leapfrog</strong> scheme considered below, they would refer to it as a  <strong>two-step</strong> or <strong>three-time-level</strong> method (as it uses information at the time levels <span class="math notranslate nohighlight">\(n\)</span> and <span class="math notranslate nohighlight">\(n-1\)</span> to calculate the new value at <span class="math notranslate nohighlight">\(n+1\)</span>.)</p>
+</div>
+</section>
 <section id="stability-for-the-leapfrog-scheme">
-<h2>2. Stability for the Leapfrog scheme<a class="headerlink" href="#stability-for-the-leapfrog-scheme" title="Link to this heading">#</a></h2>
+<h2>3. Stability for the Leapfrog scheme<a class="headerlink" href="#stability-for-the-leapfrog-scheme" title="Link to this heading">#</a></h2>
 <div class="math notranslate nohighlight">
 \[
  \begin{array}{rll}
@@ -522,7 +533,7 @@ document.write(`
 G(\theta) = g ^2 - 1 + 2i R\sin(\theta)g =0
 \]</div>
 <ul class="simple">
-<li><p>We started with a <strong>2-step</strong> scheme or 2-level method and we reached a <strong>quadratic polynomial</strong> <span class="math notranslate nohighlight">\(G(\theta)\)</span>, called the <strong>amplification/growth polynomial</strong>. In this case is quadratic, hence, it has two roots or solutions:</p></li>
+<li><p>We started with a <strong>2-step</strong> scheme or 3-time-level method and we reached a <strong>quadratic polynomial</strong> <span class="math notranslate nohighlight">\(G(\theta)\)</span>, called the <strong>amplification/growth polynomial</strong>. In this case is quadratic, hence, it has two roots or solutions:</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
@@ -590,7 +601,7 @@ g_{\pm}(\theta) = -i R\sin(\theta) \pm \sqrt{ 1 - (R)^2\sin^2(\theta)}
 </ul>
 </section>
 <section id="initialization-of-the-leapfrog-scheme">
-<h2>3. Initialization of the Leapfrog scheme<a class="headerlink" href="#initialization-of-the-leapfrog-scheme" title="Link to this heading">#</a></h2>
+<h2>4. Initialization of the Leapfrog scheme<a class="headerlink" href="#initialization-of-the-leapfrog-scheme" title="Link to this heading">#</a></h2>
 <p>The Leapfrog scheme (and other two-step schemes) require that in addition to the initial values <span class="math notranslate nohighlight">\(u_{k}^0\)</span>, the first time level <span class="math notranslate nohighlight">\(u_k^1\)</span> must also be initialized.</p>
 <ul class="simple">
 <li><p>Any consistent one-step scheme, <em>even an unstable one</em>, can be used to initialize <span class="math notranslate nohighlight">\(u_k^1\)</span>.  Since the unstable scheme is applied only once, the error growth is minimal.</p></li>
@@ -599,7 +610,7 @@ g_{\pm}(\theta) = -i R\sin(\theta) \pm \sqrt{ 1 - (R)^2\sin^2(\theta)}
 </ul>
 </section>
 <section id="parasitic-modes-of-the-leapfrog-scheme">
-<h2>4. Parasitic modes of the Leapfrog scheme<a class="headerlink" href="#parasitic-modes-of-the-leapfrog-scheme" title="Link to this heading">#</a></h2>
+<h2>5. Parasitic modes of the Leapfrog scheme<a class="headerlink" href="#parasitic-modes-of-the-leapfrog-scheme" title="Link to this heading">#</a></h2>
 <p>From the expressions</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -715,9 +726,10 @@ B(\xi) = \left[ \frac{1}{2}R^2\sin^2(\theta)+ O({\theta^4})\right]
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stability-of-multi-step-schemes-introduction">1. Stability of multi-step schemes: Introduction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stability-for-the-leapfrog-scheme">2. Stability for the Leapfrog scheme</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initialization-of-the-leapfrog-scheme">3. Initialization of the Leapfrog scheme</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parasitic-modes-of-the-leapfrog-scheme">4. Parasitic modes of the Leapfrog scheme</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-step-schemes">2. Multi-step schemes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stability-for-the-leapfrog-scheme">3. Stability for the Leapfrog scheme</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initialization-of-the-leapfrog-scheme">4. Initialization of the Leapfrog scheme</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parasitic-modes-of-the-leapfrog-scheme">5. Parasitic modes of the Leapfrog scheme</a></li>
 </ul>
   </nav></div>
 
