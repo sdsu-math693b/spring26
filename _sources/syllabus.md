@@ -86,7 +86,7 @@ Grading breakdown:
 - Assignment 1 (5%): due date **Tuesday**, **02/03/26**, by midnight (AOE)
 - Assignment 2 (8%): due date **Friday**, **02/20/26**, by midnight (AOE)
 - Assignment 3 (8%): due date **Monday**, **03/09/26**, by midnight (AOE)
-- Assignment 4 (8%): due date **TBD**, by midnight (AOE)
+- Assignment 4 (8%): due date **Tuesday**, **03/31/26**, by midnight (AOE)
 - Assignment 5 (8%): due date **TBD**, by midnight (AOE)
 - Assignment 6 (8%): due date **TBD**, by midnight (AOE)
 
