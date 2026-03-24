@@ -63,6 +63,7 @@
     <link rel="icon" href="../_static/SDSU-math693b_logo.svg"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="14) FEM Assembly" href="module3-2_fem_assembly.html" />
     <link rel="prev" title="12) Stability of multi-step schemes" href="module2-5_stability_of_multistep.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -199,6 +200,7 @@
 <li class="toctree-l2"><a class="reference internal" href="module2-4_variable_coefficients.html">11) Variable coefficients</a></li>
 <li class="toctree-l2"><a class="reference internal" href="module2-5_stability_of_multistep.html">12) Stability of multi-step schemes</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">13) Introduction to Finite Element discretizations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module3-2_fem_assembly.html">14) FEM Assembly</a></li>
 </ul>
 </details></li>
 </ul>
@@ -699,7 +701,7 @@ thus defines an inner product on the function space <span class="math notranslat
 </ul>
 <p>We also introduce the <span class="math notranslate nohighlight">\(L^2\)</span> inner product
 <div class="math notranslate nohighlight">
-\[ \langle u, v \rangle = \int_\Omega u(x) v(x) \]</div>
+\[ \langle u, v \rangle = \int_\Omega u(x) v(x) ~\mathrm{d} x \]</div>
 
 so that our continuous weak form variational problem is to find <span class="math notranslate nohighlight">\(u \in \mathcal{V}\)</span> such that
 <div class="math notranslate nohighlight">
@@ -755,7 +757,7 @@ Now,</p>
 <section id="quadrature">
 <h2>4. Quadrature<a class="headerlink" href="#quadrature" title="Link to this heading">#</a></h2>
 <p>We have seen that the variational form is an integral form of the PDE. Therefore, in <strong>Finite Element Methods (FEM)</strong>, we need a way to compute integrals. We will do this via numerical quadrature rules.</p>
-<p>For a <span class="math notranslate nohighlight">\(1\)</span>-D domain, uur elements will be a line segment and we’ll define quadrature on the standard line segment, <span class="math notranslate nohighlight">\(\hat \Omega = (-1, 1)\)</span>.</p>
+<p>For a <span class="math notranslate nohighlight">\(1\)</span>-D domain, our elements will be a line segment and we’ll define quadrature on the standard line segment, <span class="math notranslate nohighlight">\(\hat \Omega = (-1, 1)\)</span>.</p>
 <p>A <strong>quadrature</strong> is a set of points <span class="math notranslate nohighlight">\(q_i\)</span> and weights <span class="math notranslate nohighlight">\(w_i\)</span> such that
 <div class="math notranslate nohighlight">
 \[
@@ -1305,6 +1307,15 @@ M_{ij} :=  (\phi_i,\phi_j), \;\; \qquad b_{i} :=  \langle \phi_i, f \rangle,
         <p class="prev-next-subtitle">previous</p>
         <p class="prev-next-title">12) Stability of multi-step schemes</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="module3-2_fem_assembly.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">14) FEM Assembly</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
