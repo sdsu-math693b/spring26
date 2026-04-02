@@ -869,7 +869,18 @@ u_h(\mathbf x) = \sum_{j=1}^n u_j \, \phi_j(\mathbf x)
 </section>
 <section id="abstractions">
 <h2>3. Abstractions<a class="headerlink" href="#abstractions" title="Link to this heading">#</a></h2>
-<p>In general, In the FEM/SEM fomrulations, we always try to keep the order of derivatives of <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(v\)</span> as small as possible. We reach a general form, where we can express as <span class="math notranslate nohighlight">\(f_0\)</span> all terms in the weak form that multiply the test function <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(f_1\)</span> all terms that multiply its gradient <span class="math notranslate nohighlight">\(\nabla v\)</span>:</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Resources</p>
+<p>Some useful resources for FEM/SEM are:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://libceed.org/en/latest/">libCEED documentation</a>, especially the Mathematical Framework and Examples sections</p></li>
+<li><p><a class="reference external" href="https://jsdokken.com/dolfinx-tutorial/chapter1/fundamentals.html">The Dolfinx/FeniCS Tutorial</a>, especially their Fundamentals section</p></li>
+<li><p>The <a class="reference external" href="https://dealii.org/">deal.ii</a> project has extensive documentation on FEM</p></li>
+<li><p><a class="reference external" href="https://ferrite-fem.github.io/Ferrite.jl/stable/">Ferrite.jl</a>, a Julia library for FEM that has a nice documentation, especially the Topic guides and Tutorials sections.</p></li>
+</ul>
+</div>
+<p>In general, In the FEM/SEM formulations, we always try to keep the order of derivatives of <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(v\)</span> as small as possible. We reach a general form, where we can express as <span class="math notranslate nohighlight">\(f_0\)</span> all terms in the weak form that multiply the test function <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(f_1\)</span> all terms that multiply its gradient <span class="math notranslate nohighlight">\(\nabla v\)</span>:</p>
 <p>General form:</p>
 <div class="math notranslate nohighlight">
 \[ \int_\Omega v\cdot f_0(u, \nabla u) + \nabla v\cdot f_1(u, \nabla u) = 0, \quad \forall v\]</div>
@@ -1088,7 +1099,10 @@ where <span class="math notranslate nohighlight">\(\tilde u = B \mathcal E_e u\)
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>q = [-0.9549193338482966, -0.8, -0.6450806661517035]
-sum(w) = 0.3999999999999999
+sum(w) = 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.3999999999999999
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3×11 Adjoint{Float64, SparseMatrixCSC{Float64, Int64}} with 3 stored entries:
@@ -1154,6 +1168,9 @@ sum(w) = 0.3999999999999999
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Green">    Updating</span> registry at `~/.julia/registries/General.toml`
+</pre></div>
+</div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Green">   Resolving</span> package versions...
 </pre></div>
 </div>
@@ -1166,6 +1183,40 @@ sum(w) = 0.3999999999999999
 <span class=" -Color -Color-Bold -Color-Bold-Yellow">│ </span> ┌ Symbolics → SymbolicsForwardDiffExt
 <span class=" -Color -Color-Bold -Color-Bold-Yellow">│ </span> └─ Symbolics → SymbolicsPreallocationToolsExt
 <span class=" -Color -Color-Bold -Color-Bold-Yellow">└ </span>@ Pkg.API.Precompilation ~/julia-1.10.10/share/julia/stdlib/v1.10/Pkg/src/precompilation.jl:583
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Green">Precompiling</span> packages...
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    791.2 ms<span class=" -Color -Color-Green">  ✓ </span>METIS_jll
+    346.2 ms<span class=" -Color -Color-Green">  ✓ </span>IntelOpenMP_jll
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    352.1 ms<span class=" -Color -Color-Green">  ✓ </span>oneTBB_jll
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    369.7 ms<span class=" -Color -Color-Green">  ✓ </span>MKL_jll
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    778.4 ms<span class=" -Color -Color-Green">  ✓ </span>Polynomials → PolynomialsMutableArithmeticsExt
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    876.3 ms<span class=" -Color -Color-Green">  ✓ </span>Polynomials → PolynomialsChainRulesCoreExt
+    580.4 ms<span class=" -Color -Color-Green">  ✓ </span>Metis
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   1215.3 ms<span class=" -Color -Color-Green">  ✓ </span>HCubature
+   1138.3 ms<span class=" -Color -Color-Green">  ✓ </span>PlotlyJS → IJuliaExt
+   1158.1 ms<span class=" -Color -Color-Green">  ✓ </span>PlotlyJS → CSVExt
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    754.9 ms<span class=" -Color -Color-Green">  ✓ </span>DSP → OffsetArraysExt
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   1317.3 ms<span class=" -Color -Color-Green">  ✓ </span>PlotlyJS → DataFramesExt
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  12 dependencies successfully precompiled in 5 seconds. 393 already precompiled. 2 skipped due to circular dependency.
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Results of Nonlinear Solver Algorithm

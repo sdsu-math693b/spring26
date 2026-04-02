@@ -197,6 +197,10 @@
 <li class="toctree-l2"><a class="reference internal" href="module2-1_hyperbolic_equations.html">8) Hyperbolic Equations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="module2-2_stability_analysis.html">9) Fourier and von Neumann stability analyses</a></li>
 <li class="toctree-l2"><a class="reference internal" href="module2-3_conservation_laws.html">10) Conservation laws and introduction to Finite Volumes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module2-4_variable_coefficients.html">11) Variable coefficients</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module2-5_stability_of_multistep.html">12) Stability of multi-step schemes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module3-1_intro_to_fem.html">13) Introduction to Finite Element discretizations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module3-2_fem_assembly.html">14) FEM Assembly</a></li>
 </ul>
 </details></li>
 </ul>
@@ -694,7 +698,7 @@ points increases as <span class="math notranslate nohighlight">\(h\rightarrow 0\
 <li><p>Share insights in class discussion</p></li>
 </ul>
 </div>
-<img src="https://fncbook.com/build/backwarderror-55621e558c526e24b8fc1d61b00b65a3.svg" width="90%" />
+<p><img alt="Backward error from the FNC online book" src="../_images/FNC_backward_error.svg" /></p>
 <p>Source: <a class="reference external" href="https://fncbook.com/stability/#backward-error">FNC: backward error</a></p>
 <section id="forward-stability">
 <h3>(Forward) Stability<a class="headerlink" href="#forward-stability" title="Link to this heading">#</a></h3>
@@ -1124,8 +1128,8 @@ The entries of <span class="math notranslate nohighlight">\(\Sigma\)</span> are 
 <section id="second-derivative-with-dirichlet-boundary-conditions">
 <h2>6. Second-derivative with Dirichlet boundary conditions<a class="headerlink" href="#second-derivative-with-dirichlet-boundary-conditions" title="Link to this heading">#</a></h2>
 <p>Recall the Poisson equation with non-homogeneous Dirichelet boundary conditions:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c5bc6bb4-1fa8-4bb4-8190-3b704f2b12f2">
-<span class="eqno">(8)<a class="headerlink" href="#equation-c5bc6bb4-1fa8-4bb4-8190-3b704f2b12f2" title="Permalink to this equation">#</a></span>\[\begin{gather} -\frac{d^2 u}{dx^2} = f(x) \quad x \in \Omega = (-1,1) \\
+<div class="amsmath math notranslate nohighlight" id="equation-a7d085b9-582a-4431-8e7d-95cdf7892e93">
+<span class="eqno">(8)<a class="headerlink" href="#equation-a7d085b9-582a-4431-8e7d-95cdf7892e93" title="Permalink to this equation">#</a></span>\[\begin{gather} -\frac{d^2 u}{dx^2} = f(x) \quad x \in \Omega = (-1,1) \\
 u(-1) = a, \quad u(1) = b .
 \end{gather}\]</div>
 <ul>
@@ -1506,8 +1510,8 @@ p(x) = c_0 + c_1 x + c_2 x^2 + \dotsb.
 \]</div>
 </p>
 <p>What is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0f57619c-9979-464b-81d9-84c5d795e7e0">
-<span class="eqno">(9)<a class="headerlink" href="#equation-0f57619c-9979-464b-81d9-84c5d795e7e0" title="Permalink to this equation">#</a></span>\[\begin{align} p(0) &amp;= c_0 \\
+<div class="amsmath math notranslate nohighlight" id="equation-c6f75d86-a6e0-4b84-85ed-10cb2b7313c0">
+<span class="eqno">(9)<a class="headerlink" href="#equation-c6f75d86-a6e0-4b84-85ed-10cb2b7313c0" title="Permalink to this equation">#</a></span>\[\begin{align} p(0) &amp;= c_0 \\
 p'(0) &amp;= c_1 \\ 
 p''(0) &amp;= c_2 \cdot 2\\
 p^{(k)}(0) &amp;= c_k \cdot k! .
@@ -1887,8 +1891,8 @@ which is symmetric and decouples the degrees of freedom associated with the boun
 <section id="symmetry-in-boundary-conditions-neumann">
 <h3>Symmetry in boundary conditions: Neumann<a class="headerlink" href="#symmetry-in-boundary-conditions-neumann" title="Link to this heading">#</a></h3>
 <p>Let’s revisit the Poisson equation, now with mixed Dirichelet and Neumann boundary conditions:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-03ae2a97-c779-4ec4-bcf5-1b8871baba31">
-<span class="eqno">(10)<a class="headerlink" href="#equation-03ae2a97-c779-4ec4-bcf5-1b8871baba31" title="Permalink to this equation">#</a></span>\[\begin{gather} -\frac{d^2 u}{dx^2} = f(x) \quad x \in \Omega = (-1,1) \\
+<div class="amsmath math notranslate nohighlight" id="equation-1018ca51-f3b1-4502-915e-a2a77a989569">
+<span class="eqno">(10)<a class="headerlink" href="#equation-1018ca51-f3b1-4502-915e-a2a77a989569" title="Permalink to this equation">#</a></span>\[\begin{gather} -\frac{d^2 u}{dx^2} = f(x) \quad x \in \Omega = (-1,1) \\
 u(-1) = a, \quad \frac{d u}{d x}(1) = b .
 \end{gather}\]</div>
 <p>Consider a FD discretization of the Neumann boundary condition on the right boundary:
