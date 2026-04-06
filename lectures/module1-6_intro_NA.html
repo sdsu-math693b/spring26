@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -201,6 +201,8 @@
 <li class="toctree-l2"><a class="reference internal" href="module2-5_stability_of_multistep.html">12) Stability of multi-step schemes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="module3-1_intro_to_fem.html">13) Introduction to Finite Element discretizations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="module3-2_fem_assembly.html">14) FEM Assembly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module3-3_applied_fem.html">15) Applied Finite Elements</a></li>
+
 </ul>
 </details></li>
 </ul>
@@ -518,8 +520,8 @@ document.write(`
 <section id="introduction-to-consistency">
 <h2>2. Introduction to Consistency<a class="headerlink" href="#introduction-to-consistency" title="Link to this heading">#</a></h2>
 <p>Last time, we found one possible approximation to the heat equation:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d67f8327-6bb9-47be-ad67-022b973975a1">
-<span class="eqno">(7)<a class="headerlink" href="#equation-d67f8327-6bb9-47be-ad67-022b973975a1" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-80eb8d47-f915-447c-8089-7cf86d578a34">
+<span class="eqno">(7)<a class="headerlink" href="#equation-80eb8d47-f915-447c-8089-7cf86d578a34" title="Permalink to this equation">#</a></span>\[\begin{align}
 v_t &amp;= \nu v_{xx}, &amp;&amp; x\in(0,1),\ t&gt;0, \tag{1.2.1}\\
 v(x,0) &amp;= f(x), &amp;&amp; x\in[0,1], \tag{1.2.2}\\
 v(0,t) &amp;= a(t),\quad v(1,t)=b(t), &amp;&amp; t\ge 0. \tag{1.2.3}
@@ -855,9 +857,6 @@ log(1 + x) = 9.99999999999999577705399876661334866240642273273796506931959160545
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Green">    Updating</span> registry at `~/.julia/registries/General.toml`
-</pre></div>
-</div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Green">   Resolving</span> package versions...
 </pre></div>
 </div>

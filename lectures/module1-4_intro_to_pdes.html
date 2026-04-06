@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -195,6 +195,14 @@
 <li class="toctree-l2"><a class="reference internal" href="module1-6_intro_NA.html">6) Introduction to Numerical Analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="module1-7_fd_solutions.html">7) FD Solutions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="module2-1_hyperbolic_equations.html">8) Hyperbolic Equations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module2-2_stability_analysis.html">9) Fourier and von Neumann stability analyses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module2-3_conservation_laws.html">10) Conservation laws and introduction to Finite Volumes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module2-4_variable_coefficients.html">11) Variable coefficients</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module2-5_stability_of_multistep.html">12) Stability of multi-step schemes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module3-1_intro_to_fem.html">13) Introduction to Finite Element discretizations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module3-2_fem_assembly.html">14) FEM Assembly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module3-3_applied_fem.html">15) Applied Finite Elements</a></li>
+
 </ul>
 </details></li>
 </ul>
@@ -558,8 +566,8 @@ document.write(`
 <section id="viscous-burgers-equation">
 <h4>Viscous Burgers’ Equation<a class="headerlink" href="#viscous-burgers-equation" title="Link to this heading">#</a></h4>
 <p>Viscous Burgers’ equation</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ae783983-a1a1-4049-b095-6de74a5a08d3">
-<span class="eqno">(1)<a class="headerlink" href="#equation-ae783983-a1a1-4049-b095-6de74a5a08d3" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-7b5d47e5-c4ae-4f85-b216-32336cede9e7">
+<span class="eqno">(1)<a class="headerlink" href="#equation-7b5d47e5-c4ae-4f85-b216-32336cede9e7" title="Permalink to this equation">#</a></span>\[\begin{align}
 u_t + u u_x &amp;= \nu u_{xx}, &amp;&amp; x\in(0,1),\ t&gt;0, \tag{0.0.1}\\
 \textrm{Boundary Conditions (BCs): } u(0,t) &amp;= u(1,t)=0, &amp;&amp; t&gt; 0, \tag{0.0.2} \\
 \textrm{Initial Condition (IC): }u(x,0) &amp;= \sin 2 \pi x, &amp;&amp; x\in[0,1], \tag{0.0.3}
@@ -570,8 +578,8 @@ u_t + u u_x &amp;= \nu u_{xx}, &amp;&amp; x\in(0,1),\ t&gt;0, \tag{0.0.1}\\
 <section id="inviscid-burgers-equation">
 <h4>Inviscid Burgers’ Equation<a class="headerlink" href="#inviscid-burgers-equation" title="Link to this heading">#</a></h4>
 <p>Equivalent to the problem above, but without the viscosity term (i.e., for <span class="math notranslate nohighlight">\(\nu = 0\)</span>):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1c3fabab-6c68-4eb6-bc2b-663ac3ce1813">
-<span class="eqno">(2)<a class="headerlink" href="#equation-1c3fabab-6c68-4eb6-bc2b-663ac3ce1813" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-752db8ce-f16c-4b00-95a3-1c8b197ec74a">
+<span class="eqno">(2)<a class="headerlink" href="#equation-752db8ce-f16c-4b00-95a3-1c8b197ec74a" title="Permalink to this equation">#</a></span>\[\begin{align}
 u_t + u u_x &amp;= 0, &amp;&amp; x\in(0,1),\ t&gt;0, \tag{0.0.4}\\
 \textrm{Boundary Conditions (BCs): } u(0,t) &amp;= u(1,t)=0, &amp;&amp; t&gt; 0, \tag{0.0.5} \\
 \textrm{Initial Condition (IC): }u(x,0) &amp;= \sin 2 \pi x, &amp;&amp; x\in[0,1], \tag{0.0.6}
@@ -585,8 +593,8 @@ u_t + u u_x &amp;= 0, &amp;&amp; x\in(0,1),\ t&gt;0, \tag{0.0.4}\\
 <p>A variable-coefficients (often with discontinuities) Poisson’s problem. This problem can have many important applications ranging from incompressible
 flows to semiconductor modeling to tissue engineering.</p>
 <p>Find <span class="math notranslate nohighlight">\(u\)</span> such that</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9cba36ef-98e0-4034-93dc-c01146b01f19">
-<span class="eqno">(3)<a class="headerlink" href="#equation-9cba36ef-98e0-4034-93dc-c01146b01f19" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-649d6aa0-3d45-4284-924b-70fae3957b8f">
+<span class="eqno">(3)<a class="headerlink" href="#equation-649d6aa0-3d45-4284-924b-70fae3957b8f" title="Permalink to this equation">#</a></span>\[\begin{align}
 -\nabla\cdot\big(\kappa(\mathbf x) \nabla u(\mathbf x)\big) &amp;= f(\mathbf x) &amp; \mathbf x &amp;\in \Omega \\
 u(\mathbf x) &amp;= g(\mathbf x) &amp; \mathbf x &amp;\in \Gamma_D \subset \partial\Omega \\
 \kappa(\mathbf x) \nabla u(\mathbf x) \cdot \mathbf{\hat n}(\mathbf x) &amp;= h(\mathbf x) &amp; \mathbf x &amp;\in \Gamma_N \subset\partial\Omega
@@ -606,8 +614,8 @@ u(\mathbf x) &amp;= g(\mathbf x) &amp; \mathbf x &amp;\in \Gamma_D \subset \part
 <section id="the-shallow-water-equations-swe">
 <h4>The shallow water equations (SWE)<a class="headerlink" href="#the-shallow-water-equations-swe" title="Link to this heading">#</a></h4>
 <p>The shallow water equations (in vector-invariant form) on a rotating sphere:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c873f7a2-f774-432a-bd41-39bb1e3877bc">
-<span class="eqno">(4)<a class="headerlink" href="#equation-c873f7a2-f774-432a-bd41-39bb1e3877bc" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f840cbbd-45b8-4fe5-b53b-177f63ee242b">
+<span class="eqno">(4)<a class="headerlink" href="#equation-f840cbbd-45b8-4fe5-b53b-177f63ee242b" title="Permalink to this equation">#</a></span>\[\begin{align}
     \frac{\partial h}{\partial t} + \nabla \cdot (h \boldsymbol{u}) &amp;= 0\\
     \frac{\partial \boldsymbol{u}}{\partial t} + \nabla (\Phi + \tfrac{1}{2}\|\boldsymbol{u}\|^2)  &amp;= (\boldsymbol{u} \times (f + \nabla \times \boldsymbol{u}))\,
 \end{align}\]</div>
@@ -839,8 +847,8 @@ by this equation is an</p>
 \textrm{ellipse, } &amp; \textrm{if }a\textrm{ and }c\textrm{ have the same sign}
 \end{align*}\]</div>
 <p>We have three main canonical form classifications:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bd77f7e0-4ec6-456e-b5da-c907ae4bbe84">
-<span class="eqno">(5)<a class="headerlink" href="#equation-bd77f7e0-4ec6-456e-b5da-c907ae4bbe84" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-6ab0c790-c8ff-471d-949e-c56e72bceb8b">
+<span class="eqno">(5)<a class="headerlink" href="#equation-6ab0c790-c8ff-471d-949e-c56e72bceb8b" title="Permalink to this equation">#</a></span>\[\begin{align}
 X^2 - Y^2 + \dots = 0,\\
 X^2 + \dots = 0,\\
 X^2 + Y^2 + \dots = 0.\\

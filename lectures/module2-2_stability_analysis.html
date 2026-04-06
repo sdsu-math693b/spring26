@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -201,6 +201,8 @@
 <li class="toctree-l2"><a class="reference internal" href="module2-5_stability_of_multistep.html">12) Stability of multi-step schemes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="module3-1_intro_to_fem.html">13) Introduction to Finite Element discretizations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="module3-2_fem_assembly.html">14) FEM Assembly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module3-3_applied_fem.html">15) Applied Finite Elements</a></li>
+
 </ul>
 </details></li>
 </ul>
@@ -570,8 +572,8 @@ recovers the function from its Fourier transform.</p>
 <section id="example-9-2">
 <h3>Example 9.2:<a class="headerlink" href="#example-9-2" title="Link to this heading">#</a></h3>
 <p>For the IVP for the heat equation:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2fbec7ed-0ff7-4bf6-b943-ea075c251b3a">
-<span class="eqno">(13)<a class="headerlink" href="#equation-2fbec7ed-0ff7-4bf6-b943-ea075c251b3a" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-67c0ab22-cc3b-4f69-b7ed-fd46785ff66a">
+<span class="eqno">(13)<a class="headerlink" href="#equation-67c0ab22-cc3b-4f69-b7ed-fd46785ff66a" title="Permalink to this equation">#</a></span>\[\begin{align}
 v_t &amp;=  v_{xx}, &amp;&amp; x\in \mathbb{R},\ t&gt;0, \tag{9.1} \\
 v(x,0) &amp;= f(x), &amp;&amp; x\in \mathbb{R}. \tag{9.2}
 \end{align}\]</div>
@@ -777,8 +779,8 @@ S = \begin{bmatrix} -1 &amp; 2 &amp; -1 \end{bmatrix}
 \]</div>
 <p>In the Fourier analysis, we consider the plane waves <span class="math notranslate nohighlight">\(\phi(x, \omega) = e^{-i\omega x}\)</span>.</p>
 <p>We sample <span class="math notranslate nohighlight">\(\phi\)</span> on a discrete grid, where <span class="math notranslate nohighlight">\(m \in \mathbb Z\)</span>, and obtain <span class="math notranslate nohighlight">\(\phi_m = e^{-im \xi}\)</span>. We then apply the stencil</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fa12706e-63bc-44e4-afd4-a17269bcac75">
-<span class="eqno">(14)<a class="headerlink" href="#equation-fa12706e-63bc-44e4-afd4-a17269bcac75" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-816e2fb3-9e14-4a2b-8d54-aed3303226b1">
+<span class="eqno">(14)<a class="headerlink" href="#equation-816e2fb3-9e14-4a2b-8d54-aed3303226b1" title="Permalink to this equation">#</a></span>\[\begin{align}
 S \phi(m, \xi) &amp;= s_{-1} \phi_{m-1} + s_{0} \phi_m + s_1 \phi_{m+1} \\
 &amp;= \Big( s_{-1} e^{i\xi} + s_0 + s_{1} e^{-i\xi} \Big) \phi_m
 \end{align}\]</div>
@@ -1258,8 +1260,8 @@ u_{k}^{n+1} = (1 + R) u_{k}^{n} - R u_{k+1}^{n}, \quad k=0, \pm 1, \ldots \tag{9
 </section>
 <section id="the-cell-peclet-number-related-to-the-reynolds-number">
 <h4>The (cell) <a class="reference external" href="https://en.wikipedia.org/wiki/P%C3%A9clet_number">Péclet number</a> (related to the <a class="reference external" href="https://en.wikipedia.org/wiki/Reynolds_number">Reynolds number</a>)<a class="headerlink" href="#the-cell-peclet-number-related-to-the-reynolds-number" title="Link to this heading">#</a></h4>
-<div class="amsmath math notranslate nohighlight" id="equation-5e2669ca-6207-4da7-8d1e-712f4ed0fb94">
-<span class="eqno">(15)<a class="headerlink" href="#equation-5e2669ca-6207-4da7-8d1e-712f4ed0fb94" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-943f00ec-c157-4589-b3f4-f62b41ac533c">
+<span class="eqno">(15)<a class="headerlink" href="#equation-943f00ec-c157-4589-b3f4-f62b41ac533c" title="Permalink to this equation">#</a></span>\[\begin{align}
 \big(wu - \kappa u_x\big)_x &amp;= f, \qquad &amp; \mathrm{Pe}_h &amp;= \frac{\Delta x \lvert w \rvert}{\kappa}
 \end{align}\]</div>
 <ul class="simple">
