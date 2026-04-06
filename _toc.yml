@@ -21,3 +21,4 @@ chapters:
   - file: lectures/module2-5_stability_of_multistep.ipynb
   - file: lectures/module3-1_intro_to_fem.ipynb
   - file: lectures/module3-2_fem_assembly.ipynb
+  - file: lectures/module3-3_applied_fem.ipynb
