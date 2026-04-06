@@ -547,8 +547,8 @@ document.write(`
 <p>Recall that we have introduced the cell Peclet number in our <a class="reference external" href="https://sdsu-math693b.github.io/spring26/lectures/module2-2_stability_analysis.html">Fourier and von Neumann stability analyses Lecture</a>. I report it here for convenience</p>
 <section id="the-cell-peclet-number-related-to-the-reynolds-number">
 <h4>The (cell) <a class="reference external" href="https://en.wikipedia.org/wiki/P%C3%A9clet_number">Péclet number</a> (related to the <a class="reference external" href="https://en.wikipedia.org/wiki/Reynolds_number">Reynolds number</a>)<a class="headerlink" href="#the-cell-peclet-number-related-to-the-reynolds-number" title="Link to this heading">#</a></h4>
-<div class="amsmath math notranslate nohighlight" id="equation-2a1e2bf1-2f3f-4030-809b-38e424858e8f">
-<span class="eqno">(17)<a class="headerlink" href="#equation-2a1e2bf1-2f3f-4030-809b-38e424858e8f" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4ed0ae01-3095-40ab-a519-ee09b7c2ee6b">
+<span class="eqno">(17)<a class="headerlink" href="#equation-4ed0ae01-3095-40ab-a519-ee09b7c2ee6b" title="Permalink to this equation">#</a></span>\[\begin{align}
 \mathrm{Pe} &amp;= \frac{\Delta x \lvert w \rvert}{\kappa}
 \end{align}\]</div>
 <ul class="simple">
@@ -737,8 +737,8 @@ document.write(`
 <section id="time-dependent-advection-diffusion">
 <h3>Time-dependent advection-diffusion<a class="headerlink" href="#time-dependent-advection-diffusion" title="Link to this heading">#</a></h3>
 <p>Suppose we have the strong and weak forms</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e3fe5fde-a300-4bae-82c4-365098ecebf9">
-<span class="eqno">(18)<a class="headerlink" href="#equation-e3fe5fde-a300-4bae-82c4-365098ecebf9" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-dee93bb9-3594-4e72-a2d1-abfd5f11f010">
+<span class="eqno">(18)<a class="headerlink" href="#equation-dee93bb9-3594-4e72-a2d1-abfd5f11f010" title="Permalink to this equation">#</a></span>\[\begin{align}
 u_t + F(u) &amp;= 0\, , &amp; \qquad \langle v, u_t \rangle + A(v,u) &amp;= 0
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(F\)</span> is the spatial (only) differential operator and</p>
@@ -751,7 +751,7 @@ A(u;v) = \langle v, F(u) \rangle
 <div class="math notranslate nohighlight">
 \[F(u) = \mathbf w\cdot\nabla u - \nabla\cdot(\kappa\nabla u),\]</div>
 </p>
-<p>To obtain the weak form, we multiply by a test function <span class="math notranslate nohighlight">\(v\)</span> and integrate over the domain <span class="math notranslate nohighlight">\(Omega\)</span>:</p>
+<p>To obtain the weak form, we multiply by a test function <span class="math notranslate nohighlight">\(v\)</span> and integrate over the domain <span class="math notranslate nohighlight">\(\Omega\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
 \int_\Omega v\,u_t\,dx
@@ -816,14 +816,14 @@ L = \frac{\partial F}{\partial u}
 <section id="variational-multiscale-key-ideas">
 <h3>Variational Multiscale key ideas<a class="headerlink" href="#variational-multiscale-key-ideas" title="Link to this heading">#</a></h3>
 <p>Decompose the solution into an <em>overlapping</em> sum decomposition of a resolved and oscillatory part, <span class="math notranslate nohighlight">\(u = \bar u + \tilde u\)</span> and similarly for <span class="math notranslate nohighlight">\(v = \bar v + \tilde v\)</span>, where <span class="math notranslate nohighlight">\(\bar u \)</span> represents the <strong><em>coarse</em></strong> (<strong>resolved</strong>) scales and <span class="math notranslate nohighlight">\(\tilde u\)</span> the <strong><em>fine</em></strong> (<strong>subgrid</strong> or <strong>unresolved</strong>) scales</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3dafee32-6fab-4698-a05e-02b1ce158048">
-<span class="eqno">(19)<a class="headerlink" href="#equation-3dafee32-6fab-4698-a05e-02b1ce158048" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-3c5ad54a-3210-48be-b615-363bc3b751e9">
+<span class="eqno">(19)<a class="headerlink" href="#equation-3c5ad54a-3210-48be-b615-363bc3b751e9" title="Permalink to this equation">#</a></span>\[\begin{align}
 \langle \bar v, \bar u_t + \tilde u_t \rangle + A(\bar v, \bar u + \tilde u) &amp; = 0 \\
 \langle \tilde v, \bar u_t + \tilde u_t \rangle + A(\tilde v, \bar u + \tilde u) &amp; = 0 
 \end{align}\]</div>
 <p>We approximate <span class="math notranslate nohighlight">\(A\)</span> via first order Taylor series</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cd4116d5-0a63-4f12-bbf6-89e6318a4a09">
-<span class="eqno">(20)<a class="headerlink" href="#equation-cd4116d5-0a63-4f12-bbf6-89e6318a4a09" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-663340fc-806a-47d4-8dc2-b9a3a1dbc6f6">
+<span class="eqno">(20)<a class="headerlink" href="#equation-663340fc-806a-47d4-8dc2-b9a3a1dbc6f6" title="Permalink to this equation">#</a></span>\[\begin{align}
 A(\bar v, \bar u + \tilde u) &amp;\approx A(\bar v, \bar u) + \langle \bar v, L \tilde u \rangle \\
 &amp;= A(\bar v, \bar u) + \langle L^* \bar v, \tilde u \rangle \\
 A(\tilde v, \bar u + \tilde u) &amp;\approx \langle \tilde v, F(\bar u) \rangle + \langle \tilde v, L \tilde u \rangle
@@ -890,8 +890,8 @@ Expressions for <span class="math notranslate nohighlight">\(\tau\)</span> can b
 </section>
 <section id="stabilized-methods-for-advection-diffusion">
 <h2>5. Stabilized methods for advection-diffusion<a class="headerlink" href="#stabilized-methods-for-advection-diffusion" title="Link to this heading">#</a></h2>
-<div class="amsmath math notranslate nohighlight" id="equation-3216c53c-ef60-467a-b4e3-607cae5e362d">
-<span class="eqno">(21)<a class="headerlink" href="#equation-3216c53c-ef60-467a-b4e3-607cae5e362d" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-aade456f-eb89-4ae1-aeaa-694975b1f478">
+<span class="eqno">(21)<a class="headerlink" href="#equation-aade456f-eb89-4ae1-aeaa-694975b1f478" title="Permalink to this equation">#</a></span>\[\begin{align}
 L u &amp;= \mathbf w \cdot \nabla u - \nabla\cdot(\kappa \nabla u) \\
 L^* u &amp;= -\mathbf w \cdot \nabla u - \nabla\cdot(\kappa \nabla u)
 \end{align}\]</div>
