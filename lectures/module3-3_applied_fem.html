@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -201,7 +201,6 @@
 <li class="toctree-l2"><a class="reference internal" href="module3-1_intro_to_fem.html">13) Introduction to Finite Element discretizations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="module3-2_fem_assembly.html">14) FEM Assembly</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">15) Applied Finite Elements</a></li>
-
 </ul>
 </details></li>
 </ul>
@@ -430,7 +429,6 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">15) Applied Finite Elements</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advection-diffusion-time-independent">1. Advection-diffusion (time independent)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#observations">Observations</a></li>
 </ul>
@@ -445,21 +443,6 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variational-multiscale-method">3. Variational Multiscale Method</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#time-dependent-advection-diffusion">Time-dependent advection-diffusion</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#integrating-the-diffusion-term-by-parts-gives-int-omega-v-nabla-cdot-kappa-nabla-u-dx">Integrating the diffusion term by parts gives
-$$
--\int_\Omega v,\nabla\cdot(\kappa\nabla u),dx</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#int-omega-nabla-v-cdot-kappa-nabla-u-dx">\int_\Omega \nabla v \cdot (\kappa\nabla u),dx</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hence-the-weak-form-is-int-omega-v-u-t-dx-int-omega-v-mathbf-w-cdot-nabla-u-dx-int-omega-nabla-v-cdot-kappa-nabla-u-dx">Hence the weak form is
-$$
-\int_\Omega v,u_t,dx
-+
-\int_\Omega v,\mathbf w\cdot\nabla u,dx
-+
-\int_\Omega \nabla v\cdot(\kappa\nabla u),dx</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variational-multiscale-key-ideas">Variational Multiscale key ideas</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#subgrid-ansatz">Subgrid ansatz</a></li>
 </ul>
@@ -482,9 +465,6 @@ $$
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-element-interfaces-deal-ii">7.  Finite element interfaces: <span class="xref myst">deal.ii</span></a></li>
 </ul>
-</li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -567,8 +547,8 @@ $$
 <p>Recall that we have introduced the cell Peclet number in our <a class="reference external" href="https://sdsu-math693b.github.io/spring26/lectures/module2-2_stability_analysis.html">Fourier and von Neumann stability analyses Lecture</a>. I report it here for convenience</p>
 <section id="the-cell-peclet-number-related-to-the-reynolds-number">
 <h4>The (cell) <a class="reference external" href="https://en.wikipedia.org/wiki/P%C3%A9clet_number">Péclet number</a> (related to the <a class="reference external" href="https://en.wikipedia.org/wiki/Reynolds_number">Reynolds number</a>)<a class="headerlink" href="#the-cell-peclet-number-related-to-the-reynolds-number" title="Link to this heading">#</a></h4>
-<div class="amsmath math notranslate nohighlight" id="equation-c6950215-d678-44ad-99f6-41d443d1d88b">
-<span class="eqno">(17)<a class="headerlink" href="#equation-c6950215-d678-44ad-99f6-41d443d1d88b" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-2a1e2bf1-2f3f-4030-809b-38e424858e8f">
+<span class="eqno">(17)<a class="headerlink" href="#equation-2a1e2bf1-2f3f-4030-809b-38e424858e8f" title="Permalink to this equation">#</a></span>\[\begin{align}
 \mathrm{Pe} &amp;= \frac{\Delta x \lvert w \rvert}{\kappa}
 \end{align}\]</div>
 <ul class="simple">
@@ -757,8 +737,8 @@ $$
 <section id="time-dependent-advection-diffusion">
 <h3>Time-dependent advection-diffusion<a class="headerlink" href="#time-dependent-advection-diffusion" title="Link to this heading">#</a></h3>
 <p>Suppose we have the strong and weak forms</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f8f66d4c-5437-4cce-b97d-b0b34eb6fb88">
-<span class="eqno">(18)<a class="headerlink" href="#equation-f8f66d4c-5437-4cce-b97d-b0b34eb6fb88" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-e3fe5fde-a300-4bae-82c4-365098ecebf9">
+<span class="eqno">(18)<a class="headerlink" href="#equation-e3fe5fde-a300-4bae-82c4-365098ecebf9" title="Permalink to this equation">#</a></span>\[\begin{align}
 u_t + F(u) &amp;= 0\, , &amp; \qquad \langle v, u_t \rangle + A(v,u) &amp;= 0
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(F\)</span> is the spatial (only) differential operator and</p>
@@ -781,35 +761,32 @@ A(u;v) = \langle v, F(u) \rangle
 \int_\Omega v\,\nabla\cdot(\kappa\nabla u)\,dx
 =0.
 \]</div>
-</section>
-</section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="integrating-the-diffusion-term-by-parts-gives-int-omega-v-nabla-cdot-kappa-nabla-u-dx">
-<h1>Integrating the diffusion term by parts gives
-$$
--\int_\Omega v,\nabla\cdot(\kappa\nabla u),dx<a class="headerlink" href="#integrating-the-diffusion-term-by-parts-gives-int-omega-v-nabla-cdot-kappa-nabla-u-dx" title="Link to this heading">#</a></h1>
-<section id="int-omega-nabla-v-cdot-kappa-nabla-u-dx">
-<h2>\int_\Omega \nabla v \cdot (\kappa\nabla u),dx<a class="headerlink" href="#int-omega-nabla-v-cdot-kappa-nabla-u-dx" title="Link to this heading">#</a></h2>
-<p>\int_{\partial\Omega} v,(\kappa\nabla u\cdot n),ds.
-$$</p>
-</section>
-<section id="hence-the-weak-form-is-int-omega-v-u-t-dx-int-omega-v-mathbf-w-cdot-nabla-u-dx-int-omega-nabla-v-cdot-kappa-nabla-u-dx">
-<h2>Hence the weak form is
-$$
-\int_\Omega v,u_t,dx
+<p>Integrating the diffusion term by parts gives</p>
+<div class="math notranslate nohighlight">
+\[
+-\int_\Omega v\,\nabla\cdot(\kappa\nabla u)\,dx
+=
+\int_\Omega \nabla v \cdot (\kappa\nabla u)\,dx
+-
+\int_{\partial\Omega} v\,(\kappa\nabla u\cdot n)\,ds.
+\]</div>
+<p>Hence the weak form is</p>
+<div class="math notranslate nohighlight">
+\[
+\int_\Omega v\,u_t\,dx
 +
-\int_\Omega v,\mathbf w\cdot\nabla u,dx
+\int_\Omega v\,\mathbf w\cdot\nabla u\,dx
 +
-\int_\Omega \nabla v\cdot(\kappa\nabla u),dx<a class="headerlink" href="#hence-the-weak-form-is-int-omega-v-u-t-dx-int-omega-v-mathbf-w-cdot-nabla-u-dx-int-omega-nabla-v-cdot-kappa-nabla-u-dx" title="Link to this heading">#</a></h2>
-<p>\int_{\partial\Omega} v,(\kappa\nabla u\cdot n),ds
+\int_\Omega \nabla v\cdot(\kappa\nabla u)\,dx
+-
+\int_{\partial\Omega} v\,(\kappa\nabla u\cdot n)\,ds
 =0.
-$$</p>
-<p>After applying the boundary conditions (<span class="math notranslate nohighlight">\(v=0\)</span> on <span class="math notranslate nohighlight">\(\partial \Omega\)</span>), this is written  as
+\]</div>
+<p>After applying the boundary conditions (<span class="math notranslate nohighlight">\(v=0\)</span> on <span class="math notranslate nohighlight">\(\partial \Omega\)</span>), this is written  as</p>
 <div class="math notranslate nohighlight">
 \[
 \langle v,u_t\rangle + A(u;v)=0.
 \]</div>
-</p>
 <p>Generally, we can write equations in residual form</p>
 <div class="math notranslate nohighlight">
 \[
@@ -835,17 +812,18 @@ L = \frac{\partial F}{\partial u}
 <p>So, in this case for advection-diffusion,</p>
 <div class="math notranslate nohighlight">
 \[ L = \mathbf w\cdot\nabla - \nabla\cdot(\kappa\nabla ),\]</div>
+</section>
 <section id="variational-multiscale-key-ideas">
 <h3>Variational Multiscale key ideas<a class="headerlink" href="#variational-multiscale-key-ideas" title="Link to this heading">#</a></h3>
 <p>Decompose the solution into an <em>overlapping</em> sum decomposition of a resolved and oscillatory part, <span class="math notranslate nohighlight">\(u = \bar u + \tilde u\)</span> and similarly for <span class="math notranslate nohighlight">\(v = \bar v + \tilde v\)</span>, where <span class="math notranslate nohighlight">\(\bar u \)</span> represents the <strong><em>coarse</em></strong> (<strong>resolved</strong>) scales and <span class="math notranslate nohighlight">\(\tilde u\)</span> the <strong><em>fine</em></strong> (<strong>subgrid</strong> or <strong>unresolved</strong>) scales</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d9382a52-05be-4844-8872-a515c93a7d01">
-<span class="eqno">(19)<a class="headerlink" href="#equation-d9382a52-05be-4844-8872-a515c93a7d01" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-3dafee32-6fab-4698-a05e-02b1ce158048">
+<span class="eqno">(19)<a class="headerlink" href="#equation-3dafee32-6fab-4698-a05e-02b1ce158048" title="Permalink to this equation">#</a></span>\[\begin{align}
 \langle \bar v, \bar u_t + \tilde u_t \rangle + A(\bar v, \bar u + \tilde u) &amp; = 0 \\
 \langle \tilde v, \bar u_t + \tilde u_t \rangle + A(\tilde v, \bar u + \tilde u) &amp; = 0 
 \end{align}\]</div>
 <p>We approximate <span class="math notranslate nohighlight">\(A\)</span> via first order Taylor series</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0338f597-27be-4768-8e0e-3faa0c4ab63a">
-<span class="eqno">(20)<a class="headerlink" href="#equation-0338f597-27be-4768-8e0e-3faa0c4ab63a" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-cd4116d5-0a63-4f12-bbf6-89e6318a4a09">
+<span class="eqno">(20)<a class="headerlink" href="#equation-cd4116d5-0a63-4f12-bbf6-89e6318a4a09" title="Permalink to this equation">#</a></span>\[\begin{align}
 A(\bar v, \bar u + \tilde u) &amp;\approx A(\bar v, \bar u) + \langle \bar v, L \tilde u \rangle \\
 &amp;= A(\bar v, \bar u) + \langle L^* \bar v, \tilde u \rangle \\
 A(\tilde v, \bar u + \tilde u) &amp;\approx \langle \tilde v, F(\bar u) \rangle + \langle \tilde v, L \tilde u \rangle
@@ -912,8 +890,8 @@ Expressions for <span class="math notranslate nohighlight">\(\tau\)</span> can b
 </section>
 <section id="stabilized-methods-for-advection-diffusion">
 <h2>5. Stabilized methods for advection-diffusion<a class="headerlink" href="#stabilized-methods-for-advection-diffusion" title="Link to this heading">#</a></h2>
-<div class="amsmath math notranslate nohighlight" id="equation-98a8b2fa-fd97-47f3-8c15-1436ab58fa14">
-<span class="eqno">(21)<a class="headerlink" href="#equation-98a8b2fa-fd97-47f3-8c15-1436ab58fa14" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-3216c53c-ef60-467a-b4e3-607cae5e362d">
+<span class="eqno">(21)<a class="headerlink" href="#equation-3216c53c-ef60-467a-b4e3-607cae5e362d" title="Permalink to this equation">#</a></span>\[\begin{align}
 L u &amp;= \mathbf w \cdot \nabla u - \nabla\cdot(\kappa \nabla u) \\
 L^* u &amp;= -\mathbf w \cdot \nabla u - \nabla\cdot(\kappa \nabla u)
 \end{align}\]</div>
@@ -1286,7 +1264,6 @@ norm(J2 - diagm(diag(J2))) = 0.07988743228160049
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">15) Applied Finite Elements</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advection-diffusion-time-independent">1. Advection-diffusion (time independent)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#observations">Observations</a></li>
 </ul>
@@ -1301,21 +1278,6 @@ norm(J2 - diagm(diag(J2))) = 0.07988743228160049
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variational-multiscale-method">3. Variational Multiscale Method</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#time-dependent-advection-diffusion">Time-dependent advection-diffusion</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#integrating-the-diffusion-term-by-parts-gives-int-omega-v-nabla-cdot-kappa-nabla-u-dx">Integrating the diffusion term by parts gives
-$$
--\int_\Omega v,\nabla\cdot(\kappa\nabla u),dx</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#int-omega-nabla-v-cdot-kappa-nabla-u-dx">\int_\Omega \nabla v \cdot (\kappa\nabla u),dx</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hence-the-weak-form-is-int-omega-v-u-t-dx-int-omega-v-mathbf-w-cdot-nabla-u-dx-int-omega-nabla-v-cdot-kappa-nabla-u-dx">Hence the weak form is
-$$
-\int_\Omega v,u_t,dx
-+
-\int_\Omega v,\mathbf w\cdot\nabla u,dx
-+
-\int_\Omega \nabla v\cdot(\kappa\nabla u),dx</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variational-multiscale-key-ideas">Variational Multiscale key ideas</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#subgrid-ansatz">Subgrid ansatz</a></li>
 </ul>
@@ -1338,9 +1300,6 @@ $$
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-element-interfaces-deal-ii">7.  Finite element interfaces: <span class="xref myst">deal.ii</span></a></li>
 </ul>
-</li>
-</ul>
-
   </nav></div>
 
 </div></div>
