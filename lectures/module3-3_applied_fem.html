@@ -441,20 +441,22 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimal-stabilization">Optimal stabilization</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variational-multiscale-method">3. Variational Multiscale Method</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-time-independent-advection-diffusion-example">3. 1D time-independent advection-diffusion Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variational-multiscale-method">4. Variational Multiscale Method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-dependent-problems">5. Time-dependent problems</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#time-dependent-advection-diffusion">Time-dependent advection-diffusion</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variational-multiscale-key-ideas">Variational Multiscale key ideas</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#subgrid-ansatz">Subgrid ansatz</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stabilized-methods-for-advection-diffusion">5. Stabilized methods for advection-diffusion</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stabilized-methods-for-advection-diffusion">6. Stabilized methods for advection-diffusion</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variational-multiscale-1998-paper">Variational Multiscale (1998 paper)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#galerkin-least-squares-1991-paper">Galerkin Least-Squares 1991 paper</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supg-1982-paper">SUPG 1982 paper</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-workflow-for-time-dependent-problems">6. General workflow for time dependent problems</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#collocated-quadrature">Collocated quadrature</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-workflow-for-time-dependent-problems">7. General workflow for time dependent problems</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#collocated-quadrature-when-the-quadrature-points-and-basis-interpolation-nodes-coincide">Collocated quadrature: when the quadrature points and basis interpolation nodes coincide</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supg-for-time-dependent-problems">SUPG for time-dependent problems</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supg-solver-in-julia">SUPG solver in Julia</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spectrum-of-the-operator">Spectrum of the operator</a><ul class="nav section-nav flex-column">
@@ -463,7 +465,7 @@ document.write(`
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-element-interfaces-deal-ii">7.  Finite element interfaces: deal.ii</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-element-interfaces-deal-ii">8.  Finite element interfaces: deal.ii</a></li>
 </ul>
             </nav>
         </div>
@@ -487,8 +489,9 @@ document.write(`
 <ol class="arabic simple">
 <li><p>Advection-diffusion (time independent)</p></li>
 <li><p>Artificial diffusion and Streamline Upwinding for stabilization</p></li>
+<li><p>1D time-independent advection-diffusion Example</p></li>
 <li><p>Variational Multiscale Method</p></li>
-<li><p>Time dependent problems</p></li>
+<li><p>Time-dependent problems</p></li>
 <li><p>Stabilized methods for advection-diffusion</p></li>
 <li><p>General workflow for time dependent</p></li>
 <li><p>Finite element interfaces: deal.ii</p></li>
@@ -527,7 +530,6 @@ document.write(`
 <li><p>The Streamline-Upwind Petrov-Galerkin (SUPG) method was designed during 80s for convection dominated-flows for the incompressible Navier–Stokes equations by Brooks and Hughes (legends in Finite Element Analysis).</p></li>
 </ul>
 <p>This is a modification at the equation level. Meaning, we are going to manipulate the original equation to work with a formulation that is more stable when discretized.</p>
-<p>This might remind you of the differences we noted when we discretized the variable-coefficient Laplacian in two different forms in our <a class="reference external" href="https://sdsu-math693b.github.io/spring26/lectures/module2-4_variable_coefficients.html#discretizing-in-conservative-form">Variable Coefficients Lecture</a>, and although we were mathematically representing the same equation, we noticed that discretely there were differences between what we called the divergence form and the non-divergence form.</p>
 <p>Let’s add the following stabilizing term to the equation</p>
 <div class="math notranslate nohighlight">
 \[
@@ -551,8 +553,8 @@ document.write(`
 <p>Recall that we have introduced the cell Peclet number in our <a class="reference external" href="https://sdsu-math693b.github.io/spring26/lectures/module2-2_stability_analysis.html">Fourier and von Neumann stability analyses Lecture</a>. I report it here for convenience</p>
 <section id="the-cell-peclet-number-related-to-the-reynolds-number">
 <h4>The (cell) <a class="reference external" href="https://en.wikipedia.org/wiki/P%C3%A9clet_number">Péclet number</a> (related to the <a class="reference external" href="https://en.wikipedia.org/wiki/Reynolds_number">Reynolds number</a>)<a class="headerlink" href="#the-cell-peclet-number-related-to-the-reynolds-number" title="Link to this heading">#</a></h4>
-<div class="amsmath math notranslate nohighlight" id="equation-b126e00c-1bee-490c-8a4f-1f964f433d2c">
-<span class="eqno">(19)<a class="headerlink" href="#equation-b126e00c-1bee-490c-8a4f-1f964f433d2c" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-34f160d7-0ec9-4f3e-b222-995531d3b225">
+<span class="eqno">(19)<a class="headerlink" href="#equation-34f160d7-0ec9-4f3e-b222-995531d3b225" title="Permalink to this equation">#</a></span>\[\begin{align}
 \mathrm{Pe} &amp;= \frac{\Delta x \lvert w \rvert}{\kappa}
 \end{align}\]</div>
 <ul class="simple">
@@ -567,7 +569,62 @@ document.write(`
 <div class="math notranslate nohighlight">
 \[ \tau^e = \frac{h}{2 \lVert \mathbf w \rVert} \Big( \coth Pe - \frac{1}{Pe} \Big)\]</div>
 <p>In general, several stabilization parameters can be found in the literature, but typically, <span class="math notranslate nohighlight">\(\tau^e\)</span> (which depends on mesh size <span class="math notranslate nohighlight">\(h\)</span>, advection speed, <span class="math notranslate nohighlight">\(\mathbf w\)</span>, and Peclet number) is chosen to reflect the local balance of transient effects, advection, and diffusion.</p>
-<p>Let’s see an example in code</p>
+</section>
+</section>
+<section id="d-time-independent-advection-diffusion-example">
+<h2>3. 1D time-independent advection-diffusion Example<a class="headerlink" href="#d-time-independent-advection-diffusion-example" title="Link to this heading">#</a></h2>
+<p>For the steady 1D advection-diffusion problem with source function <span class="math notranslate nohighlight">\(s = 1\)</span>, we have</p>
+<div class="math notranslate nohighlight">
+\[
+w u_x - (k u_x)_x = 1,
+\]</div>
+<p>the standard Galerkin weak form is</p>
+<div class="math notranslate nohighlight">
+\[
+\int_\Omega v\,w u_x\,dx + \int_\Omega v_x\,k u_x\,dx - \int_\Omega v 1\,dx = 0.
+\]</div>
+<p>Using the streamline-upwind stabilization, we want to add the term based on the strong form residual</p>
+<div class="math notranslate nohighlight">
+\[
+\int_\Omega \tau^e ( w  v_x) \big( w  u_x - (\kappa  u_x)_x - 1\big) dx 
+\]</div>
+<p>Expanding:</p>
+<div class="math notranslate nohighlight">
+\[
+\int_\Omega v\,w u_x\,dx + \int_\Omega v_x\,k u_x\,dx - \int_\Omega v\,dx  + \int_\Omega \tau^e ( w  v_x) \big( w  u_x - (\kappa  u_x)_x - 1\big) dx \, .
+\]</div>
+<p>Distributing the stabilization:</p>
+<div class="math notranslate nohighlight">
+\[
+\int_\Omega v\,w u_x\,dx + \int_\Omega v_x\,k u_x\,dx - \int_\Omega v\,dx  + \int_\Omega \tau^e  w^2  v_x u_x  dx - \int_\Omega \tau^e w v_x (\kappa u_x)_x dx - \int_\Omega \tau^e w v_x dx = 0 \, .
+\]</div>
+<p>We now use a common <strong>simplified SUPG</strong> interpretation where the extra stabilization is represented as an added streamline-diffusion term only.</p>
+<p>In other words, we simplify this stabilization, by only considering the dominant stabilization term only:</p>
+<div class="math notranslate nohighlight">
+\[
+\int_\Omega \tau w^2 v_x u_x\,dx.
+\]</div>
+<p>Therefore the stabilized weak form becomes</p>
+<div class="math notranslate nohighlight">
+\[
+\int_\Omega v\,(w u_x - 1)\,dx
++
+\int_\Omega v_x\,(k u_x + \tau w^2 u_x)\,dx
+= 0.
+\]</div>
+<p>Comparing with the FEM assembly form</p>
+<div class="math notranslate nohighlight">
+\[
+\int_\Omega v\,f_0(u,u_x)\,dx + \int_\Omega v_x\,f_1(u,u_x)\,dx = 0,
+\]</div>
+<p>we identify</p>
+<div class="math notranslate nohighlight">
+\[
+f_0 = w u_x - 1,
+\qquad
+f_1 = k u_x + \tau w^2 u_x \,.
+\]</div>
+<p>Let’s see this example in code.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">SparseArrays</span>
@@ -728,9 +785,8 @@ document.write(`
 </div>
 <p>It is a lot more oscillatory!</p>
 </section>
-</section>
 <section id="variational-multiscale-method">
-<h2>3. <a class="reference external" href="https://en.wikipedia.org/wiki/Variational_multiscale_method">Variational Multiscale Method</a><a class="headerlink" href="#variational-multiscale-method" title="Link to this heading">#</a></h2>
+<h2>4. <a class="reference external" href="https://en.wikipedia.org/wiki/Variational_multiscale_method">Variational Multiscale Method</a><a class="headerlink" href="#variational-multiscale-method" title="Link to this heading">#</a></h2>
 <p>The Variational Multiscale Method (VMS) is a technique used for deriving models and numerical methods for multiscale phenomena.</p>
 <ul class="simple">
 <li><p>Stabilized methods are getting increasing attention in computational fluid dynamics because they are designed to solve drawbacks typical of the standard Galerkin method: advection-dominated flows problems and problems in which an arbitrary combination of interpolation functions may yield to unstable discretized formulations.</p></li>
@@ -738,11 +794,14 @@ document.write(`
 <li><p>Broadly speaking, VMS is a technique used to get mathematical models and numerical methods which are able to catch multiscale phenomena.</p></li>
 <li><p>It is usually adopted for problems with huge scale ranges, which are separated into a number of scale groups (e.g., turbulent flows with energy cascades).</p></li>
 </ul>
+</section>
+<section id="time-dependent-problems">
+<h2>5. Time-dependent problems<a class="headerlink" href="#time-dependent-problems" title="Link to this heading">#</a></h2>
 <section id="time-dependent-advection-diffusion">
 <h3>Time-dependent advection-diffusion<a class="headerlink" href="#time-dependent-advection-diffusion" title="Link to this heading">#</a></h3>
 <p>Suppose we have the strong and weak forms</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4f059c85-a0b2-41b3-bae6-b05eae9f6be3">
-<span class="eqno">(20)<a class="headerlink" href="#equation-4f059c85-a0b2-41b3-bae6-b05eae9f6be3" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-38869e6e-5769-4810-8014-4ae60b10f637">
+<span class="eqno">(20)<a class="headerlink" href="#equation-38869e6e-5769-4810-8014-4ae60b10f637" title="Permalink to this equation">#</a></span>\[\begin{align}
 u_t + F(u) &amp;= 0\, , &amp; \qquad \langle v, u_t \rangle + A(v,u) &amp;= 0
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(F\)</span> is the spatial (only) differential operator and</p>
@@ -820,14 +879,14 @@ L = \frac{\partial F}{\partial u}
 <section id="variational-multiscale-key-ideas">
 <h3>Variational Multiscale key ideas<a class="headerlink" href="#variational-multiscale-key-ideas" title="Link to this heading">#</a></h3>
 <p>Decompose the solution into an <em>overlapping</em> sum decomposition of a resolved and oscillatory part, <span class="math notranslate nohighlight">\(u = \bar u + \tilde u\)</span> and similarly for <span class="math notranslate nohighlight">\(v = \bar v + \tilde v\)</span>, where <span class="math notranslate nohighlight">\(\bar u \)</span> represents the <strong><em>coarse</em></strong> (<strong>resolved</strong>) scales and <span class="math notranslate nohighlight">\(\tilde u\)</span> the <strong><em>fine</em></strong> (<strong>subgrid</strong> or <strong>unresolved</strong>) scales</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5bd3cd33-bbd5-49f7-974e-1a8f6ec68ea3">
-<span class="eqno">(21)<a class="headerlink" href="#equation-5bd3cd33-bbd5-49f7-974e-1a8f6ec68ea3" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-3914d77d-f32d-4a54-b552-66b51c908919">
+<span class="eqno">(21)<a class="headerlink" href="#equation-3914d77d-f32d-4a54-b552-66b51c908919" title="Permalink to this equation">#</a></span>\[\begin{align}
 \langle \bar v, \bar u_t + \tilde u_t \rangle + A(\bar v, \bar u + \tilde u) &amp; = 0 \\
 \langle \tilde v, \bar u_t + \tilde u_t \rangle + A(\tilde v, \bar u + \tilde u) &amp; = 0 
 \end{align}\]</div>
 <p>We approximate <span class="math notranslate nohighlight">\(A\)</span> via first order Taylor series</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5f34811a-c187-493d-b23e-52bbdde5f547">
-<span class="eqno">(22)<a class="headerlink" href="#equation-5f34811a-c187-493d-b23e-52bbdde5f547" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b24bd0ee-f9e6-4174-b4b0-cf5dc5dba37b">
+<span class="eqno">(22)<a class="headerlink" href="#equation-b24bd0ee-f9e6-4174-b4b0-cf5dc5dba37b" title="Permalink to this equation">#</a></span>\[\begin{align}
 A(\bar v, \bar u + \tilde u) &amp;\approx A(\bar v, \bar u) + \langle \bar v, L \tilde u \rangle \\
 &amp;= A(\bar v, \bar u) + \langle L^* \bar v, \tilde u \rangle \\
 A(\tilde v, \bar u + \tilde u) &amp;\approx \langle \tilde v, F(\bar u) \rangle + \langle \tilde v, L \tilde u \rangle
@@ -893,9 +952,9 @@ Expressions for <span class="math notranslate nohighlight">\(\tau\)</span> can b
 </section>
 </section>
 <section id="stabilized-methods-for-advection-diffusion">
-<h2>5. Stabilized methods for advection-diffusion<a class="headerlink" href="#stabilized-methods-for-advection-diffusion" title="Link to this heading">#</a></h2>
-<div class="amsmath math notranslate nohighlight" id="equation-d7259f76-77dc-4ea1-8fff-dd426c0a4e44">
-<span class="eqno">(23)<a class="headerlink" href="#equation-d7259f76-77dc-4ea1-8fff-dd426c0a4e44" title="Permalink to this equation">#</a></span>\[\begin{align}
+<h2>6. Stabilized methods for advection-diffusion<a class="headerlink" href="#stabilized-methods-for-advection-diffusion" title="Link to this heading">#</a></h2>
+<div class="amsmath math notranslate nohighlight" id="equation-ce528fce-8990-4d7f-a04c-f8f08e80187a">
+<span class="eqno">(23)<a class="headerlink" href="#equation-ce528fce-8990-4d7f-a04c-f8f08e80187a" title="Permalink to this equation">#</a></span>\[\begin{align}
 L u &amp;= \mathbf w \cdot \nabla u - \nabla\cdot(\kappa \nabla u) \\
 L^* u &amp;= -\mathbf w \cdot \nabla u - \nabla\cdot(\kappa \nabla u)
 \end{align}\]</div>
@@ -932,7 +991,7 @@ L^* u &amp;= -\mathbf w \cdot \nabla u - \nabla\cdot(\kappa \nabla u)
 </section>
 </section>
 <section id="general-workflow-for-time-dependent-problems">
-<h2>6. General workflow for time dependent problems<a class="headerlink" href="#general-workflow-for-time-dependent-problems" title="Link to this heading">#</a></h2>
+<h2>7. General workflow for time dependent problems<a class="headerlink" href="#general-workflow-for-time-dependent-problems" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p>Start with a time dependent problem in strong form
 <div class="math notranslate nohighlight">
@@ -966,8 +1025,12 @@ L^* u &amp;= -\mathbf w \cdot \nabla u - \nabla\cdot(\kappa \nabla u)
 </ul>
 </li>
 </ul>
-<section id="collocated-quadrature">
-<h3>Collocated quadrature<a class="headerlink" href="#collocated-quadrature" title="Link to this heading">#</a></h3>
+<section id="collocated-quadrature-when-the-quadrature-points-and-basis-interpolation-nodes-coincide">
+<h3>Collocated quadrature: when the quadrature points and basis interpolation nodes coincide<a class="headerlink" href="#collocated-quadrature-when-the-quadrature-points-and-basis-interpolation-nodes-coincide" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>This has the important consequence that the Mass matrix is diagonal</p></li>
+<li><p>A diagonal Mass matrix can be achieved even without collocation (it is called a <strong>lumped Mass matrix</strong>, usually obtained by substituting diagonal entries by row sums)</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">dfq_mass</span><span class="p">(</span><span class="n">q</span><span class="p">,</span><span class="w"> </span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="n">du</span><span class="p">,</span><span class="w"> </span><span class="n">Du</span><span class="p">,</span><span class="w"> </span><span class="n">Ddu</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">du</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="o">*</span><span class="n">Ddu</span>
@@ -1184,7 +1247,7 @@ norm(J2 - diagm(diag(J2))) = 0.07988743228160049
 </section>
 </section>
 <section id="finite-element-interfaces-deal-ii">
-<h2>7.  Finite element interfaces: <a class="reference external" href="https://dealii.org">deal.ii</a><a class="headerlink" href="#finite-element-interfaces-deal-ii" title="Link to this heading">#</a></h2>
+<h2>8.  Finite element interfaces: <a class="reference external" href="https://dealii.org">deal.ii</a><a class="headerlink" href="#finite-element-interfaces-deal-ii" title="Link to this heading">#</a></h2>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{gather*}
     v^T F(u) \sim \int_\Omega v \cdot \color{olive}{f_0(u, \nabla u)} + \nabla v \!:\! \color{olive}{f_1(u, \nabla u)} \quad
@@ -1280,20 +1343,22 @@ norm(J2 - diagm(diag(J2))) = 0.07988743228160049
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimal-stabilization">Optimal stabilization</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variational-multiscale-method">3. Variational Multiscale Method</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-time-independent-advection-diffusion-example">3. 1D time-independent advection-diffusion Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variational-multiscale-method">4. Variational Multiscale Method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-dependent-problems">5. Time-dependent problems</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#time-dependent-advection-diffusion">Time-dependent advection-diffusion</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variational-multiscale-key-ideas">Variational Multiscale key ideas</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#subgrid-ansatz">Subgrid ansatz</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stabilized-methods-for-advection-diffusion">5. Stabilized methods for advection-diffusion</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stabilized-methods-for-advection-diffusion">6. Stabilized methods for advection-diffusion</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variational-multiscale-1998-paper">Variational Multiscale (1998 paper)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#galerkin-least-squares-1991-paper">Galerkin Least-Squares 1991 paper</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supg-1982-paper">SUPG 1982 paper</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-workflow-for-time-dependent-problems">6. General workflow for time dependent problems</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#collocated-quadrature">Collocated quadrature</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-workflow-for-time-dependent-problems">7. General workflow for time dependent problems</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#collocated-quadrature-when-the-quadrature-points-and-basis-interpolation-nodes-coincide">Collocated quadrature: when the quadrature points and basis interpolation nodes coincide</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supg-for-time-dependent-problems">SUPG for time-dependent problems</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supg-solver-in-julia">SUPG solver in Julia</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spectrum-of-the-operator">Spectrum of the operator</a><ul class="nav section-nav flex-column">
@@ -1302,7 +1367,7 @@ norm(J2 - diagm(diag(J2))) = 0.07988743228160049
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-element-interfaces-deal-ii">7.  Finite element interfaces: deal.ii</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-element-interfaces-deal-ii">8.  Finite element interfaces: deal.ii</a></li>
 </ul>
   </nav></div>
 
