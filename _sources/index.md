@@ -27,6 +27,10 @@ Who am I?
   * [Strikwerda, **Finite Difference Schemes and Partial Differential Equations**](https://epubs.siam.org/doi/book/10.1137/1.9780898717938)
   * [Driscoll and Braun, **Fundamentals of Numerical Computation**](https://tobydriscoll.net/fnc-julia/)
     * free, in Julia with demo notebooks and [Julia codes](https://github.com/fncbook/FundamentalsNumericalComputation.jl?tab=readme-ov-file)
+  * [Ketcheson, LeVeque, and del Razo, **Riemann Problems and Jupyter Solutions - Theory and Approximate Solvers for Hyperbolic PDEs**](https://www.clawpack.org/riemann_book/)
+    * free, Jupyter notebooks [python codes](https://www.clawpack.org/riemann_book/html/Index.html)
+  * LeVeque, **Finite Volume Methods for Hyperbolic Equations**
+  * [Toro, **Riemann Solvers and Numerical Methods for Fluid Dynamics**](https://link-springer-com.libproxy.sdsu.edu/book/10.1007/b79761#toc)
   * [Greenbaum and Chartier (2012), **Numerical Methods Design, Analysis, and Computer Implementation of Algorithms**](https://press.princeton.edu/titles/9763.html)
     * an excellent, comprehensive book
     * not free, uses Matlab for limited numerical examples

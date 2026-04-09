@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -202,7 +202,6 @@
 <li class="toctree-l2"><a class="reference internal" href="module3-1_intro_to_fem.html">13) Introduction to Finite Element discretizations</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">14) FEM Assembly</a></li>
 <li class="toctree-l2"><a class="reference internal" href="module3-3_applied_fem.html">15) Applied Finite Elements</a></li>
-
 </ul>
 </details></li>
 </ul>
@@ -656,9 +655,11 @@ h_i = x_i - x_{i-1}
 <ol class="arabic simple">
 <li><p>Step 1: Multiply both sides of the PDE by a test function <span class="math notranslate nohighlight">\(v(x)\)</span> with compact support (i.e., <span class="math notranslate nohighlight">\( v(0)=0, \; v(1) = 0 \)</span>).</p></li>
 </ol>
-<div class="math notranslate nohighlight">
-\[
+<div class="math notranslate nohighlight" id="equation-weak-form-poisson">
+<span class="eqno">(17)<a class="headerlink" href="#equation-weak-form-poisson" title="Link to this equation">#</a></span>\[
+\begin{align}
 - u'' v = fv
+\end{align}
 \]</div>
 <ol class="arabic simple" start="2">
 <li><p>Step 2: Integrate both sides of the equation across the domain <span class="math notranslate nohighlight">\(\Omega = [0,1]\)</span> and apply integrations by parts. On the left-hand-side we have:</p></li>
@@ -673,6 +674,7 @@ h_i = x_i - x_{i-1}
 \[
  \int_0^1 u' v' dx =  \int_0^1 fv dx
 \]</div>
+<p>and we want to find <span class="math notranslate nohighlight">\(u\)</span> such as this holds <span class="math notranslate nohighlight">\(\forall v\)</span>.</p>
 <ol class="arabic simple" start="3">
 <li><p>Step 3: Construct the set of linear (hat) basis function as above</p></li>
 </ol>
@@ -700,12 +702,39 @@ h_i = x_i - x_{i-1}
 \[\begin{split}
 \begin{align}
 u_h(\mathbf x) &amp;= \sum_{j=1}^n u_j \, \phi_j(\mathbf x) ,\\
-u'_h(\mathbf x) &amp;= \sum_{j=1}^n u_j \, \phi'_j(\mathbf x) \, .
+u'_h(\mathbf x) &amp;= \sum_{j=1}^n u_j \, \phi'_j(\mathbf x), \\
+v_h(\mathbf x) &amp;= \sum_{j=1}^n v_j \, \phi_j(\mathbf x) , \\
+v'_h(\mathbf x) &amp;= \sum_{j=1}^n v_j \, \phi'_j(\mathbf x) \, .
 \end{align}
 \end{split}\]</div>
-<p>where the coefficients <span class="math notranslate nohighlight">\(\{u_j\}\)</span> are the unknown nodal values to be determined.</p>
+<p>where the coefficients <span class="math notranslate nohighlight">\(\{u_j\}\)</span> are the unknown nodal values to be determined and the <span class="math notranslate nohighlight">\(\{v_j\}\)</span> are arbitrary (since the weak form has to hold <span class="math notranslate nohighlight">\(\forall v\)</span>).</p>
 <p>On assuming the hat basis functions, obviously <span class="math notranslate nohighlight">\(u_h(x)\)</span> is also a <strong>piecewise linear</strong> function, although this is not usually the case for the true solution <span class="math notranslate nohighlight">\(u(x)\)</span>.</p>
-<p>We then derive a linear system of equations for the coefficients by substituting the approximate solution <span class="math notranslate nohighlight">\(u_h(x)\)</span> for the exact solution <span class="math notranslate nohighlight">\(u(x)\)</span> in the weak form</p>
+<p>In general, we have the weak form</p>
+<div class="math notranslate nohighlight">
+\[
+\int_\Omega v \, F(u_h) \, dx = 0 , \quad \forall v \in \mathcal V^n
+\]</div>
+<p>When we substitute the expansions of <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(v\)</span> in terms of basis functions, we get</p>
+<div class="math notranslate nohighlight">
+\[
+\int_\Omega \left( \sum_{i=1}^n v_i \, \phi_i(x) \right) F(u_h) \, dx = 0
+\]</div>
+<p>the integral are linears, so we can bring the <span class="math notranslate nohighlight">\(v_i\)</span> coefficients outside of the integral sign</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{i=1}^n v_i \underbrace{\int_\Omega \phi_i(x) \, F(u_h) \, dx }_{F_i(u)} = 0 \, .
+\]</div>
+<p>Then the equation becomes:</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{i=1}^n v_i \, F_i(u) = 0
+\]</div>
+<p>Since the coefficients <span class="math notranslate nohighlight">\(v_i\)</span> are arbitrary, the only way this equation holds for all <span class="math notranslate nohighlight">\(v\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[
+F_i(u) = 0 \quad \text{for  } i = 1,\dots,n
+\]</div>
+<p>For our specific case, we are finally ready derive a linear system of equations for the coefficients by substituting the approximate solution <span class="math notranslate nohighlight">\(u_h(x)\)</span> for the exact solution <span class="math notranslate nohighlight">\(u(x)\)</span> in the weak form <a class="reference internal" href="#equation-weak-form-poisson">(17)</a></p>
 <div class="math notranslate nohighlight">
 \[ \int_0^1 u' v' dx =  \int_0^1 fv dx\]</div>
 <p>Hence,</p>

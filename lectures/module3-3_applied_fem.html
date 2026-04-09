@@ -463,7 +463,7 @@ document.write(`
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-element-interfaces-deal-ii">7.  Finite element interfaces: <span class="xref myst">deal.ii</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-element-interfaces-deal-ii">7.  Finite element interfaces: deal.ii</a></li>
 </ul>
             </nav>
         </div>
@@ -536,6 +536,10 @@ document.write(`
 <p>Hence, we reach</p>
 <div class="math notranslate nohighlight">
 \[\underbrace{\int_\Omega v \mathbf w \cdot \nabla u + \int_\Omega \nabla v \cdot \kappa \nabla u - \int_\Omega v s}_{\text{Galerkin (weak form)}} + \int_\Omega (\mathbf w \cdot \nabla v) \tau^e \big(\underbrace{\mathbf w \cdot \nabla u - \nabla\cdot(\kappa\nabla u) - s}_{\text{strong form residual}}\big)\]</div>
+<p>Observation:</p>
+<ul class="simple">
+<li><p>The residual is large where diffusion is needed.</p></li>
+</ul>
 <section id="let-s-examine-what-this-does-to-advection">
 <h3>Let’s examine what this does to advection<a class="headerlink" href="#let-s-examine-what-this-does-to-advection" title="Link to this heading">#</a></h3>
 <div class="math notranslate nohighlight">
@@ -547,8 +551,8 @@ document.write(`
 <p>Recall that we have introduced the cell Peclet number in our <a class="reference external" href="https://sdsu-math693b.github.io/spring26/lectures/module2-2_stability_analysis.html">Fourier and von Neumann stability analyses Lecture</a>. I report it here for convenience</p>
 <section id="the-cell-peclet-number-related-to-the-reynolds-number">
 <h4>The (cell) <a class="reference external" href="https://en.wikipedia.org/wiki/P%C3%A9clet_number">Péclet number</a> (related to the <a class="reference external" href="https://en.wikipedia.org/wiki/Reynolds_number">Reynolds number</a>)<a class="headerlink" href="#the-cell-peclet-number-related-to-the-reynolds-number" title="Link to this heading">#</a></h4>
-<div class="amsmath math notranslate nohighlight" id="equation-4ed0ae01-3095-40ab-a519-ee09b7c2ee6b">
-<span class="eqno">(17)<a class="headerlink" href="#equation-4ed0ae01-3095-40ab-a519-ee09b7c2ee6b" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b126e00c-1bee-490c-8a4f-1f964f433d2c">
+<span class="eqno">(18)<a class="headerlink" href="#equation-b126e00c-1bee-490c-8a4f-1f964f433d2c" title="Permalink to this equation">#</a></span>\[\begin{align}
 \mathrm{Pe} &amp;= \frac{\Delta x \lvert w \rvert}{\kappa}
 \end{align}\]</div>
 <ul class="simple">
@@ -737,8 +741,8 @@ document.write(`
 <section id="time-dependent-advection-diffusion">
 <h3>Time-dependent advection-diffusion<a class="headerlink" href="#time-dependent-advection-diffusion" title="Link to this heading">#</a></h3>
 <p>Suppose we have the strong and weak forms</p>
-<div class="amsmath math notranslate nohighlight" id="equation-dee93bb9-3594-4e72-a2d1-abfd5f11f010">
-<span class="eqno">(18)<a class="headerlink" href="#equation-dee93bb9-3594-4e72-a2d1-abfd5f11f010" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4f059c85-a0b2-41b3-bae6-b05eae9f6be3">
+<span class="eqno">(19)<a class="headerlink" href="#equation-4f059c85-a0b2-41b3-bae6-b05eae9f6be3" title="Permalink to this equation">#</a></span>\[\begin{align}
 u_t + F(u) &amp;= 0\, , &amp; \qquad \langle v, u_t \rangle + A(v,u) &amp;= 0
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(F\)</span> is the spatial (only) differential operator and</p>
@@ -816,14 +820,14 @@ L = \frac{\partial F}{\partial u}
 <section id="variational-multiscale-key-ideas">
 <h3>Variational Multiscale key ideas<a class="headerlink" href="#variational-multiscale-key-ideas" title="Link to this heading">#</a></h3>
 <p>Decompose the solution into an <em>overlapping</em> sum decomposition of a resolved and oscillatory part, <span class="math notranslate nohighlight">\(u = \bar u + \tilde u\)</span> and similarly for <span class="math notranslate nohighlight">\(v = \bar v + \tilde v\)</span>, where <span class="math notranslate nohighlight">\(\bar u \)</span> represents the <strong><em>coarse</em></strong> (<strong>resolved</strong>) scales and <span class="math notranslate nohighlight">\(\tilde u\)</span> the <strong><em>fine</em></strong> (<strong>subgrid</strong> or <strong>unresolved</strong>) scales</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3c5ad54a-3210-48be-b615-363bc3b751e9">
-<span class="eqno">(19)<a class="headerlink" href="#equation-3c5ad54a-3210-48be-b615-363bc3b751e9" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-5bd3cd33-bbd5-49f7-974e-1a8f6ec68ea3">
+<span class="eqno">(20)<a class="headerlink" href="#equation-5bd3cd33-bbd5-49f7-974e-1a8f6ec68ea3" title="Permalink to this equation">#</a></span>\[\begin{align}
 \langle \bar v, \bar u_t + \tilde u_t \rangle + A(\bar v, \bar u + \tilde u) &amp; = 0 \\
 \langle \tilde v, \bar u_t + \tilde u_t \rangle + A(\tilde v, \bar u + \tilde u) &amp; = 0 
 \end{align}\]</div>
 <p>We approximate <span class="math notranslate nohighlight">\(A\)</span> via first order Taylor series</p>
-<div class="amsmath math notranslate nohighlight" id="equation-663340fc-806a-47d4-8dc2-b9a3a1dbc6f6">
-<span class="eqno">(20)<a class="headerlink" href="#equation-663340fc-806a-47d4-8dc2-b9a3a1dbc6f6" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-5f34811a-c187-493d-b23e-52bbdde5f547">
+<span class="eqno">(21)<a class="headerlink" href="#equation-5f34811a-c187-493d-b23e-52bbdde5f547" title="Permalink to this equation">#</a></span>\[\begin{align}
 A(\bar v, \bar u + \tilde u) &amp;\approx A(\bar v, \bar u) + \langle \bar v, L \tilde u \rangle \\
 &amp;= A(\bar v, \bar u) + \langle L^* \bar v, \tilde u \rangle \\
 A(\tilde v, \bar u + \tilde u) &amp;\approx \langle \tilde v, F(\bar u) \rangle + \langle \tilde v, L \tilde u \rangle
@@ -890,8 +894,8 @@ Expressions for <span class="math notranslate nohighlight">\(\tau\)</span> can b
 </section>
 <section id="stabilized-methods-for-advection-diffusion">
 <h2>5. Stabilized methods for advection-diffusion<a class="headerlink" href="#stabilized-methods-for-advection-diffusion" title="Link to this heading">#</a></h2>
-<div class="amsmath math notranslate nohighlight" id="equation-aade456f-eb89-4ae1-aeaa-694975b1f478">
-<span class="eqno">(21)<a class="headerlink" href="#equation-aade456f-eb89-4ae1-aeaa-694975b1f478" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d7259f76-77dc-4ea1-8fff-dd426c0a4e44">
+<span class="eqno">(22)<a class="headerlink" href="#equation-d7259f76-77dc-4ea1-8fff-dd426c0a4e44" title="Permalink to this equation">#</a></span>\[\begin{align}
 L u &amp;= \mathbf w \cdot \nabla u - \nabla\cdot(\kappa \nabla u) \\
 L^* u &amp;= -\mathbf w \cdot \nabla u - \nabla\cdot(\kappa \nabla u)
 \end{align}\]</div>
@@ -1180,7 +1184,7 @@ norm(J2 - diagm(diag(J2))) = 0.07988743228160049
 </section>
 </section>
 <section id="finite-element-interfaces-deal-ii">
-<h2>7.  Finite element interfaces: <a class="reference internal" href="#(https://dealii.org)"><span class="xref myst">deal.ii</span></a><a class="headerlink" href="#finite-element-interfaces-deal-ii" title="Link to this heading">#</a></h2>
+<h2>7.  Finite element interfaces: <a class="reference external" href="https://dealii.org">deal.ii</a><a class="headerlink" href="#finite-element-interfaces-deal-ii" title="Link to this heading">#</a></h2>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{gather*}
     v^T F(u) \sim \int_\Omega v \cdot \color{olive}{f_0(u, \nabla u)} + \nabla v \!:\! \color{olive}{f_1(u, \nabla u)} \quad
@@ -1298,7 +1302,7 @@ norm(J2 - diagm(diag(J2))) = 0.07988743228160049
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-element-interfaces-deal-ii">7.  Finite element interfaces: <span class="xref myst">deal.ii</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-element-interfaces-deal-ii">7.  Finite element interfaces: deal.ii</a></li>
 </ul>
   </nav></div>
 
