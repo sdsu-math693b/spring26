@@ -655,8 +655,8 @@ h_i = x_i - x_{i-1}
 <ol class="arabic simple">
 <li><p>Step 1: Multiply both sides of the PDE by a test function <span class="math notranslate nohighlight">\(v(x)\)</span> with compact support (i.e., <span class="math notranslate nohighlight">\( v(0)=0, \; v(1) = 0 \)</span>).</p></li>
 </ol>
-<div class="math notranslate nohighlight" id="equation-weak-form-poisson">
-<span class="eqno">(17)<a class="headerlink" href="#equation-weak-form-poisson" title="Link to this equation">#</a></span>\[
+<div class="math notranslate nohighlight">
+\[
 \begin{align}
 - u'' v = fv
 \end{align}
@@ -670,9 +670,11 @@ h_i = x_i - x_{i-1}
 \]</div>
 <p>We note that the boundary term vanishes because <span class="math notranslate nohighlight">\(v\)</span> has compact support.</p>
 <p>Hence the weak form of the PDE is:</p>
-<div class="math notranslate nohighlight">
-\[
+<div class="math notranslate nohighlight" id="equation-weak-form-poisson">
+<span class="eqno">(17)<a class="headerlink" href="#equation-weak-form-poisson" title="Link to this equation">#</a></span>\[
+\begin{align}
  \int_0^1 u' v' dx =  \int_0^1 fv dx
+ \end{align}
 \]</div>
 <p>and we want to find <span class="math notranslate nohighlight">\(u\)</span> such as this holds <span class="math notranslate nohighlight">\(\forall v\)</span>.</p>
 <ol class="arabic simple" start="3">
