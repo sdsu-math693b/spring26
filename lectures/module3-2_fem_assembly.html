@@ -1252,8 +1252,9 @@ sum(w) =
 <p>This Jacobian is what Newton’s method needs to solve non-linear problems iteratively:</p>
 <div class="math notranslate nohighlight">
 \[
-J(u^k) \delta u = - F(u^k0)
+J(u^k) \delta u = - F(u^k)
 \]</div>
+<p>for the unknown <span class="math notranslate nohighlight">\(\delta u\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Jacobian assembly </span>

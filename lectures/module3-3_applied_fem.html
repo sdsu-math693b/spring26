@@ -548,17 +548,47 @@ document.write(`
 </ul>
 <section id="let-s-examine-what-this-does-to-advection">
 <h3>Let’s examine what this does to advection<a class="headerlink" href="#let-s-examine-what-this-does-to-advection" title="Link to this heading">#</a></h3>
+<p>From vector calculus, we have the identity</p>
 <div class="math notranslate nohighlight">
 \[(\mathbf w \cdot \nabla v)(\mathbf w \cdot \nabla u) = \nabla v (\mathbf w \otimes \mathbf w) \nabla u\]</div>
+<p>where, if we are in 2D for example, <span class="math notranslate nohighlight">\(\mathbf w = (w_1, w_2)\)</span> and</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf w \otimes \mathbf w = 
+\left[ 
+\begin{array}{cc}
+w_1^2 &amp; w_1 w_2 \\
+w_2 w_1 &amp; w_2^2
+\end{array}
+\right] \, .
+\end{split}\]</div>
+<p>What does <span class="math notranslate nohighlight">\(\mathbf w \otimes \mathbf w\)</span> do? For any vector <span class="math notranslate nohighlight">\(\mathbf z\)</span>, it extracts the components of <span class="math notranslate nohighlight">\(\mathbf z\)</span> in the direction of <span class="math notranslate nohighlight">\(\mathbf w\)</span> and then returns a vector aligned with <span class="math notranslate nohighlight">\(\mathbf w\)</span>. So it is effectively a <strong>directional projection</strong> operator onto <span class="math notranslate nohighlight">\(\mathbf w\)</span>.</p>
 <ul class="simple">
+<li><p>Differential geometry interpretation:</p></li>
+</ul>
+<p>If we decompose the gradient as the sum of its parallel and perpendicular components</p>
+<div class="math notranslate nohighlight">
+\[
+\nabla u = \left( \nabla u \right)_{\parallel} + \left( \nabla u \right)_{\perp}
+\]</div>
+<p>we have that <span class="math notranslate nohighlight">\( \left( \nabla u \right)_{\parallel} \)</span> is along <span class="math notranslate nohighlight">\(\mathbf w\)</span> and <span class="math notranslate nohighlight">\(\left( \nabla u \right)_{\perp}\)</span> is perpendicular to it.</p>
+<p>Then, by definition of gradient, we have</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf w \cdot \nabla u = D_{\mathbf w} u
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(D_{\mathbf w} u\)</span> is the directional derivative in the direction of <span class="math notranslate nohighlight">\(\mathbf w\)</span>. We have that advection transports information <strong>along streamlines</strong> and also instabilities (oscillations) occur along those directions.</p>
+<ul class="simple">
+<li><p>Hence, the stabilization term we add extracts the components only along the streamlines of the flow. The perpendicular direction is unaltered, so the sharp features across them are preserved.</p></li>
 <li><p>This is “pencil” shaped diffusion, only along the <a class="reference external" href="https://en.wikipedia.org/wiki/Streamlines,_streaklines,_and_pathlines">streamlines</a> (a family of curves whose tangent vectors constitute the velocity vector field of the flow).</p></li>
+<li><p>With general diffusion, the term <span class="math notranslate nohighlight">\(\nabla\cdot(\kappa\nabla u) \)</span> (and any varations of this, such as in <strong>hyperdiffusion</strong> or <strong>artificial diffusion</strong>, <span class="math notranslate nohighlight">\(\kappa \nabla^4 u\)</span>) introduces <strong>isotropic</strong>, non-selective dissipation, symmetric in all directions.</p></li>
 <li><p>If <span class="math notranslate nohighlight">\(\tau^e\)</span> is chosen appropriately, this will be enough diffusion to get a Peclet number of about 1 when it needs it.</p></li>
 </ul>
 <p>Recall that we have introduced the cell Peclet number in our <a class="reference external" href="https://sdsu-math693b.github.io/spring26/lectures/module2-2_stability_analysis.html">Fourier and von Neumann stability analyses Lecture</a>. I report it here for convenience</p>
 <section id="the-cell-peclet-number-related-to-the-reynolds-number">
 <h4>The (cell) <a class="reference external" href="https://en.wikipedia.org/wiki/P%C3%A9clet_number">Péclet number</a> (related to the <a class="reference external" href="https://en.wikipedia.org/wiki/Reynolds_number">Reynolds number</a>)<a class="headerlink" href="#the-cell-peclet-number-related-to-the-reynolds-number" title="Link to this heading">#</a></h4>
-<div class="amsmath math notranslate nohighlight" id="equation-7880efbe-4e89-454e-bfa7-48392b3362a9">
-<span class="eqno">(19)<a class="headerlink" href="#equation-7880efbe-4e89-454e-bfa7-48392b3362a9" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-2c8747b4-f410-4133-a641-b7f00ceadde6">
+<span class="eqno">(19)<a class="headerlink" href="#equation-2c8747b4-f410-4133-a641-b7f00ceadde6" title="Permalink to this equation">#</a></span>\[\begin{align}
 \mathrm{Pe} &amp;= \frac{\Delta x \lvert w \rvert}{\kappa}
 \end{align}\]</div>
 <ul class="simple">
@@ -809,8 +839,8 @@ f_1 = k u_x + \tau w^2 u_x \,.
 <section id="time-dependent-advection-diffusion">
 <h3>Time-dependent advection-diffusion<a class="headerlink" href="#time-dependent-advection-diffusion" title="Link to this heading">#</a></h3>
 <p>Suppose we have the strong and weak forms</p>
-<div class="amsmath math notranslate nohighlight" id="equation-04e1a45c-e309-4b8a-8147-1c738fec981f">
-<span class="eqno">(20)<a class="headerlink" href="#equation-04e1a45c-e309-4b8a-8147-1c738fec981f" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f9e33f10-c387-42c0-bc53-bac9f0e18157">
+<span class="eqno">(20)<a class="headerlink" href="#equation-f9e33f10-c387-42c0-bc53-bac9f0e18157" title="Permalink to this equation">#</a></span>\[\begin{align}
 u_t + F(u) &amp;= 0\, , &amp; \qquad \langle v, u_t \rangle + A(v,u) &amp;= 0
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(F\)</span> is the spatial (only) differential operator and</p>
@@ -818,7 +848,7 @@ u_t + F(u) &amp;= 0\, , &amp; \qquad \langle v, u_t \rangle + A(v,u) &amp;= 0
 \[
 A(u;v) = \langle v, F(u) \rangle 
 \]</div>
-<p>is a (nonlinear) semilinear form (linear in <span class="math notranslate nohighlight">\(v\)</span>, but nonlinear in $u).</p>
+<p>is a (nonlinear) semilinear form (linear in <span class="math notranslate nohighlight">\(v\)</span>, but nonlinear in <span class="math notranslate nohighlight">\(u\)</span>).</p>
 <p>For advection-diffusion,
 <div class="math notranslate nohighlight">
 \[F(u) = \mathbf w\cdot\nabla u - \nabla\cdot(\kappa\nabla u),\]</div>
@@ -888,14 +918,14 @@ L = \frac{\partial F}{\partial u}
 <section id="variational-multiscale-key-ideas">
 <h3>Variational Multiscale key ideas<a class="headerlink" href="#variational-multiscale-key-ideas" title="Link to this heading">#</a></h3>
 <p>Decompose the solution into an <em>overlapping</em> sum decomposition of a resolved and oscillatory part, <span class="math notranslate nohighlight">\(u = \bar u + \tilde u\)</span> and similarly for <span class="math notranslate nohighlight">\(v = \bar v + \tilde v\)</span>, where <span class="math notranslate nohighlight">\(\bar u \)</span> represents the <strong><em>coarse</em></strong> (<strong>resolved</strong>) scales and <span class="math notranslate nohighlight">\(\tilde u\)</span> the <strong><em>fine</em></strong> (<strong>subgrid</strong> or <strong>unresolved</strong>) scales</p>
-<div class="amsmath math notranslate nohighlight" id="equation-156e23c7-67a2-4664-873a-6ec7726ad5ef">
-<span class="eqno">(21)<a class="headerlink" href="#equation-156e23c7-67a2-4664-873a-6ec7726ad5ef" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-ad1dc7be-4abc-4b42-b42f-3e024b3263a4">
+<span class="eqno">(21)<a class="headerlink" href="#equation-ad1dc7be-4abc-4b42-b42f-3e024b3263a4" title="Permalink to this equation">#</a></span>\[\begin{align}
 \langle \bar v, \bar u_t + \tilde u_t \rangle + A(\bar v, \bar u + \tilde u) &amp; = 0 \\
 \langle \tilde v, \bar u_t + \tilde u_t \rangle + A(\tilde v, \bar u + \tilde u) &amp; = 0 
 \end{align}\]</div>
 <p>We approximate <span class="math notranslate nohighlight">\(A\)</span> via first order Taylor series</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8d567918-2087-470e-af30-87300aedd8f0">
-<span class="eqno">(22)<a class="headerlink" href="#equation-8d567918-2087-470e-af30-87300aedd8f0" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-0eadc531-3752-4089-9ef9-2557584ef670">
+<span class="eqno">(22)<a class="headerlink" href="#equation-0eadc531-3752-4089-9ef9-2557584ef670" title="Permalink to this equation">#</a></span>\[\begin{align}
 A(\bar v, \bar u + \tilde u) &amp;\approx A(\bar v, \bar u) + \langle \bar v, L \tilde u \rangle \\
 &amp;= A(\bar v, \bar u) + \langle L^* \bar v, \tilde u \rangle \\
 A(\tilde v, \bar u + \tilde u) &amp;\approx \langle \tilde v, F(\bar u) \rangle + \langle \tilde v, L \tilde u \rangle
@@ -962,8 +992,8 @@ Expressions for <span class="math notranslate nohighlight">\(\tau\)</span> can b
 </section>
 <section id="stabilized-methods-for-advection-diffusion">
 <h2>6. Stabilized methods for advection-diffusion<a class="headerlink" href="#stabilized-methods-for-advection-diffusion" title="Link to this heading">#</a></h2>
-<div class="amsmath math notranslate nohighlight" id="equation-ce63bcd3-322d-43b8-99e1-c0baf8acd01f">
-<span class="eqno">(23)<a class="headerlink" href="#equation-ce63bcd3-322d-43b8-99e1-c0baf8acd01f" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d9206add-724a-4b29-969d-c3e4aacd9a6e">
+<span class="eqno">(23)<a class="headerlink" href="#equation-d9206add-724a-4b29-969d-c3e4aacd9a6e" title="Permalink to this equation">#</a></span>\[\begin{align}
 L u &amp;= \mathbf w \cdot \nabla u - \nabla\cdot(\kappa \nabla u) \\
 L^* u &amp;= -\mathbf w \cdot \nabla u - \nabla\cdot(\kappa \nabla u)
 \end{align}\]</div>
@@ -1036,9 +1066,47 @@ L^* u &amp;= -\mathbf w \cdot \nabla u - \nabla\cdot(\kappa \nabla u)
 </ul>
 <section id="collocated-quadrature-when-the-quadrature-points-and-basis-interpolation-nodes-coincide">
 <h3>Collocated quadrature: when the quadrature points and basis interpolation nodes coincide<a class="headerlink" href="#collocated-quadrature-when-the-quadrature-points-and-basis-interpolation-nodes-coincide" title="Link to this heading">#</a></h3>
+<p>Generally, the interpolation nodes, <span class="math notranslate nohighlight">\(x_i\)</span>, differ from the quadrature nodes, <span class="math notranslate nohighlight">\(x_q\)</span>. In the case of <strong>collocation</strong> or <strong>collocated quadrature</strong>, we pick them to be identical:</p>
+<div class="math notranslate nohighlight">
+\[
+x_i = x_q \, .
+\]</div>
+<p>Recall that the test functions satisfy the Kroneker delta property:</p>
+<div class="math notranslate nohighlight">
+\[
+\phi_j (x_q) = \delta_{jq} \, .
+\]</div>
+<p>So the basis evaluation matrix (denoted by <span class="math notranslate nohighlight">\(B\)</span> in our <a class="reference external" href="https://sdsu-math693b.github.io/spring26/lectures/module3-2_fem_assembly.html#abstractions">Abstractions</a> section) becomes</p>
+<div class="math notranslate nohighlight">
+\[
+B_{qj} = \phi_j (x_q) = \delta_{qj}
+\]</div>
+<p>That means:</p>
+<div class="math notranslate nohighlight">
+\[
+B \equiv I
+\]</div>
 <ul class="simple">
-<li><p>This has the important consequence that the Mass matrix is diagonal</p></li>
-<li><p>A diagonal Mass matrix can be achieved even without collocation (it is called a <strong>lumped Mass matrix</strong>, usually obtained by substituting diagonal entries by row sums)</p></li>
+<li><p>This has the important consequence that the Mass matrix is diagonal:</p></li>
+</ul>
+<p>In fact, recall that the mass matrix <span class="math notranslate nohighlight">\(M\)</span> is defined as</p>
+<div class="math notranslate nohighlight">
+\[
+M_{i,j} = \int_\Omega \phi_i \phi_j
+\]</div>
+<p>and, in terms of the basis applicator matrix <span class="math notranslate nohighlight">\(B\)</span>, we have that</p>
+<div class="math notranslate nohighlight">
+\[
+M = B^T W B \, .
+\]</div>
+<p>If <span class="math notranslate nohighlight">\(B = I\)</span>, then</p>
+<div class="math notranslate nohighlight">
+\[
+M = W =  \operatorname{diag} (w_j)
+\]</div>
+<p>where the <span class="math notranslate nohighlight">\(w_j\)</span> are the quadrature weights.</p>
+<ul class="simple">
+<li><p>A diagonal Mass matrix can be achieved even without collocation (it is called a <strong>lumped Mass matrix</strong>, usually obtained by substituting diagonal entries by row sums). But in the case of collocated quadrature, it happens naturally.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1264,7 +1332,7 @@ df_0 = w \delta u_x\, , \qquad df_1 =  \tau w^2 \delta u_x + \kappa \delta u_x \
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">tfinal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">40</span>
-<span class="n">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">exp</span><span class="p">(</span><span class="n">A</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">tfinal</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">u0</span><span class="w"> </span><span class="c"># linear ODE exact sol: u(t) = u_0 * exp(At)</span>
+<span class="n">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">exp</span><span class="p">(</span><span class="n">A</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">tfinal</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">u0</span><span class="w"> </span><span class="c"># linear ODE, exact sol: u(t) = u_0 * exp(At)</span>
 <span class="n">plot</span><span class="p">(</span><span class="n">fe</span><span class="o">.</span><span class="n">xn</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="n">exact</span><span class="o">.</span><span class="p">(</span><span class="n">fe</span><span class="o">.</span><span class="n">xn</span><span class="p">,</span><span class="w"> </span><span class="n">tfinal</span><span class="p">)</span><span class="w"> </span><span class="n">P</span><span class="o">*</span><span class="n">u</span><span class="p">],</span><span class="w"> </span><span class="n">label</span><span class="o">=</span><span class="p">[</span><span class="s">&quot;exact&quot;</span><span class="w"> </span><span class="s">&quot;SUPG&quot;</span><span class="p">],</span><span class="w"> </span><span class="n">legend</span><span class="o">=</span><span class="ss">:topleft</span><span class="p">)</span>
 </pre></div>
 </div>
