@@ -734,7 +734,7 @@ v'_h(\mathbf x) &amp;= \sum_{j=1}^n v_j \, \phi'_j(\mathbf x) \, .
 <p>Since the coefficients <span class="math notranslate nohighlight">\(v_i\)</span> are arbitrary, the only way this equation holds for all <span class="math notranslate nohighlight">\(v\)</span> is:</p>
 <div class="math notranslate nohighlight">
 \[
-F_i(u) = 0 \quad \text{for  } i = 1,\dots,n
+F_i(u) = 0 \quad \text{for  } i = 1,\dots,n \, .
 \]</div>
 <p>For our specific case, we are finally ready derive a linear system of equations for the coefficients by substituting the approximate solution <span class="math notranslate nohighlight">\(u_h(x)\)</span> for the exact solution <span class="math notranslate nohighlight">\(u(x)\)</span> in the weak form <a class="reference internal" href="#equation-weak-form-poisson">(17)</a></p>
 <div class="math notranslate nohighlight">
@@ -744,7 +744,7 @@ F_i(u) = 0 \quad \text{for  } i = 1,\dots,n
 \[
 \int_0^1 \sum_{i=1}^{n} u_i \phi'_iv' dx = \sum_{i=1}^{n} u_i \int_0^1 \phi_i'v' dx = \int_0^1 fv dx \, .
 \]</div>
-<p>Hence, we get a system of equations</p>
+<p>Because the weak form has to hold <span class="math notranslate nohighlight">\(\forall v\)</span> (hence, the <span class="math notranslate nohighlight">\(v_i\)</span> are arbitrary), we have that the expansion of the test function <span class="math notranslate nohighlight">\(v\)</span> in the equation above leads to the following system of equations in which the <span class="math notranslate nohighlight">\(v_i\)</span> coefficients do not appear (given the argument shown above for the general weak form)</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align*}
@@ -895,6 +895,7 @@ u_h(\mathbf x) = \sum_{j=1}^n u_j \, \phi_j(\mathbf x)
 \]</div>
 </p></li>
 </ol>
+<p>We note that the role of <span class="math notranslate nohighlight">\(v\)</span> as a test function is to be used to extract equations for <span class="math notranslate nohighlight">\(u\)</span>, but it is not an unknown.</p>
 <section id="observations">
 <h3>Observations<a class="headerlink" href="#observations" title="Link to this heading">#</a></h3>
 <ul class="simple">
