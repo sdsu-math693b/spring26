@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -202,7 +202,6 @@
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">13) Introduction to Finite Element discretizations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="module3-2_fem_assembly.html">14) FEM Assembly</a></li>
 <li class="toctree-l2"><a class="reference internal" href="module3-3_applied_fem.html">15) Applied Finite Elements</a></li>
-
 </ul>
 </details></li>
 </ul>
@@ -508,7 +507,7 @@ u &amp;= g \qquad \textrm{ on } \partial \Omega
 <p>Define the total energy as</p>
 <div class="math notranslate nohighlight">
 \[
-\varepsilon(u) = \int_{\Omega} \left( \frac{1}{2} |\nabla u|^2  -fu \right) dx
+\varepsilon(u) = \int_{\Omega} \left( \frac{1}{2} |\nabla u|^2  -fu \right) ~\mathrm{d} x
 \]</div>
 <p>Then</p>
 <div class="math notranslate nohighlight">
@@ -520,8 +519,8 @@ u = \arg\min \varepsilon (w ) \quad, \, w \in C^2(\Omega) \cap C(\bar{\Omega}) ,
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align*}
-\varepsilon(w) &amp;= \int_{\Omega} \left( \frac{1}{2} |\nabla u^2 + \nabla v^2|  -fu -fv \right) dx \\
-               &amp;= \varepsilon(u) + \frac{1}{2}\int_{\Omega} | \nabla v^2| x + \int_{\Omega} \left( \nabla u \nabla v -fv \right) dx
+\varepsilon(w) &amp;= \int_{\Omega} \left( \frac{1}{2} |\nabla (u+ v)|^2  -f(u+v) \right) ~\mathrm{d} x \\
+               &amp;= \varepsilon(u) + \frac{1}{2}\int_{\Omega} | \nabla v^2| ~\mathrm{d} x + \int_{\Omega} \left( \nabla u \nabla v -fv \right) ~\mathrm{d} x
 \end{align*}
 \end{split}\]</div>
 <p>Consider</p>
