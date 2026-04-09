@@ -853,8 +853,8 @@ u_n
 \]</div>
 <p>where we have used the simple trapezoidal rule for the <span class="math notranslate nohighlight">\(L^2\)</span> inner product integral.</p>
 <p>Hence, we can rewrite our matrix problem as</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
+<div class="math notranslate nohighlight" id="equation-eq-stiffness-matrix-form">
+<span class="eqno">(18)<a class="headerlink" href="#equation-eq-stiffness-matrix-form" title="Link to this equation">#</a></span>\[\begin{split}
 \begin{align*}
 \frac{1}{h}
 \left[
@@ -884,7 +884,7 @@ u_n
 f_{n-1}\\
 f_n
 \end{array}
-\right] \,. \tag{1}
+\right] \,.
 \end{align*}
 \end{split}\]</div>
 <ol class="arabic simple" start="5">
@@ -899,7 +899,7 @@ u_h(\mathbf x) = \sum_{j=1}^n u_j \, \phi_j(\mathbf x)
 <section id="observations">
 <h3>Observations<a class="headerlink" href="#observations" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Does the matrix in (1) look familiar??</p></li>
+<li><p>Does the matrix in <a class="reference internal" href="#equation-eq-stiffness-matrix-form">(18)</a> look familiar??</p></li>
 <li><p>We note that for solving <span class="math notranslate nohighlight">\(-u'' = f(x)\)</span>, <span class="math notranslate nohighlight">\(u(0) = u(1) = 0\)</span>, the matrix form of the <span class="math notranslate nohighlight">\(P^1\)</span> <strong>linear Finite Element Method</strong> with trapezoidal quadrature is precisely the <strong>second order centered Finite Difference Scheme</strong>.</p></li>
 </ul>
 </section>
@@ -908,7 +908,6 @@ u_h(\mathbf x) = \sum_{j=1}^n u_j \, \phi_j(\mathbf x)
 <h2>3. Abstractions<a class="headerlink" href="#abstractions" title="Link to this heading">#</a></h2>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>Resources</p>
 <p>Some useful resources for FEM/SEM are:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://libceed.org/en/latest/">libCEED documentation</a>, especially the Mathematical Framework and Examples sections</p></li>

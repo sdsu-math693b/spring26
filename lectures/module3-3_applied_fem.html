@@ -552,7 +552,7 @@ document.write(`
 <section id="the-cell-peclet-number-related-to-the-reynolds-number">
 <h4>The (cell) <a class="reference external" href="https://en.wikipedia.org/wiki/P%C3%A9clet_number">Péclet number</a> (related to the <a class="reference external" href="https://en.wikipedia.org/wiki/Reynolds_number">Reynolds number</a>)<a class="headerlink" href="#the-cell-peclet-number-related-to-the-reynolds-number" title="Link to this heading">#</a></h4>
 <div class="amsmath math notranslate nohighlight" id="equation-b126e00c-1bee-490c-8a4f-1f964f433d2c">
-<span class="eqno">(18)<a class="headerlink" href="#equation-b126e00c-1bee-490c-8a4f-1f964f433d2c" title="Permalink to this equation">#</a></span>\[\begin{align}
+<span class="eqno">(19)<a class="headerlink" href="#equation-b126e00c-1bee-490c-8a4f-1f964f433d2c" title="Permalink to this equation">#</a></span>\[\begin{align}
 \mathrm{Pe} &amp;= \frac{\Delta x \lvert w \rvert}{\kappa}
 \end{align}\]</div>
 <ul class="simple">
@@ -742,7 +742,7 @@ document.write(`
 <h3>Time-dependent advection-diffusion<a class="headerlink" href="#time-dependent-advection-diffusion" title="Link to this heading">#</a></h3>
 <p>Suppose we have the strong and weak forms</p>
 <div class="amsmath math notranslate nohighlight" id="equation-4f059c85-a0b2-41b3-bae6-b05eae9f6be3">
-<span class="eqno">(19)<a class="headerlink" href="#equation-4f059c85-a0b2-41b3-bae6-b05eae9f6be3" title="Permalink to this equation">#</a></span>\[\begin{align}
+<span class="eqno">(20)<a class="headerlink" href="#equation-4f059c85-a0b2-41b3-bae6-b05eae9f6be3" title="Permalink to this equation">#</a></span>\[\begin{align}
 u_t + F(u) &amp;= 0\, , &amp; \qquad \langle v, u_t \rangle + A(v,u) &amp;= 0
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(F\)</span> is the spatial (only) differential operator and</p>
@@ -821,13 +821,13 @@ L = \frac{\partial F}{\partial u}
 <h3>Variational Multiscale key ideas<a class="headerlink" href="#variational-multiscale-key-ideas" title="Link to this heading">#</a></h3>
 <p>Decompose the solution into an <em>overlapping</em> sum decomposition of a resolved and oscillatory part, <span class="math notranslate nohighlight">\(u = \bar u + \tilde u\)</span> and similarly for <span class="math notranslate nohighlight">\(v = \bar v + \tilde v\)</span>, where <span class="math notranslate nohighlight">\(\bar u \)</span> represents the <strong><em>coarse</em></strong> (<strong>resolved</strong>) scales and <span class="math notranslate nohighlight">\(\tilde u\)</span> the <strong><em>fine</em></strong> (<strong>subgrid</strong> or <strong>unresolved</strong>) scales</p>
 <div class="amsmath math notranslate nohighlight" id="equation-5bd3cd33-bbd5-49f7-974e-1a8f6ec68ea3">
-<span class="eqno">(20)<a class="headerlink" href="#equation-5bd3cd33-bbd5-49f7-974e-1a8f6ec68ea3" title="Permalink to this equation">#</a></span>\[\begin{align}
+<span class="eqno">(21)<a class="headerlink" href="#equation-5bd3cd33-bbd5-49f7-974e-1a8f6ec68ea3" title="Permalink to this equation">#</a></span>\[\begin{align}
 \langle \bar v, \bar u_t + \tilde u_t \rangle + A(\bar v, \bar u + \tilde u) &amp; = 0 \\
 \langle \tilde v, \bar u_t + \tilde u_t \rangle + A(\tilde v, \bar u + \tilde u) &amp; = 0 
 \end{align}\]</div>
 <p>We approximate <span class="math notranslate nohighlight">\(A\)</span> via first order Taylor series</p>
 <div class="amsmath math notranslate nohighlight" id="equation-5f34811a-c187-493d-b23e-52bbdde5f547">
-<span class="eqno">(21)<a class="headerlink" href="#equation-5f34811a-c187-493d-b23e-52bbdde5f547" title="Permalink to this equation">#</a></span>\[\begin{align}
+<span class="eqno">(22)<a class="headerlink" href="#equation-5f34811a-c187-493d-b23e-52bbdde5f547" title="Permalink to this equation">#</a></span>\[\begin{align}
 A(\bar v, \bar u + \tilde u) &amp;\approx A(\bar v, \bar u) + \langle \bar v, L \tilde u \rangle \\
 &amp;= A(\bar v, \bar u) + \langle L^* \bar v, \tilde u \rangle \\
 A(\tilde v, \bar u + \tilde u) &amp;\approx \langle \tilde v, F(\bar u) \rangle + \langle \tilde v, L \tilde u \rangle
@@ -895,7 +895,7 @@ Expressions for <span class="math notranslate nohighlight">\(\tau\)</span> can b
 <section id="stabilized-methods-for-advection-diffusion">
 <h2>5. Stabilized methods for advection-diffusion<a class="headerlink" href="#stabilized-methods-for-advection-diffusion" title="Link to this heading">#</a></h2>
 <div class="amsmath math notranslate nohighlight" id="equation-d7259f76-77dc-4ea1-8fff-dd426c0a4e44">
-<span class="eqno">(22)<a class="headerlink" href="#equation-d7259f76-77dc-4ea1-8fff-dd426c0a4e44" title="Permalink to this equation">#</a></span>\[\begin{align}
+<span class="eqno">(23)<a class="headerlink" href="#equation-d7259f76-77dc-4ea1-8fff-dd426c0a4e44" title="Permalink to this equation">#</a></span>\[\begin{align}
 L u &amp;= \mathbf w \cdot \nabla u - \nabla\cdot(\kappa \nabla u) \\
 L^* u &amp;= -\mathbf w \cdot \nabla u - \nabla\cdot(\kappa \nabla u)
 \end{align}\]</div>
