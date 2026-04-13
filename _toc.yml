@@ -22,3 +22,4 @@ chapters:
   - file: lectures/module3-1_intro_to_fem.ipynb
   - file: lectures/module3-2_fem_assembly.ipynb
   - file: lectures/module3-3_applied_fem.ipynb
+  - file: lectures/module4-1_finite_volume.ipynb
