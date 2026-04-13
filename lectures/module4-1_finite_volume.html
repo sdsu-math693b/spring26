@@ -609,10 +609,13 @@ document.write(`
 <div class="math notranslate nohighlight">
 \[ \frac{\partial \mathbf q}{\partial t} + \nabla\cdot F(\mathbf q) = 0 \]</div>
 <p>where the (possibly nonlinear) function <span class="math notranslate nohighlight">\(F(\mathbf q)\)</span> is called the <strong>flux</strong>.  If <span class="math notranslate nohighlight">\(\mathbf q\)</span> has <span class="math notranslate nohighlight">\(m\)</span> components, <span class="math notranslate nohighlight">\(F(\mathbf q)\)</span> is an <span class="math notranslate nohighlight">\(m\times d\)</span> matrix in <span class="math notranslate nohighlight">\(d\)</span> dimensions.</p>
-<p>We can express finite volume methods by choosing test functions <span class="math notranslate nohighlight">\(\mathbf v(x)\)</span> that are piecewise constant on each element <span class="math notranslate nohighlight">\(e\)</span> and integrating by parts
-\begin{split} \int_\Omega \mathbf v \frac{\partial \mathbf q}{\partial t} + \mathbf v \nabla\cdot F(\mathbf q) = 0 \text{ for all } \mathbf v \
-\frac{\partial}{\partial t} \left( \int_e \mathbf q \right) + \int_{\partial e} F(\mathbf q) \cdot \hat n = 0 \text{ for all } e .
-\end{split}</p>
+<p>We can express finite volume methods by choosing test functions <span class="math notranslate nohighlight">\(\mathbf v(x)\)</span> that are piecewise constant on each element <span class="math notranslate nohighlight">\(e\)</span> and integrating by parts</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{split} \int_\Omega \mathbf v \frac{\partial \mathbf q}{\partial t} + \mathbf v \nabla\cdot F(\mathbf q) = 0 \text{ for all } \mathbf v \\
+ \frac{\partial}{\partial t} \left( \int_e \mathbf q \right) + \int_{\partial e} F(\mathbf q) \cdot \hat n = 0 \text{ for all } e .
+\end{split}
+\end{split}\]</div>
 <p>In finite volume methods, we choose as our unknowns the average values <span class="math notranslate nohighlight">\(\bar{\mathbf q}\)</span> on each element, leading to the discrete equation
 <div class="math notranslate nohighlight">
 \[ \lvert e \rvert \frac{\partial \bar{\mathbf q}}{\partial t} + \int_{\partial e} F(\mathbf q) \cdot \hat n = 0 \text{ for all } e \]</div>
