@@ -589,8 +589,8 @@ w_2 w_1 &amp; w_2^2
 <p>Recall that we have introduced the cell Peclet number in our <a class="reference external" href="https://sdsu-math693b.github.io/spring26/lectures/module2-2_stability_analysis.html">Fourier and von Neumann stability analyses Lecture</a>. I report it here for convenience</p>
 <section id="the-cell-peclet-number-related-to-the-reynolds-number">
 <h4>The (cell) <a class="reference external" href="https://en.wikipedia.org/wiki/P%C3%A9clet_number">Péclet number</a> (related to the <a class="reference external" href="https://en.wikipedia.org/wiki/Reynolds_number">Reynolds number</a>)<a class="headerlink" href="#the-cell-peclet-number-related-to-the-reynolds-number" title="Link to this heading">#</a></h4>
-<div class="amsmath math notranslate nohighlight" id="equation-b04af93c-647a-486a-bb7c-e3c53ec16cd9">
-<span class="eqno">(19)<a class="headerlink" href="#equation-b04af93c-647a-486a-bb7c-e3c53ec16cd9" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-8a023d8a-6814-4696-a2d9-ab29f6a853b1">
+<span class="eqno">(19)<a class="headerlink" href="#equation-8a023d8a-6814-4696-a2d9-ab29f6a853b1" title="Permalink to this equation">#</a></span>\[\begin{align}
 \mathrm{Pe} &amp;= \frac{\Delta x \lvert w \rvert}{\kappa}
 \end{align}\]</div>
 <ul class="simple">
@@ -841,8 +841,8 @@ f_1 = k u_x + \tau w^2 u_x \,.
 <section id="time-dependent-advection-diffusion">
 <h3>Time-dependent advection-diffusion<a class="headerlink" href="#time-dependent-advection-diffusion" title="Link to this heading">#</a></h3>
 <p>Suppose we have the strong and weak forms</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a72f94c1-33cb-4d49-abed-654c2743bc6f">
-<span class="eqno">(20)<a class="headerlink" href="#equation-a72f94c1-33cb-4d49-abed-654c2743bc6f" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-90ffb0a3-dfb3-4483-8130-2af33d16a220">
+<span class="eqno">(20)<a class="headerlink" href="#equation-90ffb0a3-dfb3-4483-8130-2af33d16a220" title="Permalink to this equation">#</a></span>\[\begin{align}
 u_t + F(u) &amp;= 0\, , &amp; \qquad \langle v, u_t \rangle + A(v,u) &amp;= 0
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(F\)</span> is the spatial (only) differential operator and</p>
@@ -920,14 +920,14 @@ L = \frac{\partial F}{\partial u}
 <section id="variational-multiscale-key-ideas">
 <h3>Variational Multiscale key ideas<a class="headerlink" href="#variational-multiscale-key-ideas" title="Link to this heading">#</a></h3>
 <p>Decompose the solution into an <em>overlapping</em> sum decomposition of a resolved and oscillatory part, <span class="math notranslate nohighlight">\(u = \bar u + \tilde u\)</span> and similarly for <span class="math notranslate nohighlight">\(v = \bar v + \tilde v\)</span>, where <span class="math notranslate nohighlight">\(\bar u \)</span> represents the <strong><em>coarse</em></strong> (<strong>resolved</strong>) scales and <span class="math notranslate nohighlight">\(\tilde u\)</span> the <strong><em>fine</em></strong> (<strong>subgrid</strong> or <strong>unresolved</strong>) scales</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b0cda01a-be01-42d1-8197-d149c2555c9f">
-<span class="eqno">(21)<a class="headerlink" href="#equation-b0cda01a-be01-42d1-8197-d149c2555c9f" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-6fd556d1-c167-4e32-8c56-450ee540fdae">
+<span class="eqno">(21)<a class="headerlink" href="#equation-6fd556d1-c167-4e32-8c56-450ee540fdae" title="Permalink to this equation">#</a></span>\[\begin{align}
 \langle \bar v, \bar u_t + \tilde u_t \rangle + A(\bar v, \bar u + \tilde u) &amp; = 0 \\
 \langle \tilde v, \bar u_t + \tilde u_t \rangle + A(\tilde v, \bar u + \tilde u) &amp; = 0 
 \end{align}\]</div>
 <p>We approximate <span class="math notranslate nohighlight">\(A\)</span> via first order Taylor series</p>
-<div class="amsmath math notranslate nohighlight" id="equation-14de012f-71eb-4d9e-8e92-08889842b75b">
-<span class="eqno">(22)<a class="headerlink" href="#equation-14de012f-71eb-4d9e-8e92-08889842b75b" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-e73aa212-bc9c-4660-98c6-71847ccddde5">
+<span class="eqno">(22)<a class="headerlink" href="#equation-e73aa212-bc9c-4660-98c6-71847ccddde5" title="Permalink to this equation">#</a></span>\[\begin{align}
 A(\bar v, \bar u + \tilde u) &amp;\approx A(\bar v, \bar u) + \langle \bar v, L \tilde u \rangle \\
 &amp;= A(\bar v, \bar u) + \langle L^* \bar v, \tilde u \rangle \\
 A(\tilde v, \bar u + \tilde u) &amp;\approx \langle \tilde v, F(\bar u) \rangle + \langle \tilde v, L \tilde u \rangle
@@ -994,8 +994,8 @@ Expressions for <span class="math notranslate nohighlight">\(\tau\)</span> can b
 </section>
 <section id="stabilized-methods-for-advection-diffusion">
 <h2>6. Stabilized methods for advection-diffusion<a class="headerlink" href="#stabilized-methods-for-advection-diffusion" title="Link to this heading">#</a></h2>
-<div class="amsmath math notranslate nohighlight" id="equation-3e410f88-464a-40f2-aaa2-110a614b40d2">
-<span class="eqno">(23)<a class="headerlink" href="#equation-3e410f88-464a-40f2-aaa2-110a614b40d2" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-3be26f0f-3cab-4c1e-806a-23dcb2d26898">
+<span class="eqno">(23)<a class="headerlink" href="#equation-3be26f0f-3cab-4c1e-806a-23dcb2d26898" title="Permalink to this equation">#</a></span>\[\begin{align}
 L u &amp;= \mathbf w \cdot \nabla u - \nabla\cdot(\kappa \nabla u) \\
 L^* u &amp;= -\mathbf w \cdot \nabla u - \nabla\cdot(\kappa \nabla u)
 \end{align}\]</div>
@@ -1270,8 +1270,8 @@ R(u; v) = \int_\Omega \Big( u_t\, v + f_0(u,\nabla u)\, v + f_1(u,\nabla u)\cdot
 <p>where <span class="math notranslate nohighlight">\( f_0, f_1 \)</span> are the weak-form components encoded in <code class="docutils literal notranslate"><span class="pre">fq</span></code> in the code.</p>
 <p>We use the Finite Element expansion, by letting:
 $$</p>
-<div class="amsmath math notranslate nohighlight" id="equation-213de700-aac6-44ad-ba68-1a203b069c34">
-<span class="eqno">(24)<a class="headerlink" href="#equation-213de700-aac6-44ad-ba68-1a203b069c34" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-ffaef335-e809-4685-9f3b-c83a45656e30">
+<span class="eqno">(24)<a class="headerlink" href="#equation-ffaef335-e809-4685-9f3b-c83a45656e30" title="Permalink to this equation">#</a></span>\[\begin{align}
 u_h(\mathbf x, t) &amp;= \sum_{j=1}^n u_j (t) \, \phi_j(\mathbf x) ,\\
 v_h(\mathbf x) &amp;= \sum_{j=1}^n v_j \, \phi_j(\mathbf x) , \, .
 \end{align}\]</div>
@@ -1504,7 +1504,11 @@ u_1
 <section id="activity">
 <h4>Activity<a class="headerlink" href="#activity" title="Link to this heading">#</a></h4>
 <ul class="simple">
-<li><p>What do we learn from the spectrum?</p></li>
+<li><p>What do we learn from the spectrum?</p>
+<ul>
+<li><p>We haven’t really talked about stability of ODEs in this class - you can review this <a class="reference external" href="https://sdsu-comp526.github.io/fall25/lectures/module8-2_diffeq.html">COMP 526 Lecture</a></p></li>
+</ul>
+</li>
 <li><p>How would the unstabilized spectrum look like?</p></li>
 </ul>
 </section>
