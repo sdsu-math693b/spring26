@@ -63,6 +63,7 @@
     <link rel="icon" href="../_static/SDSU-math693b_logo.svg"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="16) Finite Volume" href="module4-1_finite_volume.html" />
     <link rel="prev" title="14) FEM Assembly" href="module3-2_fem_assembly.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -201,6 +202,7 @@
 <li class="toctree-l2"><a class="reference internal" href="module3-1_intro_to_fem.html">13) Introduction to Finite Element discretizations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="module3-2_fem_assembly.html">14) FEM Assembly</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">15) Applied Finite Elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module4-1_finite_volume.html">16) Finite Volume</a></li>
 </ul>
 </details></li>
 </ul>
@@ -456,7 +458,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-workflow-for-time-dependent-problems">7. General workflow for time dependent problems</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#collocated-quadrature-when-the-quadrature-points-and-basis-interpolation-nodes-coincide">Collocated quadrature: when the quadrature points and basis interpolation nodes coincide</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#collocated-quadrature-when-the-quadrature-points-and-basis-interpolation-nodes-coincide">7.1 Collocated quadrature: when the quadrature points and basis interpolation nodes coincide</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supg-for-time-dependent-problems">SUPG for time-dependent problems</a></li>
 </ul>
 </li>
@@ -498,7 +500,8 @@ document.write(`
 <li><p>Variational Multiscale Method</p></li>
 <li><p>Time-dependent problems</p></li>
 <li><p>Stabilized methods for advection-diffusion</p></li>
-<li><p>General workflow for time dependent problems</p></li>
+<li><p>General workflow for time dependent problems<br />
+7.1 Collocated quadrature</p></li>
 <li><p>SUPG solver in Julia</p></li>
 <li><p>Finite element interfaces: deal.ii</p></li>
 </ol>
@@ -589,8 +592,8 @@ w_2 w_1 &amp; w_2^2
 <p>Recall that we have introduced the cell Peclet number in our <a class="reference external" href="https://sdsu-math693b.github.io/spring26/lectures/module2-2_stability_analysis.html">Fourier and von Neumann stability analyses Lecture</a>. I report it here for convenience</p>
 <section id="the-cell-peclet-number-related-to-the-reynolds-number">
 <h4>The (cell) <a class="reference external" href="https://en.wikipedia.org/wiki/P%C3%A9clet_number">Péclet number</a> (related to the <a class="reference external" href="https://en.wikipedia.org/wiki/Reynolds_number">Reynolds number</a>)<a class="headerlink" href="#the-cell-peclet-number-related-to-the-reynolds-number" title="Link to this heading">#</a></h4>
-<div class="amsmath math notranslate nohighlight" id="equation-b7b36740-3c34-436e-ab72-402342df4afd">
-<span class="eqno">(19)<a class="headerlink" href="#equation-b7b36740-3c34-436e-ab72-402342df4afd" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-2978bf8d-bcf5-4a77-bcaa-e12877d52cf7">
+<span class="eqno">(19)<a class="headerlink" href="#equation-2978bf8d-bcf5-4a77-bcaa-e12877d52cf7" title="Permalink to this equation">#</a></span>\[\begin{align}
 \mathrm{Pe} &amp;= \frac{\Delta x \lvert w \rvert}{\kappa}
 \end{align}\]</div>
 <ul class="simple">
@@ -841,8 +844,8 @@ f_1 = k u_x + \tau w^2 u_x \,.
 <section id="time-dependent-advection-diffusion">
 <h3>Time-dependent advection-diffusion<a class="headerlink" href="#time-dependent-advection-diffusion" title="Link to this heading">#</a></h3>
 <p>Suppose we have the strong and weak forms</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b2b5c017-5559-4c10-9cfa-745482457147">
-<span class="eqno">(20)<a class="headerlink" href="#equation-b2b5c017-5559-4c10-9cfa-745482457147" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a5928db5-c188-4d81-a7f1-e5a4eef44ff1">
+<span class="eqno">(20)<a class="headerlink" href="#equation-a5928db5-c188-4d81-a7f1-e5a4eef44ff1" title="Permalink to this equation">#</a></span>\[\begin{align}
 u_t + F(u) &amp;= 0\, , &amp; \qquad \langle v, u_t \rangle + A(v,u) &amp;= 0
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(F\)</span> is the spatial (only) differential operator and</p>
@@ -920,14 +923,14 @@ L = \frac{\partial F}{\partial u}
 <section id="variational-multiscale-key-ideas">
 <h3>Variational Multiscale key ideas<a class="headerlink" href="#variational-multiscale-key-ideas" title="Link to this heading">#</a></h3>
 <p>Decompose the solution into an <em>overlapping</em> sum decomposition of a resolved and oscillatory part, <span class="math notranslate nohighlight">\(u = \bar u + \tilde u\)</span> and similarly for <span class="math notranslate nohighlight">\(v = \bar v + \tilde v\)</span>, where <span class="math notranslate nohighlight">\(\bar u \)</span> represents the <strong><em>coarse</em></strong> (<strong>resolved</strong>) scales and <span class="math notranslate nohighlight">\(\tilde u\)</span> the <strong><em>fine</em></strong> (<strong>subgrid</strong> or <strong>unresolved</strong>) scales</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b0361e93-2464-41e9-8e09-88746ad9ed4f">
-<span class="eqno">(21)<a class="headerlink" href="#equation-b0361e93-2464-41e9-8e09-88746ad9ed4f" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b3fe7fd6-bdb5-4eb7-8639-c1d25a8827f9">
+<span class="eqno">(21)<a class="headerlink" href="#equation-b3fe7fd6-bdb5-4eb7-8639-c1d25a8827f9" title="Permalink to this equation">#</a></span>\[\begin{align}
 \langle \bar v, \bar u_t + \tilde u_t \rangle + A(\bar v, \bar u + \tilde u) &amp; = 0 \\
 \langle \tilde v, \bar u_t + \tilde u_t \rangle + A(\tilde v, \bar u + \tilde u) &amp; = 0 
 \end{align}\]</div>
 <p>We approximate <span class="math notranslate nohighlight">\(A\)</span> via first order Taylor series</p>
-<div class="amsmath math notranslate nohighlight" id="equation-45f88a32-d19f-431f-b6b6-854874b77fb2">
-<span class="eqno">(22)<a class="headerlink" href="#equation-45f88a32-d19f-431f-b6b6-854874b77fb2" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-316c91b6-899f-4d9e-b00c-eb92e2e97c79">
+<span class="eqno">(22)<a class="headerlink" href="#equation-316c91b6-899f-4d9e-b00c-eb92e2e97c79" title="Permalink to this equation">#</a></span>\[\begin{align}
 A(\bar v, \bar u + \tilde u) &amp;\approx A(\bar v, \bar u) + \langle \bar v, L \tilde u \rangle \\
 &amp;= A(\bar v, \bar u) + \langle L^* \bar v, \tilde u \rangle \\
 A(\tilde v, \bar u + \tilde u) &amp;\approx \langle \tilde v, F(\bar u) \rangle + \langle \tilde v, L \tilde u \rangle
@@ -994,8 +997,8 @@ Expressions for <span class="math notranslate nohighlight">\(\tau\)</span> can b
 </section>
 <section id="stabilized-methods-for-advection-diffusion">
 <h2>6. Stabilized methods for advection-diffusion<a class="headerlink" href="#stabilized-methods-for-advection-diffusion" title="Link to this heading">#</a></h2>
-<div class="amsmath math notranslate nohighlight" id="equation-cfbf80c7-e798-4c50-b734-ea0bba054778">
-<span class="eqno">(23)<a class="headerlink" href="#equation-cfbf80c7-e798-4c50-b734-ea0bba054778" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-5aa6895c-b090-41c6-ae77-e77288cc659a">
+<span class="eqno">(23)<a class="headerlink" href="#equation-5aa6895c-b090-41c6-ae77-e77288cc659a" title="Permalink to this equation">#</a></span>\[\begin{align}
 L u &amp;= \mathbf w \cdot \nabla u - \nabla\cdot(\kappa \nabla u) \\
 L^* u &amp;= -\mathbf w \cdot \nabla u - \nabla\cdot(\kappa \nabla u)
 \end{align}\]</div>
@@ -1052,26 +1055,26 @@ L^* u &amp;= -\mathbf w \cdot \nabla u - \nabla\cdot(\kappa \nabla u)
 </p></li>
 </ol>
 <ul class="simple">
-<li><p>Mass matrix <span class="math notranslate nohighlight">\(M\)</span> has the same sparsity pattern as the physics <span class="math notranslate nohighlight">\(A\)</span> – direct solve costs the same.</p>
+<li><p>Mass matrix <span class="math notranslate nohighlight">\(M\)</span> has the same sparsity pattern as the matrix describing the “physics”, <span class="math notranslate nohighlight">\(A\)</span> – direct solve costs the same.</p>
 <ul>
 <li><p>Question: Finite element methods must be explicit?</p></li>
 </ul>
 </li>
 <li><p><span class="math notranslate nohighlight">\(M\)</span> is usually much better conditioned than <span class="math notranslate nohighlight">\(A\)</span>; solve in less than 10 Conjugate Gradient (CG) iterations with Jacobi preconditioning.</p></li>
-<li><p>Replace <span class="math notranslate nohighlight">\(M\)</span> with a diagonal approximation</p>
+<li><p>Idea for better computational complexity: replace <span class="math notranslate nohighlight">\(M\)</span> with a <strong>diagonal</strong> approximation. Different choices:</p>
 <ul>
 <li><p><span class="math notranslate nohighlight">\(\operatorname{diag}(M)\)</span> is inconsistent</p></li>
 <li><p>row sums = “lumping”; which gives rise to the <em>lumped Mass matrix</em></p></li>
-<li><p>use collocated Lobatto quadrature</p></li>
+<li><p>use collocated Lobatto quadrature, which naturally gives a diagonal Mass matrix, with no need for further manipulations</p></li>
 </ul>
 </li>
 </ul>
 <section id="collocated-quadrature-when-the-quadrature-points-and-basis-interpolation-nodes-coincide">
-<h3>Collocated quadrature: when the quadrature points and basis interpolation nodes coincide<a class="headerlink" href="#collocated-quadrature-when-the-quadrature-points-and-basis-interpolation-nodes-coincide" title="Link to this heading">#</a></h3>
+<h3>7.1 Collocated quadrature: when the quadrature points and basis interpolation nodes coincide<a class="headerlink" href="#collocated-quadrature-when-the-quadrature-points-and-basis-interpolation-nodes-coincide" title="Link to this heading">#</a></h3>
 <p>Generally, the interpolation nodes, <span class="math notranslate nohighlight">\(x_i\)</span>, differ from the quadrature nodes, <span class="math notranslate nohighlight">\(x_q\)</span>. In the case of <strong>collocation</strong> or <strong>collocated quadrature</strong>, we pick them to be identical:</p>
 <div class="math notranslate nohighlight">
 \[
-x_i = x_q \, .
+x_i \equiv x_q \, .
 \]</div>
 <p>Recall that the test functions satisfy the Kroneker delta property:</p>
 <div class="math notranslate nohighlight">
@@ -1089,7 +1092,7 @@ B_{qj} = \phi_j (x_q) = \delta_{qj}
 B \equiv I
 \]</div>
 <ul class="simple">
-<li><p>This has the important consequence that the Mass matrix is diagonal:</p></li>
+<li><p>This has the important consequence that the Mass matrix is <strong>diagonal</strong>:</p></li>
 </ul>
 <p>In fact, recall that the mass matrix <span class="math notranslate nohighlight">\(M\)</span> is defined as</p>
 <div class="math notranslate nohighlight">
@@ -1184,14 +1187,14 @@ M = W =  \operatorname{diag} (w_j)
 <span class="k">end</span>
 
 
-<span class="n">fe</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FESpace</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">gausslobatto</span><span class="p">)</span>
+<span class="n">fe</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FESpace</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">gausslobatto</span><span class="p">)</span><span class="w"> </span><span class="c"># gausslobatto quadrature nodes, i.e, with collocated quadrature, since we had used the Lobatto interpolation nodes in the febasis and xnodal functions</span>
 <span class="n">u0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">zero</span><span class="p">(</span><span class="n">fe</span><span class="o">.</span><span class="n">xn</span><span class="p">)</span>
 <span class="n">J1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fe_jacobian</span><span class="p">(</span><span class="n">u0</span><span class="p">,</span><span class="w"> </span><span class="n">fe</span><span class="p">,</span><span class="w"> </span><span class="n">dfq_mass</span><span class="p">,</span><span class="w"> </span><span class="n">bci</span><span class="o">=</span><span class="p">[],</span><span class="w"> </span><span class="n">bcv</span><span class="o">=</span><span class="p">[])</span>
-<span class="n">fe</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FESpace</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">gausslegendre</span><span class="p">)</span>
+<span class="n">fe</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FESpace</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">gausslegendre</span><span class="p">)</span><span class="w"> </span><span class="c"># gausslegendre quadrature nodes, i.e., without collocated quadrature</span>
 <span class="n">J2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fe_jacobian</span><span class="p">(</span><span class="n">u0</span><span class="p">,</span><span class="w"> </span><span class="n">fe</span><span class="p">,</span><span class="w"> </span><span class="n">dfq_mass</span><span class="p">,</span><span class="w"> </span><span class="n">bci</span><span class="o">=</span><span class="p">[],</span><span class="w"> </span><span class="n">bcv</span><span class="o">=</span><span class="p">[])</span>
-<span class="nd">@show</span><span class="w"> </span><span class="n">norm</span><span class="p">(</span><span class="n">J1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">diagm</span><span class="p">(</span><span class="n">diag</span><span class="p">(</span><span class="n">J1</span><span class="p">)))</span>
-<span class="nd">@show</span><span class="w"> </span><span class="n">norm</span><span class="p">(</span><span class="n">J2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">diagm</span><span class="p">(</span><span class="n">diag</span><span class="p">(</span><span class="n">J2</span><span class="p">)))</span>
-<span class="nd">@show</span><span class="w"> </span><span class="n">norm</span><span class="p">(</span><span class="n">sum</span><span class="p">(</span><span class="n">J2</span><span class="p">,</span><span class="w"> </span><span class="n">dims</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">diag</span><span class="p">(</span><span class="n">J1</span><span class="p">))</span>
+<span class="nd">@show</span><span class="w"> </span><span class="n">norm</span><span class="p">(</span><span class="n">J1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">diagm</span><span class="p">(</span><span class="n">diag</span><span class="p">(</span><span class="n">J1</span><span class="p">)))</span><span class="w"> </span><span class="c"># check that it is already diagonal</span>
+<span class="nd">@show</span><span class="w"> </span><span class="n">norm</span><span class="p">(</span><span class="n">J2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">diagm</span><span class="p">(</span><span class="n">diag</span><span class="p">(</span><span class="n">J2</span><span class="p">)))</span><span class="w"> </span><span class="c"># not diagonal</span>
+<span class="nd">@show</span><span class="w"> </span><span class="n">norm</span><span class="p">(</span><span class="n">sum</span><span class="p">(</span><span class="n">J2</span><span class="p">,</span><span class="w"> </span><span class="n">dims</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">diag</span><span class="p">(</span><span class="n">J1</span><span class="p">))</span><span class="w"> </span><span class="c"># we can make it a diagonal &quot;lumped&quot; mass matrix, summing the row entries</span>
 <span class="n">my_spy</span><span class="p">(</span><span class="n">J2</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1623,6 +1626,15 @@ u_1
         <p class="prev-next-title">14) FEM Assembly</p>
       </div>
     </a>
+    <a class="right-next"
+       href="module4-1_finite_volume.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">16) Finite Volume</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -1666,7 +1678,7 @@ u_1
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-workflow-for-time-dependent-problems">7. General workflow for time dependent problems</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#collocated-quadrature-when-the-quadrature-points-and-basis-interpolation-nodes-coincide">Collocated quadrature: when the quadrature points and basis interpolation nodes coincide</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#collocated-quadrature-when-the-quadrature-points-and-basis-interpolation-nodes-coincide">7.1 Collocated quadrature: when the quadrature points and basis interpolation nodes coincide</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supg-for-time-dependent-problems">SUPG for time-dependent problems</a></li>
 </ul>
 </li>
