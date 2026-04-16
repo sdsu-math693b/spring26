@@ -1086,7 +1086,7 @@ that is piecewise constant with a single jump discontinuity. We expect this disc
 <h4>Observations<a class="headerlink" href="#observations" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p>Good: no oscillations/noisy artifacts: solutians are bounded between 0 and 1, just like the exact solution.</p></li>
-<li><p>Bad: Lots of numerical diffusion 9amplitudes are damped).</p></li>
+<li><p>Bad: Lots of numerical diffusion (amplitudes are damped).</p></li>
 </ul>
 </section>
 </section>
@@ -1097,10 +1097,10 @@ that is piecewise constant with a single jump discontinuity. We expect this disc
 \[
 f(u(x_L,t)) - f(u(x_R,t)) = \frac{d}{dt} \int_{x_L}^{s(t)} u(x,t) dx + \frac{d}{dt} \int_{x(s)}^{x_R} u(x,t) dx \, . 
 \]</div>
-<p>We can write this as</p>
+<p>Using <a class="reference external" href="https://en.wikipedia.org/wiki/Leibniz_integral_rule">Leibniz integral rule</a>, we can write this as</p>
 <div class="math notranslate nohighlight">
 \[
-f(u(x_L,t)) - f(u(x_R,t)) = [u(s_L,t) -u(s_R,t)]S + \int_{x_L}^{s(t)} u_t(x,t) dx + \frac{d}{dt} \int_{x(s)}^{x_R} u_t(x,t) dx \, ,
+f(u(x_L,t)) - f(u(x_R,t)) = [u(s_L,t) -u(s_R,t)]S + \int_{x_L}^{s(t)} u_t(x,t) dx + \int_{x(s)}^{x_R} u_t(x,t) dx \, ,
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(u(s_L , t)\)</span> is the limit of <span class="math notranslate nohighlight">\(u(s(t), t)\)</span> as <span class="math notranslate nohighlight">\(x\)</span> tends to <span class="math notranslate nohighlight">\(s(t)\)</span> from the left, <span class="math notranslate nohighlight">\(u(s_R , t)\)</span> is the limit of <span class="math notranslate nohighlight">\(u(s(t), t)\)</span> as <span class="math notranslate nohighlight">\(x\)</span> tends to <span class="math notranslate nohighlight">\(s(t)\)</span> from the right and <span class="math notranslate nohighlight">\(S = ds/dt\)</span>
 is the speed of the shock/discontinuity.</p>
@@ -1214,7 +1214,7 @@ S = \frac{\Delta F}{\Delta u} = \frac{ \frac{u_R^2}{2} - \frac{u_L^2}{2} }{ u_R 
 diverge from the discontinuity. This solution is called a <strong>rarefaction shock</strong>, or
 <strong>entropy-violating</strong> shock, and does <strong>not</strong> satisfy the entropy condition</p>
 <div class="math notranslate nohighlight">
-\[ F'(u_L) &gt; s &gt; F'(u_R) . \]</div>
+\[ F'(u_L) &gt; S &gt; F'(u_R) . \]</div>
 <p>Shocks are compressive phenomena and physical solutions to the expansive scenario <span class="math notranslate nohighlight">\(F'(u_L) &lt; F'(u_R)\)</span> are instead rarefactions.</p>
 </section>
 <section id="physical-rarefaction-waves">
