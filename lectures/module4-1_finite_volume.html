@@ -679,29 +679,29 @@ Since <span class="math notranslate nohighlight">\(\bar{\mathbf q}\)</span> is d
 <span class="eqno">(24)<a class="headerlink" href="#equation-eq-1d-conservation-law" title="Link to this equation">#</a></span>\[
 u_t + \frac{\partial}{\partial x} f(u) = 0\, , \qquad u(x,0) = u_0(x)
 \]</div>
-<p>For the integral over a computational cell <span class="math notranslate nohighlight">\( [x_L , x_R]\)</span> we have:</p>
+<p>For the integral over a computational cell <span class="math notranslate nohighlight">\([x_{i-1/2}, x_{i+1/2}] \equiv [x_L , x_R]\)</span> we have:</p>
 <div class="math notranslate nohighlight">
 \[
-\int_{x_L}^{x_R} u_t(x,t)\,dx
+\int_{x_{i-1/2}}^{x_{i+1/2}} u_t(x,t)\,dx
 +
-\int_{x_L}^{x_R} \frac{\partial}{\partial x} f(u(x,t))\,dx
+\int_{x_{i-1/2}}^{x_{i+1/2}} \frac{\partial}{\partial x} f(u(x,t))\,dx
 = 0
 \]</div>
 <p>For the time derivative we have:</p>
 <div class="math notranslate nohighlight">
 \[
-\int_{x_L}^{x_R} u_t(x,t)\,dx
+\int_{x_{i-1/2}}^{x_{i+1/2}} u_t(x,t)\,dx
 =
-\frac{d}{dt} \int_{x_L}^{x_R} u(x,t)\,dx
+\frac{d}{dt} \int_{x_{i-1/2}}^{x_{i+1/2}} u(x,t)\,dx
 \]</div>
 <p>For the flux term (by the Fundamental Theorem of Calculus) we know that:</p>
 <div class="math notranslate nohighlight">
 \[
-\int_{x_L}^{x_R} \frac{\partial}{\partial x} f(u(x,t))\,dx
+\int_{x_{i-1/2}}^{x_{i+1/2}} \frac{\partial}{\partial x} f(u(x,t))\,dx
 =
-f\big(u(x_R, t)\big)
+f\big(u(x_{i+1/2}, t)\big)
 -
-f\big(u(x_L, t)\big)
+f\big(u(x_{i-1/2}, t)\big)
 \]</div>
 <p>We then define the cell average:</p>
 <div class="math notranslate nohighlight">
@@ -709,12 +709,12 @@ f\big(u(x_L, t)\big)
 \bar u_i(t)
 =
 \frac{1}{\Delta x}
-\int_{x_L}^{x_R} u(x,t)\,dx
+\int_{x_{i-1/2}}^{x_{i+1/2}} u(x,t)\,dx
 \]</div>
 <p>so that:</p>
 <div class="math notranslate nohighlight">
 \[
-\int_{x_L}^{x_R} u(x,t)\,dx
+\int_{x_{i-1/2}}^{x_{i+1/2}} u(x,t)\,dx
 =
 \Delta x \,\bar u_i(t)
 \]</div>
