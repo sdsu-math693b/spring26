@@ -454,7 +454,6 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shocks-and-the-rankine-hugoniot-condition">4. Shocks and the Rankine-Hugoniot condition</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shocks-rarefactions-and-riemann-problems">Shocks, rarefactions, and Riemann problems</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-of-shock">Example of shock</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-solver-based-on-riemann-problems">A solver based on Riemann problems</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#observations">Observations</a></li>
 </ul>
@@ -1045,39 +1044,6 @@ that is piecewise constant with a single jump discontinuity. We expect this disc
 \[ \tilde F(u, u) = F(u) .\]</div>
 </p>
 </section>
-<section id="example-of-shock">
-<h3>Example of shock<a class="headerlink" href="#example-of-shock" title="Link to this heading">#</a></h3>
-<p>Consider the problem
-<div class="math notranslate nohighlight">
-\[
-u_t + u u_x = 0
-\]</div>
-</p>
-<p>with initial condition
-<div class="math notranslate nohighlight">
-\[\begin{split}
-u(x,0) =
-\begin{cases}
-2 &amp; x &lt; 0 \\
-1 &amp; x &gt; 0
-\end{cases}
-\tag{2}
-\end{split}\]</div>
-</p>
-<p>The characteristics which begin where <span class="math notranslate nohighlight">\(x &lt; 0\)</span> have speed <span class="math notranslate nohighlight">\(2\)</span>, whereas those that begin where <span class="math notranslate nohighlight">\(x &gt; 0\)</span> have speed <span class="math notranslate nohighlight">\(1\)</span>.</p>
-<p>Thus if <span class="math notranslate nohighlight">\(t &lt; x &lt; 2t\)</span>, there are two different characteristics which terminate at <span class="math notranslate nohighlight">\((x,t)\)</span>.</p>
-<p>The resolution of this issue is to allow the solution to be <em>discontinuous</em>,
-<div class="math notranslate nohighlight">
-\[\begin{split}
-u(x,t) =
-\begin{cases}
-2 &amp; x &lt; x_s(t) \\
-1 &amp; x &gt; x_s(t)
-\end{cases}
-\end{split}\]</div>
-</p>
-<p>where <span class="math notranslate nohighlight">\(x_s(t)\)</span> is a curve which is called a <strong>shock</strong>.</p>
-</section>
 <section id="a-solver-based-on-riemann-problems">
 <h3>A solver based on Riemann problems<a class="headerlink" href="#a-solver-based-on-riemann-problems" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
@@ -1511,7 +1477,6 @@ If both terms involving <span class="math notranslate nohighlight">\(\epsilon\)<
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shocks-and-the-rankine-hugoniot-condition">4. Shocks and the Rankine-Hugoniot condition</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shocks-rarefactions-and-riemann-problems">Shocks, rarefactions, and Riemann problems</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-of-shock">Example of shock</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-solver-based-on-riemann-problems">A solver based on Riemann problems</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#observations">Observations</a></li>
 </ul>
