@@ -810,13 +810,13 @@ u_t + \frac{\partial}{\partial x} f(u) = 0\, , \qquad u(x,0) = u_0(x)
 circumstances is an inadequate representation of the physical problem being
 modelled.</p>
 <p>This conservation law can be rewritten more generally as</p>
-<div class="math notranslate nohighlight">
-\[
+<div class="math notranslate nohighlight" id="equation-eq-general-conservation">
+<span class="eqno">(27)<a class="headerlink" href="#equation-eq-general-conservation" title="Link to this equation">#</a></span>\[
 u_t + \lambda(u) u_x = 0 \, , \qquad  u(x,0) = u_0(x) \, .
 \]</div>
 <p>where</p>
-<div class="math notranslate nohighlight">
-\[
+<div class="math notranslate nohighlight" id="equation-eq-lambda">
+<span class="eqno">(28)<a class="headerlink" href="#equation-eq-lambda" title="Link to this equation">#</a></span>\[
 \lambda(u) = \frac{df }{du} = f'(u)
 \]</div>
 <p>is the <strong>characteristic speed</strong>.</p>
@@ -852,7 +852,7 @@ values of the Jacobian matrix.</p></li>
 <h4>Construction of solutions on characteristics<a class="headerlink" href="#construction-of-solutions-on-characteristics" title="Link to this heading">#</a></h4>
 <p>Consider characteristic curves <span class="math notranslate nohighlight">\(x = x(t)\)</span> satisfying the IVP</p>
 <div class="math notranslate nohighlight" id="equation-eq-ivp-with-lambda">
-<span class="eqno">(27)<a class="headerlink" href="#equation-eq-ivp-with-lambda" title="Link to this equation">#</a></span>\[
+<span class="eqno">(29)<a class="headerlink" href="#equation-eq-ivp-with-lambda" title="Link to this equation">#</a></span>\[
 \frac{dx}{dt} = \lambda(u) \, , x(0) = x_0 \, .
 \]</div>
 <p>Then, by regarding both <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(x\)</span> to be functions of <span class="math notranslate nohighlight">\(t\)</span> we ﬁnd the total derivative of <span class="math notranslate nohighlight">\(u\)</span> along the curve <span class="math notranslate nohighlight">\(x(t)\)</span>, namely</p>
@@ -860,32 +860,32 @@ values of the Jacobian matrix.</p></li>
 \[
 \frac{d u}{dt} = u_t + \lambda (u) u_x = 0 \, .
 \]</div>
-<p>That is, <span class="math notranslate nohighlight">\(u\)</span> is constant along the characteristic curve satisfying the IVP <a class="reference internal" href="#equation-eq-ivp-with-lambda">(27)</a>.</p>
+<p>That is, <span class="math notranslate nohighlight">\(u\)</span> is constant along the characteristic curve satisfying the IVP <a class="reference internal" href="#equation-eq-ivp-with-lambda">(29)</a>.</p>
 <p>More generally, <strong>characteristic curves</strong> for a PDE are curves along which the equation simpliﬁes in some particular manner - in this case they are lines along which the solution is constant.</p>
-<p>Therefore, in this case, the slope <span class="math notranslate nohighlight">\(\lambda (u)\)</span> is constant along the characteristic. Hence the characteristic curves are straight lines.</p>
+<p>Therefore, in this case, the slope <span class="math notranslate nohighlight">\(\lambda (u)\)</span> is constant along the characteristic. Hence, in this case, the characteristic curves are straight lines.</p>
 <p>The value of <span class="math notranslate nohighlight">\(u\)</span> along each curve is the value of <span class="math notranslate nohighlight">\(u\)</span> at the initial point <span class="math notranslate nohighlight">\(x(0) = x_0\)</span> and we write</p>
 <div class="math notranslate nohighlight" id="equation-eq-u">
-<span class="eqno">(28)<a class="headerlink" href="#equation-eq-u" title="Link to this equation">#</a></span>\[
+<span class="eqno">(30)<a class="headerlink" href="#equation-eq-u" title="Link to this equation">#</a></span>\[
 u(x,t) = u_0 (x_0) \, .
 \]</div>
 <p><img alt="Toro (2009) Figure 2.11" src="../_images/Toro-Shock-2.11.png" /></p>
 <p>The figure above shows a typical characteristic curve emanating from the initial point <span class="math notranslate nohighlight">\(x_0\)</span> on the <span class="math notranslate nohighlight">\(x\)</span>–axis. The slope <span class="math notranslate nohighlight">\(\lambda (u)\)</span> of the characteristic may then be evaluated
-at <span class="math notranslate nohighlight">\(x_0\)</span> so that the solution characteristics curves of the IVP are</p>
+at <span class="math notranslate nohighlight">\(x_0\)</span> so that the solution characteristics curves of IVP <a class="reference internal" href="#equation-eq-ivp-with-lambda">(29)</a> are</p>
 <div class="math notranslate nohighlight" id="equation-eq-x">
-<span class="eqno">(29)<a class="headerlink" href="#equation-eq-x" title="Link to this equation">#</a></span>\[
+<span class="eqno">(31)<a class="headerlink" href="#equation-eq-x" title="Link to this equation">#</a></span>\[
 x = x_0 + \lambda (u_0(x_0)) t \, .
 \]</div>
-<p>The last two equations, <a class="reference internal" href="#equation-eq-u">(28)</a> and <a class="reference internal" href="#equation-eq-x">(29)</a>, may be regarded as the analytical (implicit) solution of the IVP. This is an implicit solution, in fact, it is more apparent if we substitute <span class="math notranslate nohighlight">\(x_0\)</span> from the last equation, in the solution for <span class="math notranslate nohighlight">\(u\)</span>:</p>
+<p>The last two equations, <a class="reference internal" href="#equation-eq-u">(30)</a> and <a class="reference internal" href="#equation-eq-x">(31)</a>, may be regarded as the analytical (implicit) solution of the IVP. This is an implicit solution, in fact, it is more apparent if we substitute <span class="math notranslate nohighlight">\(x_0\)</span> from the last equation, in the solution for <span class="math notranslate nohighlight">\(u\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
 u(x,t) = u_0 (x - \lambda (u_0 (x_0))t) \,.
 \]</div>
-<p>From <a class="reference internal" href="#equation-eq-u">(28)</a> we can obtain the <span class="math notranslate nohighlight">\(t\)</span> and <span class="math notranslate nohighlight">\(x\)</span> derivatives</p>
-<div class="math notranslate nohighlight">
-\[
+<p>From <a class="reference internal" href="#equation-eq-u">(30)</a> we can obtain the <span class="math notranslate nohighlight">\(t\)</span> and <span class="math notranslate nohighlight">\(x\)</span> derivatives</p>
+<div class="math notranslate nohighlight" id="equation-eq-ut-ux">
+<span class="eqno">(32)<a class="headerlink" href="#equation-eq-ut-ux" title="Link to this equation">#</a></span>\[
 u_t = u_0' (x_0) \frac{\partial x_0}{\partial t} \, , \qquad u_x = u_0' (x_0) \frac{\partial x_0}{\partial x}
 \]</div>
-<p>and from these, we can verify that the relations <a class="reference internal" href="#equation-eq-u">(28)</a> and <a class="reference internal" href="#equation-eq-x">(29)</a> actually define the solution</p>
+<p>and from these, we can verify that the relations <a class="reference internal" href="#equation-eq-u">(30)</a> and <a class="reference internal" href="#equation-eq-x">(31)</a> actually define the solution (as <span class="math notranslate nohighlight">\(u_t\)</span> and <span class="math notranslate nohighlight">\(u_x\)</span> satisfy the PDE <a class="reference internal" href="#equation-eq-general-conservation">(27)</a>).</p>
 </section>
 </section>
 <section id="examples-of-hyperbolic-conservation-laws">
@@ -1158,7 +1158,7 @@ S = \frac{\Delta F}{\Delta u} = \frac{ \frac{u_R^2}{2} - \frac{u_L^2}{2} }{ u_R 
 <p>In this case, since  <span class="math notranslate nohighlight">\(u_L &gt; u_R\)</span>, then <span class="math notranslate nohighlight">\(u_L^2 / 2 &gt; u_R^2 /2 \)</span>, hence, <span class="math notranslate nohighlight">\(F(u_L) &gt; F(u_R)\)</span>, or <span class="math notranslate nohighlight">\(\Delta F &lt; 0\)</span>, and therefore <span class="math notranslate nohighlight">\(S&gt;0\)</span>, which tells us that the shock moves to the right, and the characteristic lines interesct immediately (<em>compressive region</em>).</p>
 <p>The solution in this case satisfies the following condition</p>
 <div class="math notranslate nohighlight" id="equation-eq-entropy-condition">
-<span class="eqno">(30)<a class="headerlink" href="#equation-eq-entropy-condition" title="Link to this equation">#</a></span>\[
+<span class="eqno">(33)<a class="headerlink" href="#equation-eq-entropy-condition" title="Link to this equation">#</a></span>\[
 \lambda (u_L) \equiv F'(u_L) &gt; S &gt; \lambda (u_R) \equiv F'(u_R)
 \]</div>
 <p>which is called the <strong>entropy condition</strong>.</p>
