@@ -927,9 +927,20 @@ u_t = u_0' (x_0) \frac{\partial x_0}{\partial t} \, , \qquad u_x = u_0' (x_0) \f
 \[ \frac{\partial u}{\partial t} + \nabla\cdot \big(\underbrace{u (1-u)}_{F(u)} \big) = 0 \]</div>
 <p>where <span class="math notranslate nohighlight">\(u \in [0,1]\)</span> represents local traffic density of cars on a straight, single-lane road aligned with the <span class="math notranslate nohighlight">\(x\)</span>-axis and <span class="math notranslate nohighlight">\((1-u)\)</span> is their speed.</p>
 <ul class="simple">
-<li><p>The wave speed is <span class="math notranslate nohighlight">\(F'(u) = 1 - 2u\)</span>, representing the speed at which kinematic waves travel.</p></li>
-<li><p>This is a <strong>non-convex</strong> flux function.</p></li>
+<li><p>The <em>characteristic speed</em> is <span class="math notranslate nohighlight">\(F'(u) = 1 - 2u\)</span>, representing the speed at which kinematic waves travel.</p></li>
+<li><p>This is a <strong>non-convex</strong> or <strong>concave</strong> flux function.</p></li>
 </ul>
+<p>In 1D, if we expand</p>
+<div class="math notranslate nohighlight">
+\[
+ \frac{\partial u}{\partial t} + \frac{\partial}{\partial x} \big(u -u^2)   = 0 \, 
+\]</div>
+<p>and apply the chain rule</p>
+<div class="math notranslate nohighlight">
+\[
+u_t + (1- 2u) u_x = 0 \, 
+\]</div>
+<p>we find what is called a <em>quasilinear</em> form. It’s quasilinear because is linear in the highest-order spatial derivative of the unknown (<span class="math notranslate nohighlight">\(u_x\)</span> in this case), but is not linear for the dependent variable <span class="math notranslate nohighlight">\(u\)</span>.</p>
 </section>
 </section>
 </section>
@@ -975,7 +986,7 @@ u_t = u_0' (x_0) \frac{\partial x_0}{\partial t} \, , \qquad u_x = u_0' (x_0) \f
 <span class="n">flux_traffic</span><span class="p">(</span><span class="n">u</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">u</span><span class="p">)</span>
 
 <span class="k">function</span><span class="w"> </span><span class="n">fv_solve0</span><span class="p">(</span><span class="n">flux</span><span class="p">,</span><span class="w"> </span><span class="n">u_init</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">tfinal</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="w">    </span><span class="n">h</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">n</span>
+<span class="w">    </span><span class="n">h</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="c"># 1D domain [-1,1]</span>
 <span class="w">    </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">LinRange</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">+</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="o">-</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="c"># cell midpoints (centroids)</span>
 <span class="w">    </span><span class="n">idxL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">.+</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">:</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">.%</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="c"># left interface indices</span>
 <span class="w">    </span><span class="n">idxR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">.+</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="o">:</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="o">.%</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="c"># right interface indices</span>
@@ -1022,11 +1033,11 @@ u_t = u_0' (x_0) \frac{\partial x_0}{\partial t} \, , \qquad u_x = u_0' (x_0) \f
 </ul>
 <p>The relationship to positive and negative gradients is reversed for a non-convex flux like in the Traffic model.</p>
 <p>We need a solution method that can correctly compute fluxes in case of a discontinuous solution.</p>
-<p>Finite volume methods represent this in terms of a <strong>Riemann problem</strong>,
+<p>Finite volume methods represent this in terms of a <strong>Riemann problem</strong>:  two constant states separated by a discontinuity
 <div class="math notranslate nohighlight">
 \[\begin{split} u(0, x) = \begin{cases}
-u_L &amp; \text{if} &amp; x &lt; 0 \\
-u_R &amp; \text{if} &amp; x &gt; 0
+u_L , &amp; \text{if} &amp; x &lt; 0 \\
+u_R , &amp; \text{if} &amp; x &gt; 0
 \end{cases}
 \end{split}\]</div>
 
@@ -1051,7 +1062,7 @@ that is piecewise constant with a single jump discontinuity. We expect this disc
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">riemann_advection</span><span class="p">(</span><span class="n">uL</span><span class="p">,</span><span class="w"> </span><span class="n">uR</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="o">*</span><span class="n">uL</span><span class="w"> </span><span class="c"># velocity is +1</span>
 
 <span class="k">function</span><span class="w"> </span><span class="n">fv_solve1</span><span class="p">(</span><span class="n">riemann</span><span class="p">,</span><span class="w"> </span><span class="n">u_init</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">tfinal</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="w">    </span><span class="n">h</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">n</span>
+<span class="w">    </span><span class="n">h</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="c"># 1D domain [-1,1]</span>
 <span class="w">    </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">LinRange</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">+</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="o">-</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="c"># cell midpoints (centroids)</span>
 <span class="w">    </span><span class="n">idxL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">.+</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">:</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">.%</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="c"># left interface indices</span>
 <span class="w">    </span><span class="n">idxR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">.+</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="o">:</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="o">.%</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="c"># right interface indices</span>
@@ -1133,8 +1144,8 @@ S = \frac{\Delta F}{\Delta u} \, .
 \[\begin{split}
 u(x,0) = u_0(x) =
 \begin{cases}
-u_L &amp; x &lt; 0 \\
-u_R &amp; x &gt; 0
+u_L ,  &amp; x &lt; 0 \\
+u_R ,  &amp; x &gt; 0
 \end{cases}
 \end{split}\]</div>
 <p>Let’s analyze different scenarios.</p>
@@ -1146,8 +1157,8 @@ u_R &amp; x &gt; 0
 \[\begin{split}
 u(x,t) = 
 \begin{cases}
-u_L &amp; , \textrm{ if } x - St &lt; 0 \\
-u_R &amp; , \textrm{ if } x - St &gt; 0
+u_L , &amp;  \textrm{ if } x - St &lt; 0 \\
+u_R , &amp;  \textrm{ if } x - St &gt; 0
 \end{cases}
 \end{split}\]</div>
 <p>For this case, the shock propagates at speed</p>
@@ -1206,7 +1217,7 @@ S = \frac{\Delta F}{\Delta u} = \frac{ \frac{u_R^2}{2} - \frac{u_L^2}{2} }{ u_R 
 <h3>Rarefactions<a class="headerlink" href="#rarefactions" title="Link to this heading">#</a></h3>
 <p>This solution was better, but we still have odd ripples in the rarefaction.</p>
 <ul class="simple">
-<li><p>If <span class="math notranslate nohighlight">\(u_L &lt; u_R\)</span> , ,</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(u_L &lt; u_R\)</span></p></li>
 </ul>
 <p>This data is the extreme case of <em>expansive data</em>, for convex <span class="math notranslate nohighlight">\(f(u)\)</span>. A possible <strong>mathematical solution</strong> to the PDE (not really a physical solution) has the same form as for the compressive data case. Its charactestistics would look like in the figure below.</p>
 <p><img alt="Toro (2009) Figure 2.14" src="../_images/Toro-ShockRarefaction-2.14.png" /></p>
@@ -1224,6 +1235,10 @@ diverge from the discontinuity. This solution is called a <strong>rarefaction sh
 F'(u_L) &lt; F'(u_R)
 \]</div>
 <p>are instead <strong>rarefactions</strong>.</p>
+<ul class="simple">
+<li><p>Shocks appear in regions where characteristics converge.</p></li>
+<li><p>Rarefactions appear in regions where characteristics are spreading out.</p></li>
+</ul>
 </section>
 <section id="physical-rarefaction-waves">
 <h3>Physical rarefaction waves<a class="headerlink" href="#physical-rarefaction-waves" title="Link to this heading">#</a></h3>
@@ -1236,8 +1251,8 @@ u_t + f(u)_x = 0\, ,
 \[\begin{split}
 u(x,0) = u_0(x) =
 \begin{cases}
-u_L &amp; x &lt; 0 \\
-u_R &amp; x &gt; 0
+u_L , \, &amp; x &lt; 0 \\
+u_R , \, &amp; x &gt; 0
 \end{cases}
 \end{split}\]</div>
 <p>and <em>expansive</em> initial data, <span class="math notranslate nohighlight">\(u_L &lt; u_R\)</span>. As discussed, we have found a solution that is not physical. Amongst the various other reasons for rejecting this solution as a physical
