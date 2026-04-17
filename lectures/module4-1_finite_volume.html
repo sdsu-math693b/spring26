@@ -1247,24 +1247,70 @@ F'(u_L) &lt; F'(u_R)
 \[
 u_t + f(u)_x = 0\, ,
 \]</div>
-<div class="math notranslate nohighlight">
-\[\begin{split}
+<div class="math notranslate nohighlight" id="equation-eq-ivp-with-riemann">
+<span class="eqno">(34)<a class="headerlink" href="#equation-eq-ivp-with-riemann" title="Link to this equation">#</a></span>\[\begin{split}
 u(x,0) = u_0(x) =
 \begin{cases}
 u_L , \, &amp; x &lt; 0 \\
 u_R , \, &amp; x &gt; 0
 \end{cases}
 \end{split}\]</div>
-<p>and <em>expansive</em> initial data, <span class="math notranslate nohighlight">\(u_L &lt; u_R\)</span>. As discussed, we have found a solution that is not physical. Amongst the various other reasons for rejecting this solution as a physical
-solution, instability stands out as a prominent argument. By instability it is
-meant that “<em>small perturbations of the initial data lead to large changes in the
+<p>and <em>expansive</em> initial data, <span class="math notranslate nohighlight">\(u_L &lt; u_R\)</span>. As discussed, we have found a solution that is not physical. An entropy-violating for this problem would be:</p>
+<div class="math notranslate nohighlight" id="equation-eq-entropy-violating-sol">
+<span class="eqno">(35)<a class="headerlink" href="#equation-eq-entropy-violating-sol" title="Link to this equation">#</a></span>\[\begin{split}
+u(x,t) =
+\begin{cases}
+u_L &amp; \text{ if } &amp; x - St &lt; 0\\
+u_R &amp; \text{ if } &amp; x - St &gt; 0
+\end{cases}
+\end{split}\]</div>
+<p>with</p>
+<div class="math notranslate nohighlight">
+\[
+S = \frac{\Delta f}{\Delta u} \, .
+\]</div>
+<p>Amongst the various other reasons for rejecting this solution as a physical solution, instability stands out as a prominent argument. By instability it is meant that “<em>small perturbations of the initial data lead to large changes in the
 solution</em>”.</p>
 <p>If we modify the initial data of the IVP to have a transition between the <span class="math notranslate nohighlight">\(u_L\)</span> and <span class="math notranslate nohighlight">\(u_R\)</span> values via a “ramp” function, like in the figure below:</p>
 <p><img alt="Toro (2009) Figure 2.15a" src="../_images/Toro-Rarefaction-2.15a.png" /></p>
-<p>The solution <span class="math notranslate nohighlight">\(u(x, t)\)</span> to this problem is found by following characteristics, as discussed previously, and consists of two constant states, <span class="math notranslate nohighlight">\(u_L\)</span> and <span class="math notranslate nohighlight">\(u_R\)</span> , separated by a region of
-smooth transition between the data values <span class="math notranslate nohighlight">\(u_L\)</span> and <span class="math notranslate nohighlight">\(u_R\)</span>. This is called a <strong>rarefaction wave</strong>. The right edge of the wave is called the “head” of the rarefaction wave. The left edge of the wave is called the “tail” of the rarefaction wave.</p>
-<p>As we assume convexity, <span class="math notranslate nohighlight">\(\lambda '  (u) = f '' (u) &gt; 0\)</span>, larger values of <span class="math notranslate nohighlight">\(u_0 (x)\)</span> propagate faster than lower values and thus the wave spreads and ﬂattens as time evolves. The spreading of waves is a typical nonlinear phenomenon not seen in the study of linear hyperbolic systems with constant coeﬃcients.</p>
+<p>Now we have replaced the discontinuous change from <span class="math notranslate nohighlight">\(u_L\)</span> to <span class="math notranslate nohighlight">\(u_R\)</span> by a linear variation of <span class="math notranslate nohighlight">\(u_0 (x)\)</span> between two ﬁxed points, <span class="math notranslate nohighlight">\(x_L &lt; 0\)</span> and <span class="math notranslate nohighlight">\(x_R &gt; 0\)</span>. We use the <span class="math notranslate nohighlight">\(2\)</span>-point formula for a line between two points <span class="math notranslate nohighlight">\((x_L,u_L)\)</span>, and <span class="math notranslate nohighlight">\((x_R,u_R)\)</span>, and the new initial data is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+u_0(x) =
+\begin{cases}
+u_L , &amp; \text{if} &amp; x \leq x_L \\
+u_L + \frac{u_R - u_L}{x_R - x_L}(x - x_L) &amp;  \text{if} &amp;  x_L &lt; x &lt; x_R \\
+u_R &amp; \text{if} &amp; x \geq x_R 
+\end{cases}
+\end{split}\]</div>
+<p>The solution <span class="math notranslate nohighlight">\(u(x, t)\)</span> to this problem is found by following characteristics, as discussed previously, and consists of two constant states, <span class="math notranslate nohighlight">\(u_L\)</span> and <span class="math notranslate nohighlight">\(u_R\)</span> , separated by a region of smooth transition between the data values <span class="math notranslate nohighlight">\(u_L\)</span> and <span class="math notranslate nohighlight">\(u_R\)</span>. This is called a <strong>rarefaction wave</strong>.</p>
 <p><img alt="Toro (2009) Figure 2.16" src="../_images/Toro-Rarefaction-2.16.png" /></p>
+<p>The right edge of the wave is given by the characteristic emanating from <span class="math notranslate nohighlight">\(x_R\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+x = x_R + \lambda(u_R) t
+\]</div>
+<p>and is called the “head” of the rarefaction wave. It carries the value <span class="math notranslate nohighlight">\(u_0(x_R) = u_R\)</span>.</p>
+<p>The left edge of the wave is given by the characteristic emanating from <span class="math notranslate nohighlight">\(x_L\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+x = x_L + \lambda(u_L) t
+\]</div>
+<p>and is called the “tail” of the rarefaction wave. It carries the value <span class="math notranslate nohighlight">\(u_0(x_L) = u_L\)</span>.</p>
+<p>As we assume convexity, <span class="math notranslate nohighlight">\(\lambda '  (u) = f '' (u) &gt; 0\)</span>, larger values of <span class="math notranslate nohighlight">\(u_0 (x)\)</span> propagate faster than lower values and thus the wave spreads and ﬂattens as time evolves. The spreading of waves is a typical nonlinear phenomenon not seen in the study of linear hyperbolic systems with constant coeﬃcients.</p>
+<p>The entire solution is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+u(x,t) &amp;= u_L &amp; \text{ if } &amp; \quad \frac{x - x_L}{t} \leq \lambda_L \, \\
+\lambda(u) &amp;= \frac{x - x_L}{t} &amp; \text{ if } &amp; \quad \lambda_L &lt; \frac{x - x_L}{t} &lt; \lambda_R \, \\
+u(x,t) &amp;= u_R  &amp; \text{ if } &amp; \quad \frac{x-x_R}{t} \geq \lambda_R \, .
+\end{align*}
+\end{split}\]</div>
+<p>No matter how small the size <span class="math notranslate nohighlight">\(\Delta x = x_R - x_L\)</span> of the interval over which the discontinuous data in IVP <a class="reference internal" href="#equation-eq-ivp-with-riemann">(34)</a> has been spread over, the structure of the above rarefaction solution remains unaltered and is entirely diﬀerent from the rarefaction shock solution <a class="reference internal" href="#equation-eq-entropy-violating-sol">(35)</a>, for which small changes to the data lead to large changes in the solution.</p>
+<p>From the above construction the rarefaction solution is instead stable and as <span class="math notranslate nohighlight">\(x_L\)</span> and <span class="math notranslate nohighlight">\(x_R\)</span> approach zero from below and above respectively, the discontinuous data
+at <span class="math notranslate nohighlight">\(x = 0\)</span> in IVP <a class="reference internal" href="#equation-eq-ivp-with-riemann">(34)</a> is reproduced.</p>
+<p>Therefore, the limiting case is to be interpreted as follows: <span class="math notranslate nohighlight">\(u_0 (x)\)</span> takes on all the values between <span class="math notranslate nohighlight">\(u_L\)</span> and <span class="math notranslate nohighlight">\(u_R\)</span> at <span class="math notranslate nohighlight">\(x = 0\)</span> and consequently <span class="math notranslate nohighlight">\(\lambda(u_0 (x))\)</span> takes on all the values between <span class="math notranslate nohighlight">\(\lambda_L\)</span> and <span class="math notranslate nohighlight">\(\lambda_R\)</span> at <span class="math notranslate nohighlight">\(x = 0\)</span>. As higher values propagate faster than lower values the initial data disintegrates immediately giving rise to a rarefaction solution. This limiting rarefaction in which all characteristics of the wave emanate from a single point is called a <em>centred rarefaction wave</em> (like the one in the figure above).</p>
 <p>In this case we need to color into the rarefaction in a physical way. We can justify this by considering the hyperbolic problem to be the singular limit of a problem with diffusion/viscosity, leading to “viscosity solutions”.</p>
 </section>
 <section id="looking-into-the-rarefaction-fan">
