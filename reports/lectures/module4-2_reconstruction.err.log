@@ -1,0 +1,141 @@
+Traceback (most recent call last):
+  File "/home/vbarra/.local/share/pipx/venvs/jupyter-book/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 154, in wrapped
+    asyncio.get_running_loop()
+RuntimeError: no running event loop
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/vbarra/.local/share/pipx/venvs/jupyter-book/lib/python3.12/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/home/vbarra/.local/share/pipx/venvs/jupyter-book/lib/python3.12/site-packages/nbclient/client.py", line 1319, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vbarra/.local/share/pipx/venvs/jupyter-book/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 158, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/vbarra/.local/share/pipx/venvs/jupyter-book/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/vbarra/.local/share/pipx/venvs/jupyter-book/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/vbarra/.local/share/pipx/venvs/jupyter-book/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+using LinearAlgebra
+using Plots
+default(linewidth=3)
+
+# utility functions for Runge-Kutta ODE time-steppers
+struct RKTable
+    A::Matrix
+    b::Vector
+    c::Vector
+    function RKTable(A, b)
+        s = length(b)
+        A = reshape(A, s, s)
+        c = vec(sum(A, dims=2))
+        new(A, b, c)
+    end
+end
+
+rk4 = RKTable([0 0 0 0; .5 0 0 0; 0 .5 0 0; 0 0 1 0], [1, 2, 2, 1] / 6)
+
+function ode_rk_explicit(f, u0; tfinal=1., h=0.1, table=rk4)
+    u = copy(u0)
+    t = 0.
+    n, s = length(u), length(table.c)
+    fY = zeros(n, s)
+    thist = [t]
+    uhist = [u0]
+    while t < tfinal
+        tnext = min(t+h, tfinal)
+        h = tnext - t
+        for i in 1:s
+            ti = t + h * table.c[i]
+            Yi = u + h * sum(fY[:,1:i-1] * table.A[i,1:i-1], dims=2)
+            fY[:,i] = f(ti, Yi)
+        end
+        u += h * fY * table.b
+        t = tnext
+        push!(thist, t)
+        push!(uhist, u)
+    end
+    thist, hcat(uhist...)
+end
+
+# utility functions for Riemann problems and FV
+function testfunc(x)
+    max(1 - 4*abs.(x+2/3),
+        abs.(x) .< .2,
+        (2*abs.(x-2/3) .< .5) * cospi(2*(x-2/3)).^2
+    )
+end
+
+flux_advection(u) = u
+flux_burgers(u) = u^2/2
+flux_traffic(u) = u * (1 - u)
+
+riemann_advection(uL, uR) = 1*uL # velocity is +1
+
+function fv_solve1(riemann, u_init, n, tfinal=1)
+    h = 2 / n
+    x = LinRange(-1+h/2, 1-h/2, n) # cell midpoints (centroids)
+    idxL = 1 .+ (n-1:2*n-2) .% n
+    idxR = 1 .+ (n+1:2*n) .% n
+    function rhs(t, u)
+        fluxL = riemann(u[idxL], u)
+        fluxR = riemann(u, u[idxR])
+        (fluxL - fluxR) / h
+    end
+    thist, uhist = ode_rk_explicit(rhs, u_init.(x), h=h, tfinal=tfinal)
+    x, thist, uhist
+end
+
+function riemann_burgers(uL, uR)
+    flux = zero(uL)
+    for i in 1:length(flux)
+        fL = flux_burgers(uL[i])
+        fR = flux_burgers(uR[i])
+        flux[i] = if uL[i] > uR[i] # shock
+            max(fL, fR)
+        elseif uL[i] > 0 # rarefaction all to the right
+            fL
+        elseif uR[i] < 0 # rarefaction all to the left
+            fR
+        else
+            0
+        end
+    end
+    flux
+end
+
+function riemann_traffic(uL, uR)
+    flux = zero(uL)
+    for i in 1:length(flux)
+        fL = flux_traffic(uL[i])
+        fR = flux_traffic(uR[i])
+        flux[i] = if uL[i] < uR[i] # shock
+            min(fL, fR)
+        elseif uL[i] < .5 # rarefaction all to the right
+            fL
+        elseif uR[i] > .5 # rarefaction all to the left
+            fR
+        else
+            flux_traffic(.5)
+        end
+    end
+    flux 
+end
+------------------
+
+
+  [36mCell[39m[36m [39m[32mIn[1][39m[32m, line 1[39m
+[31m    [39m[31musing LinearAlgebra[39m
+          ^
+[31mSyntaxError[39m[31m:[39m invalid syntax
+
+
