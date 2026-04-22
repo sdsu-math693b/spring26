@@ -456,6 +456,13 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-fv-solver-with-flux-slope-limiter">A FV solver with flux/slope limiter</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-on-hyperbolic-systems">3. Introduction on hyperbolic systems</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-isentropic-gas-dynamics">3.1 Example: Isentropic gas dynamics</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#smooth-wave-structure">Smooth wave structure</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -484,9 +491,8 @@ document.write(`
 <li><p>Godunov’s Theorem</p></li>
 <li><p>Slope reconstruction and limiting<br />
 2.1 Common limiters in the FV literature</p></li>
-<li><p>Hyperbolic systems<br />
-3.1 Rankine-Hugoniot and Riemann Invariants<br />
-3.2 Basic strategy for exact Riemann solvers</p></li>
+<li><p>Introduction on hyperbolic systems<br />
+3.1 Example: Isentropic gas dynamics</p></li>
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -873,6 +879,68 @@ g_i = \frac{u_{i+1} - u_{i-1}}{ 2 \Delta x}
 </div>
 </section>
 </section>
+<section id="introduction-on-hyperbolic-systems">
+<h2>3. Introduction on hyperbolic systems<a class="headerlink" href="#introduction-on-hyperbolic-systems" title="Link to this heading">#</a></h2>
+<p>Systems of the form</p>
+<div class="math notranslate nohighlight">
+\[ \mathbf U_t + \nabla \cdot F(\mathbf  U) = 0 \]</div>
+<p>It would be too good if we could safely reconstruct each component of the flux in the same way.</p>
+<p>But the system has <strong>waves traveling at different speeds</strong>. So we need to be more careful with reconstructions.</p>
+<section id="example-isentropic-gas-dynamics">
+<h3>3.1 Example: Isentropic gas dynamics<a class="headerlink" href="#example-isentropic-gas-dynamics" title="Link to this heading">#</a></h3>
+<div class="amsmath math notranslate nohighlight" id="equation-65dd6391-07c4-4171-bb9a-1fd2cbd00d35">
+<span class="eqno">(36)<a class="headerlink" href="#equation-65dd6391-07c4-4171-bb9a-1fd2cbd00d35" title="Permalink to this equation">#</a></span>\[\begin{align} U &amp;= \begin{bmatrix} \rho \\ \rho u \end{bmatrix} \, ,&amp; F(U) &amp;= \begin{bmatrix} \rho u \\ \rho u^2 + p \end{bmatrix} \end{align}\]</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable</p></th>
+<th class="head"><p>meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\rho\)</span></p></td>
+<td><p>density</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(u\)</span></p></td>
+<td><p>velocity</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\rho u\)</span></p></td>
+<td><p>momentum</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(p\)</span></p></td>
+<td><p>pressure</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul class="simple">
+<li><p>Isentrtropic equation of state (pressure depends only on density) <span class="math notranslate nohighlight">\(p(\rho) = C \rho^\gamma\)</span> with <span class="math notranslate nohighlight">\(\gamma = 1.4\)</span> (typical air).</p></li>
+<li><p>“isothermal” gas dynamics: <span class="math notranslate nohighlight">\(p(\rho) = c^2 \rho\)</span>, wave speed <span class="math notranslate nohighlight">\(c\)</span>.</p></li>
+<li><p>Compute the needed <span class="math notranslate nohighlight">\(\rho u^2\)</span>  as <span class="math notranslate nohighlight">\( \rho u^2 = \frac{(\rho u)^2}{\rho} .\)</span></p></li>
+</ul>
+<p>The flux Jacobian is</p>
+<div class="math notranslate nohighlight">
+\[
+F'(U) = \frac{\partial F}{\partial U}
+\]</div>
+<section id="smooth-wave-structure">
+<h4>Smooth wave structure<a class="headerlink" href="#smooth-wave-structure" title="Link to this heading">#</a></h4>
+<p>For perturbations of a constant state, systems of equations produce multiple waves with speeds equal to the eigenvalues of the flux Jacobian,
+<div class="math notranslate nohighlight">
+\[\begin{split} F'(U) = \begin{bmatrix} 0 &amp; 1 \\ -u^2 + c^2 &amp; 2 u \end{bmatrix}. \end{split}\]</div>
+
+We can compute the eigenvalues <span class="math notranslate nohighlight">\(\Lambda \)</span> and eigenvector <span class="math notranslate nohighlight">\(W\)</span> matrices,
+<div class="math notranslate nohighlight">
+\[ F'(U) = W \Lambda W^{-1} \]</div>
+
+as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-31836f83-3669-459a-ac24-f77ad8b09cc6">
+<span class="eqno">(37)<a class="headerlink" href="#equation-31836f83-3669-459a-ac24-f77ad8b09cc6" title="Permalink to this equation">#</a></span>\[\begin{align} 
+W &amp;= \begin{bmatrix} 1 &amp; 1 \\ u-c &amp; u+c \end{bmatrix} &amp;
+\Lambda &amp;= \begin{bmatrix} u-c &amp;  \\ &amp; u+c \end{bmatrix} .
+\end{align}\]</div>
+</section>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -953,6 +1021,13 @@ g_i = \frac{u_{i+1} - u_{i-1}}{ 2 \Delta x}
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-fv-solver-with-flux-slope-limiter">A FV solver with flux/slope limiter</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-on-hyperbolic-systems">3. Introduction on hyperbolic systems</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-isentropic-gas-dynamics">3.1 Example: Isentropic gas dynamics</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#smooth-wave-structure">Smooth wave structure</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
