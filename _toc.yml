@@ -24,3 +24,4 @@ chapters:
   - file: lectures/module3-3_applied_fem.ipynb
   - file: lectures/module4-1_finite_volume.ipynb
   - file: lectures/module4-2_reconstruction.ipynb
+  - file: lectures/module4-3_hyperbolic_systems.ipynb
