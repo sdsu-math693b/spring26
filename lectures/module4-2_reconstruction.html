@@ -63,6 +63,7 @@
     <link rel="icon" href="../_static/SDSU-math693b_logo.svg"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="18) Hyperbolic Systems" href="module4-3_hyperbolic_systems.html" />
     <link rel="prev" title="16) Finite Volume" href="module4-1_finite_volume.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -203,6 +204,7 @@
 <li class="toctree-l2"><a class="reference internal" href="module3-3_applied_fem.html">15) Applied Finite Elements</a></li>
 <li class="toctree-l2"><a class="reference internal" href="module4-1_finite_volume.html">16) Finite Volume</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">17) Reconstructions and slope/flux limiters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module4-3_hyperbolic_systems.html">18) Hyperbolic Systems</a></li>
 </ul>
 </details></li>
 </ul>
@@ -669,7 +671,7 @@ onto a grid with element size <span class="math notranslate nohighlight">\(\Delt
 <section id="slope-reconstruction-and-limiting">
 <h2>2. Slope reconstruction and limiting<a class="headerlink" href="#slope-reconstruction-and-limiting" title="Link to this heading">#</a></h2>
 <blockquote>
-<div><p>For many finite-difference or finite-volume computations with discontinuous solutions limiters are a <em>necessary evil</em>. NASA’s Technical Report by<a class="reference external" href="https://www.nas.nasa.gov/assets/nas/pdf/papers/nas-05-007.pdf">Berger, Aftosmis, and Murman (2005)</a></p>
+<div><p>For many finite-difference or finite-volume computations with discontinuous solutions limiters are a <em>necessary evil</em>. NASA’s Technical Report by <a class="reference external" href="https://www.nas.nasa.gov/assets/nas/pdf/papers/nas-05-007.pdf">Berger, Aftosmis, and Murman (2005)</a></p>
 </div></blockquote>
 <p>One method for constructing higher order methods is to use the state in neighboring elements to perform a conservative reconstruction of a piecewise polynomial, then compute numerical fluxes by solving Riemann problems at the interfaces.</p>
 <p>If <span class="math notranslate nohighlight">\(x_i\)</span> is the center of cell <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(g_i\)</span> is the reconstructed gradient inside cell <span class="math notranslate nohighlight">\(i\)</span>, our reconstructed solution is
@@ -694,6 +696,7 @@ monotone?</p>
 <p>We will determine gradients by “limiting” the above slope using a nonlinear function that reduces to 1 when the solution is smooth.</p>
 <p>There are many ways to express <strong><a class="reference external" href="https://en.wikipedia.org/wiki/Flux_limiter">flux/slope limiters</a></strong> and our discussion here roughly follows this NASA’s Technical Report by<a class="reference external" href="https://www.nas.nasa.gov/assets/nas/pdf/papers/nas-05-007.pdf">Berger, Aftosmis, and Murman (2005)</a>.</p>
 <p><img alt="Berger et al, figure 3b, Cell averages" src="../_images/Berger2005-3b-CellAverages.png" /></p>
+<p>The figure above depicts cell averages corresponding to the limiters. When <span class="math notranslate nohighlight">\(u_i\)</span> is exactly in the middle, the data is linear, <span class="math notranslate nohighlight">\(f = 1/2\)</span>, and the limiter is <span class="math notranslate nohighlight">\(1\)</span>. The undivided differences are <span class="math notranslate nohighlight">\(\Delta_{-} = u_i − u_{i−1}\)</span> , and <span class="math notranslate nohighlight">\(\Delta_+ = u_{i+1} − u_i\)</span>. <span class="math notranslate nohighlight">\(J\)</span> is the total jump <span class="math notranslate nohighlight">\(u_{i+1} − u_{i−1}\)</span>.</p>
 </section>
 <section id="flux-corrected-transport-fct-zalesak-1979">
 <h3>Flux-corrected Transport (FCT) <a class="reference external" href="https://www.sciencedirect.com/science/article/abs/pii/0021999179900512">Zalesak 1979</a><a class="headerlink" href="#flux-corrected-transport-fct-zalesak-1979" title="Link to this heading">#</a></h3>
@@ -888,8 +891,8 @@ g_i = \frac{u_{i+1} - u_{i-1}}{ 2 \Delta x}
 <p>But the system has <strong>waves traveling at different speeds</strong>. So we need to be more careful with reconstructions.</p>
 <section id="example-isentropic-gas-dynamics">
 <h3>3.1 Example: Isentropic gas dynamics<a class="headerlink" href="#example-isentropic-gas-dynamics" title="Link to this heading">#</a></h3>
-<div class="amsmath math notranslate nohighlight" id="equation-65dd6391-07c4-4171-bb9a-1fd2cbd00d35">
-<span class="eqno">(36)<a class="headerlink" href="#equation-65dd6391-07c4-4171-bb9a-1fd2cbd00d35" title="Permalink to this equation">#</a></span>\[\begin{align} U &amp;= \begin{bmatrix} \rho \\ \rho u \end{bmatrix} \, ,&amp; F(U) &amp;= \begin{bmatrix} \rho u \\ \rho u^2 + p \end{bmatrix} \end{align}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-194d6acc-280e-4d9f-9ec4-5ca1be7857be">
+<span class="eqno">(36)<a class="headerlink" href="#equation-194d6acc-280e-4d9f-9ec4-5ca1be7857be" title="Permalink to this equation">#</a></span>\[\begin{align} U &amp;= \begin{bmatrix} \rho \\ \rho u \end{bmatrix} \, ,&amp; F(U) &amp;= \begin{bmatrix} \rho u \\ \rho u^2 + p \end{bmatrix} \end{align}\]</div>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Variable</p></th>
@@ -933,8 +936,8 @@ We can compute the eigenvalues <span class="math notranslate nohighlight">\(\Lam
 \[ F'(U) = W \Lambda W^{-1} \]</div>
 
 as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-31836f83-3669-459a-ac24-f77ad8b09cc6">
-<span class="eqno">(37)<a class="headerlink" href="#equation-31836f83-3669-459a-ac24-f77ad8b09cc6" title="Permalink to this equation">#</a></span>\[\begin{align} 
+<div class="amsmath math notranslate nohighlight" id="equation-7136544e-5d2c-4e9f-8bc6-1906bd564883">
+<span class="eqno">(37)<a class="headerlink" href="#equation-7136544e-5d2c-4e9f-8bc6-1906bd564883" title="Permalink to this equation">#</a></span>\[\begin{align} 
 W &amp;= \begin{bmatrix} 1 &amp; 1 \\ u-c &amp; u+c \end{bmatrix} &amp;
 \Lambda &amp;= \begin{bmatrix} u-c &amp;  \\ &amp; u+c \end{bmatrix} .
 \end{align}\]</div>
@@ -981,6 +984,15 @@ W &amp;= \begin{bmatrix} 1 &amp; 1 \\ u-c &amp; u+c \end{bmatrix} &amp;
         <p class="prev-next-subtitle">previous</p>
         <p class="prev-next-title">16) Finite Volume</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="module4-3_hyperbolic_systems.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">18) Hyperbolic Systems</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
