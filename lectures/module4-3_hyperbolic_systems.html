@@ -620,8 +620,8 @@ or as rarefaction fans, except now they may occur in each of the different chara
 </ul>
 <section id="isentropic-gas-dynamics">
 <h3>Isentropic gas dynamics<a class="headerlink" href="#isentropic-gas-dynamics" title="Link to this heading">#</a></h3>
-<div class="amsmath math notranslate nohighlight" id="equation-cd2f4a59-37de-4efd-869c-5377807a7d71">
-<span class="eqno">(38)<a class="headerlink" href="#equation-cd2f4a59-37de-4efd-869c-5377807a7d71" title="Permalink to this equation">#</a></span>\[\begin{align} U &amp;= \begin{bmatrix} \rho \\ \rho u \end{bmatrix} \, ,&amp; F(U) &amp;= \begin{bmatrix} \rho u \\ \rho u^2 + p \end{bmatrix} \end{align}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-607fc985-9119-43a6-bd9a-84afe3498a46">
+<span class="eqno">(38)<a class="headerlink" href="#equation-607fc985-9119-43a6-bd9a-84afe3498a46" title="Permalink to this equation">#</a></span>\[\begin{align} U &amp;= \begin{bmatrix} \rho \\ \rho u \end{bmatrix} \, ,&amp; F(U) &amp;= \begin{bmatrix} \rho u \\ \rho u^2 + p \end{bmatrix} \end{align}\]</div>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Variable</p></th>
@@ -665,8 +665,8 @@ We can compute the eigenvalues <span class="math notranslate nohighlight">\(\Lam
 \[ F'(U) = W \Lambda W^{-1} \]</div>
 
 as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6840131e-63b7-4a5a-966f-716b7161aa79">
-<span class="eqno">(39)<a class="headerlink" href="#equation-6840131e-63b7-4a5a-966f-716b7161aa79" title="Permalink to this equation">#</a></span>\[\begin{align} 
+<div class="amsmath math notranslate nohighlight" id="equation-ebb56c59-baf0-4caa-a8cb-365fbea2d3b5">
+<span class="eqno">(39)<a class="headerlink" href="#equation-ebb56c59-baf0-4caa-a8cb-365fbea2d3b5" title="Permalink to this equation">#</a></span>\[\begin{align} 
 W &amp;= \begin{bmatrix} 1 &amp; 1 \\ u-c &amp; u+c \end{bmatrix} &amp;
 \Lambda &amp;= \begin{bmatrix} u-c &amp;  \\ &amp; u+c \end{bmatrix} .
 \end{align}\]</div>
@@ -696,8 +696,8 @@ W &amp;= \begin{bmatrix} 1 &amp; 1 \\ u-c &amp; u+c \end{bmatrix} &amp;
 <li><p>The inequality in the entropy condition is strict if the wave is genuinely nonlinear (more on this in a second). Meaning, <span class="math notranslate nohighlight">\( \lambda_i(U_L) \ge S \ge \lambda_i(U_*) \)</span>.</p></li>
 </ul>
 <p>For isentropic/isothermal gas dynamics,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1abadfb4-a034-47d9-b109-89f54afea371">
-<span class="eqno">(40)<a class="headerlink" href="#equation-1abadfb4-a034-47d9-b109-89f54afea371" title="Permalink to this equation">#</a></span>\[\begin{align} 
+<div class="amsmath math notranslate nohighlight" id="equation-e7915980-42dc-4936-a57c-1248db554210">
+<span class="eqno">(40)<a class="headerlink" href="#equation-e7915980-42dc-4936-a57c-1248db554210" title="Permalink to this equation">#</a></span>\[\begin{align} 
 U &amp;= \begin{bmatrix} \rho \\ \rho u \end{bmatrix} \, ,&amp; F(U) &amp;= \begin{bmatrix} \rho u \\ \rho u^2 + c^2 \rho \end{bmatrix}
 \end{align}\]</div>
 <p>If a shock connects <span class="math notranslate nohighlight">\(U_L = (\rho_L, \rho_L u_L)\)</span> to <span class="math notranslate nohighlight">\(U_* = (\rho_* , \rho_* u_*)\)</span>, with shock speed <span class="math notranslate nohighlight">\(S\)</span>, and</p>
@@ -707,8 +707,8 @@ U &amp;= \begin{bmatrix} \rho \\ \rho u \end{bmatrix} \, ,&amp; F(U) &amp;= \beg
 S = \frac{\Delta F}{\Delta U} 
 \end{align*}\]</div>
 <p>in this case we have</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1b8406a7-992b-4d63-86af-bc10769217f8">
-<span class="eqno">(41)<a class="headerlink" href="#equation-1b8406a7-992b-4d63-86af-bc10769217f8" title="Permalink to this equation">#</a></span>\[\begin{align} 
+<div class="amsmath math notranslate nohighlight" id="equation-aab18c7d-66e3-4268-870f-9a5ee547b987">
+<span class="eqno">(41)<a class="headerlink" href="#equation-aab18c7d-66e3-4268-870f-9a5ee547b987" title="Permalink to this equation">#</a></span>\[\begin{align} 
 S \left(
     \begin{bmatrix} \rho_* \\ \rho_* u_* \end{bmatrix} -
     \begin{bmatrix} \rho_L \\ \rho_L u_L \end{bmatrix} \right)
@@ -717,8 +717,8 @@ S \left(
     \begin{bmatrix} \rho_L u_L \\ \rho_L u_L^2 + c^2 \rho_L  \end{bmatrix}
 \end{align}\]</div>
 <p>the Rankine-Hugoniot condition is, component-wise:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c27f1877-470e-4182-a7e3-910d949d5404">
-<span class="eqno">(42)<a class="headerlink" href="#equation-c27f1877-470e-4182-a7e3-910d949d5404" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-0a9a76dd-615b-46af-9d2a-e98fb4763c38">
+<span class="eqno">(42)<a class="headerlink" href="#equation-0a9a76dd-615b-46af-9d2a-e98fb4763c38" title="Permalink to this equation">#</a></span>\[\begin{align}
  \textrm{(i) }(\rho_* - \rho_L) S &amp;= \rho_* u_* - \rho_L u_L \\
  \textrm{(ii) }(\rho_* u_* - \rho_L u_L) S &amp;= \Big(\rho_* u_*^2 + c^2 \rho_* \Big) - \Big( \rho_L u_L^2 + c^2 \rho_L \Big)
 \end{align}\]</div>
@@ -762,12 +762,15 @@ F'(U) = \frac{\partial F}{\partial U}
 <section id="rankinehugoniot-for-the-isentropic-gas-dynamics-example">
 <h3>Rankine–Hugoniot for the isentropic gas dynamics example<a class="headerlink" href="#rankinehugoniot-for-the-isentropic-gas-dynamics-example" title="Link to this heading">#</a></h3>
 <p>Going back to the isentropic/isothermal gas dynamics example, we solve the first equation (i) for <span class="math notranslate nohighlight">\(S\)</span> and substituting into the second (ii):</p>
-<p>\begin{split} \frac{(\rho_* u_* - \rho_L u_L)^2}{\rho_* - \rho_L} &amp;= \rho_* u_<em>^2 - \rho_L u_L^2 + c^2 (\rho_</em> - \rho_L) \
-\rho_<em>^2 u_</em>^2 - 2 \rho_* \rho_L u_* u_L + \rho_L^2 u_L^2 &amp;= \rho_* (\rho_* - \rho_L) u_<em>^2 - \rho_L (\rho_</em> - \rho_L) u_L^2 + c^2 (\rho_* - \rho_L)^2 \
-\rho_* \rho_L \Big( u_<em>^2 - 2  u_</em> u_L + u_L^2 \Big) &amp;= c^2 (\rho_* - \rho_L)^2 \
-(u_* - u_L)^2 &amp;= c^2 \frac{(\rho_* - \rho_L)^2}{\rho_* \rho_L} \
-u_* - u_L &amp;= \pm c \frac{\rho_* - \rho_L}{\sqrt{\rho_* \rho_L}}
-\end{split}</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{split} \frac{(\rho_* u_* - \rho_L u_L)^2}{\rho_* - \rho_L} &amp;= \rho_* u_*^2 - \rho_L u_L^2 + c^2 (\rho_* - \rho_L) \\
+ \rho_*^2 u_*^2 - 2 \rho_* \rho_L u_* u_L + \rho_L^2 u_L^2 &amp;= \rho_* (\rho_* - \rho_L) u_*^2 - \rho_L (\rho_* - \rho_L) u_L^2 + c^2 (\rho_* - \rho_L)^2 \\
+ \rho_* \rho_L \Big( u_*^2 - 2  u_* u_L + u_L^2 \Big) &amp;= c^2 (\rho_* - \rho_L)^2 \\
+ (u_* - u_L)^2 &amp;= c^2 \frac{(\rho_* - \rho_L)^2}{\rho_* \rho_L} \\
+ u_* - u_L &amp;= \pm c \frac{\rho_* - \rho_L}{\sqrt{\rho_* \rho_L}}
+\end{split}
+\end{split}\]</div>
 <p>By doing so, we have found the <strong>Hugoniot locus</strong>, the algebraic relation that admissible shock-connected states <span class="math notranslate nohighlight">\(U_*\)</span> must satisfy.</p>
 <p>Note that algebraically, there are two possible solutions (<span class="math notranslate nohighlight">\(\pm\)</span> sign) and we will need to use the entropy condition to learn which sign to take. One corresponds to a physical shock, the other corresponds to a nonphysical solution (e.g. expansion shock). The Rankine–Hugoniot condition(s) alone does not distinguish them. That’s why we also need the entropy condition.</p>
 </section>
@@ -1122,8 +1125,8 @@ via
 <p>Assume two shocks with speeds <span class="math notranslate nohighlight">\(S_L\)</span> and <span class="math notranslate nohighlight">\(S_R\)</span>.</p>
 <p>These speeds will be estimated and must be at least as fast as the fastest left- and right-traveling waves.</p>
 <p>If the wave speeds <span class="math notranslate nohighlight">\(S_L\)</span> and <span class="math notranslate nohighlight">\(S_R\)</span> are given, we have the Rankine-Hugoniot conditions across both shocks,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-815ca2fa-a7b1-4c80-a273-aebba460e7d2">
-<span class="eqno">(43)<a class="headerlink" href="#equation-815ca2fa-a7b1-4c80-a273-aebba460e7d2" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-995d9dad-2dd2-4989-8dea-4b7545ea8e23">
+<span class="eqno">(43)<a class="headerlink" href="#equation-995d9dad-2dd2-4989-8dea-4b7545ea8e23" title="Permalink to this equation">#</a></span>\[\begin{align}
   S_L (U_* - U_L) &amp;= f(U_*) - f(U_L) \\
   S_R (U_R - U_*) &amp;= f(U_R) - f(U_*) .
 \end{align}\]</div>
@@ -1141,8 +1144,8 @@ We can save an extra evaluation of the flux by using the Rankine-Hugoniot condit
 </p>
 <section id="isentropic-isothermal-gas-dynamics-example">
 <h4>Isentropic/isothermal gas dynamics example<a class="headerlink" href="#isentropic-isothermal-gas-dynamics-example" title="Link to this heading">#</a></h4>
-<div class="amsmath math notranslate nohighlight" id="equation-51209ea7-9794-4478-8799-a99747832d40">
-<span class="eqno">(44)<a class="headerlink" href="#equation-51209ea7-9794-4478-8799-a99747832d40" title="Permalink to this equation">#</a></span>\[\begin{align} S_L &amp;= \min( u_L - c, u_R - c ) \\
+<div class="amsmath math notranslate nohighlight" id="equation-a07110d7-e8f9-4b7e-ac71-c418ccc5e622">
+<span class="eqno">(44)<a class="headerlink" href="#equation-a07110d7-e8f9-4b7e-ac71-c418ccc5e622" title="Permalink to this equation">#</a></span>\[\begin{align} S_L &amp;= \min( u_L - c, u_R - c ) \\
 S_R &amp;= \max(u_L + c, u_R + c)
 \end{align}\]</div>
 </section>
