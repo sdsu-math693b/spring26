@@ -25,3 +25,4 @@ chapters:
   - file: lectures/module4-1_finite_volume.ipynb
   - file: lectures/module4-2_reconstruction.ipynb
   - file: lectures/module4-3_hyperbolic_systems.ipynb
+  - file: lectures/module5-1_careers.md
