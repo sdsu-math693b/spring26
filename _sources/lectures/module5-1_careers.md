@@ -1,4 +1,4 @@
-# 19) Careers in Applied Mathematics and computational science
+# 19) Careers in applied mathematics and computational science
 
 1. National Labs
 2. Industrial R&D
