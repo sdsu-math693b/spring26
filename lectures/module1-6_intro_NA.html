@@ -202,7 +202,10 @@
 <li class="toctree-l2"><a class="reference internal" href="module3-1_intro_to_fem.html">13) Introduction to Finite Element discretizations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="module3-2_fem_assembly.html">14) FEM Assembly</a></li>
 <li class="toctree-l2"><a class="reference internal" href="module3-3_applied_fem.html">15) Applied Finite Elements</a></li>
-
+<li class="toctree-l2"><a class="reference internal" href="module4-1_finite_volume.html">16) Finite Volume</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module4-2_reconstruction.html">17) Reconstructions and slope/flux limiters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module4-3_hyperbolic_systems.html">18) Hyperbolic Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module5-1_careers.html">19) Careers in applied mathematics and computational science</a></li>
 </ul>
 </details></li>
 </ul>
@@ -520,8 +523,8 @@ document.write(`
 <section id="introduction-to-consistency">
 <h2>2. Introduction to Consistency<a class="headerlink" href="#introduction-to-consistency" title="Link to this heading">#</a></h2>
 <p>Last time, we found one possible approximation to the heat equation:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-80eb8d47-f915-447c-8089-7cf86d578a34">
-<span class="eqno">(7)<a class="headerlink" href="#equation-80eb8d47-f915-447c-8089-7cf86d578a34" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-5ea20fcb-6ae4-4397-98af-153687dd9565">
+<span class="eqno">(7)<a class="headerlink" href="#equation-5ea20fcb-6ae4-4397-98af-153687dd9565" title="Permalink to this equation">#</a></span>\[\begin{align}
 v_t &amp;= \nu v_{xx}, &amp;&amp; x\in(0,1),\ t&gt;0, \tag{1.2.1}\\
 v(x,0) &amp;= f(x), &amp;&amp; x\in[0,1], \tag{1.2.2}\\
 v(0,t) &amp;= a(t),\quad v(1,t)=b(t), &amp;&amp; t\ge 0. \tag{1.2.3}
@@ -864,11 +867,13 @@ log(1 + x) = 9.99999999999999577705399876661334866240642273273796506931959160545
 <span class=" -Color -Color-Bold -Color-Bold-Green">  No Changes</span> to `~/.julia/environments/v1.10/Manifest.toml`
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Yellow">┌ Warning: </span>Circular dependency detected.
-<span class=" -Color -Color-Bold -Color-Bold-Yellow">│ </span>Precompilation will be skipped for dependencies in this cycle:
-<span class=" -Color -Color-Bold -Color-Bold-Yellow">│ </span> ┌ Symbolics → SymbolicsForwardDiffExt
-<span class=" -Color -Color-Bold -Color-Bold-Yellow">│ </span> └─ Symbolics → SymbolicsPreallocationToolsExt
-<span class=" -Color -Color-Bold -Color-Bold-Yellow">└ </span>@ Pkg.API.Precompilation ~/julia-1.10.10/share/julia/stdlib/v1.10/Pkg/src/precompilation.jl:583
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Green">Precompiling</span> packages...
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>           ✗ Gridap
+  0 dependencies successfully precompiled in 2 seconds. 376 already precompiled.
+  1 dependency errored.
+  For a report of the errors see `julia&gt; err`. To retry use `pkg&gt; precompile`
 </pre></div>
 </div>
 </div>

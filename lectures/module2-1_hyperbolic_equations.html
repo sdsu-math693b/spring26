@@ -202,7 +202,10 @@
 <li class="toctree-l2"><a class="reference internal" href="module3-1_intro_to_fem.html">13) Introduction to Finite Element discretizations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="module3-2_fem_assembly.html">14) FEM Assembly</a></li>
 <li class="toctree-l2"><a class="reference internal" href="module3-3_applied_fem.html">15) Applied Finite Elements</a></li>
-
+<li class="toctree-l2"><a class="reference internal" href="module4-1_finite_volume.html">16) Finite Volume</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module4-2_reconstruction.html">17) Reconstructions and slope/flux limiters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module4-3_hyperbolic_systems.html">18) Hyperbolic Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module5-1_careers.html">19) Careers in applied mathematics and computational science</a></li>
 </ul>
 </details></li>
 </ul>
@@ -680,8 +683,8 @@ a shift to the <em>left</em>.</p></li>
 <div class="math notranslate nohighlight">
 \[\begin{split}P = \textstyle \left[\begin{array}{cc}1&amp;1\\1&amp;-1\end{array}\right]\end{split}\]</div>
 <p>Hence, the solution is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-830da047-4129-4e5c-9af3-6656e8382c6d">
-<span class="eqno">(11)<a class="headerlink" href="#equation-830da047-4129-4e5c-9af3-6656e8382c6d" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f83eb45a-2903-4c26-9420-2c73fc06a3fc">
+<span class="eqno">(11)<a class="headerlink" href="#equation-f83eb45a-2903-4c26-9420-2c73fc06a3fc" title="Permalink to this equation">#</a></span>\[\begin{align}
 u(t,x) &amp;= \frac{1}{2}\bigg[ u_0(x-3t) + u_0(x-t) \bigg], \\
 v(t,x) &amp;= \frac{1}{2}\bigg[ u_0(x-3t) - u_0(x-t) \bigg].
 \end{align}\]</div>
@@ -894,8 +897,8 @@ u_t + a u_x =0, \quad 0\le x \le1, \ t\ge 0,
 v_t+av_x=0
 \]</div>
 <p>we can write down a number of finite difference approximations at <span class="math notranslate nohighlight">\((t_n,x_m)\)</span>, e.g.,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7c023c79-5769-4463-8f20-d5dfe506a719">
-<span class="eqno">(12)<a class="headerlink" href="#equation-7c023c79-5769-4463-8f20-d5dfe506a719" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-ebc754e3-4b07-4895-8c41-82c85e81d2a1">
+<span class="eqno">(12)<a class="headerlink" href="#equation-ebc754e3-4b07-4895-8c41-82c85e81d2a1" title="Permalink to this equation">#</a></span>\[\begin{align}
     \displaystyle \frac{u_{k}^{n+1} - u_{k}^{n}}{\Delta t} + a \frac{
       u_{k+1}^{n} - u_{k}^{n} }{\Delta x} = 0 &amp;&amp; \hbox{FTFS}\\ 
     \displaystyle \frac{u_{k}^{n+1} - u_{k}^{n}}{\Delta t} + a \frac{

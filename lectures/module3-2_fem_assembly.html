@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -202,6 +202,10 @@
 <li class="toctree-l2"><a class="reference internal" href="module3-1_intro_to_fem.html">13) Introduction to Finite Element discretizations</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">14) FEM Assembly</a></li>
 <li class="toctree-l2"><a class="reference internal" href="module3-3_applied_fem.html">15) Applied Finite Elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module4-1_finite_volume.html">16) Finite Volume</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module4-2_reconstruction.html">17) Reconstructions and slope/flux limiters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module4-3_hyperbolic_systems.html">18) Hyperbolic Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module5-1_careers.html">19) Careers in applied mathematics and computational science</a></li>
 </ul>
 </details></li>
 </ul>
@@ -1217,11 +1221,15 @@ sum(w) =
 <span class=" -Color -Color-Bold -Color-Bold-Green">  No Changes</span> to `~/.julia/environments/v1.10/Manifest.toml`
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Yellow">┌ Warning: </span>Circular dependency detected.
-<span class=" -Color -Color-Bold -Color-Bold-Yellow">│ </span>Precompilation will be skipped for dependencies in this cycle:
-<span class=" -Color -Color-Bold -Color-Bold-Yellow">│ </span> ┌ Symbolics → SymbolicsForwardDiffExt
-<span class=" -Color -Color-Bold -Color-Bold-Yellow">│ </span> └─ Symbolics → SymbolicsPreallocationToolsExt
-<span class=" -Color -Color-Bold -Color-Bold-Yellow">└ </span>@ Pkg.API.Precompilation ~/julia-1.10.10/share/julia/stdlib/v1.10/Pkg/src/precompilation.jl:583
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Green">Precompiling</span> packages...
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>           ✗ Gridap
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0 dependencies successfully precompiled in 3 seconds. 376 already precompiled.
+  1 dependency errored.
+  For a report of the errors see `julia&gt; err`. To retry use `pkg&gt; precompile`
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Results of Nonlinear Solver Algorithm
