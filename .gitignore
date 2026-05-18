@@ -5,3 +5,4 @@ lectures/.ipynb_checkpoints/
 lectures/*.gif
 sys
 grading-spring26/*
+.venv/
